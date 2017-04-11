@@ -474,8 +474,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         
         
-        
-        tableView.reloadData()
+        let range = NSMakeRange(0, self.tableView.numberOfSections)
+        let sections = NSIndexSet(indexesIn: range)
+        self.tableView.reloadSections(sections as IndexSet, with: .fade)
     }
     @IBAction func clear(_ sender: UIButton) {
         let sectionCount = 1
@@ -509,14 +510,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             DataSource = InputTitles
             calculateButton.isHidden = false
             clearButton.isHidden = false
+            let range = NSMakeRange(0, self.tableView.numberOfSections)
+            let sections = NSIndexSet(indexesIn: range)
+            self.tableView.reloadSections(sections as IndexSet, with: .left)
             
         }
         else{
             DataSource = ResultTitles
             calculateButton.isHidden = true
             clearButton.isHidden = true
+            let range = NSMakeRange(0, self.tableView.numberOfSections)
+            let sections = NSIndexSet(indexesIn: range)
+            self.tableView.reloadSections(sections as IndexSet, with: .right)
         }
-        tableView.reloadData()
+        
+        //tableView.reloadData()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -685,22 +693,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             
                   if(sender.isOn){
-                print("AirComposition Off")
-                InputTitles.remove(at: 3)
-                InputUnits.remove(at: 3)
-                InputTitles.remove(at: 3)
-                InputUnits.remove(at: 3)
-                InputTitles.remove(at: 3)
-                InputUnits.remove(at: 3)
-                InputTitles.remove(at: 3)
-                InputUnits.remove(at: 3)
-                InputTitles.remove(at: 3)
-                InputUnits.remove(at: 3)
+                print("AirComposition On " + String(startingIndexAirComposition))
+        
                       
       
       
                 
                 DataSource = InputTitles
+                    
                 tableView.beginUpdates()
                 tableView.reloadRows(at: [IndexPath(row: 3, section: 0)], with: .fade)
                 tableView.reloadRows(at: [IndexPath(row: 4, section: 0)], with: .fade)
@@ -709,11 +709,32 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 tableView.reloadRows(at: [IndexPath(row: 7, section: 0)], with: .fade)
                       
                 tableView.endUpdates()
+ 
                 //sender.setOn(false, animated: true)
+                    InputTitles.insert("C02", at: startingIndexAirComposition)
+                    InputUnits.insert("", at: startingIndexAirComposition)
+                    InputTitles.insert("02", at: startingIndexAirComposition)
+                    InputUnits.insert("", at: startingIndexAirComposition)
+                    InputTitles.insert("N2", at: startingIndexAirComposition)
+                    InputUnits.insert("", at: startingIndexAirComposition)
+                    InputTitles.insert("Ar", at: startingIndexAirComposition)
+                    InputUnits.insert("", at: startingIndexAirComposition)
+                    InputTitles.insert("H20", at: startingIndexAirComposition)
+                    InputUnits.insert("", at: startingIndexAirComposition)
+                    
+                    
+                    DataSource = InputTitles
+                    tableView.beginUpdates()
+                    
+                    for i in 0..<5{
+                        tableView.reloadRows(at: [IndexPath(row: i+startingIndexAirComposition, section: 0)], with: .fade)
+                        tableView.endUpdates()
+                    }
+                    
 
                 }
                 else{
-                 print("Air Composition ON")
+                 print("Air Composition OFF")
                  InputTitles.insert("C02", at: startingIndexAirComposition)
                  InputUnits.insert("", at: startingIndexAirComposition)
                   InputTitles.insert("02", at: startingIndexAirComposition)
