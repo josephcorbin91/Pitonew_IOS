@@ -640,11 +640,83 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
             }
             else if(sender.tag == 1){
-                print("AirComposition")
+                  if(sender.isOn){
+                print("AirComposition Off")
+                InputTitles.remove(at: 3)
+                InputUnits.remove(at: 3)
+                InputTitles.remove(at: 4)
+                InputUnits.remove(at: 4)
+                InputTitles.remove(at: 5)
+                InputUnits.remove(at: 5)
+                InputTitles.remove(at: 6)
+                InputUnits.remove(at: 6)
+                InputTitles.remove(at: 7)
+                InputUnits.remove(at: 7)
+                      
+      
+      
+                
+                DataSource = InputTitles
+                tableView.beginUpdates()
+                tableView.deleteRows(at: [IndexPath(row: 3, section: 0)], with: .fade)
+                tableView.deleteRows(at: [IndexPath(row: 4, section: 0)], with: .fade)
+                tableView.deleteRows(at: [IndexPath(row: 5, section: 0)], with: .fade)
+                tableView.deleteRows(at: [IndexPath(row: 6, section: 0)], with: .fade)
+                tableView.deleteRows(at: [IndexPath(row: 7, section: 0)], with: .fade)
+                      
+                tableView.endUpdates()
+                //sender.setOn(false, animated: true)
+
+                }
+                else{
+                 print("Air Composition ON")
+                 InputTitles.insert("C02", at: 3)
+                 InputUnits.insert("", at: 3)
+                  InputTitles.insert("02", at: 4)
+                 InputUnits.insert("", at: 4)
+                  InputTitles.insert("N2", at: 5)
+                 InputUnits.insert("", at: 5)
+                  InputTitles.insert("Ar", at: 6)
+                 InputUnits.insert("", at: 6)
+                  InputTitles.insert("H20", at: 7)
+                 InputUnits.insert("", at: 7)                    
+                    
+              
+                 DataSource = InputTitles
+                 tableView.beginUpdates()
+                 tableView.insertRows(at: [IndexPath(row: 3, section: 0)], with: .fade)
+                 tableView.insertRows(at: [IndexPath(row: 4, section: 0)], with: .fade)
+                 tableView.insertRows(at: [IndexPath(row: 5, section: 0)], with: .fade)
+                 tableView.insertRows(at: [IndexPath(row: 6, section: 0)], with: .fade)
+                 tableView.insertRows(at: [IndexPath(row: 7, section: 0)], with: .fade)
+                 tableView.endUpdates()
+                 
+                }
 
             }
             else if(sender.tag == 2){
-                print("WetBullb")
+                 if(sender.isOn){
+                print("WetBulb OFF")
+                InputTitles.remove(at: 4)
+                InputUnits.remove(at: 4)
+                
+                DataSource = InputTitles
+                tableView.beginUpdates()
+                tableView.deleteRows(at: [IndexPath(row: 4, section: 0)], with: .fade)
+                tableView.endUpdates()
+                //sender.setOn(false, animated: true)
+
+                }
+                else{
+                 print("PipeType ON")
+                 InputTitles.insert("Width", at: 4)
+                 InputUnits.insert("m", at: 4)
+                 DataSource = InputTitles
+                 tableView.beginUpdates()
+                 tableView.insertRows(at: [IndexPath(row: 4, section: 0)], with: .fade)
+                 tableView.endUpdates()
+                 
+                }
 
             }
             
