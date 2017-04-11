@@ -18,9 +18,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var ResultUnitsSI = [String]()
     var ResultUnitsUS = [String]()
     var ResultUnits = [String]()
-    var resultArray = [String]()
-    var SIResultsArray = [String]()
-    var USReaultsArray = [String]()
+    var resultArray = Array(repeating: "", count: 10)
+    var SIResultsArray = Array(repeating: "", count: 10)
+    var USReaultsArray = Array(repeating: "", count: 10)
+    
     
 
     var InputUnitsSI = [String]()
@@ -29,12 +30,31 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var dynamicPressureArray = [Double]()
 
     var numberOfInputValues : Int? = nil
-    var inputArrayValues : [String] = [String]()
+    var inputArrayValues = ["off","off","off","1.0","1.0","1.0","1.0","1.0","1.0","1.0","1.0","1.0"]
+
     var rowBeingEdited : Int? = nil
     
     
     @IBOutlet weak var clearButton: UIButton!
     @IBOutlet weak var calculateButton: UIButton!
+    
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+       // currentRow = indexPath.row
+        /*
+        var cell : CustomCell
+        var textField : UITextField
+        
+        cell = tableView.cellForRow(at: indexPath) as! CustomCell
+        textField = cell.inputLabel
+        textField.becomeFirstResponder()
+        print(textField)
+        let string = String(indexPath.row) + "touched"
+        print(string)
+ */
+    }
+    
+    
     
     @IBAction func unitSwitchChanged(_ sender: UISwitch) {
         if(unitSwitch.isOn){
@@ -64,7 +84,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
         ResultTitles = ["Dynamic Velocity", "Average Velocity", "Mass Air Flow", "Actual Air Flow","Normal Air Flow", "Molar Weight", "Duct Pressure","Area", "Atmospheric Pressue", "GasDensity"]
         ResultUnitsSI = ["m/s","m/s","kg/","m^3/s", "Nm^3/h","g/mol", "kPa", "m^2", "kPa", "kg/m^3"]
-        ResultUnitsUS = ["ft/s","ft/s","lb/min","SCFM", "ACFM","g/mol", "in Hg", "in^2", "in. Hg", "lb", "ft^3"]
+        ResultUnitsUS = ["ft/s","ft/s","lb/min","SCFM", "ACFM","g/mol", "in Hg", "in^2", "in. Hg", "ft^3",""]
 
 
         InputUnits = InputUnitsUS
@@ -84,16 +104,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     
     func calculateResults(){
-    
-       /*
-         if(inputArrayValues[3] = "" || inputArrayValues[4] = "" || inputArrayValues[5] = "" ||
-         inputArrayValues[6] = "" || inputArrayValues[7] = "" || inputArrayValues[8] = "" ||
-         inputArrayValues[9] = "" || inputArrayValues[10] = "")
-         {
-         
-         }
-         else{
- */
         var pipeShapeSwitch: Bool
         var AirCompositionSwitch: Bool
         var wetBulbSwitch: Bool
@@ -352,52 +362,65 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
          return nf
          }()
          
-      
-         
          if(UnitSwitch){
+         SIResultsArray[0] = "Dynamic Velocity"//numberTwoDigitsFomatter.string(from: averageVelocity as NSNumber)
+         SIResultsArray[1] = numberTwoDigitsFomatter.string(from: averageVelocity as NSNumber)!
+         SIResultsArray[2] = numberTwoDigitsFomatter.string(from: massAirFlow as NSNumber)!
+         SIResultsArray[3] = numberTwoDigitsFomatter.string(from: actualAirFlow as NSNumber)!
+         SIResultsArray[4] = numberTwoDigitsFomatter.string(from: normalAirFlow as NSNumber)!
+         SIResultsArray[5] = numberFourDigitsFomatter.string(from: molecularWeight as NSNumber)!
+         SIResultsArray[6] = numberTwoDigitsFomatter.string(from: ductPressure as NSNumber)!
+         SIResultsArray[7] = numberTwoDigitsFomatter.string(from: area as NSNumber)!
+         SIResultsArray[8] = numberTwoDigitsFomatter.string(from: atmosphericPressure as NSNumber)!
+         SIResultsArray[9] = numberFourDigitsFomatter.string(from: gasDensity as NSNumber)!
+         //SIResultsArray[10] = ""
+         //SIResultsArray[11] = ""
+
          
-         SIResultsArray[0] = numberTwoDigitsFomatter.string(from: averageVelocity as NSNumber)!
-         SIResultsArray[1] = numberTwoDigitsFomatter.string(from: massAirFlow as NSNumber)!
-         SIResultsArray[2] = numberTwoDigitsFomatter.string(from: actualAirFlow as NSNumber)!
-         SIResultsArray[3] = numberTwoDigitsFomatter.string(from: normalAirFlow as NSNumber)!
-         SIResultsArray[4] = numberFourDigitsFomatter.string(from: molecularWeight as NSNumber)!
-         SIResultsArray[5] = numberTwoDigitsFomatter.string(from: ductPressure as NSNumber)!
-         SIResultsArray[6] = numberTwoDigitsFomatter.string(from: atmosphericPressure as NSNumber)!
-         SIResultsArray[7] = numberFourDigitsFomatter.string(from: gasDensity as NSNumber)!
-         
-         USReaultsArray[0] = numberTwoDigitsFomatter.string(from: averageVelocity*39.3701/12 as NSNumber)!
-         USReaultsArray[1] = numberTwoDigitsFomatter.string(from: massAirFlow*(2.2046*60) as NSNumber)!
-         USReaultsArray[2] = numberTwoDigitsFomatter.string(from: (actualAirFlow/60*(pow(39.3701/12,3))) as NSNumber)!
-         USReaultsArray[3] = numberTwoDigitsFomatter.string(from: (normalAirFlow*((pow(39.3701/12,3)*(294.26/273.15)))/60) as NSNumber)!
-         USReaultsArray[4] = numberFourDigitsFomatter.string(from: molecularWeight as NSNumber)!
-         USReaultsArray[5] = numberTwoDigitsFomatter.string(from: (ductPressure/3.38639) as NSNumber)!
-         USReaultsArray[6] = numberTwoDigitsFomatter.string(from: (atmosphericPressure/3.38639) as NSNumber)!
-         USReaultsArray[7] = numberFourDigitsFomatter.string(from: (gasDensity/16.018463) as NSNumber)!
-         
+         USReaultsArray[0] = "Dynamic Velocity"//numberTwoDigitsFomatter.string(from: averageVelocity as NSNumber)
+         USReaultsArray[1] = numberTwoDigitsFomatter.string(from: averageVelocity*39.3701/12 as NSNumber)!
+         USReaultsArray[2] = numberTwoDigitsFomatter.string(from: massAirFlow*(2.2046*60) as NSNumber)!
+         USReaultsArray[3] = numberTwoDigitsFomatter.string(from: (actualAirFlow/60*(pow(39.3701/12,3))) as NSNumber)!
+         USReaultsArray[4] = numberTwoDigitsFomatter.string(from: (normalAirFlow*((pow(39.3701/12,3)*(294.26/273.15)))/60) as NSNumber)!
+         USReaultsArray[5] = numberFourDigitsFomatter.string(from: molecularWeight as NSNumber)!
+         USReaultsArray[6] = numberTwoDigitsFomatter.string(from: (ductPressure/3.38639) as NSNumber)!
+         USReaultsArray[7] = numberTwoDigitsFomatter.string(from: area/0.00064516 as NSNumber)!
+         USReaultsArray[8] = numberTwoDigitsFomatter.string(from: (atmosphericPressure/3.38639) as NSNumber)!
+         USReaultsArray[9] = numberFourDigitsFomatter.string(from: (gasDensity/16.018463) as NSNumber)!
+         //USReaultsArray[10] = ""
+         //USReaultsArray[11] = ""
+
          
          
          resultArray=SIResultsArray
          }
          else{
+         USReaultsArray[0] = "Dynamic Velocity"//numberTwoDigitsFomatter.string(from: averageVelocity as NSNumber)
+         USReaultsArray[1] = numberTwoDigitsFomatter.string(from: averageVelocity as NSNumber)!
+         USReaultsArray[2] = numberTwoDigitsFomatter.string(from: massAirFlow as NSNumber)!
+         USReaultsArray[3] = numberTwoDigitsFomatter.string(from: actualAirFlow as NSNumber)!
+         USReaultsArray[4] = numberTwoDigitsFomatter.string(from: normalAirFlow as NSNumber)!
+         USReaultsArray[5] = numberFourDigitsFomatter.string(from: molecularWeight as NSNumber)!
+         USReaultsArray[6] = numberTwoDigitsFomatter.string(from: ductPressure as NSNumber)!
+         USReaultsArray[7] = numberTwoDigitsFomatter.string(from: area as NSNumber)!
+         USReaultsArray[8] = numberTwoDigitsFomatter.string(from: atmosphericPressure as NSNumber)!
+         USReaultsArray[9] = numberFourDigitsFomatter.string(from: gasDensity as NSNumber)!
+         //USReaultsArray[10] = ""
+         //USReaultsArray[11] = ""
+
          
-         USReaultsArray[0] = numberTwoDigitsFomatter.string(from: averageVelocity as NSNumber)!
-         USReaultsArray[1] = numberTwoDigitsFomatter.string(from: massAirFlow as NSNumber)!
-         USReaultsArray[2] = numberTwoDigitsFomatter.string(from: actualAirFlow as NSNumber)!
-         USReaultsArray[3] = numberTwoDigitsFomatter.string(from: normalAirFlow as NSNumber)!
-         USReaultsArray[4] = numberFourDigitsFomatter.string(from: molecularWeight as NSNumber)!
-         USReaultsArray[5] = numberTwoDigitsFomatter.string(from: ductPressure as NSNumber)!
-         USReaultsArray[6] = numberTwoDigitsFomatter.string(from: atmosphericPressure as NSNumber)!
-         USReaultsArray[7] = numberFourDigitsFomatter.string(from: gasDensity as NSNumber)!
-         
-         SIResultsArray[0] = numberTwoDigitsFomatter.string(from: averageVelocity*12/39.3701 as NSNumber)!
-         SIResultsArray[1] = numberTwoDigitsFomatter.string(from: massAirFlow/(2.2046 * 60) as NSNumber)!
-         SIResultsArray[2] = numberTwoDigitsFomatter.string(from: actualAirFlow*60/(pow(39.3701 / 12, 3)) as NSNumber)!
-         SIResultsArray[3] = numberTwoDigitsFomatter.string(from: (normalAirFlow * 60 / ((pow(39.3701 / 12, 3) * (294.26 / 273.15)))) as NSNumber)!
-         SIResultsArray[4] = numberFourDigitsFomatter.string(from: molecularWeight as NSNumber)!
-         SIResultsArray[5] = numberTwoDigitsFomatter.string(from: (ductPressure*3.38639) as NSNumber)!
-         SIResultsArray[6] = numberTwoDigitsFomatter.string(from: (atmosphericPressure*3.38639) as NSNumber)!
-         SIResultsArray[7] = numberFourDigitsFomatter.string(from: (gasDensity*16.018463) as NSNumber)!
-         
+         SIResultsArray[0] = "Dynamic Velocity"//numberTwoDigitsFomatter.string(from: averageVelocity as NSNumber)
+         SIResultsArray[1] = numberTwoDigitsFomatter.string(from: averageVelocity*12/39.3701 as NSNumber)!
+         SIResultsArray[2] = numberTwoDigitsFomatter.string(from: massAirFlow/(2.2046 * 60) as NSNumber)!
+         SIResultsArray[3] = numberTwoDigitsFomatter.string(from: actualAirFlow*60/(pow(39.3701 / 12, 3)) as NSNumber)!
+         SIResultsArray[4] = numberTwoDigitsFomatter.string(from: (normalAirFlow * 60 / ((pow(39.3701 / 12, 3) * (294.26 / 273.15)))) as NSNumber)!
+         SIResultsArray[5] = numberFourDigitsFomatter.string(from: molecularWeight as NSNumber)!
+         SIResultsArray[6] = numberTwoDigitsFomatter.string(from: (ductPressure*3.38639) as NSNumber)!
+         SIResultsArray[7] = numberTwoDigitsFomatter.string(from: area*0.00064516 as NSNumber)!
+         SIResultsArray[8] = numberTwoDigitsFomatter.string(from: (atmosphericPressure*3.38639) as NSNumber)!
+         SIResultsArray[9] = numberFourDigitsFomatter.string(from: (gasDensity*16.018463) as NSNumber)!
+         //SIResultsArray[10] = ""
+         //SIResultsArray[11] = ""
          resultArray=USReaultsArray
          }
          
@@ -408,39 +431,65 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
  
 
     }
+    
 
+    @IBAction func unitSegmentedControlValueChanged(_ sender: UISegmentedControl) {
+    }
+    @IBOutlet weak var unitSegmentedControl: UISegmentedControl!
+    func verifyInput() -> Bool{
+        
+        var tempInputValues = [String]()
+        let sectionCount = 1
+        for section in 0 ..< sectionCount {
+            let rowCount = tableView.numberOfRows(inSection: section)
+            
+            for row in 3 ..< rowCount {
+                let cell = tableView.cellForRow(at: IndexPath(row: row, section: 0)) as! CustomCell
+                tempInputValues.append(cell.inputLabel.text!)
+                if(cell.inputLabel.text == "")
+                {
+                    return false
+                }
+            }
+            
+        }
+        inputArrayValues = tempInputValues
+        return true
+        
+
+    }
     @IBAction func calculate(_ sender: UIButton) {
-        segmentedControl.selectedSegmentIndex = 1
+        
+        
+        if(verifyInput()){
+            segmentedControl.selectedSegmentIndex = 1
+            calculateButton.isHidden = true
+            clearButton.isHidden = true
+            DataSource = ResultTitles
+            calculateResults()
+        }
+        else{
+            
+            
+        }
         
         
         
         tableView.reloadData()
     }
     @IBAction func clear(_ sender: UIButton) {
-     /*   var values = [String:String?]()
-        for (index, value) in placeholders.enumerated() {
-            let indexPath = IndexPath(row: index, section: 0)
-            guard let cell = tableView.cellForRow(at: indexPath) as? TextFieldCell else{
-                return nil
-            }
-            if let text = cell.textField.text, !text.isEmpty {
-                values[value] = text
+        let sectionCount = 1
+        for section in 0 ..< sectionCount {
+            let rowCount = tableView.numberOfRows(inSection: section)
+            var list = [UITableViewCell]()
+            
+            for row in 3 ..< rowCount {
+                let cell = tableView.cellForRow(at: IndexPath(row: row, section: 0)) as! CustomCell
+                list.append(cell)
+                cell.inputLabel.text = ""
+                print("INPUT LABEL" + cell.inputLabel.text!)
             }
         }
-        return values
- 
-    }
-    
-        
-        let indexPath = tableView.index
-        let indexPath = self.tableView!.indexPathForSelectedRow()!
-        let selectedCell = self.tableView!.cellForRowAtIndexPath(selectedIndexPath!) as! UICustomCell!//your custom cell class.
-        
-        self.textString = selectedCell.textFied.text //textFied is your textfield name.
-        println(self.textString)
-        
-
-      */
     }
     
     
@@ -451,15 +500,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("NUMBER OF ROWS  " + String(DataSource.count))
         return DataSource.count
     }
     
     @IBAction func ssegmentControlChange(_ sender: UISegmentedControl) {
         if segmentedControl.selectedSegmentIndex == 0{
             DataSource = InputTitles
+            calculateButton.isHidden = false
+            clearButton.isHidden = false
+            
         }
         else{
             DataSource = ResultTitles
+            calculateButton.isHidden = true
+            clearButton.isHidden = true
         }
         tableView.reloadData()
     }
@@ -508,9 +563,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if segmentedControl.selectedSegmentIndex == 0{
    
         if indexPath.row < 3{
-        var cell = self.tableView.dequeueReusableCell(withIdentifier: "configurationCell", for: indexPath) as! SwitchCell
-        
-        cell.switchCellLable.text = InputTitles[indexPath.row]
+   
+    let cell : UITableViewCell
+         cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultSwitchCell", for: indexPath)
+    cell.textLabel?.text = InputTitles[indexPath.row]
+            var switchView : UISwitch
+            switchView = UISwitch(frame: CGRect.zero)
+            switchView.tag = indexPath.row
+            cell.accessoryView = switchView
+            switchView.addTarget(self, action: #selector(switchPressed(sender:)), for: UIControlEvents.valueChanged)
         return cell
 
         }
@@ -539,9 +600,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             
             var cell = self.tableView.dequeueReusableCell(withIdentifier: "resultCell", for: indexPath) as! ResultCell
-                
+                print("INDEX" + String(indexPath.row) + " " + String(indexPath.count))
                 cell.resultTitle.text = ResultTitles[indexPath.row]
-               // cell.result.text = ResultUnits[indexPath.row]
+                cell.result.text = resultArray[indexPath.row]
                 cell.resultUnit.text = ResultUnits[indexPath.row]
                 return cell
             
@@ -550,5 +611,45 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     
     }
+       func switchPressed(sender:UISwitch){
+            if(sender.tag == 0){
+                if(sender.isOn){
+                print("PipeType OFF")
+                InputTitles.remove(at: 4)
+                InputUnits.remove(at: 4)
+                
+                DataSource = InputTitles
+                tableView.beginUpdates()
+                tableView.deleteRows(at: [IndexPath(row: 4, section: 0)], with: .fade)
+                tableView.endUpdates()
+                //sender.setOn(false, animated: true)
+
+                }
+                else{
+                 print("PipeType ON")
+                 InputTitles.insert("Width", at: 4)
+                 InputUnits.insert("m", at: 4)
+                 DataSource = InputTitles
+                 tableView.beginUpdates()
+                 tableView.insertRows(at: [IndexPath(row: 4, section: 0)], with: .fade)
+                 tableView.endUpdates()
+                 
+                }
+ 
+                
+
+            }
+            else if(sender.tag == 1){
+                print("AirComposition")
+
+            }
+            else if(sender.tag == 2){
+                print("WetBullb")
+
+            }
+            
+                
+            
+        }
 }
 
