@@ -632,7 +632,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                  print("PipeType OFF")
                  InputTitles.insert("Width", at: 4)
                  
-                 if(UnitSwitch.isOn){
+                 if(unitSwitch.isOn){
                  InputUnits.insert("m", at: 4)
                  }
                  else{
@@ -707,25 +707,31 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
             }
             else if(sender.tag == 2){
+                if(()
                  if(sender.isOn){
                 print("WetBulb OFF")
-                InputTitles.remove(at: 4)
-                InputUnits.remove(at: 4)
+                InputTitles.remove(at: 8)
+                InputUnits.remove(at: 8)
                 
                 DataSource = InputTitles
                 tableView.beginUpdates()
-                tableView.deleteRows(at: [IndexPath(row: 4, section: 0)], with: .fade)
+                tableView.deleteRows(at: [IndexPath(row: 8, section: 0)], with: .fade)
                 tableView.endUpdates()
                 //sender.setOn(false, animated: true)
 
                 }
                 else{
                  print("PipeType ON")
-                 InputTitles.insert("Width", at: 4)
-                 InputUnits.insert("m", at: 4)
+                 InputTitles.insert("Wet Bulb (T)", at: 8)
+                    if(unitSwitch.isOn){
+                 InputUnits.insert("C", at: 8)
+                    }
+                    else{
+                        InputUnits.insert("F", at: 8)
+                    }
                  DataSource = InputTitles
                  tableView.beginUpdates()
-                 tableView.insertRows(at: [IndexPath(row: 4, section: 0)], with: .fade)
+                 tableView.insertRows(at: [IndexPath(row: 8, section: 0)], with: .fade)
                  tableView.endUpdates()
                  
                 }
