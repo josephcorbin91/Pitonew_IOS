@@ -42,22 +42,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var calculateButton: UIButton!
     
     
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-       // currentRow = indexPath.row
-        /*
-        var cell : CustomCell
-        var textField : UITextField
-        
-        cell = tableView.cellForRow(at: indexPath) as! CustomCell
-        textField = cell.inputLabel
-        textField.becomeFirstResponder()
-        print(textField)
-        let string = String(indexPath.row) + "touched"
-        print(string)
- */
-    }
-    
-    
+   
     
     @IBAction func unitSwitchChanged(_ sender: UISwitch) {
         if(unitSwitch.isOn){
@@ -96,10 +81,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        
-      //  [textField setUserInteractionEnabled:YES];
-       // [textField becomeFirstResponder];[textField setUserInteractionEnabled:YES];
-       // [textField becomeFirstResponder];
+    
     }
     
     

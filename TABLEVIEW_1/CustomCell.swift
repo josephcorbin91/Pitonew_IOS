@@ -15,6 +15,7 @@ class CustomCell: UITableViewCell {
         // Initialization code
     }
     
+
     
   
 
@@ -24,7 +25,9 @@ class CustomCell: UITableViewCell {
     @IBOutlet weak var inputTextField: UITextField!
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        if(selected == true){
+        inputTextField.becomeFirstResponder()
+        }
         
         
         // Configure the view for the selected state
