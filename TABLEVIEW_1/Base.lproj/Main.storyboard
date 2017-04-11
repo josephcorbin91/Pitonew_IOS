@@ -47,7 +47,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="G9u-V5-ris" customClass="CustomCell" customModule="TABLEVIEW_1" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="G9u-V5-ris">
                                         <rect key="frame" x="0.0" y="28" width="350" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="G9u-V5-ris" id="fhp-zn-P7w">
@@ -85,11 +85,6 @@
                                                 <constraint firstItem="5PS-o7-SjO" firstAttribute="leading" secondItem="fhp-zn-P7w" secondAttribute="leading" constant="10" id="yGs-5G-DeN"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="inputLabel" destination="316-1L-yQ0" id="oVS-3k-aWZ"/>
-                                            <outlet property="inputTitle" destination="5PS-o7-SjO" id="CjP-YH-XVQ"/>
-                                            <outlet property="unitLabel" destination="GQf-Vv-Y78" id="Gv8-Wg-SaT"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="configurationCell" id="zMp-Qn-N95" customClass="SwitchCell" customModule="TABLEVIEW_1" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="72" width="350" height="44"/>

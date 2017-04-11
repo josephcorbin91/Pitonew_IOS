@@ -93,10 +93,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         InputUnits = InputUnitsUS
         DataSource = InputTitles
         ResultUnits = ResultUnitsUS
-        
-
-        // Do any additional setup after loading the view, typically from a nib.
-    }
+        }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         
@@ -587,8 +584,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
         }
         else if(indexPath.row>=3 && indexPath.row<14){
-            var cell = self.tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomCell
-            
+            var cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultTextFieldCell", for: indexPath) as! CustomCell
+           
             cell.inputTitle.text = InputTitles[indexPath.row]
             cell.inputUnitLabel.text = InputUnits[indexPath.row]
             
