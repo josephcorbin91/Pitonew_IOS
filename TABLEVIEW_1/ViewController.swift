@@ -448,8 +448,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             for row in 3 ..< rowCount {
                 let cell = tableView.cellForRow(at: IndexPath(row: row, section: 0)) as! CustomCell
-                tempInputValues.append(cell.inputLabel.text!)
-                if(cell.inputLabel.text == "")
+                tempInputValues.append(cell.inputTextField.text!)
+                if(cell.inputTextField.text == "")
                 {
                     return false
                 }
@@ -489,8 +489,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             for row in 3 ..< rowCount {
                 let cell = tableView.cellForRow(at: IndexPath(row: row, section: 0)) as! CustomCell
                 list.append(cell)
-                cell.inputLabel.text = ""
-                print("INPUT LABEL" + cell.inputLabel.text!)
+                cell.inputTextField.text = ""
+                print("INPUT LABEL" + cell.inputTextField.text!)
             }
         }
     }
@@ -590,11 +590,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             var cell = self.tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomCell
             
             cell.inputTitle.text = InputTitles[indexPath.row]
-            cell.unitLabel.text = InputUnits[indexPath.row]
+            cell.inputUnitLabel.text = InputUnits[indexPath.row]
             
-            cell.inputLabel.text = ""
-            cell.inputLabel.tag = indexPath.row
-            cell.inputLabel.delegate = self // theField is your IBOutlet UITextfield in your custom cell
+            cell.inputTextField.text = ""
+            cell.inputTextField.tag = indexPath.row
+            cell.inputTextField.delegate = self // theField is your IBOutlet UITextfield in your custom cell
             
             
             

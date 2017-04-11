@@ -15,11 +15,13 @@ class CustomCell: UITableViewCell {
         // Initialization code
     }
     
-    @IBOutlet weak var unitLabel: UILabel!
     
-    @IBOutlet weak var inputTitle: UILabel!
-    @IBOutlet weak var inputLabel: UITextField!
+  
 
+
+    @IBOutlet weak var inputUnitLabel: UILabel!
+    @IBOutlet weak var inputTitle: UILabel!
+    @IBOutlet weak var inputTextField: UITextField!
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
