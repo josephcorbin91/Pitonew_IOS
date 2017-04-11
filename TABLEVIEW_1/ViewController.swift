@@ -33,6 +33,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var inputArrayValues = ["off","off","off","1.0","1.0","1.0","1.0","1.0","1.0","1.0","1.0","1.0"]
 
     var rowBeingEdited : Int? = nil
+    var pipeSwitch : UISwitch!
+    var wetBulbSwitch : UISwitch!
+    var airCompositionSwitch : UISwitch!
     
     
     @IBOutlet weak var clearButton: UIButton!
@@ -570,8 +573,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             var switchView : UISwitch
             switchView = UISwitch(frame: CGRect.zero)
             switchView.tag = indexPath.row
+            
+            
             cell.accessoryView = switchView
             switchView.addTarget(self, action: #selector(switchPressed(sender:)), for: UIControlEvents.valueChanged)
+            switch(indexPath.row){
+            case 0: pipeSwitch = switchView
+            case 1: wetBulbSwitch = switchView
+            case 2: airCompositionSwitch = switchView
+            default: break
+            }
         return cell
 
         }
@@ -612,10 +623,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     }
        func switchPressed(sender:UISwitch){
-           
+           /*
          let pipeSwitch = self.view.viewWithTag(0) as? UISwitch
          let wetBulbSwitch = self.view.viewWithTag(1) as? UISwitch
          let airCompositionSwitch = self.view.viewWithTag(2) as? UISwitch
+ */
+         print("pipeSwitch" + String(describing: pipeSwitch))
+        
+        
+        
             if(sender.tag == 0){
                 if(sender.isOn){
                 print("PipeType ON")
@@ -656,17 +672,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                  
             }
             else if(sender.tag == 1){
-                var startingIndexAirComposition : Int
-                if(!pipeSwitch.isOn && wetBublSwitch.isOn)
+                var startingIndexAirComposition = 12
+                if(!pipeSwitch.isOn && wetBulbSwitch.isOn){
                  startingIndexAirComposition=12
-                else if(pipeSwitch.isOn && wetBublSwitch.isOn)
+                }
+                else if(pipeSwitch.isOn && wetBulbSwitch.isOn){
                  startingIndexAirComposition=11
-                else if(!pipeSwitch.isOn && !wetBublSwitch.isOn)
+                }
+                else if(!(pipeSwitch.isOn) && !(wetBulbSwitch.isOn)){
                  startingIndexAirComposition=11
-                 else if(pipeSwitch.isOn && !wetBublSwitch.isOn)
+                }
+                else if(pipeSwitch.isOn && !wetBulbSwitch.isOn){
                  startingIndexAirComposition=10
-               
-                if(
+                }
+            
+            
                   if(sender.isOn){
                 print("AirComposition Off")
                 InputTitles.remove(at: 3)
@@ -706,12 +726,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                   InputTitles.insert("Ar", at: startingIndexAirComposition)
                  InputUnits.insert("", at: startingIndexAirComposition)
                   InputTitles.insert("H20", at: startingIndexAirComposition)
-                 InputUnits.insert("", at: startingIndexAirComposition3)                    
+                 InputUnits.insert("", at: startingIndexAirComposition)
                     
               
                  DataSource = InputTitles
                  tableView.beginUpdates()
-                 for(i..5){
+                    
+                    for i in 0..<5{
                  tableView.reloadRows(at: [IndexPath(row: i+startingIndexAirComposition, section: 0)], with: .fade)
                    tableView.endUpdates()
                  }
