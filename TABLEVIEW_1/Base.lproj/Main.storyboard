@@ -24,7 +24,7 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TkJ-oQ-cWP">
                                 <rect key="frame" x="0.0" y="20" width="414" height="44"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="zvC-JK-UJ7"/>
+                                    <constraint firstAttribute="height" constant="44" id="bsE-yp-v95"/>
                                 </constraints>
                                 <items>
                                     <navigationItem id="x3x-Rd-GZE">
@@ -144,7 +144,7 @@
                                 </connections>
                             </tableView>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xcj-Ma-2kU">
-                                <rect key="frame" x="270" y="650" width="51" height="31"/>
+                                <rect key="frame" x="100" y="650" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="unitSwitchChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="xig-Dh-xwe"/>
@@ -177,17 +177,12 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5ii-Mr-CDG">
-                                <rect key="frame" x="0.0" y="630" width="240" height="2"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="TkJ-oQ-cWP" secondAttribute="trailing" id="8PM-fD-A5K"/>
-                            <constraint firstItem="TkJ-oQ-cWP" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Xel-1k-Pl6"/>
-                            <constraint firstItem="TkJ-oQ-cWP" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="mGt-hs-Bnv"/>
+                            <constraint firstItem="TkJ-oQ-cWP" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Njt-Ue-DGY"/>
+                            <constraint firstAttribute="trailing" secondItem="TkJ-oQ-cWP" secondAttribute="trailing" id="jZx-QG-Zsy"/>
+                            <constraint firstItem="TkJ-oQ-cWP" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="oUs-TO-LCf"/>
                         </constraints>
                     </view>
                     <connections>
