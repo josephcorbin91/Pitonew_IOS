@@ -614,24 +614,29 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
        func switchPressed(sender:UISwitch){
             if(sender.tag == 0){
                 if(sender.isOn){
-                print("PipeType OFF")
+                print("PipeType ON")
                 InputTitles.remove(at: 4)
                 InputUnits.remove(at: 4)
-                
+                InputTitles[3] = "Diamter"
                 DataSource = InputTitles
                 tableView.beginUpdates()
                 tableView.deleteRows(at: [IndexPath(row: 4, section: 0)], with: .fade)
+                
+                tableView.reloadRows(at: [IndexPath(row: 3, section: 0)], with: .fade)
                 tableView.endUpdates()
-                //sender.setOn(false, animated: true)
+                    //sender.setOn(false, animated: true)
 
                 }
                 else{
-                 print("PipeType ON")
+                 print("PipeType OFF")
                  InputTitles.insert("Width", at: 4)
                  InputUnits.insert("m", at: 4)
+                 InputTitles[3] = "Height"
                  DataSource = InputTitles
                  tableView.beginUpdates()
                  tableView.insertRows(at: [IndexPath(row: 4, section: 0)], with: .fade)
+                 tableView.reloadRows(at: [IndexPath(row: 3, section: 0)], with: .fade)
+                    
                  tableView.endUpdates()
                  
                 }
