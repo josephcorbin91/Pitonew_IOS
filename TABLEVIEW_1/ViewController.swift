@@ -80,12 +80,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     override func viewDidLoad() {
         super.viewDidLoad()
-         InputTitles = ["Pipe Shape","Non-Standard Air Composition","Wet Bulb Temperature","Width", "Height", "Pitot Tube Coeffecient", "Static Pressure", "Dry Bulb Temperature","Wet Bulb Temperature", "Elevation",
-                           "Pressure at Sea Level", "Dynamic Velocity Pressure"]
+         InputTitles = ["Circular Duct","Non-Standard Air Composition","Wet Bulb (T)","Width", "Height", "Pitot Tube (C)", "Static (P)", "Dry Bulb (T)","Wet Bulb (T)", "Elevation",
+                           "Sea Level (P)", "Dynamic Velocity (P)"]
          InputUnitsSI = ["","","","m","m","","H20","C","ft","kPa","",""]
         InputUnitsUS = ["","","","in","in","","H20","F","ft","in hg","",""]
 
-        ResultTitles = ["Dynamic Velocity", "Average Velocity", "Mass Air Flow", "Actual Air Flow","Normal Air Flow", "Molar Weight", "Duct Pressure","Area", "Atmospheric Pressue", "GasDensity"]
+        ResultTitles = ["Dynamic Velocity", "Average Velocity", "Mass Air Flow", "Actual Air Flow","Normal Air Flow", "Molar Weight", "Duct (P)","Area", "Atmospheric (P)", "GasDensity"]
         ResultUnitsSI = ["m/s","m/s","kg/","m^3/s", "Nm^3/h","g/mol", "kPa", "m^2", "kPa", "kg/m^3"]
         ResultUnitsUS = ["ft/s","ft/s","lb/min","SCFM", "ACFM","g/mol", "in Hg", "in^2", "in. Hg", "ft^3",""]
 
@@ -607,7 +607,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         else {
             
             
-            var cell = self.tableView.dequeueReusableCell(withIdentifier: "resultCell", for: indexPath) as! ResultCell
+            var cell = self.tableView.dequeueReusableCell(withIdentifier: "ResultCell", for: indexPath) as! ResultCell
                 print("INDEX" + String(indexPath.row) + " " + String(indexPath.count))
                 cell.resultTitle.text = ResultTitles[indexPath.row]
                 cell.result.text = resultArray[indexPath.row]

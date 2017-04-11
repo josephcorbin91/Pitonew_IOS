@@ -17,7 +17,6 @@ class ResultCell: UITableViewCell {
     @IBOutlet weak var resultTitle: UILabel!
     @IBOutlet weak var result: UILabel!
     @IBOutlet weak var resultUnit: UILabel!
-
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
