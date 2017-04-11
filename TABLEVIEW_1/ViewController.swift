@@ -612,6 +612,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     }
        func switchPressed(sender:UISwitch){
+           
+         let pipeSwitch = self.view.viewWithTag(0) as? UISwitch
+         let wetBulbSwitch = self.view.viewWithTag(1) as? UISwitch
+         let airCompositionSwitch = self.view.viewWithTag(2) as? UISwitch
             if(sender.tag == 0){
                 if(sender.isOn){
                 print("PipeType ON")
@@ -652,6 +656,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                  
             }
             else if(sender.tag == 1){
+                var startingIndexAirComposition : Int
+                if(!pipeSwitch.isOn && wetBublSwitch.isOn)
+                 startingIndexAirComposition=12
+                else if(pipeSwitch.isOn && wetBublSwitch.isOn)
+                 startingIndexAirComposition=11
+                else if(!pipeSwitch.isOn && !wetBublSwitch.isOn)
+                 startingIndexAirComposition=11
+                 else if(pipeSwitch.isOn && !wetBublSwitch.isOn)
+                 startingIndexAirComposition=10
+               
+                if(
                   if(sender.isOn){
                 print("AirComposition Off")
                 InputTitles.remove(at: 3)
@@ -682,33 +697,64 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 }
                 else{
                  print("Air Composition ON")
-                 InputTitles.insert("C02", at: 3)
-                 InputUnits.insert("", at: 3)
-                  InputTitles.insert("02", at: 3)
-                 InputUnits.insert("", at: 3)
-                  InputTitles.insert("N2", at: 3)
-                 InputUnits.insert("", at: 3)
-                  InputTitles.insert("Ar", at: 3)
-                 InputUnits.insert("", at: 3)
-                  InputTitles.insert("H20", at: 3)
-                 InputUnits.insert("", at: 3)                    
+                 InputTitles.insert("C02", at: startingIndexAirComposition)
+                 InputUnits.insert("", at: startingIndexAirComposition)
+                  InputTitles.insert("02", at: startingIndexAirComposition)
+                 InputUnits.insert("", at: startingIndexAirComposition)
+                  InputTitles.insert("N2", at: startingIndexAirComposition)
+                 InputUnits.insert("", at: startingIndexAirComposition)
+                  InputTitles.insert("Ar", at: startingIndexAirComposition)
+                 InputUnits.insert("", at: startingIndexAirComposition)
+                  InputTitles.insert("H20", at: startingIndexAirComposition)
+                 InputUnits.insert("", at: startingIndexAirComposition3)                    
                     
               
                  DataSource = InputTitles
                  tableView.beginUpdates()
-                 tableView.reloadRows(at: [IndexPath(row: 3, section: 0)], with: .fade)
-                 tableView.reloadRows(at: [IndexPath(row: 4, section: 0)], with: .fade)
-                 tableView.reloadRows(at: [IndexPath(row: 5, section: 0)], with: .fade)
-                 tableView.reloadRows(at: [IndexPath(row: 6, section: 0)], with: .fade)
-                 tableView.reloadRows(at: [IndexPath(row: 7, section: 0)], with: .fade)
-                 tableView.endUpdates()
+                 for(i..5){
+                 tableView.reloadRows(at: [IndexPath(row: i+startingIndexAirComposition, section: 0)], with: .fade)
+                   tableView.endUpdates()
+                 }
                  
                 }
 
             }
+                
+           
+                     
+                     
             else if(sender.tag == 2){
-                if(()
+                if(pipeSwitch.isOn){
                  if(sender.isOn){
+                print("WetBulb OFF")
+                InputTitles.remove(at: 7)
+                InputUnits.remove(at: 7)
+                
+                DataSource = InputTitles
+                tableView.beginUpdates()
+                tableView.deleteRows(at: [IndexPath(row: 7, section: 0)], with: .fade)
+                tableView.endUpdates()
+                //sender.setOn(false, animated: true)
+
+                }
+                else{
+                 print("PipeType ON")
+                 InputTitles.insert("Wet Bulb (T)", at: 7)
+                    if(unitSwitch.isOn){
+                 InputUnits.insert("C", at: 7)
+                    }
+                    else{
+                        InputUnits.insert("F", at: 7)
+                    }
+                 DataSource = InputTitles
+                 tableView.beginUpdates()
+                 tableView.insertRows(at: [IndexPath(row: 7, section: 0)], with: .fade)
+                 tableView.endUpdates()
+                 
+                }
+                }
+                else{
+                    if(sender.isOn){
                 print("WetBulb OFF")
                 InputTitles.remove(at: 8)
                 InputUnits.remove(at: 8)
@@ -721,7 +767,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
                 }
                 else{
-                 print("PipeType ON")
+           
                  InputTitles.insert("Wet Bulb (T)", at: 8)
                     if(unitSwitch.isOn){
                  InputUnits.insert("C", at: 8)
@@ -734,6 +780,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                  tableView.insertRows(at: [IndexPath(row: 8, section: 0)], with: .fade)
                  tableView.endUpdates()
                  
+                }
                 }
 
             }
