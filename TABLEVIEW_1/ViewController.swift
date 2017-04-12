@@ -113,6 +113,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         var AirCompositionSwitch: Bool
         var wetBulbSwitch: Bool
         var UnitSwitch: Bool
+        var diameter: Double
         var width: Double
         var height: Double
         
@@ -149,59 +150,84 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             else{
                 wetBulbSwitch = false}
          
+                
+                
+
+                
                 if(AirCompositionSwitch){
-                    if(pipeShapeSwitch && wetBulbSwitch){
-                        
+                    if(!pipeShapeSwitch && wetBulbSwitch){
+                        C02Composition =  Double(inputArrayValues[15])!
+                        O2Composition =  Double(inputArrayValues[14])!
+                        N2Composition =  Double(inputArrayValues[13])!
+                        ARComposition =  Double(inputArrayValues[12])!
+                        H2OComposition =  Double(inputArrayValues[11])!
+
+                    }
+                    else if(pipeShapeSwitch && wetBulbSwitch){
+                        C02Composition =  Double(inputArrayValues[14])!
+                        O2Composition =  Double(inputArrayValues[13])!
+                        N2Composition =  Double(inputArrayValues[12])!
+                        ARComposition =  Double(inputArrayValues[11])!
+                        H2OComposition =  Double(inputArrayValues[10])!
+                    }
+                    else if(!pipeShapeSwitch && !wetBulbSwitch){
+                        C02Composition =  Double(inputArrayValues[14])!
+                        O2Composition =  Double(inputArrayValues[13])!
+                        N2Composition =  Double(inputArrayValues[12])!
+                        ARComposition =  Double(inputArrayValues[11])!
+                        H2OComposition =  Double(inputArrayValues[10])!
                     }
                     else if(pipeShapeSwitch && !wetBulbSwitch){
-                                   }
-                    else if(!pipeShapeSwitch && wetBulbSwitch){
-                                           }
-                    else if(!pipeShapeSwitch && !wetBulbSwitch){
-                        
+                        C02Composition =  Double(inputArrayValues[13])!
+                        O2Composition =  Double(inputArrayValues[12])!
+                        N2Composition =  Double(inputArrayValues[11])!
+                        ARComposition =  Double(inputArrayValues[10])!
+                        H2OComposition =  Double(inputArrayValues[9])!
+                    }
+                    
                 }
                 else{
-                    C02Composition = 98.00 //Double(CO2TextField.text!)
-                    O2Composition = 1.00 //Double(O2TextField.text!)
-                    N2Composition = 1.00 //Double(N2TextField.text!)
-                    ARComposition = 0.00//Double(ArTextField.text!)
+                    C02Composition = 0.03 //Double(CO2TextField.text!)
+                    O2Composition = 20.95 //Double(O2TextField.text!)
+                    N2Composition = 78.09 //Double(N2TextField.text!)
+                    ARComposition = 0.93//Double(ArTextField.text!)
                     H2OComposition = 0.00 //Double(H20TextField.text!)
                 }
                 if(pipeShapeSwitch && wetBulbSwitch){
-                    diameter = Double(inputArrayValues[3])
-                    pilotTubeCoeffecient =  Double(inputArrayValues[4])
-                    staticPressure = Double(inputArrayValues[5])
-                    dryBulbTemperature = Double(inputArrayValues[6])
-                    wetBulbTemperature = Double(inputArrayValues[7])
-                    elevationAboveSealevel = Double(inputArrayValues[8])
-                    seaLevelPressure = Double(inputArrayValues[9])
+                    diameter = Double(inputArrayValues[3])!
+                    pilotTubeCoeffecient =  Double(inputArrayValues[4])!
+                    staticPressure = Double(inputArrayValues[5])!
+                    dryBulbTemperature = Double(inputArrayValues[6])!
+                    wetBulbTemperature = Double(inputArrayValues[7])!
+                    elevationAboveSealevel = Double(inputArrayValues[8])!
+                    seaLevelPressure = Double(inputArrayValues[9])!
                     
                 }
                 else if(pipeShapeSwitch && !wetBulbSwitch){
-                    diameter = Double(inputArrayValues[3])
-                    pilotTubeCoeffecient =  Double(inputArrayValues[4])
-                    staticPressure = Double(inputArrayValues[5])
-                    dryBulbTemperature = Double(inputArrayValues[6])
-                    elevationAboveSealevel = Double(inputArrayValues[7])
-                    seaLevelPressure = Double(inputArrayValues[8])                }
+                    diameter = Double(inputArrayValues[3])!
+                    pilotTubeCoeffecient =  Double(inputArrayValues[4])!
+                    staticPressure = Double(inputArrayValues[5])!
+                    dryBulbTemperature = Double(inputArrayValues[6])!
+                    elevationAboveSealevel = Double(inputArrayValues[7])!
+                    seaLevelPressure = Double(inputArrayValues[8])!                }
                 else if(!pipeShapeSwitch && wetBulbSwitch){
-                    height  = Double(inputArrayValues[3])
-                    width =  Double(inputArrayValues[4])
-                    pilotTubeCoeffecient =  Double(inputArrayValues[5])
-                    staticPressure = Double(inputArrayValues[6])
-                    dryBulbTemperature = Double(inputArrayValues[7])
-                    wetBulbTemperature = Double(inputArrayValues[8])
-                    elevationAboveSealevel = Double(inputArrayValues[9])
-                    seaLevelPressure = Double(inputArrayValues[10])
+                    height  = Double(inputArrayValues[3])!
+                    width =  Double(inputArrayValues[4])!
+                    pilotTubeCoeffecient =  Double(inputArrayValues[5])!
+                    staticPressure = Double(inputArrayValues[6])!
+                    dryBulbTemperature = Double(inputArrayValues[7])!
+                    wetBulbTemperature = Double(inputArrayValues[8])!
+                    elevationAboveSealevel = Double(inputArrayValues[9])!
+                    seaLevelPressure = Double(inputArrayValues[10])!
                 }
                 else if(!pipeShapeSwitch && !wetBulbSwitch){
-                    height  = Double(inputArrayValues[3])
-                    width =  Double(inputArrayValues[4])
-                    pilotTubeCoeffecient =  Double(inputArrayValues[5])
-                    staticPressure = Double(inputArrayValues[6])
-                    dryBulbTemperature = Double(inputArrayValues[7])
-                    elevationAboveSealevel = Double(inputArrayValues[8])
-                    seaLevelPressure = Double(inputArrayValues[9])}
+                    height  = Double(inputArrayValues[3])!
+                    width =  Double(inputArrayValues[4])!
+                    pilotTubeCoeffecient =  Double(inputArrayValues[5])!
+                    staticPressure = Double(inputArrayValues[6])!
+                    dryBulbTemperature = Double(inputArrayValues[7])!
+                    elevationAboveSealevel = Double(inputArrayValues[8])!
+                    seaLevelPressure = Double(inputArrayValues[9])!
                 
                 
                 
@@ -238,12 +264,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
          
          if(wetBulbSwitch){
          if(UnitSwitch){
-         dryBulbRankine = (dryBulbTemperature! * 1.8 + 32)  + 459.67
-         wetBulbRankine = (wetBulbTemperature! * 1.8 + 32) + 459.67
+         dryBulbRankine = (dryBulbTemperature * 1.8 + 32)  + 459.67
+         wetBulbRankine = (wetBulbTemperature * 1.8 + 32) + 459.67
          }
          else {
-         dryBulbRankine = dryBulbTemperature! + 459.67
-         wetBulbRankine = wetBulbTemperature! + 459.67
+         dryBulbRankine = dryBulbTemperature + 459.67
+         wetBulbRankine = wetBulbTemperature + 459.67
          }
          
          Kd = -0.0000000008833 * pow(dryBulbRankine,3) + 0.000003072 * pow(dryBulbRankine,2) - 0.003469 * dryBulbRankine + 4.39553
@@ -320,42 +346,42 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 dynamicPressureArray.append(1.0)
                 dynamicPressureArray.append(1.0)
          if(pipeShapeSwitch){
-         area = Double.pi * pow(height! / 2, 2.0)
+         area = Double.pi * pow(height / 2, 2.0)
          }
          else{
-         area = width!*height!
+         area = width*height
          }
          
-         atmosphericPressure = seaLevelPressure!*pow(10, -0.00001696*elevationAboveSealevel!)
+         atmosphericPressure = seaLevelPressure*pow(10, -0.00001696*elevationAboveSealevel)
          if(UnitSwitch){
-         ductPressure = atmosphericPressure + staticPressure!*0.249088
+         ductPressure = atmosphericPressure + staticPressure*0.249088
          
          }
          else{
-         ductPressure = atmosphericPressure + staticPressure!*0.07355
+         ductPressure = atmosphericPressure + staticPressure*0.07355
          
          }
          
          if(UnitSwitch){
-         gasDensity = 1000 * ductPressure / (273.15 + dryBulbTemperature!) / (8314.3 / molecularWeight)
+         gasDensity = 1000 * ductPressure / (273.15 + dryBulbTemperature) / (8314.3 / molecularWeight)
          
          }
          else{
          
-         var part1 = ((dryBulbTemperature!-32)*(5/9))
+         var part1 = ((dryBulbTemperature-32)*(5/9))
          var part2 = (ductPressure*3.386375)
          gasDensity = 0.062428*(1000 * part2 / (273.15 +  part1 / (8314.3 / molecularWeight)))
          }
          
          if(UnitSwitch){
          for item in dynamicPressureArray {
-         dynamicVelocityArray.append(pilotTubeCoeffecient!*pow(2*item*1000/4.01864/gasDensity,0.5))
+         dynamicVelocityArray.append(pilotTubeCoeffecient*pow(2*item*1000/4.01864/gasDensity,0.5))
          }
          }
          else{
          for item in dynamicPressureArray {
          
-         dynamicVelocityArray.append(pilotTubeCoeffecient!*pow(2*item*1000/4.01864/(gasDensity / 0.062428),0.5) * 3.2804)
+         dynamicVelocityArray.append(pilotTubeCoeffecient*pow(2*item*1000/4.01864/(gasDensity / 0.062428),0.5) * 3.2804)
          }
          }
          averageVelocity = average(nums: dynamicVelocityArray)
@@ -374,11 +400,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
          massAirFlow=(actualAirFlow*60/pow((39.3701/12),3)*(gasDensity/0.062428)/3600)*2.2046*60
          }
          if(UnitSwitch){
-         normalAirFlow = (actualAirFlow*ductPressure/101.325)*273.15/(273.15+((dryBulbTemperature!-32)/1.8))
+         normalAirFlow = (actualAirFlow*ductPressure/101.325)*273.15/(273.15+((dryBulbTemperature-32)/1.8))
          
          }
          else{
-         normalAirFlow=(actualAirFlow*60/(pow(39.3701/12,3))*(ductPressure/0.2953)/101.325)*273.15/(273.15+dryBulbTemperature!)/60*pow((39.3701/12),3)*(294.26/273.15);
+         normalAirFlow=(actualAirFlow*60/(pow(39.3701/12,3))*(ductPressure/0.2953)/101.325)*273.15/(273.15+dryBulbTemperature)/60*pow((39.3701/12),3)*(294.26/273.15);
          
          }
          
@@ -493,16 +519,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     func verifyInput() -> Bool{
         var count = 0
-        if(wetBulbSwitch.isOn && pipeSwitch.isOn){
+        if(wetBulbSwitch && pipeSwitch){
             count = 7
         }
-        else if(wetBulbSwitch.isOn && !pipeSwitch.isOn){
+        else if(wetBulbSwitch && !pipeSwitch){
             count = 8
         }
-        else if(!wetBulbSwitch.isOn && pipeSwitch.isOn){
+        else if(!wetBulbSwitch && pipeSwitch){
             count = 6
         }
-        else if(!wetBulbSwitch.isOn && !pipeSwitch.isOn){
+        else if(!wetBulbSwitch && !pipeSwitch){
             count = 7
         }
         for value in 3...(3+count){
