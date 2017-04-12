@@ -37,8 +37,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var dynamicPressureArray = [Double]()
 
     var numberOfInputValues : Int? = nil
-    var inputArrayValues = Array(repeating: "", count: 12) //["off","off","off","1.0","1.0","1.0","1.0","1.0","1.0","1.0","1.0","1.0"]
-    var emptyInputArrayValues = Array(repeating: "", count: 12)
+    var inputArrayValues = Array(repeating: "", count: 11) //["off","off","off","1.0","1.0","1.0","1.0","1.0","1.0","1.0","1.0","1.0"]
+    var emptyInputArrayValues = Array(repeating: "", count: 11)
 
     var rowBeingEdited : Int? = nil
     var pipeSwitch : UISwitch!
@@ -101,7 +101,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         inputArrayValues[1]="off"
         inputArrayValues[2]="off"
         
-        navigationBar.topItem?.title = "Input"
+        navigationBar.topItem?.title = "PITONEW"
         InputUnits = InputUnitsUS
         DataSource = InputTitles
         ResultUnits = ResultUnitsUS
@@ -113,6 +113,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         var AirCompositionSwitch: Bool
         var wetBulbSwitch: Bool
         var UnitSwitch: Bool
+        var width: Double
+        var height: Double
+        
+        
+        var pilotTubeCoeffecient: Double
+        var staticPressure: Double
+        var dryBulbTemperature: Double
+        var wetBulbTemperature: Double
+        var elevationAboveSealevel: Double
+        var seaLevelPressure: Double
+        var C02Composition: Double //00//Double(CO2TextField.text!)
+        var O2Composition: Double//Double(O2TextField.text!)
+        var N2Composition: Double//Double(N2TextField.text!)
+        var ARComposition: Double//Double(ArTextField.text!)
+        var H2OComposition: Double//Double(H20TextField.text!)
+
         if(unitSwitch.selectedSegmentIndex == 1){
             UnitSwitch=true
         }
@@ -133,25 +149,62 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             else{
                 wetBulbSwitch = false}
          
-         
-         
-         let width = Double(inputArrayValues[3])
-         
-         let height =  Double(inputArrayValues[4])
-         
-         let pilotTubeCoeffecient =  Double(inputArrayValues[5])
-         let staticPressure = Double(inputArrayValues[6])
-         let dryBulbTemperature = Double(inputArrayValues[7])
-         let wetBulbTemperature = Double(inputArrayValues[8])
-         let elevationAboveSealevel = Double(inputArrayValues[9])
-         let seaLevelPressure = Double(inputArrayValues[10])
-         
-         
-         let C02Composition = 98.00//Double(CO2TextField.text!)
-         let O2Composition = 1.00 //Double(O2TextField.text!)
-         let N2Composition = 1.00 //Double(N2TextField.text!)
-         let ARComposition = 0.00//Double(ArTextField.text!)
-         let H2OComposition = 0.00 //Double(H20TextField.text!)
+                if(AirCompositionSwitch){
+                    if(pipeShapeSwitch && wetBulbSwitch){
+                        
+                    }
+                    else if(pipeShapeSwitch && !wetBulbSwitch){
+                                   }
+                    else if(!pipeShapeSwitch && wetBulbSwitch){
+                                           }
+                    else if(!pipeShapeSwitch && !wetBulbSwitch){
+                        
+                }
+                else{
+                    C02Composition = 98.00 //Double(CO2TextField.text!)
+                    O2Composition = 1.00 //Double(O2TextField.text!)
+                    N2Composition = 1.00 //Double(N2TextField.text!)
+                    ARComposition = 0.00//Double(ArTextField.text!)
+                    H2OComposition = 0.00 //Double(H20TextField.text!)
+                }
+                if(pipeShapeSwitch && wetBulbSwitch){
+                    diameter = Double(inputArrayValues[3])
+                    pilotTubeCoeffecient =  Double(inputArrayValues[4])
+                    staticPressure = Double(inputArrayValues[5])
+                    dryBulbTemperature = Double(inputArrayValues[6])
+                    wetBulbTemperature = Double(inputArrayValues[7])
+                    elevationAboveSealevel = Double(inputArrayValues[8])
+                    seaLevelPressure = Double(inputArrayValues[9])
+                    
+                }
+                else if(pipeShapeSwitch && !wetBulbSwitch){
+                    diameter = Double(inputArrayValues[3])
+                    pilotTubeCoeffecient =  Double(inputArrayValues[4])
+                    staticPressure = Double(inputArrayValues[5])
+                    dryBulbTemperature = Double(inputArrayValues[6])
+                    elevationAboveSealevel = Double(inputArrayValues[7])
+                    seaLevelPressure = Double(inputArrayValues[8])                }
+                else if(!pipeShapeSwitch && wetBulbSwitch){
+                    height  = Double(inputArrayValues[3])
+                    width =  Double(inputArrayValues[4])
+                    pilotTubeCoeffecient =  Double(inputArrayValues[5])
+                    staticPressure = Double(inputArrayValues[6])
+                    dryBulbTemperature = Double(inputArrayValues[7])
+                    wetBulbTemperature = Double(inputArrayValues[8])
+                    elevationAboveSealevel = Double(inputArrayValues[9])
+                    seaLevelPressure = Double(inputArrayValues[10])
+                }
+                else if(!pipeShapeSwitch && !wetBulbSwitch){
+                    height  = Double(inputArrayValues[3])
+                    width =  Double(inputArrayValues[4])
+                    pilotTubeCoeffecient =  Double(inputArrayValues[5])
+                    staticPressure = Double(inputArrayValues[6])
+                    dryBulbTemperature = Double(inputArrayValues[7])
+                    elevationAboveSealevel = Double(inputArrayValues[8])
+                    seaLevelPressure = Double(inputArrayValues[9])}
+                
+                
+                
          var relativeHumidity: Double
          var dryBulbRankine: Double
          var wetBulbRankine: Double
@@ -439,18 +492,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
 
     func verifyInput() -> Bool{
-    /*
-        let sectionCount = 1
-        for section in 0 ..< sectionCount {
-            let rowCount = tableView.numberOfRows(inSection: section)
-            
-            for row in 3 ..< rowCount {
-                let cell = tableView.cellForRow(at: IndexPath(row: row, section: 0)) as! CustomCell
-                
-                print("INPUT " + String(row))
-               
-                print(cell.inputTextField.text!)
- */
         var count = 0
         if(wetBulbSwitch.isOn && pipeSwitch.isOn){
             count = 7
@@ -578,7 +619,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         inputArrayValues[row] = textField.text!
         rowBeingEdited = nil
-        print("INPUT ARRAY VALUES")
+        print("INPUT ARRAY VALUES" + String(inputArrayValues.count))
         print(inputArrayValues)
     }
 
@@ -621,26 +662,27 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             switchView.addTarget(self, action: #selector(switchPressed(sender:)), for: UIControlEvents.valueChanged)
             switch(indexPath.row){
             case 0: pipeSwitch = switchView
-            case 1: wetBulbSwitch = switchView
-            case 2: airCompositionSwitch = switchView
+            case 1: airCompositionSwitch = switchView
+            case 2: wetBulbSwitch  = switchView
             default: break
             
             }
             if(inputArrayValues[0]=="on"){
                 pipeSwitch.setOn(true, animated: false)
             }
-            else if(inputArrayValues[1]=="on")
-            {
-                wetBulbSwitch.setOn(true, animated: false)
-            }
-            else if(inputArrayValues[2]=="on")
+            if(inputArrayValues[1]=="on")
             {
                 airCompositionSwitch.setOn(true, animated: false)
+            }
+            if(inputArrayValues[2]=="on")
+            {
+                print("SETTING WET BULB ON ")
+                wetBulbSwitch.setOn(true, animated: false)
             }
         return cell
 
         }
-        else if(indexPath.row>=3 && indexPath.row<14){
+        else{
             var cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultTextFieldCell", for: indexPath) as! CustomCell
            
             cell.inputTitle.text = InputTitles[indexPath.row]
@@ -654,13 +696,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             return cell
         }
-               else{
-            var cell = self.tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomCell
-           
-            return cell
-
-        }
-        }
+                    }
         else {
             
             
@@ -679,11 +715,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     }
        func switchPressed(sender:UISwitch){
-           /*
-         let pipeSwitch = self.view.viewWithTag(0) as? UISwitch
-         let wetBulbSwitch = self.view.viewWithTag(1) as? UISwitch
-         let airCompositionSwitch = self.view.viewWithTag(2) as? UISwitch
- */
+     
          print("pipeSwitch" + String(describing: pipeSwitch))
         
             if(sender.tag == 0){
@@ -731,18 +763,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                  
             }
             else if(sender.tag == 1){
-                var startingIndexAirComposition = 12
+                var startingIndexAirComposition = 11
                 if(!pipeSwitch.isOn && wetBulbSwitch.isOn){
-                 startingIndexAirComposition=12
+                 startingIndexAirComposition=11
                 }
                 else if(pipeSwitch.isOn && wetBulbSwitch.isOn){
-                 startingIndexAirComposition=11
+                 startingIndexAirComposition=10
                 }
                 else if(!(pipeSwitch.isOn) && !(wetBulbSwitch.isOn)){
-                 startingIndexAirComposition=11
+                 startingIndexAirComposition=10
                 }
                 else if(pipeSwitch.isOn && !wetBulbSwitch.isOn){
-                 startingIndexAirComposition=10
+                 startingIndexAirComposition=9
                 }
             
             
@@ -758,56 +790,63 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 //sender.setOn(false, animated: true)
                     InputTitles.insert("C02", at: startingIndexAirComposition)
                     InputUnits.insert("", at: startingIndexAirComposition)
-                    
+                    inputArrayValues.insert("", at: startingIndexAirComposition)
                     
                     
                     InputTitles.insert("02", at: startingIndexAirComposition)
                     InputUnits.insert("", at: startingIndexAirComposition)
+                    inputArrayValues.insert("", at: startingIndexAirComposition)
+
+                    
+                    
                     InputTitles.insert("N2", at: startingIndexAirComposition)
                     InputUnits.insert("", at: startingIndexAirComposition)
+                    inputArrayValues.insert("", at: startingIndexAirComposition)
+
                     InputTitles.insert("Ar", at: startingIndexAirComposition)
                     InputUnits.insert("", at: startingIndexAirComposition)
+                    inputArrayValues.insert("", at: startingIndexAirComposition)
+
                     InputTitles.insert("H20", at: startingIndexAirComposition)
                     InputUnits.insert("", at: startingIndexAirComposition)
-                    inputArrayValues.append("")
-                    inputArrayValues.append("")
-                    inputArrayValues.append("")
-                    inputArrayValues.append("")
-                    inputArrayValues.append("")
+                    inputArrayValues.insert("", at: startingIndexAirComposition)
+
                     
                     
                     DataSource = InputTitles
-                    tableView.beginUpdates()
                     
-                    for i in 0..<5{
-                        tableView.insertRows(at: [IndexPath(row: i+startingIndexAirComposition, section: 0)], with: .fade)
-                        
-                    }
-                    tableView.endUpdates()
+                    
+                    tableView.reloadData()
                 }
                 else{
                  print("Air Composition OFF")
                     inputArrayValues[1]="off"
 
-                 InputTitles.insert("C02", at: startingIndexAirComposition)
-                 InputUnits.insert("", at: startingIndexAirComposition)
-                  InputTitles.insert("02", at: startingIndexAirComposition)
-                 InputUnits.insert("", at: startingIndexAirComposition)
-                  InputTitles.insert("N2", at: startingIndexAirComposition)
-                 InputUnits.insert("", at: startingIndexAirComposition)
-                  InputTitles.insert("Ar", at: startingIndexAirComposition)
-                 InputUnits.insert("", at: startingIndexAirComposition)
-                  InputTitles.insert("H20", at: startingIndexAirComposition)
-                 InputUnits.insert("", at: startingIndexAirComposition)
+                InputTitles.remove(at: startingIndexAirComposition)
+                InputUnits.remove(at: startingIndexAirComposition)
+                inputArrayValues.remove(at: startingIndexAirComposition)
                     
+                    InputTitles.remove(at: startingIndexAirComposition)
+                    InputUnits.remove(at: startingIndexAirComposition)
+                    inputArrayValues.remove(at: startingIndexAirComposition)
+                    
+                    InputTitles.remove(at: startingIndexAirComposition)
+                    InputUnits.remove(at: startingIndexAirComposition)
+                    inputArrayValues.remove(at: startingIndexAirComposition)
+                    
+                    InputTitles.remove(at: startingIndexAirComposition)
+                    InputUnits.remove(at: startingIndexAirComposition)
+                    inputArrayValues.remove(at: startingIndexAirComposition)
+                    
+                    InputTitles.remove(at: startingIndexAirComposition)
+                    InputUnits.remove(at: startingIndexAirComposition)
+                    inputArrayValues.remove(at: startingIndexAirComposition)
+    
+                                
               
                  DataSource = InputTitles
-                 tableView.beginUpdates()
-                    
-                    for i in 0..<5{
-                 tableView.reloadRows(at: [IndexPath(row: i+startingIndexAirComposition, section: 0)], with: .fade)
-                   tableView.endUpdates()
-                 }
+                  tableView.reloadData()
+                 
                  
                 }
 
