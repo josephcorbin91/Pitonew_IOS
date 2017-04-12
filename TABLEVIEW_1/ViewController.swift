@@ -24,6 +24,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var USReaultsArray = Array(repeating: "", count: 10)
     
     
+    @IBOutlet weak var unitSegmentedControl: UISegmentedControl!
+    @IBAction func unitSegmentControlChanged(_ sender: Any) {
+        
+        
+        
+    }
 
     var InputUnitsSI = [String]()
     var InputUnitsUS = [String]()
@@ -40,28 +46,44 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var airCompositionSwitch : UISwitch!
     
     
+    @IBOutlet weak var unitSwitch: UISegmentedControl!
     @IBOutlet weak var clearButton: UIButton!
     @IBOutlet weak var calculateButton: UIButton!
     
     
-   
-    
-    @IBAction func unitSwitchChanged(_ sender: UISwitch) {
-        if(unitSwitch.isOn){
+    @IBAction func unitSegementedControl(_ sender: Any) {
+        if(unitSwitch.selectedSegmentIndex == 0){
             InputUnits = InputUnitsUS
             ResultUnits = ResultUnitsUS
             resultArray = USReaultsArray
+
+            
         }
         else{
             InputUnits = InputUnitsSI
             ResultUnits = ResultUnitsSI
             resultArray = SIResultsArray
-
             
         }
         tableView.reloadData()
+
     }
-    @IBOutlet weak var unitSwitch: UISwitch!
+    
+    /*
+    func calculateConversionInputValues(){
+     print(inputArrayValues)
+        var numberOfInputs : Integer
+        print("SELECTED" + String(unitSwitch.selectedSegmentIndex))
+        if(unitSwitch.selectedSegmentIndex == 0){
+            inputArrayValues[3]
+        }
+        inputArrayValuesSI
+        inputArrayValuesUS
+        
+    }
+    */
+   
+    
     
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
@@ -82,18 +104,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         DataSource = InputTitles
         ResultUnits = ResultUnitsUS
         }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
     
-    }
-    
-    
+    //unit switch on is si
     func calculateResults(){
         var pipeShapeSwitch: Bool
         var AirCompositionSwitch: Bool
         var wetBulbSwitch: Bool
         var UnitSwitch: Bool
-        if(unitSwitch.isOn){
+        if(unitSwitch.selectedSegmentIndex == 1){
             UnitSwitch=true
         }
         else{
@@ -418,9 +436,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
 
-    @IBAction func unitSegmentedControlValueChanged(_ sender: UISegmentedControl) {
-    }
-    @IBOutlet weak var unitSegmentedControl: UISegmentedControl!
     func verifyInput() -> Bool{
     /*
         let sectionCount = 1
@@ -474,7 +489,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             DataSource = ResultTitles
             calculateResults()
             navigationBar.topItem?.title = "Results"
-            navigationBar.topItem?.prompt = "This is the subtitle"
             
             
 
@@ -485,10 +499,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
         }
         
+        DataSource = ResultTitles
+            calculateButton.isHidden = true
+            clearButton.isHidden = true
+            let range = NSMakeRange(0, self.tableView.numberOfSections)
+            let sections = NSIndexSet(indexesIn: range)
+            self.tableView.reloadSections(sections as IndexSet, with: .right)
         
-        let range = NSMakeRange(0, self.tableView.numberOfSections)
-        let sections = NSIndexSet(indexesIn: range)
-        self.tableView.reloadSections(sections as IndexSet, with: .fade)
     }
     @IBAction func clear(_ sender: UIButton) {
         let sectionCount = 1
@@ -551,11 +568,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         
         if row >= inputArrayValues.count {
-            let numberOfRows = 0..<DataSource.count
+            let numberOfRows = 3..<DataSource.count
             for i in numberOfRows{
                 inputArrayValues.append("") // this adds blank rows in case the user skips rows
             }
         }
+        
         inputArrayValues[row] = textField.text!
         rowBeingEdited = nil
         print("INPUT ARRAY VALUES")
@@ -579,6 +597,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             var average = total/totalNumbers
             return average
         }
+    
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         
@@ -602,6 +622,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             case 1: wetBulbSwitch = switchView
             case 2: airCompositionSwitch = switchView
             default: break
+            
+            }
+            if(inputArrayValues[0]=="on"){
+                pipeSwitch.setOn(true, animated: false)
+            }
+            else if(inputArrayValues[1]=="on")
+            {
+                wetBulbSwitch.setOn(true, animated: false)
+            }
+            else if(inputArrayValues[2]=="on")
+            {
+                airCompositionSwitch.setOn(true, animated: false)
             }
         return cell
 
@@ -652,10 +684,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
  */
          print("pipeSwitch" + String(describing: pipeSwitch))
         
-        
+        print("INPUT ARRAY VALUES")
+        print(inputArrayValues)
         
             if(sender.tag == 0){
                 if(sender.isOn){
+                inputArrayValues[0]="on"
                 print("PipeType ON")
                 InputTitles.remove(at: 4)
                 InputUnits.remove(at: 4)
@@ -672,9 +706,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 }
                 else{
                  print("PipeType OFF")
+                 inputArrayValues[0]="off"
+ 
                  InputTitles.insert("Width", at: 4)
                  
-                 if(unitSwitch.isOn){
+                 if(unitSwitch.selectedSegmentIndex == 1){
                  InputUnits.insert("m", at: 4)
                  }
                  else{
@@ -710,6 +746,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             
                   if(sender.isOn){
+                    inputArrayValues[1]="on"
+
                 print("AirComposition On " + String(startingIndexAirComposition))
         
                       
@@ -748,6 +786,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 }
                 else{
                  print("Air Composition OFF")
+                    inputArrayValues[1]="off"
+
                  InputTitles.insert("C02", at: startingIndexAirComposition)
                  InputUnits.insert("", at: startingIndexAirComposition)
                   InputTitles.insert("02", at: startingIndexAirComposition)
@@ -779,6 +819,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 if(pipeSwitch.isOn){
                  if(sender.isOn){
                 print("WetBulb OFF")
+                    inputArrayValues[2]="on"
+
                 InputTitles.remove(at: 7)
                 InputUnits.remove(at: 7)
                 
@@ -791,8 +833,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 }
                 else{
                  print("PipeType ON")
+                    inputArrayValues[0]="off"
+
                  InputTitles.insert("Wet Bulb (T)", at: 7)
-                    if(unitSwitch.isOn){
+                    if(unitSwitch.selectedSegmentIndex == 1){
                  InputUnits.insert("C", at: 7)
                     }
                     else{
@@ -821,7 +865,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 else{
            
                  InputTitles.insert("Wet Bulb (T)", at: 8)
-                    if(unitSwitch.isOn){
+                    if(unitSwitch.selectedSegmentIndex == 1){
                  InputUnits.insert("C", at: 8)
                     }
                     else{
