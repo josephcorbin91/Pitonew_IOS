@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
 
+    @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var tableView: UITableView!
     var DataSource = [String]()
     var InputTitles = [String]()
@@ -30,7 +31,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var dynamicPressureArray = [Double]()
 
     var numberOfInputValues : Int? = nil
-    var inputArrayValues = ["off","off","off","1.0","1.0","1.0","1.0","1.0","1.0","1.0","1.0","1.0"]
+    var inputArrayValues = Array(repeating: "", count: 12) //["off","off","off","1.0","1.0","1.0","1.0","1.0","1.0","1.0","1.0","1.0"]
+    var emptyInputArrayValues = Array(repeating: "", count: 12)
 
     var rowBeingEdited : Int? = nil
     var pipeSwitch : UISwitch!
@@ -74,7 +76,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         ResultUnitsSI = ["m/s","m/s","kg/","m^3/s", "Nm^3/h","g/mol", "kPa", "m^2", "kPa", "kg/m^3"]
         ResultUnitsUS = ["ft/s","ft/s","lb/min","SCFM", "ACFM","g/mol", "in Hg", "in^2", "in. Hg", "ft^3",""]
 
-
+        
+        navigationBar.topItem?.title = "Input"
         InputUnits = InputUnitsUS
         DataSource = InputTitles
         ResultUnits = ResultUnitsUS
@@ -419,27 +422,48 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     @IBOutlet weak var unitSegmentedControl: UISegmentedControl!
     func verifyInput() -> Bool{
-        
-        var tempInputValues = [String]()
+    /*
         let sectionCount = 1
         for section in 0 ..< sectionCount {
             let rowCount = tableView.numberOfRows(inSection: section)
             
             for row in 3 ..< rowCount {
                 let cell = tableView.cellForRow(at: IndexPath(row: row, section: 0)) as! CustomCell
-                tempInputValues.append(cell.inputTextField.text!)
-                if(cell.inputTextField.text == "")
+                
+                print("INPUT " + String(row))
+               
+                print(cell.inputTextField.text!)
+ */
+        var count = 0
+        if(wetBulbSwitch.isOn && pipeSwitch.isOn){
+            count = 7
+        }
+        else if(wetBulbSwitch.isOn && !pipeSwitch.isOn){
+            count = 8
+        }
+        else if(!wetBulbSwitch.isOn && pipeSwitch.isOn){
+            count = 6
+        }
+        else if(!wetBulbSwitch.isOn && !pipeSwitch.isOn){
+            count = 7
+        }
+        for value in 3...(3+count){
+            
+                if(inputArrayValues[value] == "")
                 {
+                    
+                    print("EMPTY")
                     return false
                 }
             }
-            
-        }
-        inputArrayValues = tempInputValues
+        
+        
+        
         return true
         
 
     }
+    
     @IBAction func calculate(_ sender: UIButton) {
         
         
@@ -449,7 +473,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             clearButton.isHidden = true
             DataSource = ResultTitles
             calculateResults()
+            navigationBar.topItem?.title = "Results"
+            navigationBar.topItem?.prompt = "This is the subtitle"
+            
+            
+
         }
+            
         else{
             
             
@@ -473,6 +503,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 print("INPUT LABEL" + cell.inputTextField.text!)
             }
         }
+        inputArrayValues = emptyInputArrayValues
     }
     
     
@@ -508,7 +539,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         //tableView.reloadData()
     }
-    
+
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
         
@@ -527,8 +558,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         inputArrayValues[row] = textField.text!
         rowBeingEdited = nil
+        print("INPUT ARRAY VALUES")
         print(inputArrayValues)
     }
+
     
     func textFieldDidBeginEditing(textField: UITextField) {
         rowBeingEdited = textField.tag
@@ -579,7 +612,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             cell.inputTitle.text = InputTitles[indexPath.row]
             cell.inputUnitLabel.text = InputUnits[indexPath.row]
             
-            cell.inputTextField.text = ""
+            cell.inputTextField.text = inputArrayValues[indexPath.row]
             cell.inputTextField.tag = indexPath.row
             cell.inputTextField.delegate = self // theField is your IBOutlet UITextfield in your custom cell
             
@@ -598,7 +631,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             
             var cell = self.tableView.dequeueReusableCell(withIdentifier: "ResultCell", for: indexPath) as! ResultCell
-                print("INDEX" + String(indexPath.row) + " " + String(indexPath.count))
+               print("RESULTS")
+                print(resultArray)
+        
                 cell.resultTitle.text = ResultTitles[indexPath.row]
                 cell.result.text = resultArray[indexPath.row]
                 cell.resultUnit.text = ResultUnits[indexPath.row]
@@ -680,21 +715,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                       
       
       
-                
-                DataSource = InputTitles
-                    
-                tableView.beginUpdates()
-                tableView.reloadRows(at: [IndexPath(row: 3, section: 0)], with: .fade)
-                tableView.reloadRows(at: [IndexPath(row: 4, section: 0)], with: .fade)
-                tableView.reloadRows(at: [IndexPath(row: 5, section: 0)], with: .fade)
-                tableView.reloadRows(at: [IndexPath(row: 6, section: 0)], with: .fade)
-                tableView.reloadRows(at: [IndexPath(row: 7, section: 0)], with: .fade)
-                      
-                tableView.endUpdates()
- 
+              
                 //sender.setOn(false, animated: true)
                     InputTitles.insert("C02", at: startingIndexAirComposition)
                     InputUnits.insert("", at: startingIndexAirComposition)
+                    
+                    
+                    
                     InputTitles.insert("02", at: startingIndexAirComposition)
                     InputUnits.insert("", at: startingIndexAirComposition)
                     InputTitles.insert("N2", at: startingIndexAirComposition)
@@ -703,17 +730,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     InputUnits.insert("", at: startingIndexAirComposition)
                     InputTitles.insert("H20", at: startingIndexAirComposition)
                     InputUnits.insert("", at: startingIndexAirComposition)
+                    inputArrayValues.append("")
+                    inputArrayValues.append("")
+                    inputArrayValues.append("")
+                    inputArrayValues.append("")
+                    inputArrayValues.append("")
                     
                     
                     DataSource = InputTitles
                     tableView.beginUpdates()
                     
                     for i in 0..<5{
-                        tableView.reloadRows(at: [IndexPath(row: i+startingIndexAirComposition, section: 0)], with: .fade)
-                        tableView.endUpdates()
+                        tableView.insertRows(at: [IndexPath(row: i+startingIndexAirComposition, section: 0)], with: .fade)
+                        
                     }
-                    
-
+                    tableView.endUpdates()
                 }
                 else{
                  print("Air Composition OFF")

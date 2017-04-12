@@ -29,28 +29,17 @@
                                 <items>
                                     <navigationItem id="x3x-Rd-GZE">
                                         <nil key="title"/>
-                                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="KpH-Ba-UuI">
-                                            <rect key="frame" x="132" y="7" width="150" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <segments>
-                                                <segment title="Input"/>
-                                                <segment title="Results"/>
-                                            </segments>
-                                            <connections>
-                                                <action selector="ssegmentControlChange:" destination="BYZ-38-t0r" eventType="valueChanged" id="9jx-Vk-0s4"/>
-                                            </connections>
-                                        </segmentedControl>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" bounces="NO" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TgK-Y3-Ehd">
-                                <rect key="frame" x="16" y="70" width="350" height="350"/>
+                                <rect key="frame" x="16" y="130" width="350" height="500"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="defaultSwitchCell" textLabel="Vcp-nW-xY4" style="IBUITableViewCellStyleDefault" id="GPH-2e-7Xv">
                                         <rect key="frame" x="0.0" y="28" width="350" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GPH-2e-7Xv" id="QLh-ES-scc">
                                             <rect key="frame" x="0.0" y="0.0" width="283" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
@@ -80,7 +69,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="4ej-WD-cCI">
-                                                    <rect key="frame" x="110" y="6" width="140" height="30"/>
+                                                    <rect key="frame" x="130" y="6" width="100" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -118,7 +107,7 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" ambiguous="YES" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6pC-NU-ZAt">
                                                     <rect key="frame" x="120" y="11" width="100" height="21"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -143,6 +132,17 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="vkq-Zz-faq"/>
                                 </connections>
                             </tableView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="1CW-17-1Uk">
+                                <rect key="frame" x="26" y="100" width="150" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Input"/>
+                                    <segment title="Results"/>
+                                </segments>
+                                <connections>
+                                    <action selector="ssegmentControlChange:" destination="BYZ-38-t0r" eventType="valueChanged" id="WNL-r5-Eyh"/>
+                                </connections>
+                            </segmentedControl>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xcj-Ma-2kU">
                                 <rect key="frame" x="100" y="650" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -188,7 +188,8 @@
                     <connections>
                         <outlet property="calculateButton" destination="q79-N8-Gqh" id="Fs1-Pt-qW5"/>
                         <outlet property="clearButton" destination="kYT-DC-NGh" id="OvQ-Bq-6Iu"/>
-                        <outlet property="segmentedControl" destination="KpH-Ba-UuI" id="yWH-CU-e8j"/>
+                        <outlet property="navigationBar" destination="TkJ-oQ-cWP" id="0UN-r5-hWK"/>
+                        <outlet property="segmentedControl" destination="1CW-17-1Uk" id="IMS-aq-Nus"/>
                         <outlet property="tableView" destination="TgK-Y3-Ehd" id="T84-1F-Z4j"/>
                         <outlet property="unitSwitch" destination="Xcj-Ma-2kU" id="8TN-dB-OL0"/>
                     </connections>
