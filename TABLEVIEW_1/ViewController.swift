@@ -89,15 +89,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     override func viewDidLoad() {
         super.viewDidLoad()
-         InputTitles = ["Circular Duct","Non-Standard Air Composition","Wet Bulb (T)","Width", "Height", "Pitot Tube (C)", "Static (P)", "Dry Bulb (T)","Wet Bulb (T)", "Elevation",
+         InputTitles = ["Circular Duct","Non-Standard Air Composition","Wet Bulb (T)","Width", "Height", "Pitot Tube (C)", "Static (P)", "Dry Bulb (T)", "Elevation",
                            "Sea Level (P)", "Dynamic Velocity (P)"]
-         InputUnitsSI = ["","","","m","m","","H20","C","ft","kPa","",""]
-        InputUnitsUS = ["","","","in","in","","H20","F","ft","in hg","",""]
+         InputUnitsSI = ["","","","m","m","","H20","C","ft","kPa",""]
+        InputUnitsUS = ["","","","in","in","","H20","F","ft","in hg",""]
 
         ResultTitles = ["Dynamic Velocity", "Average Velocity", "Mass Air Flow", "Actual Air Flow","Normal Air Flow", "Molar Weight", "Duct (P)","Area", "Atmospheric (P)", "GasDensity"]
         ResultUnitsSI = ["m/s","m/s","kg/","m^3/s", "Nm^3/h","g/mol", "kPa", "m^2", "kPa", "kg/m^3"]
         ResultUnitsUS = ["ft/s","ft/s","lb/min","SCFM", "ACFM","g/mol", "in Hg", "in^2", "in. Hg", "ft^3",""]
-
+        inputArrayValues[0]="off"
+        inputArrayValues[1]="off"
+        inputArrayValues[2]="off"
         
         navigationBar.topItem?.title = "Input"
         InputUnits = InputUnitsUS
@@ -684,15 +686,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
  */
          print("pipeSwitch" + String(describing: pipeSwitch))
         
-        print("INPUT ARRAY VALUES")
-        print(inputArrayValues)
-        
             if(sender.tag == 0){
                 if(sender.isOn){
                 inputArrayValues[0]="on"
                 print("PipeType ON")
                 InputTitles.remove(at: 4)
                 InputUnits.remove(at: 4)
+                inputArrayValues.remove(at: 4)
+
                 InputTitles[3] = "Diamter"
                 DataSource = InputTitles
                 tableView.beginUpdates()
@@ -707,7 +708,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 else{
                  print("PipeType OFF")
                  inputArrayValues[0]="off"
- 
+                 inputArrayValues.insert("", at: 4)
                  InputTitles.insert("Width", at: 4)
                  
                  if(unitSwitch.selectedSegmentIndex == 1){
@@ -818,71 +819,80 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             else if(sender.tag == 2){
                 if(pipeSwitch.isOn){
                  if(sender.isOn){
-                print("WetBulb OFF")
+                    print("WetBulb ON")
                     inputArrayValues[2]="on"
-
-                InputTitles.remove(at: 7)
-                InputUnits.remove(at: 7)
-                
-                DataSource = InputTitles
-                tableView.beginUpdates()
-                tableView.deleteRows(at: [IndexPath(row: 7, section: 0)], with: .fade)
-                tableView.endUpdates()
-                //sender.setOn(false, animated: true)
-
-                }
-                else{
-                 print("PipeType ON")
-                    inputArrayValues[0]="off"
-
-                 InputTitles.insert("Wet Bulb (T)", at: 7)
+                    inputArrayValues.insert("", at: 7)
+                    InputTitles.insert("Wet Bulb (T)", at: 7)
                     if(unitSwitch.selectedSegmentIndex == 1){
-                 InputUnits.insert("C", at: 7)
+                        InputUnits.insert("C", at: 7)
                     }
                     else{
                         InputUnits.insert("F", at: 7)
                     }
-                 DataSource = InputTitles
-                 tableView.beginUpdates()
-                 tableView.insertRows(at: [IndexPath(row: 7, section: 0)], with: .fade)
-                 tableView.endUpdates()
-                 
-                }
+                    DataSource = InputTitles
+                    tableView.beginUpdates()
+                    tableView.insertRows(at: [IndexPath(row: 7, section: 0)], with: .fade)
+                    tableView.endUpdates()
+                    
+
+              
+                    }
+                else{
+                    print("WetBulb OFF")
+                    inputArrayValues[2]="off"
+                    inputArrayValues.remove(at: 7)
+                    InputTitles.remove(at: 7)
+                    InputUnits.remove(at: 7)
+                    DataSource = InputTitles
+                    tableView.beginUpdates()
+                    tableView.deleteRows(at: [IndexPath(row: 7, section: 0)], with: .fade)
+                    tableView.endUpdates()
+                    }
                 }
                 else{
                     if(sender.isOn){
-                print("WetBulb OFF")
-                InputTitles.remove(at: 8)
-                InputUnits.remove(at: 8)
-                
-                DataSource = InputTitles
-                tableView.beginUpdates()
-                tableView.deleteRows(at: [IndexPath(row: 8, section: 0)], with: .fade)
-                tableView.endUpdates()
-                //sender.setOn(false, animated: true)
-
-                }
+                print("WetBulb ON")
+                    inputArrayValues[2]="on"
+                        inputArrayValues.insert("", at: 8)
+                        InputTitles.insert("Wet Bulb (T)", at: 8)
+                        if(unitSwitch.selectedSegmentIndex == 1){
+                            InputUnits.insert("C", at: 8)
+                        }
+                        else{
+                            InputUnits.insert("F", at: 8)
+                        }
+                        DataSource = InputTitles
+                        tableView.beginUpdates()
+                        tableView.insertRows(at: [IndexPath(row: 8, section: 0)], with: .fade)
+                        tableView.endUpdates()
+                             }
                 else{
-           
-                 InputTitles.insert("Wet Bulb (T)", at: 8)
-                    if(unitSwitch.selectedSegmentIndex == 1){
-                 InputUnits.insert("C", at: 8)
-                    }
-                    else{
-                        InputUnits.insert("F", at: 8)
-                    }
-                 DataSource = InputTitles
-                 tableView.beginUpdates()
-                 tableView.insertRows(at: [IndexPath(row: 8, section: 0)], with: .fade)
-                 tableView.endUpdates()
+                print("WetBulb OFF")
+                 inputArrayValues[2]="off"
+                        inputArrayValues.remove(at: 8)
+
+                        
+                        
+                        InputTitles.remove(at: 8)
+                        InputUnits.remove(at: 8)
+                        
+                        DataSource = InputTitles
+                        tableView.beginUpdates()
+                        tableView.deleteRows(at: [IndexPath(row: 8, section: 0)], with: .fade)
+                        tableView.endUpdates()
+
+               
                  
                 }
                 }
 
             }
             
-                
-            
+        
+        print("INPUT ARRAY VALUES" + String(inputArrayValues.count))
+        print(inputArrayValues)
+
+        
         }
 }
 
