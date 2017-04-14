@@ -290,7 +290,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
          
          }
          
-         
+         print("dryBulbRankine" + String(dryBulbRankine))
+         print("wetBulbRankine" + String(wetBulbRankine))
+         print("Kd" + String(Kd))
+         print("Kw" + String(Kw))
+         print("dryBulbWaterSaturationPressurePD" + String(dryBulbWaterSaturationPressurePD))
+         print("wetBulbWaterSaturationPressurePW" + String(wetBulbWaterSaturationPressurePW))
+         print("partialPressureOfWaterPA" + String(partialPressureOfWaterPA))
+         print("relativeHumidity" + String(relativeHumidity))
+        
+                
+                
+                
          if(AirCompositionSwitchBoolean){
          if(wetBulbSwitchBoolean){
          var part1 = 0.03 * (1 - humidityH20WetAir)
