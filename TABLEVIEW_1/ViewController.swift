@@ -318,13 +318,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
          }
          
          if(pipeShapeSwitchBoolean){
-         area = Double.pi * pow(height / 2, 2.0)
+         area = Double.pi * pow(height / 2.0, 2.0)
          }
          else{
          area = width*height
          }
          
-         atmosphericPressure = seaLevelPressure*pow(10, -0.00001696*elevationAboveSealevel)
+         atmosphericPressure = seaLevelPressure*pow(10.0, -0.00001696*elevationAboveSealevel)
          if(UnitSwitch){
          ductPressure = atmosphericPressure + staticPressure*0.249088
          
@@ -340,20 +340,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
          }
          else{
          
-         var part1 = ((dryBulbTemperature-32)*(5/9))
+         var part1 = ((dryBulbTemperature-32)*(5.0/9.0))
          var part2 = (ductPressure*3.386375)
          gasDensity = 0.062428*(1000 * part2 / (273.15 +  part1 / (8314.3 / molecularWeight)))
          }
          
          if(UnitSwitch){
          for item in dynamicPressureArray {
-         dynamicVelocityArray.append(pilotTubeCoeffecient*pow(2*item*1000/4.01864/gasDensity,0.5))
+         dynamicVelocityArray.append(pilotTubeCoeffecient*pow(2.0*item*1000/4.01864/gasDensity,0.5))
          }
          }
          else{
          for item in dynamicPressureArray {
          
-         dynamicVelocityArray.append(pilotTubeCoeffecient*pow(2*item*1000/4.01864/(gasDensity / 0.062428),0.5) * 3.2804)
+         dynamicVelocityArray.append(pilotTubeCoeffecient*pow(2.0*item*1000/4.01864/(gasDensity / 0.062428),0.5) * 3.2804)
          }
          }
          averageVelocity = average(nums: dynamicVelocityArray)
@@ -362,21 +362,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
          
          }
          else{
-         actualAirFlow = ((averageVelocity*0.3048)*(area*0.00064516)*3600)*pow((39.3701/12),3)/60
+         actualAirFlow = ((averageVelocity*0.3048)*(area*0.00064516)*3600)*pow((39.3701/12),3.0)/60
          }
          if(UnitSwitch){
          massAirFlow=actualAirFlow*gasDensity/3600
          
          }
          else{
-         massAirFlow=(actualAirFlow*60/pow((39.3701/12),3)*(gasDensity/0.062428)/3600)*2.2046*60
+         massAirFlow=(actualAirFlow*60/pow((39.3701/12.0),3)*(gasDensity/0.062428)/3600.0)*2.2046*60.0
          }
          if(UnitSwitch){
-         normalAirFlow = (actualAirFlow*ductPressure/101.325)*273.15/(273.15+((dryBulbTemperature-32)/1.8))
+         normalAirFlow = (actualAirFlow*ductPressure/101.325)*273.15/(273.15+((dryBulbTemperature-32.0)/1.8))
          
          }
          else{
-         normalAirFlow=(actualAirFlow*60/(pow(39.3701/12,3))*(ductPressure/0.2953)/101.325)*273.15/(273.15+dryBulbTemperature)/60*pow((39.3701/12),3)*(294.26/273.15);
+         normalAirFlow=(actualAirFlow*60.0/(pow(39.3701/12.0,3.0))*(ductPressure/0.2953)/101.325)*273.15/(273.15+dryBulbTemperature)/60.0*pow((39.3701/12.0),3.0)*(294.26/273.15);
          
          }
          
@@ -434,10 +434,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
          
          USReaultsArray[0] = "Dynamic Velocity"//numberTwoDigitsFomatter.string(from: averageVelocity as NSNumber)
-         USReaultsArray[1] = numberTwoDigitsFomatter.string(from: averageVelocity*39.3701/12 as NSNumber)!
-         USReaultsArray[2] = numberTwoDigitsFomatter.string(from: massAirFlow*(2.2046*60) as NSNumber)!
-         USReaultsArray[3] = numberTwoDigitsFomatter.string(from: (actualAirFlow/60*(pow(39.3701/12,3))) as NSNumber)!
-         USReaultsArray[4] = numberTwoDigitsFomatter.string(from: (normalAirFlow*((pow(39.3701/12,3)*(294.26/273.15)))/60) as NSNumber)!
+         USReaultsArray[1] = numberTwoDigitsFomatter.string(from: averageVelocity*39.3701/12.0 as NSNumber)!
+         USReaultsArray[2] = numberTwoDigitsFomatter.string(from: massAirFlow*(2.2046*60.0) as NSNumber)!
+         USReaultsArray[3] = numberTwoDigitsFomatter.string(from: (actualAirFlow/60.0*(pow(39.3701/12.0,3.0))) as NSNumber)!
+         USReaultsArray[4] = numberTwoDigitsFomatter.string(from: (normalAirFlow*((pow(39.3701/12.0,3.0)*(294.26/273.15)))/60.0) as NSNumber)!
          USReaultsArray[5] = numberFourDigitsFomatter.string(from: molecularWeight as NSNumber)!
          USReaultsArray[6] = numberTwoDigitsFomatter.string(from: (ductPressure/3.38639) as NSNumber)!
          USReaultsArray[7] = numberTwoDigitsFomatter.string(from: area/0.00064516 as NSNumber)!
@@ -466,10 +466,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
          
          SIResultsArray[0] = "Dynamic Velocity"//numberTwoDigitsFomatter.string(from: averageVelocity as NSNumber)
-         SIResultsArray[1] = numberTwoDigitsFomatter.string(from: averageVelocity*12/39.3701 as NSNumber)!
-         SIResultsArray[2] = numberTwoDigitsFomatter.string(from: massAirFlow/(2.2046 * 60) as NSNumber)!
-         SIResultsArray[3] = numberTwoDigitsFomatter.string(from: actualAirFlow*60/(pow(39.3701 / 12, 3)) as NSNumber)!
-         SIResultsArray[4] = numberTwoDigitsFomatter.string(from: (normalAirFlow * 60 / ((pow(39.3701 / 12, 3) * (294.26 / 273.15)))) as NSNumber)!
+         SIResultsArray[1] = numberTwoDigitsFomatter.string(from: averageVelocity*12.0/39.3701 as NSNumber)!
+         SIResultsArray[2] = numberTwoDigitsFomatter.string(from: massAirFlow/(2.2046 * 60.0) as NSNumber)!
+         SIResultsArray[3] = numberTwoDigitsFomatter.string(from: actualAirFlow*60.0/(pow(39.3701 / 12.0, 3.0)) as NSNumber)!
+         SIResultsArray[4] = numberTwoDigitsFomatter.string(from: (normalAirFlow * 60.0 / ((pow(39.3701 / 12.0, 3.0) * (294.26 / 273.15)))) as NSNumber)!
          SIResultsArray[5] = numberFourDigitsFomatter.string(from: molecularWeight as NSNumber)!
          SIResultsArray[6] = numberTwoDigitsFomatter.string(from: (ductPressure*3.38639) as NSNumber)!
          SIResultsArray[7] = numberTwoDigitsFomatter.string(from: area*0.00064516 as NSNumber)!
