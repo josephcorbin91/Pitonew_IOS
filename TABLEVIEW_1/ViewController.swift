@@ -175,6 +175,30 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     H2OComposition =  0.0
                                     }
                 
+         var dynamicVelocityArray = [Double]()
+
+                dynamicPressureArray.append(1.0)
+                print("INPUT VALUES")
+                print("DYNAMIC PRESSURE ARRAY")
+                print(dynamicPressureArray)
+                print("pipeShapeSwitchBoolean" + String(pipeShapeSwitchBoolean))                
+                print("AirCompositionSwitchBoolean" + String(AirCompositionSwitchBoolean))                
+                print("wetBulbSwitchBoolean" + String(wetBulbSwitchBoolean))                
+
+                print("height" + String(height))                
+                print("width" + String(width))
+                print("pilotTubeCoeffecient" + String(pilotTubeCoeffecient))
+                print("staticPressure" + String(staticPressure))
+                print("dryBulbTemperature" + String(dryBulbTemperature))
+                print("wetBulbTemperature" + String(height))
+                print("elevationAboveSealevel" + String(elevationAboveSealevel))
+                print("seaLevelPressure" + String(seaLevelPressure))
+                print("C02Composition" + String(C02Composition))
+                print("O2Composition" + String(O2Composition))
+                print("N2Composition" + String(N2Composition))
+                print("ARComposition" + String(ARComposition))
+                print("H2OComposition" + String(H2OComposition))
+
 
 
                 
@@ -200,7 +224,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
          let gasDensity: Double
          var molecularWeight: Double
          
-         var dynamicVelocityArray = [Double]()
          
          let averageVelocity: Double
          let actualAirFlow: Double
@@ -291,8 +314,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
          
          }
          
-                dynamicPressureArray.append(1.0)
-                dynamicPressureArray.append(1.0)
          if(pipeShapeSwitchBoolean){
          area = Double.pi * pow(height / 2, 2.0)
          }
@@ -456,7 +477,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
          resultArray=USReaultsArray
          }
          
-         
+                print("RESULTS")
+                print("UNITS" + UnitSwitch)
+                print("averageVelocity" + String(averageVelocity))                
+                print("massAirFlow" + String(massAirFlow))                
+                print("actualAirFlow" + String(actualAirFlow))                
+                print("normalAirFlow" + String(normalAirFlow))  
+                print("molecularWeight" + String(molecularWeight))
+                print("ductPressure" + String(ductPressure))
+                print("area" + String(area))
+                print("atmosphericPressure" + String(atmosphericPressure))
+                print("gasDensity" + String(gasDensity))
+                
+                
          
         }
         
