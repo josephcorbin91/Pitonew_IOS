@@ -530,14 +530,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     @IBAction func calculate(_ sender: UIButton) {
-        
-        
+         calculateResults()
+        /*
         if(verifyInput()){
             segmentedControl.selectedSegmentIndex = 1
             calculateButton.isHidden = true
             clearButton.isHidden = true
             DataSource = ResultTitles
-            calculateResults()
+           
             navigationBar.topItem?.title = "Results"
 
           
@@ -545,6 +545,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             let sections = NSIndexSet(indexesIn: range)
             self.tableView.reloadSections(sections as IndexSet, with: .right)
         }
+        */
     }
     @IBAction func clear(_ sender: UIButton) {
  
