@@ -1,4 +1,4 @@
-//
+    //
 //  ViewController.swift
 //  TABLEVIEW_1
 //
@@ -37,8 +37,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var dynamicPressureArray = [Double]()
 
     var numberOfInputValues : Int? = nil
-    var inputArrayValues = Array(repeating: "", count: 11) //["off","off","off","1.0","1.0","1.0","1.0","1.0","1.0","1.0","1.0","1.0"]
-    var emptyInputArrayValues = Array(repeating: "", count: 11)
+    var inputArrayValues = Array(repeating: "", count: 17) //["off","off","off","1.0","1.0","1.0","1.0","1.0","1.0","1.0","1.0","1.0"]
+    var emptyInputArrayValues = Array(repeating: "", count: 17)
 
     var rowBeingEdited : Int? = nil
     var pipeSwitch : UISwitch!
@@ -579,10 +579,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     @IBAction func clear(_ sender: UIButton) {
-        print("INPUT ARRAY BEFORE DELETE" + String(describing: inputArrayValues))
-        inputArrayValues.removeSubrange(3..<inputArrayValues.count)
-        print("INPUT ARRAY AFTER DELETE" + String(describing: inputArrayValues))
-
+      /*
+        
         let sectionCount = 1
         for section in 0 ..< sectionCount {
             let rowCount = tableView.numberOfRows(inSection: section)
@@ -591,11 +589,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             for row in 3 ..< rowCount {
                 let cell = tableView.cellForRow(at: IndexPath(row: row, section: 0)) as! CustomCell
                 list.append(cell)
-                inputArrayValues.append("")
                 cell.inputTextField.text = ""
                 print("INPUT LABEL" + cell.inputTextField.text!)
             }
-        }
+ */
+            inputArrayValues = emptyInputArrayValues
+            tableView.reloadData()
+        
         print("INPUT ARRAY AFTER CLEAR" + String(describing: inputArrayValues))
 
     }
@@ -604,7 +604,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -639,29 +638,44 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     
-
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextFieldDidEndEditingReason) {
-        let row = textField.tag
-        /*
-        print("CURRENT ROW BEING EDITED" + String(row))
-        if row >= inputArrayValues.count {
-            let numberOfRows = 3..<inputArrayValues.count
-            for i in numberOfRows{
-                inputArrayValues.append("") // this adds blank rows in case the user skips rows
-            }
-        }
- */
+        //let row = textField.tag
+        let cell = textField.superview!.superview as! CustomCell
         
-        inputArrayValues[row] = textField.text!
+        var indexOfInputArray = -1
+        print(cell)
+        print(cell.inputTitle)
+        if let inputTitle = cell.inputTitle.text{
+        switch inputTitle {
+        
+        case "Width": indexOfInputArray = 3
+        case "Height": indexOfInputArray = 4
+        case "Pitot Tube (C)": indexOfInputArray = 5
+        case "Static (P)": indexOfInputArray = 6
+        case "Dry Bulb (T)": indexOfInputArray = 7
+        case "Wet Bulb (T)" : indexOfInputArray = 8
+        case "Elevation": indexOfInputArray = 9
+        case "Sea Level (P)": indexOfInputArray = 10
+        case "C02": indexOfInputArray = 15
+        case "02": indexOfInputArray = 14
+        case "N2": indexOfInputArray = 13
+        case "Ar": indexOfInputArray = 12
+        case "H20":indexOfInputArray = 11
+        case "Dynamic Velocity (P)": indexOfInputArray = 16
+       
+           default : indexOfInputArray = -1
+        }
+        }
+        
+        inputArrayValues[indexOfInputArray] = textField.text!
         rowBeingEdited = nil
-        print("INPUT ARRAY VALUES in editing" + String(inputArrayValues.count))
-        //if(wetBulbSwitchBoolean)
-         //   inputArrayValues[8] =
         print(inputArrayValues)
+        
+      
     }
 
     
-    func textFieldDidBeginEditing(textField: UITextField) {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
         rowBeingEdited = textField.tag
         print("ROW being edited " + String(describing: rowBeingEdited))
         
@@ -726,8 +740,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             cell.inputUnitLabel.text = InputUnits[indexPath.row]
             
             cell.inputTextField.text = inputArrayValues[indexPath.row]
-            cell.inputTextField.tag = indexPath.row
+           // cell.inputTextField.tag = indexPath.row
             cell.inputTextField.delegate = self // theField is your IBOutlet UITextfield in your custom cell
+            
             
             
             
@@ -751,6 +766,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     
     }
+    
+  
        func switchPressed(sender:UISwitch){
      
          print("pipeSwitch" + String(describing: pipeSwitch))
@@ -761,7 +778,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 print("PipeType ON")
                 InputTitles.remove(at: 4)
                 InputUnits.remove(at: 4)
-                inputArrayValues.remove(at: 4)
+                inputArrayValues[4] = ""
 
                 InputTitles[3] = "Diamter"
                 DataSource = InputTitles
@@ -778,7 +795,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                  print("PipeType OFF")
                  inputArrayValues[0]="off"
                  inputArrayValues.insert("", at: 4)
-                 InputTitles.insert("Width", at: 4)
+                 inputArrayValues[4] = ""
                  
                  if(unitSwitch.selectedSegmentIndex == 1){
                  InputUnits.insert("m", at: 4)
@@ -827,26 +844,26 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 //sender.setOn(false, animated: true)
                     InputTitles.insert("C02", at: startingIndexAirComposition)
                     InputUnits.insert("", at: startingIndexAirComposition)
-                    inputArrayValues.insert("", at: startingIndexAirComposition)
+                    //inputArrayValues.insert("", at: startingIndexAirComposition)
                     
                     
                     InputTitles.insert("02", at: startingIndexAirComposition)
                     InputUnits.insert("", at: startingIndexAirComposition)
-                    inputArrayValues.insert("", at: startingIndexAirComposition)
+                  //  inputArrayValues.insert("", at: startingIndexAirComposition)
 
                     
                     
                     InputTitles.insert("N2", at: startingIndexAirComposition)
                     InputUnits.insert("", at: startingIndexAirComposition)
-                    inputArrayValues.insert("", at: startingIndexAirComposition)
+                   // inputArrayValues.insert("", at: startingIndexAirComposition)
 
                     InputTitles.insert("Ar", at: startingIndexAirComposition)
                     InputUnits.insert("", at: startingIndexAirComposition)
-                    inputArrayValues.insert("", at: startingIndexAirComposition)
+                    //inputArrayValues.insert("", at: startingIndexAirComposition)
 
                     InputTitles.insert("H20", at: startingIndexAirComposition)
                     InputUnits.insert("", at: startingIndexAirComposition)
-                    inputArrayValues.insert("", at: startingIndexAirComposition)
+                  //  inputArrayValues.insert("", at: startingIndexAirComposition)
 
                     
                     
@@ -861,23 +878,23 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
                 InputTitles.remove(at: startingIndexAirComposition)
                 InputUnits.remove(at: startingIndexAirComposition)
-                inputArrayValues.remove(at: startingIndexAirComposition)
+               // inputArrayValues.remove(at: startingIndexAirComposition)
                     
                     InputTitles.remove(at: startingIndexAirComposition)
                     InputUnits.remove(at: startingIndexAirComposition)
-                    inputArrayValues.remove(at: startingIndexAirComposition)
+               //     inputArrayValues.remove(at: startingIndexAirComposition)
                     
                     InputTitles.remove(at: startingIndexAirComposition)
                     InputUnits.remove(at: startingIndexAirComposition)
-                    inputArrayValues.remove(at: startingIndexAirComposition)
+                 //   inputArrayValues.remove(at: startingIndexAirComposition)
                     
                     InputTitles.remove(at: startingIndexAirComposition)
                     InputUnits.remove(at: startingIndexAirComposition)
-                    inputArrayValues.remove(at: startingIndexAirComposition)
+                 //   inputArrayValues.remove(at: startingIndexAirComposition)
                     
                     InputTitles.remove(at: startingIndexAirComposition)
                     InputUnits.remove(at: startingIndexAirComposition)
-                    inputArrayValues.remove(at: startingIndexAirComposition)
+                  //  inputArrayValues.remove(at: startingIndexAirComposition)
     
                                 
               
@@ -897,7 +914,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                  if(sender.isOn){
                     print("WetBulb ON")
                     inputArrayValues[2]="on"
-                    inputArrayValues.insert("", at: 7)
+                    inputArrayValues[7]=""
                     InputTitles.insert("Wet Bulb (T)", at: 7)
                     if(unitSwitch.selectedSegmentIndex == 1){
                         InputUnits.insert("C", at: 7)
@@ -916,7 +933,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 else{
                     print("WetBulb OFF")
                     inputArrayValues[2]="off"
-                    inputArrayValues.remove(at: 7)
+                    inputArrayValues[7]=""
                     InputTitles.remove(at: 7)
                     InputUnits.remove(at: 7)
                     DataSource = InputTitles
@@ -929,7 +946,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     if(sender.isOn){
                 print("WetBulb ON")
                     inputArrayValues[2]="on"
-                        inputArrayValues.insert("", at: 8)
+                        inputArrayValues[8]=""
                         InputTitles.insert("Wet Bulb (T)", at: 8)
                         if(unitSwitch.selectedSegmentIndex == 1){
                             InputUnits.insert("C", at: 8)
@@ -945,7 +962,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 else{
                 print("WetBulb OFF")
                  inputArrayValues[2]="off"
-                        inputArrayValues.remove(at: 8)
+                        inputArrayValues[8]=""
 
                         
                         
