@@ -794,7 +794,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 else{
                  print("PipeType OFF")
                  inputArrayValues[0]="off"
-                 inputArrayValues.insert("", at: 4)
                  inputArrayValues[4] = ""
                  
                  if(unitSwitch.selectedSegmentIndex == 1){
