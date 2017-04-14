@@ -22,8 +22,28 @@ class VelocityViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "velocityCell")
         cell.textLabel?.text = items[indexPath.row]
+        var deleteButton : Button
+        deleteButton = UIButton(frame: CGRect.zero)
+        deleteButton.tag = indexPath.row
+  
+            
+        cell.accessoryView = deleteButton
+        deleteButton.addTarget(self, action: #selector(deletePressed(sender:)), for: UIControlEvents.touchDown)
         return cell
     }
+    
+       func deletePressed(sender:UIButton){
+         let row = sender.tag
+         print(row)
+         items.removeAtIndex(sender.tag)
+         tableView.beginUpdates()
+         tableView.deleteRows(at: [IndexPath(row: sender.tag, section: 0)], with: .fade)
+         tableView.endUpdates()
+
+        }
+    
+           
+       
 
     override func viewDidLoad() {
         super.viewDidLoad()
