@@ -517,7 +517,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 if(inputArrayValues[value] == "")
                 {
                     
-                    print("EMPTY")
+                    print("EMPTY AT" + String(value))
                     return false
                 }
             }
