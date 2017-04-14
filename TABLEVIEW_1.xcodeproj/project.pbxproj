@@ -19,6 +19,7 @@
 		90D8A6021E9AC35300227C72 /* TABLEVIEW_1UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D8A6011E9AC35300227C72 /* TABLEVIEW_1UITests.swift */; };
 		90D8A6101E9AC73500227C72 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D8A60F1E9AC73500227C72 /* CustomCell.swift */; };
 		90D8A6121E9AD65900227C72 /* SwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D8A6111E9AD65900227C72 /* SwitchCell.swift */; };
+		90E7042D1EA18726003AADEC /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E7042C1EA18726003AADEC /* TableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		90D8A6031E9AC35300227C72 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		90D8A60F1E9AC73500227C72 /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		90D8A6111E9AD65900227C72 /* SwitchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchCell.swift; sourceTree = "<group>"; };
+		90E7042C1EA18726003AADEC /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 				90D8A5EA1E9AC35300227C72 /* LaunchScreen.storyboard */,
 				90D8A5ED1E9AC35300227C72 /* Info.plist */,
 				907C100B1EA144510021154B /* VelocityViewController.swift */,
+				90E7042C1EA18726003AADEC /* TableViewController.swift */,
 			);
 			path = TABLEVIEW_1;
 			sourceTree = "<group>";
@@ -277,6 +280,7 @@
 				907C100C1EA144510021154B /* VelocityViewController.swift in Sources */,
 				90D8A5E41E9AC35300227C72 /* ViewController.swift in Sources */,
 				90D8A6121E9AD65900227C72 /* SwitchCell.swift in Sources */,
+				90E7042D1EA18726003AADEC /* TableViewController.swift in Sources */,
 				90D8A6101E9AC73500227C72 /* CustomCell.swift in Sources */,
 				90985D6A1E9BBBB40053D66F /* ResultCell.swift in Sources */,
 				906AD3551EA0F72D00E7B487 /* dynamicVelocityCell.swift in Sources */,
