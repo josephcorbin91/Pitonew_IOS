@@ -113,6 +113,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     //unit switch on is si
     func calculateResults(){
+        
         var UnitSwitch: Bool
         var diameter = 0.0
         var width = 0.0
@@ -137,6 +138,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         else{
         UnitSwitch=false
         }
+        //tests
+         UnitSwitch = false
+        inputArrayValues = ["off","off","off",1,1,1,1,1,1,1,1,0,0,0,0,0]
+       
         
             if(inputArrayValues[0] == "on"){
                 pipeShapeSwitchBoolean = true}
