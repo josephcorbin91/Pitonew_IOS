@@ -20,18 +20,20 @@
         super.didReceiveMemoryWarning()
     }
         
+        @IBOutlet weak var tableView: UITableViewCell!
+        @IBOutlet weak var dynamicVelocityTextField: UITextField!
   @IBAction func insert(_ sender: UIButton) {
         
          items.append("Item \(items.count + 1)")
         
-        let insertionIndexPath = NSIndexPath(forRow: items.count - 1, inSection: 0)
+       // let insertionIndexPath = NSIndexPath(forRow: items.count - 1, inSection: 0)
         
         tableView.insertRowsAtIndexPaths([insertionIndexPath], withRowAnimation: .Automatic)
         
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("NUMBER OF ROWS  " + String(DataSource.count))
+        //print("NUMBER OF ROWS  " + String(DataSource.count))
         return items.count
     }
         
