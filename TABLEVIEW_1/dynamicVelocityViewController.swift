@@ -9,23 +9,24 @@
     import UIKit
     
     class dynamicVelocityViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-        var items = [String]()
 
-         override func viewDidLoad() {
+        var items = [String]()
+        
+        override func viewDidLoad() {
         super.viewDidLoad()
-             
+            items = ["a","b","c"]
         
         }
         override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
         
-        @IBOutlet weak var tableView: UITableViewCell!
         @IBOutlet weak var dynamicVelocityTextField: UITextField!
  
+        @IBOutlet weak var tableView: UITableView!
         
         @IBAction func insert(_ sender: UIButton) {
-         items.append(dynamicVelocityTextField.text)
+         items.append(dynamicVelocityTextField.text!)
          tableView.beginUpdates()
          tableView.insertRows(at: [IndexPath(row: items.count-1, section: 0)], with: .fade)                   
          tableView.endUpdates()
@@ -50,8 +51,10 @@
          
           
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+            
             let cell : UITableViewCell
-            cell = self.tableView.dequeueReusableCell(withIdentifier: "dynamicVelocityCell", for: indexPath)
+            cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultCell", for: indexPath)
             cell.textLabel?.text = items[indexPath.row]
                        return cell
        
