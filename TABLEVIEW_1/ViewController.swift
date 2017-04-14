@@ -140,7 +140,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         //tests
          UnitSwitch = false
-        inputArrayValues = ["off","off","off",1,1,1,1,1,1,1,1,0,0,0,0,0]
+        inputArrayValues = ["off","on","on","1","1","1","1","1","1","1","1","0","0","1.0","1.0","98.0"]
        
         
             if(inputArrayValues[0] == "on"){
@@ -164,6 +164,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 dryBulbTemperature = Double(inputArrayValues[7])!
                 if(wetBulbSwitchBoolean == true){
                     wetBulbTemperature = Double(inputArrayValues[8])!
+                }
+                else{
+                    wetBulbTemperature = 0.0
                 }
                 
                 elevationAboveSealevel = Double(inputArrayValues[9])!
@@ -198,7 +201,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 print("pilotTubeCoeffecient" + String(pilotTubeCoeffecient))
                 print("staticPressure" + String(staticPressure))
                 print("dryBulbTemperature" + String(dryBulbTemperature))
-                print("wetBulbTemperature" + String(height))
+                print("wetBulbTemperature" + String(wetBulbTemperature))
                 print("elevationAboveSealevel" + String(elevationAboveSealevel))
                 print("seaLevelPressure" + String(seaLevelPressure))
                 print("C02Composition" + String(C02Composition))
@@ -538,7 +541,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     @IBAction func calculate(_ sender: UIButton) {
-         calculateResults()
+        print("CALLING CALCULATED RESULTS")
+        calculateResults()
+        
         /*
         if(verifyInput()){
             segmentedControl.selectedSegmentIndex = 1
