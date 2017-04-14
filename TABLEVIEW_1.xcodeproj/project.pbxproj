@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		906AD3551EA0F72D00E7B487 /* dynamicVelocityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906AD3541EA0F72D00E7B487 /* dynamicVelocityCell.swift */; };
-		906AD3571EA0FF7400E7B487 /* dynamicVelocityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906AD3561EA0FF7400E7B487 /* dynamicVelocityViewController.swift */; };
+		907C100C1EA144510021154B /* VelocityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907C100B1EA144510021154B /* VelocityViewController.swift */; };
 		90985D6A1E9BBBB40053D66F /* ResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90985D691E9BBBB40053D66F /* ResultCell.swift */; };
 		90D8A5E21E9AC35300227C72 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D8A5E11E9AC35300227C72 /* AppDelegate.swift */; };
 		90D8A5E41E9AC35300227C72 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D8A5E31E9AC35300227C72 /* ViewController.swift */; };
@@ -40,7 +40,7 @@
 
 /* Begin PBXFileReference section */
 		906AD3541EA0F72D00E7B487 /* dynamicVelocityCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = dynamicVelocityCell.swift; sourceTree = "<group>"; };
-		906AD3561EA0FF7400E7B487 /* dynamicVelocityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = dynamicVelocityViewController.swift; sourceTree = "<group>"; };
+		907C100B1EA144510021154B /* VelocityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VelocityViewController.swift; sourceTree = "<group>"; };
 		90985D691E9BBBB40053D66F /* ResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultCell.swift; sourceTree = "<group>"; };
 		90D8A5DE1E9AC35300227C72 /* TABLEVIEW_1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TABLEVIEW_1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90D8A5E11E9AC35300227C72 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -108,7 +108,6 @@
 			isa = PBXGroup;
 			children = (
 				90D8A6111E9AD65900227C72 /* SwitchCell.swift */,
-				906AD3561EA0FF7400E7B487 /* dynamicVelocityViewController.swift */,
 				906AD3541EA0F72D00E7B487 /* dynamicVelocityCell.swift */,
 				90985D691E9BBBB40053D66F /* ResultCell.swift */,
 				90D8A60F1E9AC73500227C72 /* CustomCell.swift */,
@@ -118,6 +117,7 @@
 				90D8A5E81E9AC35300227C72 /* Assets.xcassets */,
 				90D8A5EA1E9AC35300227C72 /* LaunchScreen.storyboard */,
 				90D8A5ED1E9AC35300227C72 /* Info.plist */,
+				907C100B1EA144510021154B /* VelocityViewController.swift */,
 			);
 			path = TABLEVIEW_1;
 			sourceTree = "<group>";
@@ -274,9 +274,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				907C100C1EA144510021154B /* VelocityViewController.swift in Sources */,
 				90D8A5E41E9AC35300227C72 /* ViewController.swift in Sources */,
 				90D8A6121E9AD65900227C72 /* SwitchCell.swift in Sources */,
-				906AD3571EA0FF7400E7B487 /* dynamicVelocityViewController.swift in Sources */,
 				90D8A6101E9AC73500227C72 /* CustomCell.swift in Sources */,
 				90985D6A1E9BBBB40053D66F /* ResultCell.swift in Sources */,
 				906AD3551EA0F72D00E7B487 /* dynamicVelocityCell.swift in Sources */,

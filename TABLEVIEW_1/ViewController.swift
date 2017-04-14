@@ -601,6 +601,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBAction func clear(_ sender: UIButton) {
  
             inputArrayValues = emptyInputArrayValues
+        
             tableView.reloadData()
         
         print("INPUT ARRAY AFTER CLEAR" + String(describing: inputArrayValues))
@@ -806,7 +807,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
                 }
                 else{
-                                    
+                    
                  print("PipeType OFF")
                  inputArrayValues[0]="off"
                  inputArrayValues[4] = ""
