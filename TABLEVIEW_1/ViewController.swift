@@ -806,10 +806,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
                 }
                 else{
+                                    
                  print("PipeType OFF")
                  inputArrayValues[0]="off"
                  inputArrayValues[4] = ""
-                 
+                 InputTitles.insert("Width", at: 4)
                  if(unitSwitch.selectedSegmentIndex == 1){
                  InputUnits.insert("m", at: 4)
                  }

@@ -15,6 +15,7 @@
         override func viewDidLoad() {
         super.viewDidLoad()
             items = ["a","b","c"]
+            tableView.reloadData()
         
         }
         override func didReceiveMemoryWarning() {
