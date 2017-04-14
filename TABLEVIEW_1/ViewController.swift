@@ -131,6 +131,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         var N2Composition = 0.0
         var ARComposition = 0.0
         var H2OComposition = 0.0
+        
 
         if(unitSwitch.selectedSegmentIndex == 1){
             UnitSwitch=true
@@ -214,17 +215,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
                 
                 
-         var relativeHumidity: Double
-         var dryBulbRankine: Double
-         var wetBulbRankine: Double
-         var Kd: Double
+         var relativeHumidity = 0.0
+         var dryBulbRankine = 0.0
+         var wetBulbRankine = 0.0
+         var Kd = 0.0
          var humidityH20WetAir = 0.0
-         var Kw: Double
-         var dryMolecularWeight: Double
-         var partialPressureOfWaterPA: Double
-         var dryBulbWaterSaturationPressurePD: Double
-         var wetBulbWaterSaturationPressurePW: Double
-         var partialWaterPressureDueToDepressionPM: Double
+         var Kw = 0.0
+         var dryMolecularWeight = 0.0
+         var partialPressureOfWaterPA = 0.0
+         var dryBulbWaterSaturationPressurePD = 0.0
+         var wetBulbWaterSaturationPressurePW = 0.0
+         var partialWaterPressureDueToDepressionPM = 0.0
          let standardAirMolarWeight = 28.96;
          let criticalPressureH20 = 166818.0;
          let criticalTemperatureH20 = 1165.67;
