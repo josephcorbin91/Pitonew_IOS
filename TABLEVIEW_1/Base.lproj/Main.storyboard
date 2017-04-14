@@ -223,10 +223,10 @@
             </objects>
             <point key="canvasLocation" x="942.02898550724649" y="102.71739130434783"/>
         </scene>
-        <!--View Controller-->
+        <!--Dynamic Velocity View Controller-->
         <scene sceneID="beh-IQ-mpk">
             <objects>
-                <viewController id="bFQ-vr-rE8" sceneMemberID="viewController">
+                <viewController id="bFQ-vr-rE8" customClass="dynamicVelocityViewController" customModule="TABLEVIEW_1" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="H11-pg-tht"/>
                         <viewControllerLayoutGuide type="bottom" id="Uh3-3N-bJk"/>
@@ -265,7 +265,9 @@
                             <constraint firstItem="Uh3-3N-bJk" firstAttribute="top" secondItem="1Zq-dW-Lf0" secondAttribute="bottom" constant="16" id="mqd-Fb-gYd"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="FRJ-aW-EVQ"/>
+                    <navigationItem key="navigationItem" id="FRJ-aW-EVQ">
+                        <barButtonItem key="rightBarButtonItem" title="Insert" id="x0S-iV-58z"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uAd-gu-j73" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
