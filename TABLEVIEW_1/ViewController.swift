@@ -107,28 +107,29 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         ResultUnits = ResultUnitsUS
         }
     
+    var pipeShapeSwitchBoolean = false
+    var AirCompositionSwitchBoolean = false
+    var wetBulbSwitchBoolean = false
+    
     //unit switch on is si
     func calculateResults(){
-        var pipeShapeSwitch: Bool
-        var AirCompositionSwitch: Bool
-        var wetBulbSwitch: Bool
         var UnitSwitch: Bool
-        var diameter: Double
-        var width: Double
-        var height: Double
+        var diameter = 0.0
+        var width = 0.0
+        var height = 0.0
         
         
-        var pilotTubeCoeffecient: Double
-        var staticPressure: Double
-        var dryBulbTemperature: Double
-        var wetBulbTemperature: Double
-        var elevationAboveSealevel: Double
-        var seaLevelPressure: Double
-        var C02Composition: Double //00//Double(CO2TextField.text!)
-        var O2Composition: Double//Double(O2TextField.text!)
-        var N2Composition: Double//Double(N2TextField.text!)
-        var ARComposition: Double//Double(ArTextField.text!)
-        var H2OComposition: Double//Double(H20TextField.text!)
+        var pilotTubeCoeffecient = 0.0
+        var staticPressure = 0.0
+        var dryBulbTemperature = 0.0
+        var wetBulbTemperature = 0.0
+        var elevationAboveSealevel = 0.0
+        var seaLevelPressure = 0.0
+        var C02Composition = 0.0 //00//Double(CO2TextField.text!)
+        var O2Composition = 0.0//Double(O2TextField.text!)
+        var N2Composition = 0.0//Double(N2TextField.text!)
+        var ARComposition = 0.0//Double(ArTextField.text!)
+        var H2OComposition = 0.0//Double(H20TextField.text!)
 
         if(unitSwitch.selectedSegmentIndex == 1){
             UnitSwitch=true
@@ -138,24 +139,24 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         
             if(inputArrayValues[0] == "on"){
-                pipeShapeSwitch = true}
+                pipeShapeSwitchBoolean = true}
             else{
-         pipeShapeSwitch = false
+         pipeShapeSwitchBoolean = false
             if(inputArrayValues[1] == "on"){
-                AirCompositionSwitch = true}
+                AirCompositionSwitchBoolean = true}
             else{
-                AirCompositionSwitch = false}
+                AirCompositionSwitchBoolean = false}
             if(inputArrayValues[2] == "on"){
-                wetBulbSwitch = true}
+                wetBulbSwitchBoolean = true}
             else{
-                wetBulbSwitch = false}
+                wetBulbSwitchBoolean = false}
          
                 
                 
 
                 
-                if(AirCompositionSwitch){
-                    if(!pipeShapeSwitch && wetBulbSwitch){
+                if(AirCompositionSwitchBoolean){
+                    if(!pipeShapeSwitchBoolean && wetBulbSwitchBoolean){
                         C02Composition =  Double(inputArrayValues[15])!
                         O2Composition =  Double(inputArrayValues[14])!
                         N2Composition =  Double(inputArrayValues[13])!
@@ -163,21 +164,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                         H2OComposition =  Double(inputArrayValues[11])!
 
                     }
-                    else if(pipeShapeSwitch && wetBulbSwitch){
+                    else if(pipeShapeSwitchBoolean && wetBulbSwitchBoolean){
                         C02Composition =  Double(inputArrayValues[14])!
                         O2Composition =  Double(inputArrayValues[13])!
                         N2Composition =  Double(inputArrayValues[12])!
                         ARComposition =  Double(inputArrayValues[11])!
                         H2OComposition =  Double(inputArrayValues[10])!
                     }
-                    else if(!pipeShapeSwitch && !wetBulbSwitch){
+                    else if(!pipeShapeSwitchBoolean && !wetBulbSwitchBoolean){
                         C02Composition =  Double(inputArrayValues[14])!
                         O2Composition =  Double(inputArrayValues[13])!
                         N2Composition =  Double(inputArrayValues[12])!
                         ARComposition =  Double(inputArrayValues[11])!
                         H2OComposition =  Double(inputArrayValues[10])!
                     }
-                    else if(pipeShapeSwitch && !wetBulbSwitch){
+                    else if(pipeShapeSwitchBoolean && !wetBulbSwitchBoolean){
                         C02Composition =  Double(inputArrayValues[13])!
                         O2Composition =  Double(inputArrayValues[12])!
                         N2Composition =  Double(inputArrayValues[11])!
@@ -193,7 +194,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     ARComposition = 0.93//Double(ArTextField.text!)
                     H2OComposition = 0.00 //Double(H20TextField.text!)
                 }
-                if(pipeShapeSwitch && wetBulbSwitch){
+                if(pipeShapeSwitchBoolean && wetBulbSwitchBoolean){
                     diameter = Double(inputArrayValues[3])!
                     pilotTubeCoeffecient =  Double(inputArrayValues[4])!
                     staticPressure = Double(inputArrayValues[5])!
@@ -203,14 +204,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     seaLevelPressure = Double(inputArrayValues[9])!
                     
                 }
-                else if(pipeShapeSwitch && !wetBulbSwitch){
+                else if(pipeShapeSwitchBoolean && !wetBulbSwitchBoolean){
                     diameter = Double(inputArrayValues[3])!
                     pilotTubeCoeffecient =  Double(inputArrayValues[4])!
                     staticPressure = Double(inputArrayValues[5])!
                     dryBulbTemperature = Double(inputArrayValues[6])!
                     elevationAboveSealevel = Double(inputArrayValues[7])!
                     seaLevelPressure = Double(inputArrayValues[8])!                }
-                else if(!pipeShapeSwitch && wetBulbSwitch){
+                else if(!pipeShapeSwitchBoolean && wetBulbSwitchBoolean){
                     height  = Double(inputArrayValues[3])!
                     width =  Double(inputArrayValues[4])!
                     pilotTubeCoeffecient =  Double(inputArrayValues[5])!
@@ -220,7 +221,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     elevationAboveSealevel = Double(inputArrayValues[9])!
                     seaLevelPressure = Double(inputArrayValues[10])!
                 }
-                else if(!pipeShapeSwitch && !wetBulbSwitch){
+                else if(!pipeShapeSwitchBoolean && !wetBulbSwitchBoolean){
                     height  = Double(inputArrayValues[3])!
                     width =  Double(inputArrayValues[4])!
                     pilotTubeCoeffecient =  Double(inputArrayValues[5])!
@@ -228,6 +229,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     dryBulbTemperature = Double(inputArrayValues[7])!
                     elevationAboveSealevel = Double(inputArrayValues[8])!
                     seaLevelPressure = Double(inputArrayValues[9])!
+                }
                 
                 
                 
@@ -262,7 +264,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
          
          var humidityH20DryAir:Double
          
-         if(wetBulbSwitch){
+         if(wetBulbSwitchBoolean){
          if(UnitSwitch){
          dryBulbRankine = (dryBulbTemperature * 1.8 + 32)  + 459.67
          wetBulbRankine = (wetBulbTemperature * 1.8 + 32) + 459.67
@@ -287,7 +289,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
          
          partialPressureOfWaterPA = 0.01 * relativeHumidity * dryBulbWaterSaturationPressurePD
          
-         if(wetBulbSwitch){
+         if(wetBulbSwitchBoolean){
          humidityH20WetAir = partialPressureOfWaterPA / pressMmHg
          }
          else{
@@ -309,8 +311,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
          }
          
          
-         if(AirCompositionSwitch){
-         if(wetBulbSwitch){
+         if(AirCompositionSwitchBoolean){
+         if(wetBulbSwitchBoolean){
          var part1 = 0.03 * (1 - humidityH20WetAir)
          var part2 = 20.95 * (1 - humidityH20WetAir)
          var part3 = 78.09 * (1 - humidityH20WetAir)
@@ -325,7 +327,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
          }
          }
          else {
-         if(wetBulbSwitch){
+         if(wetBulbSwitchBoolean){
          var part1 = 44.01 * C02Composition * (1 - humidityH20WetAir)
          var part2 = 31.999 * O2Composition * (1 - humidityH20WetAir)
          var part3 = 28.013 * N2Composition * (1 - humidityH20WetAir)
@@ -345,7 +347,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
          
                 dynamicPressureArray.append(1.0)
                 dynamicPressureArray.append(1.0)
-         if(pipeShapeSwitch){
+         if(pipeShapeSwitchBoolean){
          area = Double.pi * pow(height / 2, 2.0)
          }
          else{
@@ -519,16 +521,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     func verifyInput() -> Bool{
         var count = 0
-        if(wetBulbSwitch && pipeSwitch){
+        if(wetBulbSwitchBoolean && pipeShapeSwitchBoolean){
             count = 7
         }
-        else if(wetBulbSwitch && !pipeSwitch){
+        else if(wetBulbSwitchBoolean && !pipeShapeSwitchBoolean){
             count = 8
         }
-        else if(!wetBulbSwitch && pipeSwitch){
+        else if(!wetBulbSwitchBoolean && pipeShapeSwitchBoolean){
             count = 6
         }
-        else if(!wetBulbSwitch && !pipeSwitch){
+        else if(!wetBulbSwitchBoolean && !pipeShapeSwitchBoolean){
             count = 7
         }
         for value in 3...(3+count){
@@ -577,6 +579,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     @IBAction func clear(_ sender: UIButton) {
+        print("INPUT ARRAY BEFORE DELETE" + String(describing: inputArrayValues))
+        inputArrayValues.removeSubrange(3..<inputArrayValues.count)
+        print("INPUT ARRAY AFTER DELETE" + String(describing: inputArrayValues))
+
         let sectionCount = 1
         for section in 0 ..< sectionCount {
             let rowCount = tableView.numberOfRows(inSection: section)
@@ -585,11 +591,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             for row in 3 ..< rowCount {
                 let cell = tableView.cellForRow(at: IndexPath(row: row, section: 0)) as! CustomCell
                 list.append(cell)
+                inputArrayValues.append("")
                 cell.inputTextField.text = ""
                 print("INPUT LABEL" + cell.inputTextField.text!)
             }
         }
-        inputArrayValues = emptyInputArrayValues
+        print("INPUT ARRAY AFTER CLEAR" + String(describing: inputArrayValues))
+
     }
     
     
@@ -634,25 +642,28 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextFieldDidEndEditingReason) {
         let row = textField.tag
-        
-        
+        /*
+        print("CURRENT ROW BEING EDITED" + String(row))
         if row >= inputArrayValues.count {
-            let numberOfRows = 3..<DataSource.count
+            let numberOfRows = 3..<inputArrayValues.count
             for i in numberOfRows{
                 inputArrayValues.append("") // this adds blank rows in case the user skips rows
             }
         }
+ */
         
         inputArrayValues[row] = textField.text!
         rowBeingEdited = nil
-        print("INPUT ARRAY VALUES" + String(inputArrayValues.count))
+        print("INPUT ARRAY VALUES in editing" + String(inputArrayValues.count))
+        //if(wetBulbSwitchBoolean)
+         //   inputArrayValues[8] =
         print(inputArrayValues)
     }
 
     
     func textFieldDidBeginEditing(textField: UITextField) {
         rowBeingEdited = textField.tag
-        
+        print("ROW being edited " + String(describing: rowBeingEdited))
         
     }
         
@@ -954,7 +965,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
             
         
-        print("INPUT ARRAY VALUES" + String(inputArrayValues.count))
+        print("INPUT ARRAY VALUES SWITCH PRESSED " + String(inputArrayValues.count))
         print(inputArrayValues)
 
         
