@@ -37,6 +37,7 @@
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //print("NUMBER OF ROWS  " + String(DataSource.count))
+        print(items.count)
         return items.count
     }
         /*
@@ -56,6 +57,8 @@
             let cell : UITableViewCell
             cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultCell", for: indexPath)
             cell.textLabel?.text = items[indexPath.row]
+        print("CELL VALUE")
+        print(cell)
                        return cell
        
      
