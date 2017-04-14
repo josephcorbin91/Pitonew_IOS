@@ -37,8 +37,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var dynamicPressureArray = [Double]()
 
     var numberOfInputValues : Int? = nil
-    var inputArrayValues = Array(repeating: "", count: 17)
-    var emptyInputArrayValues = Array(repeating: "", count: 17)
+    var inputArrayValues = Array(repeating: "", count: 16)
+    var emptyInputArrayValues = Array(repeating: "", count: 16)
 
     var rowBeingEdited : Int? = nil
     var pipeSwitch : UISwitch!
@@ -583,7 +583,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         case "N2": indexOfInputArray = 13
         case "Ar": indexOfInputArray = 12
         case "H20":indexOfInputArray = 11
-        case "Dynamic Velocity (P)": indexOfInputArray = 16
        
            default : indexOfInputArray = -1
         }
