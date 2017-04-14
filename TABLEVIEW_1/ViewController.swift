@@ -347,7 +347,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
          
          var part1 = ((dryBulbTemperature-32)*(5.0/9.0))
          var part2 = (ductPressure*3.386375)
-         gasDensity = 0.062428*(1000 * part2 / (273.15 +  part1 / (8314.3 / molecularWeight)))
+         gasDensity = 0.062428*(1000 * part2 / (273.15 +  part1) / (8314.3 / molecularWeight))
          }
          
          if(UnitSwitch){
