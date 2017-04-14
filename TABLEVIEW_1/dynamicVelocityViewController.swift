@@ -8,7 +8,7 @@
     
     import UIKit
     
-    class dynamicVelocityViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
+    class dynamicVelocityViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
         var items = [String]()
 
          override func viewDidLoad() {
