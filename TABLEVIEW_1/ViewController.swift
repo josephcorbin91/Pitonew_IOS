@@ -658,7 +658,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         else if(indexPath.row == InputTitles.count-1)
         {
             let cell : UITableViewCell
-            cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultSwitchCell", for: indexPath)
+            cell = self.tableView.dequeueReusableCell(withIdentifier: "dynamicVelocityCell", for: indexPath)
             cell.textLabel?.text = InputTitles[indexPath.row]
                        return cell
         }
