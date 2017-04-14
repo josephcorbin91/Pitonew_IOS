@@ -37,7 +37,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var dynamicPressureArray = [Double]()
 
     var numberOfInputValues : Int? = nil
-    var inputArrayValues = Array(repeating: "", count: 17) //["off","off","off","1.0","1.0","1.0","1.0","1.0","1.0","1.0","1.0","1.0"]
+    var inputArrayValues = Array(repeating: "", count: 17)
     var emptyInputArrayValues = Array(repeating: "", count: 17)
 
     var rowBeingEdited : Int? = nil
@@ -125,11 +125,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         var wetBulbTemperature = 0.0
         var elevationAboveSealevel = 0.0
         var seaLevelPressure = 0.0
-        var C02Composition = 0.0 //00//Double(CO2TextField.text!)
-        var O2Composition = 0.0//Double(O2TextField.text!)
-        var N2Composition = 0.0//Double(N2TextField.text!)
-        var ARComposition = 0.0//Double(ArTextField.text!)
-        var H2OComposition = 0.0//Double(H20TextField.text!)
+        var C02Composition = 0.0
+        var O2Composition = 0.0
+        var N2Composition = 0.0
+        var ARComposition = 0.0
+        var H2OComposition = 0.0
 
         if(unitSwitch.selectedSegmentIndex == 1){
             UnitSwitch=true
@@ -151,86 +151,32 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             else{
                 wetBulbSwitchBoolean = false}
          
-                
-                
-
-                
+         
+                height  = Double(inputArrayValues[3])!
+                width =  Double(inputArrayValues[4])!
+                pilotTubeCoeffecient =  Double(inputArrayValues[5])!
+                staticPressure = Double(inputArrayValues[6])!
+                dryBulbTemperature = Double(inputArrayValues[7])!
+                wetBulbTemperature = Double(inputArrayValues[8])!
+                elevationAboveSealevel = Double(inputArrayValues[9])!
+                seaLevelPressure = Double(inputArrayValues[10])!
                 if(AirCompositionSwitchBoolean){
-                    if(!pipeShapeSwitchBoolean && wetBulbSwitchBoolean){
-                        C02Composition =  Double(inputArrayValues[15])!
-                        O2Composition =  Double(inputArrayValues[14])!
-                        N2Composition =  Double(inputArrayValues[13])!
-                        ARComposition =  Double(inputArrayValues[12])!
-                        H2OComposition =  Double(inputArrayValues[11])!
-
-                    }
-                    else if(pipeShapeSwitchBoolean && wetBulbSwitchBoolean){
-                        C02Composition =  Double(inputArrayValues[14])!
-                        O2Composition =  Double(inputArrayValues[13])!
-                        N2Composition =  Double(inputArrayValues[12])!
-                        ARComposition =  Double(inputArrayValues[11])!
-                        H2OComposition =  Double(inputArrayValues[10])!
-                    }
-                    else if(!pipeShapeSwitchBoolean && !wetBulbSwitchBoolean){
-                        C02Composition =  Double(inputArrayValues[14])!
-                        O2Composition =  Double(inputArrayValues[13])!
-                        N2Composition =  Double(inputArrayValues[12])!
-                        ARComposition =  Double(inputArrayValues[11])!
-                        H2OComposition =  Double(inputArrayValues[10])!
-                    }
-                    else if(pipeShapeSwitchBoolean && !wetBulbSwitchBoolean){
-                        C02Composition =  Double(inputArrayValues[13])!
-                        O2Composition =  Double(inputArrayValues[12])!
-                        N2Composition =  Double(inputArrayValues[11])!
-                        ARComposition =  Double(inputArrayValues[10])!
-                        H2OComposition =  Double(inputArrayValues[9])!
-                    }
-                    
+                C02Composition =  Double(inputArrayValues[15])!
+                O2Composition =  Double(inputArrayValues[14])!
+                N2Composition =  Double(inputArrayValues[13])!
+                ARComposition =  Double(inputArrayValues[12])!
+                H2OComposition =  Double(inputArrayValues[11])!
                 }
                 else{
-                    C02Composition = 0.03 //Double(CO2TextField.text!)
-                    O2Composition = 20.95 //Double(O2TextField.text!)
-                    N2Composition = 78.09 //Double(N2TextField.text!)
-                    ARComposition = 0.93//Double(ArTextField.text!)
-                    H2OComposition = 0.00 //Double(H20TextField.text!)
-                }
-                if(pipeShapeSwitchBoolean && wetBulbSwitchBoolean){
-                    diameter = Double(inputArrayValues[3])!
-                    pilotTubeCoeffecient =  Double(inputArrayValues[4])!
-                    staticPressure = Double(inputArrayValues[5])!
-                    dryBulbTemperature = Double(inputArrayValues[6])!
-                    wetBulbTemperature = Double(inputArrayValues[7])!
-                    elevationAboveSealevel = Double(inputArrayValues[8])!
-                    seaLevelPressure = Double(inputArrayValues[9])!
-                    
-                }
-                else if(pipeShapeSwitchBoolean && !wetBulbSwitchBoolean){
-                    diameter = Double(inputArrayValues[3])!
-                    pilotTubeCoeffecient =  Double(inputArrayValues[4])!
-                    staticPressure = Double(inputArrayValues[5])!
-                    dryBulbTemperature = Double(inputArrayValues[6])!
-                    elevationAboveSealevel = Double(inputArrayValues[7])!
-                    seaLevelPressure = Double(inputArrayValues[8])!                }
-                else if(!pipeShapeSwitchBoolean && wetBulbSwitchBoolean){
-                    height  = Double(inputArrayValues[3])!
-                    width =  Double(inputArrayValues[4])!
-                    pilotTubeCoeffecient =  Double(inputArrayValues[5])!
-                    staticPressure = Double(inputArrayValues[6])!
-                    dryBulbTemperature = Double(inputArrayValues[7])!
-                    wetBulbTemperature = Double(inputArrayValues[8])!
-                    elevationAboveSealevel = Double(inputArrayValues[9])!
-                    seaLevelPressure = Double(inputArrayValues[10])!
-                }
-                else if(!pipeShapeSwitchBoolean && !wetBulbSwitchBoolean){
-                    height  = Double(inputArrayValues[3])!
-                    width =  Double(inputArrayValues[4])!
-                    pilotTubeCoeffecient =  Double(inputArrayValues[5])!
-                    staticPressure = Double(inputArrayValues[6])!
-                    dryBulbTemperature = Double(inputArrayValues[7])!
-                    elevationAboveSealevel = Double(inputArrayValues[8])!
-                    seaLevelPressure = Double(inputArrayValues[9])!
-                }
+                    C02Composition =  0.03
+                    O2Composition =  20.95
+                    N2Composition =  78.09
+                    ARComposition =  0.93
+                    H2OComposition =  0.0
+                                    }
                 
+
+
                 
                 
          var relativeHumidity: Double
@@ -560,39 +506,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             DataSource = ResultTitles
             calculateResults()
             navigationBar.topItem?.title = "Results"
-            
-            
 
-        }
-            
-        else{
-            
-            
-        }
-        
-        DataSource = ResultTitles
-            calculateButton.isHidden = true
-            clearButton.isHidden = true
+          
             let range = NSMakeRange(0, self.tableView.numberOfSections)
             let sections = NSIndexSet(indexesIn: range)
             self.tableView.reloadSections(sections as IndexSet, with: .right)
-        
+        }
     }
     @IBAction func clear(_ sender: UIButton) {
-      /*
-        
-        let sectionCount = 1
-        for section in 0 ..< sectionCount {
-            let rowCount = tableView.numberOfRows(inSection: section)
-            var list = [UITableViewCell]()
-            
-            for row in 3 ..< rowCount {
-                let cell = tableView.cellForRow(at: IndexPath(row: row, section: 0)) as! CustomCell
-                list.append(cell)
-                cell.inputTextField.text = ""
-                print("INPUT LABEL" + cell.inputTextField.text!)
-            }
- */
+ 
             inputArrayValues = emptyInputArrayValues
             tableView.reloadData()
         
@@ -733,6 +655,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return cell
 
         }
+        else if(indexPath.row == InputTitles.count-1)
+        {
+            let cell : UITableViewCell
+            cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultSwitchCell", for: indexPath)
+            cell.textLabel?.text = InputTitles[indexPath.row]
+                       return cell
+        }
+     
         else{
             var cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultTextFieldCell", for: indexPath) as! CustomCell
            
