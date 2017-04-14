@@ -157,7 +157,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 pilotTubeCoeffecient =  Double(inputArrayValues[5])!
                 staticPressure = Double(inputArrayValues[6])!
                 dryBulbTemperature = Double(inputArrayValues[7])!
-                wetBulbTemperature = Double(inputArrayValues[8])!
+                if(wetBulbSwitchBoolean == true){
+                    wetBulbTemperature = Double(inputArrayValues[8])!
+                }
+                
                 elevationAboveSealevel = Double(inputArrayValues[9])!
                 seaLevelPressure = Double(inputArrayValues[10])!
                 if(AirCompositionSwitchBoolean){
@@ -478,7 +481,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
          }
          
                 print("RESULTS")
-                print("UNITS" + UnitSwitch)
+                print("UNITS" + String(UnitSwitch))
                 print("averageVelocity" + String(averageVelocity))                
                 print("massAirFlow" + String(massAirFlow))                
                 print("actualAirFlow" + String(actualAirFlow))                
