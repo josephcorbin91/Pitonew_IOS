@@ -22,13 +22,15 @@
         
         @IBOutlet weak var tableView: UITableViewCell!
         @IBOutlet weak var dynamicVelocityTextField: UITextField!
-  @IBAction func insert(_ sender: UIButton) {
+ 
         
-         items.append("Item \(items.count + 1)")
+        @IBAction func insert(_ sender: UIButton) {
+         items.append(dynamicVelocityTextField.text)
+         tableView.beginUpdates()
+         tableView.insertRows(at: [IndexPath(row: items.count-1, section: 0)], with: .fade)                   
+         tableView.endUpdates()
+                 
         
-       // let insertionIndexPath = NSIndexPath(forRow: items.count - 1, inSection: 0)
-        
-        tableView.insertRowsAtIndexPaths([insertionIndexPath], withRowAnimation: .Automatic)
         
     }
     
@@ -36,14 +38,15 @@
         //print("NUMBER OF ROWS  " + String(DataSource.count))
         return items.count
     }
-        
+        /*
         func deleteCell(cell: UITableViewCell) {
         if let deletionIndexPath = tableView.indexPathForCell(cell) {
             items.removeAtIndex(deletionIndexPath.row)
             tableView.deleteRowsAtIndexPaths([deletionIndexPath], withRowAnimation: .Automatic)
         }
+        
     }
-
+*/
          
           
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
