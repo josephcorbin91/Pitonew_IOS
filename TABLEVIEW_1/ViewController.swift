@@ -140,8 +140,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         UnitSwitch=false
         }
         //tests
-         UnitSwitch = false
-        inputArrayValues = ["off","on","on","1","1","1","1","1","1","1","1","0","0","1.0","1.0","98.0"]
+         UnitSwitch = true
+        inputArrayValues = ["off","on","off","1.2","1","1","1","1","1","1","19","0","0","1.0","1.0","98.0"]
        
         
             if(inputArrayValues[0] == "on"){
@@ -392,11 +392,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
          massAirFlow=(actualAirFlow*60/pow((39.3701/12.0),3)*(gasDensity/0.062428)/3600.0)*2.2046*60.0
          }
          if(UnitSwitch){
-         normalAirFlow = (actualAirFlow*ductPressure/101.325)*273.15/(273.15+((dryBulbTemperature-32.0)/1.8))
+         normalAirFlow = (actualAirFlow*ductPressure/101.325)*273.15/(273.15+dryBulbTemperature)
          
          }
          else{
-         normalAirFlow=(actualAirFlow*60.0/(pow(39.3701/12.0,3.0))*(ductPressure/0.2953)/101.325)*273.15/(273.15+dryBulbTemperature)/60.0*pow((39.3701/12.0),3.0)*(294.26/273.15);
+         normalAirFlow=(actualAirFlow*60.0/(pow(39.3701/12.0,3.0))*(ductPressure/0.2953)/101.325)*273.15/(273.15+dryBulbTemperature)/60.0*pow((39.3701/12.0),3.0)*(294.26/273.15)
          
          }
          
@@ -500,7 +500,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
          resultArray=USReaultsArray
          }
          
-                print("RESULTS")
+                print("RESULTS NUMBERS")
                 print("UNITS" + String(UnitSwitch))
                 print("averageVelocity" + String(averageVelocity))                
                 print("massAirFlow" + String(massAirFlow))                
@@ -511,6 +511,32 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 print("area" + String(area))
                 print("atmosphericPressure" + String(atmosphericPressure))
                 print("gasDensity" + String(gasDensity))
+                
+                print("RESULTS STRINGS SI")
+                print("averageVelocity" + SIResultsArray[1])
+                print("massAirFlow" + SIResultsArray[2])
+                print("actualAirFlow" + SIResultsArray[3])
+                print("normalAirFlow" + SIResultsArray[4])
+                print("molecularWeight" + SIResultsArray[5])
+                print("ductPressure" + SIResultsArray[6])
+                print("area" + SIResultsArray[7])
+                print("atmosphericPressure" + SIResultsArray[8])
+                print("gasDensity" + SIResultsArray[9])
+                
+                
+                print("RESULTS STRINGS US")
+                print("averageVelocity" + USReaultsArray[1])
+                print("massAirFlow" + USReaultsArray[2])
+                print("actualAirFlow" + USReaultsArray[3])
+                print("normalAirFlow" + USReaultsArray[4])
+                print("molecularWeight" + USReaultsArray[5])
+                print("ductPressure" + USReaultsArray[6])
+                print("area" + USReaultsArray[7])
+                print("atmosphericPressure" + USReaultsArray[8])
+                print("gasDensity" + USReaultsArray[9])
+
+                
+                
                 
                 
          
