@@ -35,7 +35,7 @@ class TableViewController: UITableViewController, UITextFieldDelegate {
     
     func done(){
         //callback?(items)
-        
+        myProtocol?.setDynamicVelocity(items)
         self.navigationController?.popViewController(animated: true)
         
     }
