@@ -18,6 +18,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var ResultTitles = [String]()
     var ResultUnitsSI = [String]()
     var ResultUnitsUS = [String]()
+    var dynamicVelocityArray = [Double]()
+
     var ResultUnits = [String]()
     var retrievedDynamicVelocities = [Int]()
     var resultArray = Array(repeating: "", count: 10)
@@ -106,6 +108,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         func setDynamicVelocity(dynamicVelocity: [Double]){
             print("VIEWCONTROLLER RECIEVED")
       print(dynamicVelocity)   
+            dynamicVelocityArray=dynamicVelocity
      }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
@@ -224,7 +227,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     H2OComposition =  0.0
                                     }
                 
-         var dynamicVelocityArray = [Double]()
 
                  
                 print("INPUT VALUES")
