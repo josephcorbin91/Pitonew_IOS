@@ -7,12 +7,16 @@
 //
 
 import UIKit
-
+protocol MyProtocol
+{
+    func setDynamicVelocity(dynamicVelocity: [Double])
+}
 class TableViewController: UITableViewController, UITextFieldDelegate {
 
     
  
         var items = [1.0, 2.0, 3.0]
+        var myProtocol: MyProtocol?
         
         override func viewDidLoad() {
             super.viewDidLoad()
