@@ -14,8 +14,7 @@ protocol MyProtocol
 class TableViewController: UITableViewController, UITextFieldDelegate {
 
     
- 
-        var items = [1.0, 2.0, 3.0]
+        var items = [Double]()
         var myProtocol: MyProtocol?
         
         override func viewDidLoad() {
@@ -95,35 +94,7 @@ return cell
         }
         
     }
-    /*
-    class Header: UITableViewHeaderFooterView {
-        
-        override init(reuseIdentifier: String?) {
-            super.init(reuseIdentifier: reuseIdentifier)
-            setupViews()
-        }
-        
-        required init?(coder aDecoder: NSCoder) {
-            fatalError("init(coder:) has not been implemented")
-        }
-        
-        let nameLabel: UILabel = {
-            let label = UILabel()
-            label.text = "My Header"
-            label.translatesAutoresizingMaskIntoConstraints = false
-            label.font = UIFont.boldSystemFont(ofSize: 14)
-            return label
-        }()
-        
-        func setupViews() {
-            addSubview(nameLabel)
-            addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-16-[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": nameLabel]))
-            addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": nameLabel]))
-            
-        }
-        
-    }
-    */
+
     class MyCell: UITableViewCell {
         
         var myTableViewController: TableViewController?
