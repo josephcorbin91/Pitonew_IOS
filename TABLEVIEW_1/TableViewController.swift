@@ -19,7 +19,7 @@ class TableViewController: UITableViewController {
         override func viewDidLoad() {
             super.viewDidLoad()
             
-            navigationItem.title = "My TableView"
+            navigationItem.title = "Dynamic Velocities"
             
             tableView.register(MyCell.self, forCellReuseIdentifier: "cellId")
             tableView.register(Header.self, forHeaderFooterViewReuseIdentifier: "headerId")

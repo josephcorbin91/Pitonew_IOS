@@ -37,6 +37,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         resultViewController.SIResultsArray = SIResultsArray
         resultViewController.USReaultsArray = USReaultsArray
 
+        resultViewController.currentUnits = unitSwitch.selectedSegmentIndex
         navigationController?.pushViewController(resultViewController, animated: true)
     
     }
@@ -95,7 +96,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     
     
-    @IBOutlet weak var segmentedControl: UISegmentedControl!
     override func viewDidLoad() {
         super.viewDidLoad()
          InputTitles = ["Circular Duct","Non-Standard Air Composition","Wet Bulb (T)","Width", "Height", "Pitot Tube (C)", "Static (P)", "Dry Bulb (T)", "Elevation",
@@ -109,11 +109,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         inputArrayValues[0]="off"
         inputArrayValues[1]="off"
         inputArrayValues[2]="off"
-        
+        navigationItem.title = "Input"
+
         navigationBar.topItem?.title = "PITONEW"
         InputUnits = InputUnitsUS
         DataSource = InputTitles
         ResultUnits = ResultUnitsUS
+  
+       
         }
     
     var pipeShapeSwitchBoolean = false
@@ -590,6 +593,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBAction func calculate(_ sender: UIButton) {
         print("CALLING CALCULATED RESULTS")
         calculateResults()
+        let resultViewController = storyboard?.instantiateViewController(withIdentifier: "ResultViewController") as! ResultViewController
+        resultViewController.SIResultsArray = SIResultsArray
+        resultViewController.USReaultsArray = USReaultsArray
+        
+        resultViewController.currentUnits = unitSwitch.selectedSegmentIndex
+        navigationController?.pushViewController(resultViewController, animated: true)
         
         /*
         if(verifyInput()){
@@ -628,29 +637,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return DataSource.count
     }
     
-    @IBAction func ssegmentControlChange(_ sender: UISegmentedControl) {
-        if segmentedControl.selectedSegmentIndex == 0{
-            DataSource = InputTitles
-            calculateButton.isHidden = false
-            clearButton.isHidden = false
-            let range = NSMakeRange(0, self.tableView.numberOfSections)
-            let sections = NSIndexSet(indexesIn: range)
-            self.tableView.reloadSections(sections as IndexSet, with: .left)
-            
-        }
-        else{
-            DataSource = ResultTitles
-            calculateButton.isHidden = true
-            clearButton.isHidden = true
-            let range = NSMakeRange(0, self.tableView.numberOfSections)
-            let sections = NSIndexSet(indexesIn: range)
-            self.tableView.reloadSections(sections as IndexSet, with: .right)
-        }
-        
-        //tableView.reloadData()
-    }
-
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    
+            override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
         
     }
@@ -713,8 +701,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         
         
-        if segmentedControl.selectedSegmentIndex == 0{
-   
         if indexPath.row < 3{
    
     let cell : UITableViewCell
@@ -772,22 +758,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             return cell
         }
-                    }
-        else {
             
-            
-            var cell = self.tableView.dequeueReusableCell(withIdentifier: "ResultCell", for: indexPath) as! ResultCell
-               print("RESULTS")
-                print(resultArray)
-        
-                cell.resultTitle.text = ResultTitles[indexPath.row]
-                cell.result.text = resultArray[indexPath.row]
-                cell.resultUnit.text = ResultUnits[indexPath.row]
-                return cell
-            
-        
-        }
-        
     
     }
     
