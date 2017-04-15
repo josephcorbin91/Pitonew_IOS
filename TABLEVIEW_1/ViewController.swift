@@ -66,7 +66,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             InputUnits = InputUnitsUS
             ResultUnits = ResultUnitsUS
             resultArray = USReaultsArray
-
+            if(inputArrayValues[3] != ""){
+                inputArrayValues[3] = String(Double(inputArrayValues[3])!/0.0254)}
+            if(inputArrayValues[4] != ""){
+                inputArrayValues[4] = String(Double(inputArrayValues[4])!/0.0254)}
+            if(inputArrayValues[7] != ""){
+                inputArrayValues[7] = String((Double(inputArrayValues[7])!-32.0) / 1.8)}
+            if(inputArrayValues[8] != ""){
+                inputArrayValues[8] = String((Double(inputArrayValues[8])!-32.0) / 1.8)}
+            if(inputArrayValues[10] != ""){
+                inputArrayValues[10] = String(Double(inputArrayValues[10])! * 0.295299875)}
+            
             
         }
         else{
@@ -74,6 +84,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             ResultUnits = ResultUnitsSI
             resultArray = SIResultsArray
             
+            if(inputArrayValues[3] != ""){
+                inputArrayValues[3] = String(Double(inputArrayValues[3])!*0.0254)}
+            if(inputArrayValues[4] != ""){
+                inputArrayValues[4] = String(Double(inputArrayValues[4])!*0.0254)}
+            if(inputArrayValues[7] != ""){
+                inputArrayValues[7] = String((Double(inputArrayValues[7])!*1.8) + 32)}
+            if(inputArrayValues[8] != ""){
+                inputArrayValues[8] = String((Double(inputArrayValues[8])!*1.8) + 32)}
+            if(inputArrayValues[10] != ""){
+                inputArrayValues[10] = String(Double(inputArrayValues[10])! / 0.295299875)}
+            
+
+   
         }
         tableView.reloadData()
 
@@ -599,22 +622,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         resultViewController.currentUnits = unitSwitch.selectedSegmentIndex
         navigationController?.pushViewController(resultViewController, animated: true)
-        
-        /*
-        if(verifyInput()){
-            segmentedControl.selectedSegmentIndex = 1
-            calculateButton.isHidden = true
-            clearButton.isHidden = true
-            DataSource = ResultTitles
-           
-            navigationBar.topItem?.title = "Results"
-
-          
-            let range = NSMakeRange(0, self.tableView.numberOfSections)
-            let sections = NSIndexSet(indexesIn: range)
-            self.tableView.reloadSections(sections as IndexSet, with: .right)
-        }
-        */
     }
     @IBAction func clear(_ sender: UIButton) {
  

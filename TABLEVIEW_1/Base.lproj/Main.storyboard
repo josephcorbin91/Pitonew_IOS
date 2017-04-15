@@ -32,7 +32,7 @@
                                 </items>
                             </navigationBar>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="N1h-wG-9o8">
-                                <rect key="frame" x="146" y="60" width="121" height="29"/>
+                                <rect key="frame" x="146" y="80" width="121" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <segments>
                                     <segment title="US"/>
@@ -266,12 +266,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fuk-3m-BVI">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" bounces="NO" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fuk-3m-BVI">
                                 <rect key="frame" x="16" y="100" width="350" height="500"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="500" id="64f-Jh-tFX"/>
-                                </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ResultCell" textLabel="7JW-yK-SbZ" detailTextLabel="ENO-3o-fXq" style="IBUITableViewCellStyleValue1" id="YLe-3h-mH8" customClass="ResultCell" customModule="TABLEVIEW_1" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="350" height="44"/>
@@ -322,8 +320,9 @@
                                     <outlet property="delegate" destination="ZCZ-fm-f7B" id="hQq-Xq-ehj"/>
                                 </connections>
                             </tableView>
-                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="4kU-ah-tIX">
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="4kU-ah-tIX">
                                 <rect key="frame" x="146" y="66" width="65" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="nB9-qd-cGs">
                                         <rect key="frame" x="0.0" y="0.0" width="65" height="29"/>
@@ -339,12 +338,6 @@
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="fuk-3m-BVI" secondAttribute="trailing" constant="28" id="Qrv-s7-IVE"/>
-                            <constraint firstItem="jXg-7s-V4T" firstAttribute="top" secondItem="fuk-3m-BVI" secondAttribute="bottom" constant="136" id="ayB-tj-qI2"/>
-                            <constraint firstItem="fuk-3m-BVI" firstAttribute="leading" secondItem="2KI-75-zxu" secondAttribute="leadingMargin" constant="-4" id="qVy-jx-1u5"/>
-                            <constraint firstItem="fuk-3m-BVI" firstAttribute="top" secondItem="4kU-ah-tIX" secondAttribute="bottom" constant="6" id="xZg-kX-G46"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Ue1-4q-HLJ"/>
                     <connections>
