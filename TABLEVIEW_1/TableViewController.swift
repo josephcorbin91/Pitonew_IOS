@@ -22,9 +22,9 @@ class TableViewController: UITableViewController, UITextFieldDelegate {
             navigationItem.title = "Dynamic Velocities"
             
             tableView.register(MyCell.self, forCellReuseIdentifier: "cellId")
-            tableView.register(Header.self, forHeaderFooterViewReuseIdentifier: "headerId")
+            //tableView.register(Header.self, forHeaderFooterViewReuseIdentifier: "headerId")
             
-            tableView.sectionHeaderHeight = 50
+            //tableView.sectionHeaderHeight = 50
             
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Insert", style: .plain, target: self, action: "insert")
             
@@ -38,7 +38,7 @@ class TableViewController: UITableViewController, UITextFieldDelegate {
             let selectedCell = self.tableView!.cellForRow(at: indexPath) as! DynamicVelocityTextFieldCell!//your custom cell class.
 
             items.append((selectedCell?.dynamicVelocityTextField.text)!)
-            
+            selectedCell?.dynamicVelocityTextField.text = ""
             let insertionIndexPath = NSIndexPath(row: items.count - 1, section: 0)
             tableView.insertRows(at: [insertionIndexPath as IndexPath], with: .automatic)
         }
@@ -83,7 +83,7 @@ return cell
         }
         
     }
-    
+    /*
     class Header: UITableViewHeaderFooterView {
         
         override init(reuseIdentifier: String?) {
@@ -111,7 +111,7 @@ return cell
         }
         
     }
-    
+    */
     class MyCell: UITableViewCell {
         
         var myTableViewController: TableViewController?
