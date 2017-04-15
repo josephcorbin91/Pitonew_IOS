@@ -117,7 +117,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     */
     
-    
+     func setDynamicVelocity(dynamicVelocity: [Double]){
+      print(dynamicVelocity)   
+     }
     func didSelectRowAtIndexPath{
       
         
