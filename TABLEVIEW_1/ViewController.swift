@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, VelocityRecievedDelegate {
 
     @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var tableView: UITableView!
@@ -19,6 +19,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var ResultUnitsSI = [String]()
     var ResultUnitsUS = [String]()
     var ResultUnits = [String]()
+    var retrievedDynamicVelocities = [Int]()
     var resultArray = Array(repeating: "", count: 10)
     var SIResultsArray = Array(repeating: "", count: 10)
     var USReaultsArray = Array(repeating: "", count: 10)
@@ -31,6 +32,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
 
+     func dynamicVelocitiesEntered(retrievedDynamicPressureArray: [Double]) {
+         dynamicPressureArray = retrievedDynamicPressureArray
+        //label.text = info
+    }
     @IBAction func results(_ sender: UIBarButtonItem) {
         
         let resultViewController = storyboard?.instantiateViewController(withIdentifier: "ResultViewController") as! ResultViewController
@@ -224,7 +229,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 
          var dynamicVelocityArray = [Double]()
 
-                dynamicPressureArray.append(1.0)
+                 
                 print("INPUT VALUES")
                 print("DYNAMIC PRESSURE ARRAY")
                 print(dynamicPressureArray)
