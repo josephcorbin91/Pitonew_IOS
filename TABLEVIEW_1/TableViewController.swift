@@ -7,11 +7,14 @@
 //
 
 import UIKit
-
+protocol MyProtocol: class
+{
+    func sendArrayToPreviousVC(myArray:[AnyObject])
+}
 class TableViewController: UITableViewController, UITextFieldDelegate {
 
     
-    
+    weak var mDelegate:MyProtocol?
         var items = [1.0, 2.0, 3.0]
         
         override func viewDidLoad() {
@@ -31,6 +34,7 @@ class TableViewController: UITableViewController, UITextFieldDelegate {
     
     func done(){
         //callback?(items)
+        mDelegate?.sendArrayToPreviousVC(items)
         self.navigationController?.popViewController(animated: true)
         
     }
