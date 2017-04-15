@@ -31,16 +31,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         
     }
-    
-   
-    
 
-     func dynamicVelocitiesEntered(retrievedDynamicPressureArray: [Double]) {
-         dynamicPressureArray = retrievedDynamicPressureArray
-        print("VELOCITIES RECIEVED")
-        print(dynamicPressureArray)
-        //label.text = info
-    }
     @IBAction func results(_ sender: UIBarButtonItem) {
         
         let resultViewController = storyboard?.instantiateViewController(withIdentifier: "ResultViewController") as! ResultViewController
