@@ -103,28 +103,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     }
     
-    /*
-    func calculateConversionInputValues(){
-     print(inputArrayValues)
-        var numberOfInputs : Integer
-        print("SELECTED" + String(unitSwitch.selectedSegmentIndex))
-        if(unitSwitch.selectedSegmentIndex == 0){
-            inputArrayValues[3]
-        }
-        inputArrayValuesSI
-        inputArrayValuesUS
-        
-    }
-    */
-    
-     func setDynamicVelocity(dynamicVelocity: [Double]){
+        func setDynamicVelocity(dynamicVelocity: [Double]){
       print(dynamicVelocity)   
      }
-    func didSelectRowAtIndexPath{
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+
       
         
         if(indexPath.row == InputTitles.count-1){
-            let displayViewController = storyboard?.instantiateViewControlledWithIdentifier("DynamicVelocityViewController") as! DynamicVelocityViewController
+            let displayViewController = storyboard?.instantiateViewController(withIdentifier: "DynamicVelocityViewController") as! TableViewController
             displayViewController.myProtocol = self
             self.navigationController?.pushViewController(displayViewController, animated: true)
     }
