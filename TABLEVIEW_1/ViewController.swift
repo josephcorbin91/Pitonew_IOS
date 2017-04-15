@@ -31,6 +31,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
 
+    @IBAction func results(_ sender: UIBarButtonItem) {
+        
+        let resultViewController = storyboard?.instantiateViewController(withIdentifier: "ResultViewController") as! ResultViewController
+        resultViewController.SIResultsArray = SIResultsArray
+        resultViewController.USReaultsArray = USReaultsArray
+
+        navigationController?.pushViewController(resultViewController, animated: true)
+    
+    }
     var InputUnitsSI = [String]()
     var InputUnitsUS = [String]()
     var inputValues = [String]()

@@ -28,7 +28,7 @@ class TableViewController: UITableViewController {
             
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Insert", style: .plain, target: self, action: "insert")
             
-            navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Batch Insert", style: .plain, target: self, action: "insertBatch")
+           // navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Batch Insert", style: .plain, target: self, action: "insertBatch")
         }
         
         func insertBatch() {
