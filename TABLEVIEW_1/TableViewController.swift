@@ -35,11 +35,9 @@ class TableViewController: UITableViewController, UITextFieldDelegate {
         func insert() {
       
             let indexPath = IndexPath(row: 0, section: 0)
-            let selectedCell = self.tableView!.cellForRowAtIndexPath(indexPath!) as! DynamicVelocityTextFieldCell!//your custom cell class.
+            let selectedCell = self.tableView!.cellForRow(at: indexPath) as! DynamicVelocityTextFieldCell!//your custom cell class.
 
-            self.textString = selectedCell.textFied.text //textFied is your textfield name.
-            println(self.textString) 
-            items.append("Item \(items.count + 1)" + selectedCell.textField.text)
+            items.append("Item \(items.count + 1)" + (selectedCell?.dynamicVelocityTextField.text)!)
             
             let insertionIndexPath = NSIndexPath(row: items.count - 1, section: 0)
             tableView.insertRows(at: [insertionIndexPath as IndexPath], with: .automatic)
