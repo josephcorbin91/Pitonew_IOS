@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, VelocityRecievedDelegate {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
 
     @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var tableView: UITableView!
@@ -31,9 +31,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         
     }
+    
+   
+    
 
      func dynamicVelocitiesEntered(retrievedDynamicPressureArray: [Double]) {
          dynamicPressureArray = retrievedDynamicPressureArray
+        print("VELOCITIES RECIEVED")
+        print(dynamicPressureArray)
         //label.text = info
     }
     @IBAction func results(_ sender: UIBarButtonItem) {

@@ -8,30 +8,11 @@
 
 import UIKit
 
-protocol VelocityRecievedDelegate: class {
-     func dynamicVelocitiesEntered(retrievedDynamicPressureArray: [Double]) 
-}
-
 class TableViewController: UITableViewController, UITextFieldDelegate {
 
     
     
-    
-    
-   weak var delegate: VelocityRecievedDelegate? = nil
-    
-    
-    @IBAction func done(sender: UIButton){
-        // call this method on whichever class implements our delegate protocol
-        delegate?.dynamicVelocitiesEntered(items)
-
-        // go back to the previous view controller
-        self.navigationController?.popViewControllerAnimated(true)
-    }
-    
-   
-        
-        var items = ["Item 1", "Item 2", "Item 3"]
+        var items = [1.0, 2.0, 3.0]
         
         override func viewDidLoad() {
             super.viewDidLoad()
@@ -39,22 +20,26 @@ class TableViewController: UITableViewController, UITextFieldDelegate {
             navigationItem.title = "Dynamic Velocities"
             
             tableView.register(MyCell.self, forCellReuseIdentifier: "cellId")
-            //tableView.register(Header.self, forHeaderFooterViewReuseIdentifier: "headerId")
-            
-            //tableView.sectionHeaderHeight = 50
-            
+           
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Insert", style: .plain, target: self, action: "insert")
             
-           // navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Batch Insert", style: .plain, target: self, action: "insertBatch")
+         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Done", style: .plain, target: self, action: "done")
         }
         
+    
+   
+    
+    func done(){
+        //callback?(items)
+        self.navigationController?.popViewController(animated: true)
         
+    }
         func insert() {
       
             let indexPath = IndexPath(row: 0, section: 0)
             let selectedCell = self.tableView!.cellForRow(at: indexPath) as! DynamicVelocityTextFieldCell!//your custom cell class.
 
-            items.append((selectedCell?.dynamicVelocityTextField.text)!)
+            items.append(Double((selectedCell?.dynamicVelocityTextField.text)!)!)
             selectedCell?.dynamicVelocityTextField.text = ""
             let insertionIndexPath = NSIndexPath(row: items.count - 1, section: 0)
             tableView.insertRows(at: [insertionIndexPath as IndexPath], with: .automatic)
@@ -80,7 +65,7 @@ return cell
         else{
             
         let myCell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! MyCell
-        myCell.nameLabel.text = items[indexPath.row]
+        myCell.nameLabel.text = String(items[indexPath.row])
         myCell.myTableViewController = self
         return myCell
         }
