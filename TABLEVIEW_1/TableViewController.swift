@@ -31,25 +31,6 @@ class TableViewController: UITableViewController {
            // navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Batch Insert", style: .plain, target: self, action: "insertBatch")
         }
         
-        func insertBatch() {
-            var indexPaths = [NSIndexPath]()
-            for i in items.count...items.count + 5 {
-                items.append("Item \(i + 1)")
-                indexPaths.append(NSIndexPath(row: i, section: 0))
-            }
-            
-            var bottomHalfIndexPaths = [NSIndexPath]()
-            for _ in 0...indexPaths.count / 2 - 1 {
-                bottomHalfIndexPaths.append(indexPaths.removeLast())
-            }
-            
-            tableView.beginUpdates()
-            
-            tableView.insertRows(at: indexPaths as [IndexPath], with: .right)
-            tableView.insertRows(at: bottomHalfIndexPaths as [IndexPath], with: .left)
-            
-            tableView.endUpdates()
-        }
         
         func insert() {
             items.append("Item \(items.count + 1)")
@@ -64,10 +45,24 @@ class TableViewController: UITableViewController {
         
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if(indexPath.row == 0){
+           var cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultTextFieldCell", for: indexPath) as! CustomCell
+           
+      
+            cell.inputTextField.delegate = self // theField is your IBOutlet UITextfield in your custom cell
+            
+            
+            
+            
+return cell
+        }
+        else{
+            
         let myCell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! MyCell
         myCell.nameLabel.text = items[indexPath.row]
         myCell.myTableViewController = self
         return myCell
+        }
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
