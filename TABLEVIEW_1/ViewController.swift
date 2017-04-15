@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, MyProtocol {
 
     @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var tableView: UITableView!
@@ -116,7 +116,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     */
-   
+    
+    
+    func didSelectRowAtIndexPath{
+      
+        
+        if(indexPath.row == InputTitles.count-1){
+            let displayViewController = storyboard?.instantiateViewControlledWithIdentifier("DynamicVelocityViewController") as! DynamicVelocityViewController
+            displayViewController.myProtocol = self
+            self.navigationController?.pushViewController(displayViewController, animated: true)
+    }
+    }
     
     
     
