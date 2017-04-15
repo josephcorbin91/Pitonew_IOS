@@ -177,20 +177,9 @@
                                 <rect key="frame" x="0.0" y="692" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
-                                    <barButtonItem title="Calculate" style="plain" id="cPq-kU-LGn">
-                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="q79-N8-Gqh">
-                                            <rect key="frame" x="20" y="7" width="64" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="Calculate"/>
-                                            <connections>
-                                                <action selector="calculate:" destination="BYZ-38-t0r" eventType="touchDown" id="5tI-RG-sbd"/>
-                                            </connections>
-                                        </button>
-                                    </barButtonItem>
-                                    <barButtonItem title="Results4" id="pWL-LS-ZHl">
+                                    <barButtonItem title="Calculate" id="pWL-LS-ZHl">
                                         <connections>
-                                            <action selector="results:" destination="BYZ-38-t0r" id="Hxz-oo-cL1"/>
-                                            <segue destination="ZCZ-fm-f7B" kind="push" id="tJI-Ri-TDy"/>
+                                            <action selector="calculate:" destination="BYZ-38-t0r" id="dZK-aO-vwM"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="jpa-BY-9ug"/>
@@ -211,7 +200,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="AYX-wM-b5Z"/>
                     <connections>
-                        <outlet property="calculateButton" destination="q79-N8-Gqh" id="Fs1-Pt-qW5"/>
                         <outlet property="clearButton" destination="kYT-DC-NGh" id="OvQ-Bq-6Iu"/>
                         <outlet property="navigationBar" destination="TkJ-oQ-cWP" id="0UN-r5-hWK"/>
                         <outlet property="tableView" destination="TgK-Y3-Ehd" id="T84-1F-Z4j"/>

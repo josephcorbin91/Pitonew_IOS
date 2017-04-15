@@ -18,7 +18,8 @@ class DynamicVelocityTextFieldCell: UITableViewCell {
     @IBOutlet weak var dynamicVelocityTextField: UITextField!
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        dynamicVelocityTextField.becomeFirstResponder()
+        
         // Configure the view for the selected state
     }
 

@@ -14,12 +14,11 @@ protocol MyProtocol
 class TableViewController: UITableViewController, UITextFieldDelegate {
 
     
-        var items = [Double]()
+        var items = [0.0]
         var myProtocol: MyProtocol?
         
         override func viewDidLoad() {
             super.viewDidLoad()
-            
             navigationItem.title = "Dynamic Velocities"
             
             tableView.register(MyCell.self, forCellReuseIdentifier: "cellId")
@@ -31,10 +30,10 @@ class TableViewController: UITableViewController, UITextFieldDelegate {
         
     
    
-    
+   
     func done(){
-        //callback?(items)
-        myProtocol?.setDynamicVelocity(dynamicVelocity: items)
+        var returnArray = Array(items[1..<items.count])
+        myProtocol?.setDynamicVelocity(dynamicVelocity: returnArray)
         self.navigationController?.popViewController(animated: true)
         
     }

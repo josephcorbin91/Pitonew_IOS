@@ -34,8 +34,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
 
-    @IBAction func results(_ sender: UIBarButtonItem) {
-        
+   
+    @IBAction func calculate(_ sender: Any) {
+    
+            calculateResults()
+
         let resultViewController = storyboard?.instantiateViewController(withIdentifier: "ResultViewController") as! ResultViewController
         resultViewController.SIResultsArray = SIResultsArray
         resultViewController.USReaultsArray = USReaultsArray
@@ -116,9 +119,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
       
         
         if(indexPath.row == InputTitles.count-1){
-            let displayViewController = storyboard?.instantiateViewController(withIdentifier: "DynamicVelocityViewController") as! TableViewController
-            displayViewController.myProtocol = self
-            self.navigationController?.pushViewController(displayViewController, animated: true)
+            let dynamicVelocityViewController = storyboard?.instantiateViewController(withIdentifier: "DynamicVelocityViewController") as! TableViewController
+            dynamicVelocityViewController.myProtocol = self
+            if(dynamicVelocityArray.isEmpty){
+                dynamicVelocityArray.append(0.0)
+            }
+            else{
+            dynamicVelocityArray.insert(0.0, at: 0)
+            dynamicVelocityViewController.items = dynamicVelocityArray
+            }
+            print("SENDING DYNAMIC VELOCITY ARRAY")
+            print(dynamicVelocityArray)
+            self.navigationController?.pushViewController(dynamicVelocityViewController, animated: true)
     }
     }
     
@@ -153,7 +165,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     //unit switch on is si
     func calculateResults(){
-        
+        print("calculateReusltsCalled")
         var UnitSwitch: Bool
         var diameter = 0.0
         var width = 0.0
@@ -617,16 +629,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     }
     
-    @IBAction func calculate(_ sender: UIButton) {
-        print("CALLING CALCULATED RESULTS")
-        calculateResults()
-        let resultViewController = storyboard?.instantiateViewController(withIdentifier: "ResultViewController") as! ResultViewController
-        resultViewController.SIResultsArray = SIResultsArray
-        resultViewController.USReaultsArray = USReaultsArray
-        
-        resultViewController.currentUnits = unitSwitch.selectedSegmentIndex
-        navigationController?.pushViewController(resultViewController, animated: true)
-    }
+
     @IBAction func clear(_ sender: UIButton) {
  
             inputArrayValues = emptyInputArrayValues
