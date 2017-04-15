@@ -8,9 +8,26 @@
 
 import UIKit
 
+protocol VelocityRecievedDelegate: class {
+     func dynamicVelocitiesEntered(retrievedDynamicPressureArray: [Double]) 
+}
+
 class TableViewController: UITableViewController, UITextFieldDelegate {
+
     
-   
+    
+    
+    
+   weak var delegate: VelocityRecievedDelegate? = nil
+    
+    
+    @IBAction func done(sender: UIButton){
+        // call this method on whichever class implements our delegate protocol
+        delegate?.dynamicVelocitiesEntered(items)
+
+        // go back to the previous view controller
+        self.navigationController?.popViewControllerAnimated(true)
+    }
     
    
         
