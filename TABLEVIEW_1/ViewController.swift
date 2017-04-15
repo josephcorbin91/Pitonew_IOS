@@ -104,6 +104,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
         func setDynamicVelocity(dynamicVelocity: [Double]){
+            print("VIEWCONTROLLER RECIEVED")
       print(dynamicVelocity)   
      }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

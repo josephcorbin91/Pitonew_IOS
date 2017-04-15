@@ -35,7 +35,7 @@ class TableViewController: UITableViewController, UITextFieldDelegate {
     
     func done(){
         //callback?(items)
-        myProtocol?.setDynamicVelocity(items)
+        myProtocol?.setDynamicVelocity(dynamicVelocity: items)
         self.navigationController?.popViewController(animated: true)
         
     }
@@ -44,11 +44,16 @@ class TableViewController: UITableViewController, UITextFieldDelegate {
             let indexPath = IndexPath(row: 0, section: 0)
             let selectedCell = self.tableView!.cellForRow(at: indexPath) as! DynamicVelocityTextFieldCell!//your custom cell class.
 
-            items.append(Double((selectedCell?.dynamicVelocityTextField.text)!)!)
-            selectedCell?.dynamicVelocityTextField.text = ""
-            let insertionIndexPath = NSIndexPath(row: items.count - 1, section: 0)
-            tableView.insertRows(at: [insertionIndexPath as IndexPath], with: .automatic)
-        }
+            if let text = selectedCell?.dynamicVelocityTextField.text, !text.isEmpty
+            {
+                items.append(Double((selectedCell?.dynamicVelocityTextField.text)!)!)
+                selectedCell?.dynamicVelocityTextField.text = ""
+                let insertionIndexPath = NSIndexPath(row: items.count - 1, section: 0)
+                tableView.insertRows(at: [insertionIndexPath as IndexPath], with: .automatic)
+            }
+            else{}
+            
+                  }
         
         override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             return items.count
