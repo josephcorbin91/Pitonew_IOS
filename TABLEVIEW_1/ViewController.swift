@@ -82,35 +82,35 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
            
             if(inputArrayValues[3] != ""){
                 inputArrayValues[3] = String(Double(inputArrayValues[3])!/0.0254)
-             
+            }
                 tableView.beginUpdates()
                 tableView.reloadRows(at: [IndexPath(row: 3, section: 0)], with: .left)
                 tableView.endUpdates()
-            }
+            
             if(inputArrayValues[4] != ""){
                 inputArrayValues[4] = String(Double(inputArrayValues[4])!/0.0254)
-            
+            }
                 tableView.beginUpdates()
                 tableView.reloadRows(at: [IndexPath(row: 4, section: 0)], with: .left)
-                tableView.endUpdates()}
+                tableView.endUpdates()
             if(inputArrayValues[7] != ""){
                 inputArrayValues[7] = String((Double(inputArrayValues[7])!-32.0) / 1.8)
-            
+            }
                 tableView.beginUpdates()
                 tableView.reloadRows(at: [IndexPath(row: 7, section: 0)], with: .left)
-                tableView.endUpdates()}
+                tableView.endUpdates()
             if(inputArrayValues[8] != ""){
                 inputArrayValues[8] = String((Double(inputArrayValues[8])!-32.0) / 1.8)
-            
+            }
                 tableView.beginUpdates()
                 tableView.reloadRows(at: [IndexPath(row: 8, section: 0)], with: .left)
-                tableView.endUpdates()}
+                tableView.endUpdates()
             if(inputArrayValues[10] != ""){
                 inputArrayValues[10] = String(Double(inputArrayValues[10])! * 0.295299875)
-            
+            }
                 tableView.beginUpdates()
                 tableView.reloadRows(at: [IndexPath(row: 10, section: 0)], with: .left)
-                tableView.endUpdates()}
+                tableView.endUpdates()
             
             
         }
@@ -121,31 +121,31 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             if(inputArrayValues[3] != ""){
                 inputArrayValues[3] = String(Double(inputArrayValues[3])!*0.0254)
-            
+            }
                 tableView.beginUpdates()
                 tableView.reloadRows(at: [IndexPath(row: 3, section: 0)], with: .right)
                 tableView.endUpdates()
-            }
+            
             if(inputArrayValues[4] != ""){
-                inputArrayValues[4] = String(Double(inputArrayValues[4])!*0.0254)
+                inputArrayValues[4] = String(Double(inputArrayValues[4])!*0.0254)}
             tableView.beginUpdates()
                 tableView.reloadRows(at: [IndexPath(row: 4, section: 0)], with: .right)
-                tableView.endUpdates()}
+                tableView.endUpdates()
             if(inputArrayValues[7] != ""){
-                inputArrayValues[7] = String((Double(inputArrayValues[7])!*1.8) + 32)
+                inputArrayValues[7] = String((Double(inputArrayValues[7])!*1.8) + 32)}
             tableView.beginUpdates()
                 tableView.reloadRows(at: [IndexPath(row: 7, section: 0)], with: .right)
-                tableView.endUpdates()}
+                tableView.endUpdates()
             if(inputArrayValues[8] != ""){
-                inputArrayValues[8] = String((Double(inputArrayValues[8])!*1.8) + 32)
+                inputArrayValues[8] = String((Double(inputArrayValues[8])!*1.8) + 32)}
             tableView.beginUpdates()
                 tableView.reloadRows(at: [IndexPath(row: 8, section: 0)], with: .right)
-                tableView.endUpdates()}
+                tableView.endUpdates()
             if(inputArrayValues[10] != ""){
-                inputArrayValues[10] = String(Double(inputArrayValues[10])! / 0.295299875)
+                inputArrayValues[10] = String(Double(inputArrayValues[10])! / 0.295299875)}
             tableView.beginUpdates()
                 tableView.reloadRows(at: [IndexPath(row: 10, section: 0)], with: .right)
-                tableView.endUpdates()}
+                tableView.endUpdates()
             
 
    
@@ -838,6 +838,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             var cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultTextFieldCell", for: indexPath) as! CustomCell
            
             cell.inputTitle.text = InputTitles[indexPath.row]
+            print(indexPath.row)
             cell.inputUnitLabel.text = InputUnits[indexPath.row]
             
         var indexOfInputArray = -1
@@ -935,7 +936,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 tableView.beginUpdates()
                 tableView.deleteRows(at: [IndexPath(row: 4, section: 0)], with: .top)
                 
-                tableView.insertRows(at: [IndexPath(row: 3, section: 0)], with: .top)
+                tableView.reloadRows(at: [IndexPath(row: 3, section: 0)], with: .top)
                 tableView.endUpdates()
                     //sender.setOn(false, animated: true)
                     
@@ -957,7 +958,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                  DataSource = InputTitles
                  tableView.beginUpdates()
                  tableView.insertRows(at: [IndexPath(row: 4, section: 0)], with: .top)
-                 tableView.insertRows(at: [IndexPath(row: 3, section: 0)], with: .top)
+            
+                 tableView.reloadRows(at: [IndexPath(row: 3, section: 0)], with: .top)
                     
                  tableView.endUpdates()
                  
