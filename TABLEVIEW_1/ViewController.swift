@@ -79,16 +79,38 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             InputUnits = InputUnitsUS
             ResultUnits = ResultUnitsUS
             resultArray = USReaultsArray
+           
             if(inputArrayValues[3] != ""){
-                inputArrayValues[3] = String(Double(inputArrayValues[3])!/0.0254)}
+                inputArrayValues[3] = String(Double(inputArrayValues[3])!/0.0254)
+             
+                tableView.beginUpdates()
+                tableView.reloadRows(at: [IndexPath(row: 3, section: 0)], with: .right)
+                tableView.endUpdates()
+            }
             if(inputArrayValues[4] != ""){
-                inputArrayValues[4] = String(Double(inputArrayValues[4])!/0.0254)}
+                inputArrayValues[4] = String(Double(inputArrayValues[4])!/0.0254)
+            
+                tableView.beginUpdates()
+                tableView.reloadRows(at: [IndexPath(row: 4, section: 0)], with: .right)
+                tableView.endUpdates()}
             if(inputArrayValues[7] != ""){
-                inputArrayValues[7] = String((Double(inputArrayValues[7])!-32.0) / 1.8)}
+                inputArrayValues[7] = String((Double(inputArrayValues[7])!-32.0) / 1.8)
+            
+                tableView.beginUpdates()
+                tableView.reloadRows(at: [IndexPath(row: 7, section: 0)], with: .right)
+                tableView.endUpdates()}
             if(inputArrayValues[8] != ""){
-                inputArrayValues[8] = String((Double(inputArrayValues[8])!-32.0) / 1.8)}
+                inputArrayValues[8] = String((Double(inputArrayValues[8])!-32.0) / 1.8)
+            
+                tableView.beginUpdates()
+                tableView.reloadRows(at: [IndexPath(row: 8, section: 0)], with: .right)
+                tableView.endUpdates()}
             if(inputArrayValues[10] != ""){
-                inputArrayValues[10] = String(Double(inputArrayValues[10])! * 0.295299875)}
+                inputArrayValues[10] = String(Double(inputArrayValues[10])! * 0.295299875)
+            
+                tableView.beginUpdates()
+                tableView.reloadRows(at: [IndexPath(row: 10, section: 0)], with: .right)
+                tableView.endUpdates()}
             
             
         }
@@ -98,20 +120,37 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             resultArray = SIResultsArray
             
             if(inputArrayValues[3] != ""){
-                inputArrayValues[3] = String(Double(inputArrayValues[3])!*0.0254)}
+                inputArrayValues[3] = String(Double(inputArrayValues[3])!*0.0254)
+            
+                tableView.beginUpdates()
+                tableView.reloadRows(at: [IndexPath(row: 3, section: 0)], with: .left)
+                tableView.endUpdates()
+            }
             if(inputArrayValues[4] != ""){
-                inputArrayValues[4] = String(Double(inputArrayValues[4])!*0.0254)}
+                inputArrayValues[4] = String(Double(inputArrayValues[4])!*0.0254)
+            tableView.beginUpdates()
+                tableView.reloadRows(at: [IndexPath(row: 4, section: 0)], with: .left)
+                tableView.endUpdates()}
             if(inputArrayValues[7] != ""){
-                inputArrayValues[7] = String((Double(inputArrayValues[7])!*1.8) + 32)}
+                inputArrayValues[7] = String((Double(inputArrayValues[7])!*1.8) + 32)
+            tableView.beginUpdates()
+                tableView.reloadRows(at: [IndexPath(row: 7, section: 0)], with: .left)
+                tableView.endUpdates()}
             if(inputArrayValues[8] != ""){
-                inputArrayValues[8] = String((Double(inputArrayValues[8])!*1.8) + 32)}
+                inputArrayValues[8] = String((Double(inputArrayValues[8])!*1.8) + 32)
+            tableView.beginUpdates()
+                tableView.reloadRows(at: [IndexPath(row: 8, section: 0)], with: .left)
+                tableView.endUpdates()}
             if(inputArrayValues[10] != ""){
-                inputArrayValues[10] = String(Double(inputArrayValues[10])! / 0.295299875)}
+                inputArrayValues[10] = String(Double(inputArrayValues[10])! / 0.295299875)
+            tableView.beginUpdates()
+                tableView.reloadRows(at: [IndexPath(row: 10, section: 0)], with: .left)
+                tableView.endUpdates()}
             
 
    
         }
-        tableView.reloadData()
+     //   tableView.reloadData()
 
     }
     
@@ -953,15 +992,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
       
               
                 //sender.setOn(false, animated: true)
+                        tableView.beginUpdates()
+                
                     InputTitles.insert("C02", at: startingIndexAirComposition)
                     InputUnits.insert("", at: startingIndexAirComposition)
                     //inputArrayValues.insert("", at: startingIndexAirComposition)
+                    tableView.insertRows(at: [IndexPath(row: startingIndexAirComposition, section: 0)], with: .fade)
                     
-                    
+                 tableView.endUpdates()
+                    tableView.beginUpdates()
                     InputTitles.insert("02", at: startingIndexAirComposition)
                     InputUnits.insert("", at: startingIndexAirComposition)
                   //  inputArrayValues.insert("", at: startingIndexAirComposition)
-
+                 tableView.insertRows(at: [IndexPath(row: startingIndexAirComposition, section: 0)], with: .fade)
+                    
+                 tableView.endUpdates()
                     
                     
                     InputTitles.insert("N2", at: startingIndexAirComposition)
