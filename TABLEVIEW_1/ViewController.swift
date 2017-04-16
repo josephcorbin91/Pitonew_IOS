@@ -141,8 +141,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     }
     
+    
     deinit {
-        deregisterFromKeyboardNotifications()
+        //deregisterFromKeyboardNotifications()
     }
     
     override func viewDidLoad() {
@@ -169,7 +170,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         DataSource = InputTitles
         ResultUnits = ResultUnitsUS
         self.view.backgroundColor = UIColor.black//(//patternImage: UIImage(named: "background.png")!)
-        
+      
         tableView.layer.cornerRadius = 10
         
         // border
@@ -672,6 +673,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+        deregisterFromKeyboardNotifications()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -700,7 +702,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         print(cell.inputTitle)
         if let inputTitle = cell.inputTitle.text{
         switch inputTitle {
-        
+        case "Diameter": indexOfInputArray = 3
         case "Width": indexOfInputArray = 3
         case "Height": indexOfInputArray = 4
         case "Pitot Tube (C)": indexOfInputArray = 5
@@ -725,6 +727,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
       
     }
+    
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         rowBeingEdited = textField.tag
         activeField = textField
@@ -848,10 +852,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         var info = notification.userInfo!
         let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
         let contentInsets : UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, -keyboardSize!.height, 0.0)
-        self.tableView.contentInset = contentInsets
+        self.tableView.contentInset =  UIEdgeInsets.zero
         self.tableView.scrollIndicatorInsets = contentInsets
         self.view.endEditing(true)
-        self.tableView.isScrollEnabled = false
+        self.tableView.isScrollEnabled = true
     }
          func switchPressed(sender:UISwitch){
      
@@ -865,7 +869,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 InputUnits.remove(at: 4)
                 inputArrayValues[4] = ""
 
-                InputTitles[3] = "Diamter"
+                InputTitles[3] = "Diameter"
                 DataSource = InputTitles
                 tableView.beginUpdates()
                 tableView.deleteRows(at: [IndexPath(row: 4, section: 0)], with: .fade)
