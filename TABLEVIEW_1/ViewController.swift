@@ -168,7 +168,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         InputUnits = InputUnitsUS
         DataSource = InputTitles
         ResultUnits = ResultUnitsUS
-        self.view.backgroundColor = UIColor.cyan//(//patternImage: UIImage(named: "background.png")!)
+        self.view.backgroundColor = UIColor.black//(//patternImage: UIImage(named: "background.png")!)
         
         tableView.layer.cornerRadius = 10
         
