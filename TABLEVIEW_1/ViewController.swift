@@ -935,7 +935,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 tableView.beginUpdates()
                 tableView.deleteRows(at: [IndexPath(row: 4, section: 0)], with: .top)
                 
-                tableView.reloadRows(at: [IndexPath(row: 3, section: 0)], with: .top)
+                tableView.insertRows(at: [IndexPath(row: 3, section: 0)], with: .top)
                 tableView.endUpdates()
                     //sender.setOn(false, animated: true)
                     
@@ -957,7 +957,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                  DataSource = InputTitles
                  tableView.beginUpdates()
                  tableView.insertRows(at: [IndexPath(row: 4, section: 0)], with: .top)
-                 tableView.reloadRows(at: [IndexPath(row: 3, section: 0)], with: .top)
+                 tableView.insertRows(at: [IndexPath(row: 3, section: 0)], with: .top)
                     
                  tableView.endUpdates()
                  
@@ -1012,17 +1012,35 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     
                  tableView.endUpdates()
                     
-                    
+                                        tableView.beginUpdates()
+
                     InputTitles.insert("N2", at: startingIndexAirComposition)
                     InputUnits.insert("", at: startingIndexAirComposition)
+                                                   DataSource = InputTitles
+
+                 tableView.insertRows(at: [IndexPath(row: startingIndexAirComposition, section: 0)], with: .top)
+                    
+                 tableView.endUpdates()
                    // inputArrayValues.insert("", at: startingIndexAirComposition)
+                    tableView.beginUpdates()
 
                     InputTitles.insert("Ar", at: startingIndexAirComposition)
                     InputUnits.insert("", at: startingIndexAirComposition)
+                                                   DataSource = InputTitles
+
+                 tableView.insertRows(at: [IndexPath(row: startingIndexAirComposition, section: 0)], with: .top)
+                    
+                 tableView.endUpdates()
                     //inputArrayValues.insert("", at: startingIndexAirComposition)
+                    tableView.beginUpdates()
 
                     InputTitles.insert("H20", at: startingIndexAirComposition)
                     InputUnits.insert("", at: startingIndexAirComposition)
+                                                   DataSource = InputTitles
+
+                 tableView.insertRows(at: [IndexPath(row: startingIndexAirComposition, section: 0)], with: .top)
+                    
+                 tableView.endUpdates()
                   //  inputArrayValues.insert("", at: startingIndexAirComposition)
 
                     
@@ -1033,32 +1051,61 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 else{
                  print("Air Composition OFF")
                     inputArrayValues[1]="off"
+    tableView.beginUpdates()
 
+
+                
                 InputTitles.remove(at: startingIndexAirComposition)
                 InputUnits.remove(at: startingIndexAirComposition)
                // inputArrayValues.remove(at: startingIndexAirComposition)
+                                                                       DataSource = InputTitles
+
+                     tableView.deleteRows(at: [IndexPath(row: startingIndexAirComposition, section: 0)], with: .top)
                     
+                 tableView.endUpdates()
+                        tableView.beginUpdates()
+
                     InputTitles.remove(at: startingIndexAirComposition)
                     InputUnits.remove(at: startingIndexAirComposition)
+                                                                          DataSource = InputTitles
+
+                     tableView.deleteRows(at: [IndexPath(row: startingIndexAirComposition, section: 0)], with: .top)
+                    
+                 tableView.endUpdates()
+                        tableView.beginUpdates()
+
                //     inputArrayValues.remove(at: startingIndexAirComposition)
                     
                     InputTitles.remove(at: startingIndexAirComposition)
                     InputUnits.remove(at: startingIndexAirComposition)
-                 //   inputArrayValues.remove(at: startingIndexAirComposition)
+                                                                          DataSource = InputTitles
+
+                     tableView.deleteRows(at: [IndexPath(row: startingIndexAirComposition, section: 0)], with: .top)
                     
+                 tableView.endUpdates()
+                 //   inputArrayValues.remove(at: startingIndexAirComposition)
+                        tableView.beginUpdates()
+
                     InputTitles.remove(at: startingIndexAirComposition)
                     InputUnits.remove(at: startingIndexAirComposition)
-                 //   inputArrayValues.remove(at: startingIndexAirComposition)
+                                                                          DataSource = InputTitles
+
+                     tableView.deleteRows(at: [IndexPath(row: startingIndexAirComposition, section: 0)], with: .top)
                     
+                 tableView.endUpdates()
+                 //   inputArrayValues.remove(at: startingIndexAirComposition)
+                        tableView.beginUpdates()
+
                     InputTitles.remove(at: startingIndexAirComposition)
                     InputUnits.remove(at: startingIndexAirComposition)
+                                                                          DataSource = InputTitles
+
+                     tableView.deleteRows(at: [IndexPath(row: startingIndexAirComposition, section: 0)], with: .top)
+                    
+                 tableView.endUpdates()
                   //  inputArrayValues.remove(at: startingIndexAirComposition)
     
-                                
-              
-                 DataSource = InputTitles
-                  tableView.reloadData()
-                 
+                
                  
                 }
 
