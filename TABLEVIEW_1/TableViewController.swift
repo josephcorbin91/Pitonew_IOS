@@ -36,23 +36,25 @@ class TableViewController: UITableViewController, UITextFieldDelegate {
    
    
     func done(){
-        var returnArray = Array(items[1..<items.count])
+        var returnArray = Array(items[0..<items.count])
         myProtocol?.setDynamicVelocity(dynamicVelocity: returnArray)
         self.navigationController?.popViewController(animated: true)
         
     }
         func insert() {
       
-            
+            /*
             let indexPath = IndexPath(row: 0, section: 0)
             let selectedCell = self.tableView!.cellForRow(at: indexPath) as! DynamicVelocityTextFieldCell!//your custom cell class.
 
             selectedCell?.dynamicVelocityTextField.becomeFirstResponder()
-            if let text = selectedCell?.dynamicVelocityTextField.text, !text.isEmpty
+            
+            */
+            if let textField = self.view.viewWithTag(3).text, !text.isEmpty
             {
-                items.append(Double((selectedCell?.dynamicVelocityTextField.text)!)!)
-                selectedCell?.dynamicVelocityTextField.text = ""
-                let insertionIndexPath = NSIndexPath(row: items.count - 1, section: 0)
+                items.append(Double((textField.text)!)!)
+                textField.text = ""
+                let insertionIndexPath = NSIndexPath(row: items.count, section: 0)
                 tableView.insertRows(at: [insertionIndexPath as IndexPath], with: .automatic)
             }
             else{}
@@ -74,24 +76,25 @@ class TableViewController: UITableViewController, UITextFieldDelegate {
         fatalError("init(coder:) has not been implemented")
     }
     
-    let nameLabel: UILabel = {
-        let label = UILabel()
-        label.text = "My Header"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFontOfSize(14)
-        return label
+    let textField: UITextField = {
+        let textField = UITextField()
+        textField.tag = 3
+        textField.placeholder = "Enter dynamic pressure"
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.font = UIFont.boldSystemFontOfSize(14)
+        return textField
     }()
     
     func setupViews() {
         addSubview(nameLabel)
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-16-[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": nameLabel]))
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": nameLabel]))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-16-[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": textField]))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": textField]))
         
     }
     
 }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if(indexPath.row == 0){
+       /* if(indexPath.row == 0){
            var cell = self.tableView.dequeueReusableCell(withIdentifier: "DynamicVelocityTextFieldCell", for: indexPath) as! DynamicVelocityTextFieldCell
            
       
@@ -103,12 +106,12 @@ class TableViewController: UITableViewController, UITextFieldDelegate {
 return cell
         }
         else{
-            
+            */
         let myCell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! MyCell
         myCell.nameLabel.text = String(items[indexPath.row])
         myCell.myTableViewController = self
         return myCell
-        }
+       // }
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
