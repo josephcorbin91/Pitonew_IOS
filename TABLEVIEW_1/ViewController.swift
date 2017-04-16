@@ -824,6 +824,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
             
             cell.inputTextField.text = inputArrayValues[indexOfInputArray]
+           // cell.inputTextField.tag = indexPath.row
             cell.inputTextField.delegate = self // theField is your IBOutlet UITextfield in your custom cell
             
             

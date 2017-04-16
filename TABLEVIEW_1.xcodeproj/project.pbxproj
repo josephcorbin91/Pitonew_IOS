@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		904904B71EA19AA700FC6F03 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904904B61EA19AA700FC6F03 /* ResultViewController.swift */; };
 		904904B91EA2577600FC6F03 /* DynamicVelocityTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904904B81EA2577600FC6F03 /* DynamicVelocityTextFieldCell.swift */; };
+		905A27CD1EA3DE5500BE6636 /* ViewControllerForTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905A27CC1EA3DE5500BE6636 /* ViewControllerForTableViewController.swift */; };
 		906AD3551EA0F72D00E7B487 /* dynamicVelocityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906AD3541EA0F72D00E7B487 /* dynamicVelocityCell.swift */; };
 		907C100C1EA144510021154B /* VelocityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907C100B1EA144510021154B /* VelocityViewController.swift */; };
 		90985D6A1E9BBBB40053D66F /* ResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90985D691E9BBBB40053D66F /* ResultCell.swift */; };
@@ -44,6 +45,7 @@
 /* Begin PBXFileReference section */
 		904904B61EA19AA700FC6F03 /* ResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		904904B81EA2577600FC6F03 /* DynamicVelocityTextFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicVelocityTextFieldCell.swift; sourceTree = "<group>"; };
+		905A27CC1EA3DE5500BE6636 /* ViewControllerForTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerForTableViewController.swift; sourceTree = "<group>"; };
 		906AD3541EA0F72D00E7B487 /* dynamicVelocityCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = dynamicVelocityCell.swift; sourceTree = "<group>"; };
 		907C100B1EA144510021154B /* VelocityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VelocityViewController.swift; sourceTree = "<group>"; };
 		90985D691E9BBBB40053D66F /* ResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultCell.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				90D8A6111E9AD65900227C72 /* SwitchCell.swift */,
+				905A27CC1EA3DE5500BE6636 /* ViewControllerForTableViewController.swift */,
 				906AD3541EA0F72D00E7B487 /* dynamicVelocityCell.swift */,
 				904904B81EA2577600FC6F03 /* DynamicVelocityTextFieldCell.swift */,
 				90985D691E9BBBB40053D66F /* ResultCell.swift */,
@@ -291,6 +294,7 @@
 				90985D6A1E9BBBB40053D66F /* ResultCell.swift in Sources */,
 				906AD3551EA0F72D00E7B487 /* dynamicVelocityCell.swift in Sources */,
 				90D8A5E21E9AC35300227C72 /* AppDelegate.swift in Sources */,
+				905A27CD1EA3DE5500BE6636 /* ViewControllerForTableViewController.swift in Sources */,
 				904904B91EA2577600FC6F03 /* DynamicVelocityTextFieldCell.swift in Sources */,
 				904904B71EA19AA700FC6F03 /* ResultViewController.swift in Sources */,
 			);
