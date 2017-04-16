@@ -14,7 +14,7 @@ protocol MyProtocol
 class TableViewController: UITableViewController, UITextFieldDelegate {
 
     
-        var items = [0.0]
+    var items = [Double]()
         var myProtocol: MyProtocol?
         
         override func viewDidLoad() {
@@ -22,7 +22,7 @@ class TableViewController: UITableViewController, UITextFieldDelegate {
             navigationItem.title = "Dynamic Velocities"
             
             tableView.register(MyCell.self, forCellReuseIdentifier: "cellId")
-               tableView.registerClass(Header.self, forHeaderFooterViewReuseIdentifier: "headerId")
+               tableView.register(Header.self, forHeaderFooterViewReuseIdentifier: "headerId")
         
         tableView.sectionHeaderHeight = 50
         
@@ -50,15 +50,16 @@ class TableViewController: UITableViewController, UITextFieldDelegate {
             selectedCell?.dynamicVelocityTextField.becomeFirstResponder()
             
             */
-            if let textField = self.view.viewWithTag(3).text, !text.isEmpty
+            let textField = self.view.viewWithTag(3) as! UITextField
+            if let text = textField.text, !text.isEmpty
             {
-                items.append(Double((textField.text)!)!)
+                items.append(Double(text)!)
                 textField.text = ""
                 print("ITEMS COUNT")
                 print(items.count)
                 print(items)
                 
-                let insertionIndexPath = NSIndexPath(row: items.count, section: 0)
+                let insertionIndexPath = NSIndexPath(row: items.count-1, section: 0)
                 tableView.beginUpdates()
                 tableView.insertRows(at: [insertionIndexPath as IndexPath], with: .automatic)
                 tableView.endUpdates()
@@ -88,14 +89,14 @@ class TableViewController: UITableViewController, UITextFieldDelegate {
         textField.tag = 3
         textField.placeholder = "Enter dynamic pressure"
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.font = UIFont.boldSystemFontOfSize(14)
+        textField.font = UIFont.boldSystemFont(ofSize: 14)
         return textField
     }()
     
     func setupViews() {
-        addSubview(nameLabel)
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-16-[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": textField]))
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": textField]))
+        addSubview(textField)
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-16-[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": textField]))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": textField]))
         
     }
     
