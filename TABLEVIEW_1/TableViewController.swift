@@ -22,6 +22,10 @@ class TableViewController: UITableViewController, UITextFieldDelegate {
             navigationItem.title = "Dynamic Velocities"
             
             tableView.register(MyCell.self, forCellReuseIdentifier: "cellId")
+               tableView.registerClass(Header.self, forHeaderFooterViewReuseIdentifier: "headerId")
+        
+        tableView.sectionHeaderHeight = 50
+        
            
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Insert", style: .plain, target: self, action: "insert")
             
@@ -59,7 +63,33 @@ class TableViewController: UITableViewController, UITextFieldDelegate {
             return items.count
         }
         
+    class Header: UITableViewHeaderFooterView {
     
+    override init(reuseIdentifier: String?) {
+        super.init(reuseIdentifier: reuseIdentifier)
+        setupViews()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    let nameLabel: UILabel = {
+        let label = UILabel()
+        label.text = "My Header"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.boldSystemFontOfSize(14)
+        return label
+    }()
+    
+    func setupViews() {
+        addSubview(nameLabel)
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-16-[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": nameLabel]))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": nameLabel]))
+        
+    }
+    
+}
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if(indexPath.row == 0){
            var cell = self.tableView.dequeueReusableCell(withIdentifier: "DynamicVelocityTextFieldCell", for: indexPath) as! DynamicVelocityTextFieldCell
