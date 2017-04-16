@@ -134,10 +134,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     }
     
-    
+    deinit {
+        deregisterFromKeyboardNotifications()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+      registerForKeyboardNotifications()
          InputTitles = ["Circular Duct","Non-Standard Air Composition","Wet Bulb (T)","Width", "Height", "Pitot Tube (C)", "Static (P)", "Dry Bulb (T)", "Elevation",
                            "Sea Level (P)", "Dynamic Velocity (P)"]
          InputUnitsSI = ["","","","m","m","","H20","C","ft","kPa",""]
@@ -657,8 +660,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     
+    
+    
+    
+
+    
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextFieldDidEndEditingReason) {
         //let row = textField.tag
+        activeField = nil
         let cell = textField.superview!.superview as! CustomCell
         
         var indexOfInputArray = -1
@@ -691,10 +700,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
       
     }
-
-    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         rowBeingEdited = textField.tag
+        activeField = textField
+
         print("ROW being edited " + String(describing: rowBeingEdited))
         
     }
@@ -776,8 +785,50 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     }
     
-  
-       func switchPressed(sender:UISwitch){
+    var activeField: UITextField?
+    func registerForKeyboardNotifications(){
+        //Adding notifies on keyboard appearing
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    func deregisterFromKeyboardNotifications(){
+        //Removing notifies on keyboard appearing
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    func keyboardWasShown(notification: NSNotification){
+        //Need to calculate keyboard exact size due to Apple suggestions
+        self.tableView.isScrollEnabled = true
+        var info = notification.userInfo!
+        let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
+        let contentInsets : UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize!.height, 0.0)
+        
+        self.tableView.contentInset = contentInsets
+        self.tableView.scrollIndicatorInsets = contentInsets
+        
+        var aRect : CGRect = self.view.frame
+        aRect.size.height -= keyboardSize!.height
+        if let activeField = self.activeField {
+            if (!aRect.contains(activeField.frame.origin)){
+                self.tableView.scrollRectToVisible(activeField.frame, animated: true)
+            }
+        }
+    }
+    
+    func keyboardWillBeHidden(notification: NSNotification){
+        
+        //Once keyboard disappears, restore original positions
+        var info = notification.userInfo!
+        let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
+        let contentInsets : UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, -keyboardSize!.height, 0.0)
+        self.tableView.contentInset = contentInsets
+        self.tableView.scrollIndicatorInsets = contentInsets
+        self.view.endEditing(true)
+        self.tableView.isScrollEnabled = false
+    }
+         func switchPressed(sender:UISwitch){
      
          print("pipeSwitch" + String(describing: pipeSwitch))
         
