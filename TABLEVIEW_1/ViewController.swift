@@ -118,7 +118,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         func setDynamicVelocity(dynamicVelocity: [Double]){
             print("VIEWCONTROLLER RECIEVED")
       print(dynamicVelocity)   
-            dynamicVelocityArray=dynamicVelocity
+            dynamicPressureArray=dynamicVelocity
      }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
@@ -128,12 +128,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if(indexPath.row == InputTitles.count-1){
             let dynamicVelocityViewController = storyboard?.instantiateViewController(withIdentifier: "DynamicVelocityViewController") as! TableViewController
             dynamicVelocityViewController.myProtocol = self
-            if(dynamicVelocityArray.isEmpty){
-                dynamicVelocityArray.append(0.0)
+            if(dynamicPressureArray.isEmpty){
+                dynamicPressureArray.append(0.0)
             }
             else{
-            dynamicVelocityArray.insert(0.0, at: 0)
-            dynamicVelocityViewController.items = dynamicVelocityArray
+            dynamicPressureArray.insert(0.0, at: 0)
+            dynamicVelocityViewController.items = dynamicPressureArray
             }
             print("SENDING DYNAMIC VELOCITY ARRAY")
             print(dynamicVelocityArray)
@@ -222,7 +222,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         //tests
          UnitSwitch = true
-        inputArrayValues = ["off","on","off","1.2","1","1","1","1","1","1","19","0","0","1.0","1.0","98.0"]
+        //inputArrayValues = ["off","on","off","1.2","1","1","1","1","1","1","19","0","0","1.0","1.0","98.0"]
        
         
             if(inputArrayValues[0] == "on"){
@@ -801,8 +801,29 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             cell.inputTitle.text = InputTitles[indexPath.row]
             cell.inputUnitLabel.text = InputUnits[indexPath.row]
             
-            cell.inputTextField.text = inputArrayValues[indexPath.row]
-           // cell.inputTextField.tag = indexPath.row
+        var indexOfInputArray = -1
+                switch InputTitles[indexPath.row] {
+                case "Diameter": indexOfInputArray = 3
+                case "Width": indexOfInputArray = 3
+                case "Height": indexOfInputArray = 4
+                case "Pitot Tube (C)": indexOfInputArray = 5
+                case "Static (P)": indexOfInputArray = 6
+                case "Dry Bulb (T)": indexOfInputArray = 7
+                case "Wet Bulb (T)" : indexOfInputArray = 8
+                case "Elevation": indexOfInputArray = 9
+                case "Sea Level (P)": indexOfInputArray = 10
+                case "C02": indexOfInputArray = 15
+                case "02": indexOfInputArray = 14
+                case "N2": indexOfInputArray = 13
+                case "Ar": indexOfInputArray = 12
+                case "H20":indexOfInputArray = 11
+                    
+                default : indexOfInputArray = -1
+                }
+            
+
+            
+            cell.inputTextField.text = inputArrayValues[indexOfInputArray]
             cell.inputTextField.delegate = self // theField is your IBOutlet UITextfield in your custom cell
             
             
