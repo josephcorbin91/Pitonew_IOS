@@ -39,9 +39,11 @@ class TableViewController: UITableViewController, UITextFieldDelegate {
     }
         func insert() {
       
+            
             let indexPath = IndexPath(row: 0, section: 0)
             let selectedCell = self.tableView!.cellForRow(at: indexPath) as! DynamicVelocityTextFieldCell!//your custom cell class.
 
+            selectedCell?.dynamicVelocityTextField.becomeFirstResponder()
             if let text = selectedCell?.dynamicVelocityTextField.text, !text.isEmpty
             {
                 items.append(Double((selectedCell?.dynamicVelocityTextField.text)!)!)
