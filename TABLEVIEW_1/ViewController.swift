@@ -81,19 +81,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             var heightIndex : Int? = nil
             var seaLevelPressureIndex : Int? = nil
 
-    InputTitles = ["Circular Duct","Non-Standard Air Composition","Wet Bulb (T)","Width", "Height", "Pitot Tube (C)", "Static (P)", "Dry Bulb (T)", "Elevation",
-                           "Sea Level (P)", "Dynamic Velocity (P)"]
      
-        for index in 0...InputTitles.count {
-            if(InputTitles[i] == "Wet Bulb (T)"){
+        for index in 0...InputTitles.count-1 {
+            if(InputTitles[index] == "Wet Bulb (T)"){
                 wetBulbIndex = index}
-            if(InputTitles[i] == "Width"){
+            if(InputTitles[index] == "Width"){
                 widthIndex = index}
-            if(InputTitles[i] == "Height"){
+            if(InputTitles[index] == "Height"){
                 heightIndex = index}
-            if(InputTitles[i] == "Dry Bulb (T)"){
+            if(InputTitles[index] == "Dry Bulb (T)"){
                 dryBulbIndex = index}
-            if(InputTitles[i] == "Sea Level (P)"){
+            if(InputTitles[index] == "Sea Level (P)"){
                 seaLevelPressureIndex = index}
             
           }
@@ -107,32 +105,32 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 inputArrayValues[3] = String(Double(inputArrayValues[3])!/0.0254)
             }
                 tableView.beginUpdates()
-                tableView.reloadRows(at: [IndexPath(row: heightIndex, section: 0)], with: .left)
+                tableView.reloadRows(at: [IndexPath(row: heightIndex!, section: 0)], with: .left)
                 tableView.endUpdates()
             
             if(inputArrayValues[4] != ""){
                 inputArrayValues[4] = String(Double(inputArrayValues[4])!/0.0254)
             }
                 tableView.beginUpdates()
-                tableView.reloadRows(at: [IndexPath(row: widthIndex, section: 0)], with: .left)
+                tableView.reloadRows(at: [IndexPath(row: widthIndex!, section: 0)], with: .left)
                 tableView.endUpdates()
             if(inputArrayValues[7] != ""){
                 inputArrayValues[7] = String((Double(inputArrayValues[7])!-32.0) / 1.8)
             }
                 tableView.beginUpdates()
-                tableView.reloadRows(at: [IndexPath(row: dryBulbIndex, section: 0)], with: .left)
+                tableView.reloadRows(at: [IndexPath(row: dryBulbIndex!, section: 0)], with: .left)
                 tableView.endUpdates()
             if(inputArrayValues[8] != ""){
                 inputArrayValues[8] = String((Double(inputArrayValues[8])!-32.0) / 1.8)
             }
                 tableView.beginUpdates()
-                tableView.reloadRows(at: [IndexPath(row: wetBulbIndex, section: 0)], with: .left)
+                tableView.reloadRows(at: [IndexPath(row: wetBulbIndex!, section: 0)], with: .left)
                 tableView.endUpdates()
             if(inputArrayValues[10] != ""){
                 inputArrayValues[10] = String(Double(inputArrayValues[10])! * 0.295299875)
             }
                 tableView.beginUpdates()
-                tableView.reloadRows(at: [IndexPath(row: seaLevelPressureIndex, section: 0)], with: .left)
+                tableView.reloadRows(at: [IndexPath(row: seaLevelPressureIndex!, section: 0)], with: .left)
                 tableView.endUpdates()
             
             
@@ -975,14 +973,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                  print("PipeType OFF")
                  inputArrayValues[0]="off"
                  inputArrayValues[4] = ""
-                 InputTitles.removee(at: 3)
+                 InputTitles.remove(at: 3)
                  InputTitles.insert("Height", at: 3)
                  InputTitles.insert("Width", at: 4)
                  if(unitSwitch.selectedSegmentIndex == 1){
                  InputUnits.insert("m", at: 4)
+                    InputUnits.insert("m", at: 3)
+
                  }
                  else{
                      InputUnits.insert("in", at: 4)
+                    InputUnits.insert("in", at: 3)
+
                  }
                  DataSource = InputTitles
                  tableView.beginUpdates()
@@ -1019,6 +1021,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
                 print("AirComposition On " + String(startingIndexAirComposition))
         
+                    print(InputUnits)
                       
       
       
