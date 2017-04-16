@@ -66,6 +66,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var clearButton: UIButton!
     @IBOutlet weak var calculateButton: UIButton!
     
+    func image(fromLayer layer: CALayer) -> UIImage {
+        UIGraphicsBeginImageContext(layer.frame.size)
+        layer.render(in: UIGraphicsGetCurrentContext()!)
+        let outputImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return outputImage!
+    }
     
     @IBAction func unitSegementedControl(_ sender: Any) {
         if(unitSwitch.selectedSegmentIndex == 0){
@@ -153,15 +160,33 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         inputArrayValues[1]="off"
         inputArrayValues[2]="off"
         navigationItem.title = "Input"
-
+        
+        // Set the UIImage as background property
+       // navigationBar.setBackgroundImage(image, for: UIBarMetrics.default)
+       
         navigationBar.topItem?.title = "PITONEW"
         InputUnits = InputUnitsUS
         DataSource = InputTitles
         ResultUnits = ResultUnitsUS
+        self.view.backgroundColor = UIColor.cyan//(//patternImage: UIImage(named: "background.png")!)
+        
+        tableView.layer.cornerRadius = 10
+        
+        // border
+        tableView.layer.borderWidth = 1.0
+        tableView.layer.borderColor = UIColor.black.cgColor
+        
+        // shadow
+        tableView.layer.shadowColor = UIColor.black.cgColor
+        //tableView.layer.shadowOffset = CGSize(width: 3, height: 3)
+        tableView.layer.shadowOpacity = 0.7
+        tableView.layer.shadowRadius = 4.0
+
   
        
         }
     
+    @IBOutlet weak var backgroundView: UIView!
     var pipeShapeSwitchBoolean = false
     var AirCompositionSwitchBoolean = false
     var wetBulbSwitchBoolean = false
