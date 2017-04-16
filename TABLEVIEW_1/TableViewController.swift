@@ -61,7 +61,7 @@ class TableViewController: UITableViewController, UITextFieldDelegate {
                 
                 let insertionIndexPath = NSIndexPath(row: items.count-1, section: 0)
                 tableView.beginUpdates()
-                tableView.insertRows(at: [insertionIndexPath as IndexPath], with: .automatic)
+                tableView.insertRows(at: [insertionIndexPath as IndexPath], with: .top)
                 tableView.endUpdates()
                 
             }
@@ -131,7 +131,7 @@ return cell
         func deleteCell(cell: UITableViewCell) {
             if let deletionIndexPath = tableView.indexPath(for: cell) {
                 items.remove(at: deletionIndexPath.row)
-                tableView.deleteRows(at: [deletionIndexPath], with: .automatic)
+                tableView.deleteRows(at: [deletionIndexPath], with: .left)
             }
         }
         
