@@ -54,8 +54,15 @@ class TableViewController: UITableViewController, UITextFieldDelegate {
             {
                 items.append(Double((textField.text)!)!)
                 textField.text = ""
+                print("ITEMS COUNT")
+                print(items.count)
+                print(items)
+                
                 let insertionIndexPath = NSIndexPath(row: items.count, section: 0)
+                tableView.beginUpdates()
                 tableView.insertRows(at: [insertionIndexPath as IndexPath], with: .automatic)
+                tableView.endUpdates()
+                
             }
             else{}
             
