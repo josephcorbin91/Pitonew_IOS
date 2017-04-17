@@ -17,6 +17,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var InputUnits = [String]()
     var ResultTitles = [String]()
     var ResultUnitsSI = [String]()
+    var sectionHeaders = [String]()
     var ResultUnitsUS = [String]()
     var dynamicVelocityArray = [Double]()
 
@@ -212,7 +213,7 @@ print(unitSwitch.selectedSegmentIndex)
                            "Sea Level (P)", "Dynamic Velocity (P)"]
          InputUnitsSI = ["","","","m","m","","H20","C","ft","kPa",""]
         InputUnitsUS = ["","","","in","in","","H20","F","ft","in hg",""]
-
+        sectionHeaders = ["Pipe Configuration","Pipe parameters", "Pressure","Temperature","Air Composition"]
         ResultTitles = ["Dynamic Velocity", "Average Velocity", "Mass Air Flow", "Actual Air Flow","Normal Air Flow", "Molar Weight", "Duct (P)","Area", "Atmospheric (P)", "GasDensity"]
         ResultUnitsSI = ["m/s","m/s","kg/","m^3/s", "Nm^3/h","g/mol", "kPa", "m^2", "kPa", "kg/m^3"]
         ResultUnitsUS = ["ft/s","ft/s","lb/min","SCFM", "ACFM","g/mol", "in Hg", "in^2", "in. Hg", "ft^3",""]
@@ -251,6 +252,41 @@ print(unitSwitch.selectedSegmentIndex)
     var AirCompositionSwitchBoolean = false
     var wetBulbSwitchBoolean = false
     
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+ 
+return self.sectionHeaders\[section\]
+ 
+}
+    
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+ // #warning Incomplete implementation, return the number of sections
+ 
+return self.sectionHeaders.count
+ 
+}
+        sectionHeaders = ["Pipe Configuration","Pipe parameters", "Pressure","Temperature","Air Composition"]
+
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+ // #warning Incomplete implementation, return the number of rows
+     if(section == 0){
+        return 3
+     }
+     else if(section == 1){
+        return 3
+     }
+     else if(section == 2){
+        return 3
+     }
+     else if(section == 3){
+        return 2
+     }
+     else if(section == 4){
+        return 5
+     }
+return self.items\[section\].count
+ 
+}
     //unit switch on is si
     func calculateResults(){
         print("calculateReusltsCalled")
