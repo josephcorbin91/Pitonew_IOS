@@ -1020,9 +1020,10 @@ print(unitSwitch.selectedSegmentIndex)
             print(indexPath.row)
             print("input units for temperature")
             print(InputUnits)
-            print()
+            print(InputTitles[indexPath.row+startingIndex])
             cell.inputUnitLabel.text = InputUnits[indexPath.row+startingIndex]
             print(indexPath.row+startingIndex)
+            print(InputTitles)
         var indexOfInputArray = -1
                 switch InputTitles[indexPath.row+startingIndex] {
                 case "Diameter": indexOfInputArray = 3
@@ -1279,68 +1280,58 @@ print(unitSwitch.selectedSegmentIndex)
                 }
             
             
-                  if(!sender.isOn){
+                  if(sender.isOn){
                     inputArrayValues[1]="on"
 
-                print("AirComposition On " + String(startingIndexAirComposition))
-        
+                print("Standard air composition On " + String(startingIndexAirComposition))
+                    tableView.beginUpdates()
+                    
+                    
+                    
+                    InputTitles.remove(at: startingIndexAirComposition)
+                    InputUnits.remove(at: startingIndexAirComposition)
+                    // inputArrayValues.remove(at: startingIndexAirComposition)
+                    DataSource = InputTitles
+                    
+                    tableView.deleteRows(at: [IndexPath(row: 0, section: 4)], with: .top)
+                    
+                    
+                    InputTitles.remove(at: startingIndexAirComposition)
+                    InputUnits.remove(at: startingIndexAirComposition)
+                    DataSource = InputTitles
+                    
+                    tableView.deleteRows(at: [IndexPath(row: 0, section: 4)], with: .top)
+                                        //     inputArrayValues.remove(at: startingIndexAirComposition)
+                    
+                    InputTitles.remove(at: startingIndexAirComposition)
+                    InputUnits.remove(at: startingIndexAirComposition)
+                    DataSource = InputTitles
+                    
+                    tableView.deleteRows(at: [IndexPath(row: 0, section: 4)], with: .top)
+                  
+                    
+                    InputTitles.remove(at: startingIndexAirComposition)
+                    InputUnits.remove(at: startingIndexAirComposition)
+                    DataSource = InputTitles
+                    
+                    tableView.deleteRows(at: [IndexPath(row: 0, section: 4)], with: .top)
+                    
+                    
+                    InputTitles.remove(at: startingIndexAirComposition)
+                    InputUnits.remove(at: startingIndexAirComposition)
+                    DataSource = InputTitles
+                    
+                    tableView.deleteRows(at: [IndexPath(row: 0, section: 4)], with: .top)
+                    
+                    tableView.endUpdates()
+     
                     print(InputUnits)
+                    print(InputTitles)
                       
       
       
               
                 //sender.setOn(false, animated: true)
-                        tableView.beginUpdates()
-                
-                    InputTitles.insert("C02", at: startingIndexAirComposition)
-                    InputUnits.insert("", at: startingIndexAirComposition)
-                    //inputArrayValues.insert("", at: startingIndexAirComposition)
-                    DataSource = InputTitles
-
-                    tableView.insertRows(at: [IndexPath(row: 0, section: 4)], with: .top)
-                    
-                 tableView.endUpdates()
-                    tableView.beginUpdates()
-                    InputTitles.insert("02", at: startingIndexAirComposition)
-                    InputUnits.insert("", at: startingIndexAirComposition)
-                  //  inputArrayValues.insert("", at: startingIndexAirComposition)
-                                          DataSource = InputTitles
-
-                 tableView.insertRows(at: [IndexPath(row: 0, section: 4)], with: .top)
-                    
-                 tableView.endUpdates()
-                    
-                                        tableView.beginUpdates()
-
-                    InputTitles.insert("N2", at: startingIndexAirComposition)
-                    InputUnits.insert("", at: startingIndexAirComposition)
-                                                   DataSource = InputTitles
-
-                 tableView.insertRows(at: [IndexPath(row: 0, section: 4)], with: .top)
-                    
-                 tableView.endUpdates()
-                   // inputArrayValues.insert("", at: startingIndexAirComposition)
-                    tableView.beginUpdates()
-
-                    InputTitles.insert("Ar", at: startingIndexAirComposition)
-                    InputUnits.insert("", at: startingIndexAirComposition)
-                                                   DataSource = InputTitles
-
-                 tableView.insertRows(at: [IndexPath(row: 0, section: 4)], with: .top)
-                    
-                 tableView.endUpdates()
-                    //inputArrayValues.insert("", at: startingIndexAirComposition)
-                    tableView.beginUpdates()
-
-                    InputTitles.insert("H20", at: startingIndexAirComposition)
-                    InputUnits.insert("", at: startingIndexAirComposition)
-                                                   DataSource = InputTitles
-
-                 tableView.insertRows(at: [IndexPath(row: 0, section: 4)], with: .top)
-                    
-                 tableView.endUpdates()
-                  //  inputArrayValues.insert("", at: startingIndexAirComposition)
-
                     
                     
                     
@@ -1349,62 +1340,62 @@ print(unitSwitch.selectedSegmentIndex)
                 else{
                  print("Air Composition OFF")
                     inputArrayValues[1]="off"
-    tableView.beginUpdates()
-
-
-                
-                InputTitles.remove(at: startingIndexAirComposition)
-                InputUnits.remove(at: startingIndexAirComposition)
-               // inputArrayValues.remove(at: startingIndexAirComposition)
-                                                                       DataSource = InputTitles
-
-                     tableView.deleteRows(at: [IndexPath(row: 0, section: 4)], with: .top)
-                    
-                 tableView.endUpdates()
-                        tableView.beginUpdates()
-
-                    InputTitles.remove(at: startingIndexAirComposition)
-                    InputUnits.remove(at: startingIndexAirComposition)
-                                                                          DataSource = InputTitles
-
-                     tableView.deleteRows(at: [IndexPath(row: 0, section: 4)], with: .top)
-                    
-                 tableView.endUpdates()
-                        tableView.beginUpdates()
-
-               //     inputArrayValues.remove(at: startingIndexAirComposition)
-                    
-                    InputTitles.remove(at: startingIndexAirComposition)
-                    InputUnits.remove(at: startingIndexAirComposition)
-                                                                          DataSource = InputTitles
-
-                     tableView.deleteRows(at: [IndexPath(row: 0, section: 4)], with: .top)
-                    
-                 tableView.endUpdates()
-                 //   inputArrayValues.remove(at: startingIndexAirComposition)
-                        tableView.beginUpdates()
-
-                    InputTitles.remove(at: startingIndexAirComposition)
-                    InputUnits.remove(at: startingIndexAirComposition)
-                                                                          DataSource = InputTitles
-
-                     tableView.deleteRows(at: [IndexPath(row: 0, section: 4)], with: .top)
-                    
-                 tableView.endUpdates()
-                 //   inputArrayValues.remove(at: startingIndexAirComposition)
-                        tableView.beginUpdates()
-
-                    InputTitles.remove(at: startingIndexAirComposition)
-                    InputUnits.remove(at: startingIndexAirComposition)
-                                                                          DataSource = InputTitles
-
-                     tableView.deleteRows(at: [IndexPath(row: 0, section: 4)], with: .top)
-                    
-                 tableView.endUpdates()
+    
                   //  inputArrayValues.remove(at: startingIndexAirComposition)
     
                 
-                 
+                    tableView.beginUpdates()
+                    
+                    InputTitles.insert("C02", at: startingIndexAirComposition)
+                    InputUnits.insert("", at: startingIndexAirComposition)
+                    //inputArrayValues.insert("", at: startingIndexAirComposition)
+                    DataSource = InputTitles
+                    
+                    tableView.insertRows(at: [IndexPath(row: 0, section: 4)], with: .top)
+                    
+                    tableView.endUpdates()
+                    tableView.beginUpdates()
+                    InputTitles.insert("02", at: startingIndexAirComposition)
+                    InputUnits.insert("", at: startingIndexAirComposition)
+                    //  inputArrayValues.insert("", at: startingIndexAirComposition)
+                    DataSource = InputTitles
+                    
+                    tableView.insertRows(at: [IndexPath(row: 0, section: 4)], with: .top)
+                    
+                    tableView.endUpdates()
+                    
+                    tableView.beginUpdates()
+                    
+                    InputTitles.insert("N2", at: startingIndexAirComposition)
+                    InputUnits.insert("", at: startingIndexAirComposition)
+                    DataSource = InputTitles
+                    
+                    tableView.insertRows(at: [IndexPath(row: 0, section: 4)], with: .top)
+                    
+                    tableView.endUpdates()
+                    // inputArrayValues.insert("", at: startingIndexAirComposition)
+                    tableView.beginUpdates()
+                    
+                    InputTitles.insert("Ar", at: startingIndexAirComposition)
+                    InputUnits.insert("", at: startingIndexAirComposition)
+                    DataSource = InputTitles
+                    
+                    tableView.insertRows(at: [IndexPath(row: 0, section: 4)], with: .top)
+                    
+                    tableView.endUpdates()
+                    //inputArrayValues.insert("", at: startingIndexAirComposition)
+                    tableView.beginUpdates()
+                    
+                    InputTitles.insert("H20", at: startingIndexAirComposition)
+                    InputUnits.insert("", at: startingIndexAirComposition)
+                    DataSource = InputTitles
+                    
+                    tableView.insertRows(at: [IndexPath(row: 0, section: 4)], with: .top)
+                    
+                    tableView.endUpdates()
+                    //  inputArrayValues.insert("", at: startingIndexAirComposition)
+                    
+
                 }
 
             }
@@ -1418,12 +1409,12 @@ print(unitSwitch.selectedSegmentIndex)
                     print("WetBulb ON")
                     inputArrayValues[2]="on"
                     inputArrayValues[7]=""
-                    InputTitles.insert("Wet Bulb (T)", at: 7)
+                    InputTitles.insert("Wet Bulb (T)", at: 10)
                     if(unitSwitch.selectedSegmentIndex == 1){
-                        InputUnits.insert("C", at: 7)
+                        InputUnits.insert("C", at: 10)
                     }
                     else{
-                        InputUnits.insert("F", at: 7)
+                        InputUnits.insert("F", at: 10)
                     }
                     DataSource = InputTitles
                     tableView.beginUpdates()
@@ -1437,8 +1428,8 @@ print(unitSwitch.selectedSegmentIndex)
                     print("WetBulb OFF")
                     inputArrayValues[2]="off"
                     inputArrayValues[7]=""
-                    InputTitles.remove(at: 7)
-                    InputUnits.remove(at: 7)
+                    InputTitles.remove(at: 10)
+                    InputUnits.remove(at: 10)
                     DataSource = InputTitles
                     tableView.beginUpdates()
                     tableView.deleteRows(at: [IndexPath(row: 1, section: 3)], with: .fade)
@@ -1450,12 +1441,12 @@ print(unitSwitch.selectedSegmentIndex)
                 print("WetBulb ON")
                     inputArrayValues[2]="on"
                         inputArrayValues[8]=""
-                        InputTitles.insert("Wet Bulb (T)", at: 8)
+                        InputTitles.insert("Wet Bulb (T)", at: 11)
                         if(unitSwitch.selectedSegmentIndex == 1){
-                            InputUnits.insert("C", at: 8)
+                            InputUnits.insert("C", at: 11)
                         }
                         else{
-                            InputUnits.insert("F", at: 8)
+                            InputUnits.insert("F", at: 11)
                         }
                         DataSource = InputTitles
                         tableView.beginUpdates()
@@ -1469,8 +1460,8 @@ print(unitSwitch.selectedSegmentIndex)
 
                         
                         
-                        InputTitles.remove(at: 8)
-                        InputUnits.remove(at: 8)
+                        InputTitles.remove(at: 11)
+                        InputUnits.remove(at: 11)
                         
                         DataSource = InputTitles
                         tableView.beginUpdates()
