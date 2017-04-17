@@ -217,8 +217,8 @@ print(unitSwitch.selectedSegmentIndex)
     override func viewDidLoad() {
         super.viewDidLoad()
       registerForKeyboardNotifications()
-        InputTitles = ["Circular Duct","Non-Standard Air Composition","Wet Bulb (T)","Width", "Height", "Pitot Tube (C)"
-            ,"Dynamic Velocity (P)","Sea Level (P)",  "Static (P)","Elevation", "Dry Bulb (T)","Wet Bulb (T)","H20","Ar","N2","02","C02"]
+        InputTitles = ["Circular Duct","Standard Air Composition","Wet Bulb (T)","Width", "Height", "Pitot Tube (C)"
+            ,"Dynamic Pressure ","Sea Level (P)",  "Static (P)","Elevation", "Dry Bulb (T)","Wet Bulb (T)","H20","Ar","N2","02","C02"]
          InputUnitsSI = ["","","","m","m","","H20","C","ft","kPa","","","","","","","","",""]
         InputUnitsUS = ["","","","in","in","","H20","F","ft","in hg","","","","","","","","",""]
         sectionHeaders = ["Pipe Configuration","Pipe parameters", "Pressure","Temperature","Air Composition"]
@@ -317,10 +317,10 @@ print(unitSwitch.selectedSegmentIndex)
                 pipeShapeSwitchBoolean = true}
             else{
          pipeShapeSwitchBoolean = false
-            if(inputArrayValues[1] == "on"){
-                AirCompositionSwitchBoolean = true}
-            else{
+            if(inputArrayValues[1] == "off"){
                 AirCompositionSwitchBoolean = false}
+            else{
+                AirCompositionSwitchBoolean = true}
             if(inputArrayValues[2] == "on"){
                 wetBulbSwitchBoolean = true}
             else{
@@ -901,6 +901,7 @@ print(unitSwitch.selectedSegmentIndex)
             print(indexPath.row)
             print("input units")
             print(InputUnits)
+            
             cell.inputUnitLabel.text = InputUnits[indexPath.row+3]
             
         var indexOfInputArray = -1
@@ -936,16 +937,31 @@ print(unitSwitch.selectedSegmentIndex)
         
         }
         else if(indexPath.section == 2){
-         var cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultTextFieldCell", for: indexPath) as! CustomCell
-           
-            cell.inputTitle.text = InputTitles[indexPath.row+6]
-            print(indexPath.row+6)
+           var startingIndex = -1
+            if(inputArrayValues[0] == "on")
+                startingIndex = 5
+            else{
+                startingIndex = 6
+            }
+            
+            if(index.row == 0){
+                   
+            let cell : UITableViewCell
+            cell = self.tableView.dequeueReusableCell(withIdentifier: "dynamicVelocityCell", for: indexPath)
+            cell.textLabel?.text = InputTitles[indexPath.row]
+                       return cell
+        
+            }
+            else{
+            var cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultTextFieldCell", for: indexPath) as! CustomCell
+            cell.inputTitle.text = InputTitles[indexPath.row+startingIndex]
+            print(indexPath.row+startingIndex)
             print("input units")
             print(InputUnits)
-            cell.inputUnitLabel.text = InputUnits[indexPath.row+6]
+            cell.inputUnitLabel.text = InputUnits[indexPath.row+startingIndex]
             print(InputTitles[indexPath.row+6])
         var indexOfInputArray = 0
-                switch InputTitles[indexPath.row+6] {
+                switch InputTitles[indexPath.row+startingIndex] {
                 case "Diameter": indexOfInputArray = 3
                 case "Width": indexOfInputArray = 3
                 case "Height": indexOfInputArray = 4
@@ -961,7 +977,6 @@ print(unitSwitch.selectedSegmentIndex)
                 case "Ar": indexOfInputArray = 12
                 case "H20":indexOfInputArray = 11
                 //Change for dyanamic velocity
-                case "Dynamic Velocity (P)":indexOfInputArray = 0
                 default : indexOfInputArray = -1
                 }
             
@@ -978,16 +993,24 @@ print(unitSwitch.selectedSegmentIndex)
         
         }
         else if(indexPath.section == 3){
+            
+             var startingIndex = -1
+            if(inputArrayValues[0] == "on")
+                startingIndex = 9
+            else{
+                startingIndex = 10
+            }
+            
          var cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultTextFieldCell", for: indexPath) as! CustomCell
            
-            cell.inputTitle.text = InputTitles[indexPath.row+10]
+            cell.inputTitle.text = InputTitles[indexPath.row+startingIndex]
             print(indexPath.row)
             print("input units")
             print(InputUnits)
-            cell.inputUnitLabel.text = InputUnits[indexPath.row+10]
-            print(indexPath.row+10)
+            cell.inputUnitLabel.text = InputUnits[indexPath.row+startingIndex]
+            print(indexPath.row+startingIndex)
         var indexOfInputArray = -1
-                switch InputTitles[indexPath.row+10] {
+                switch InputTitles[indexPath.row+startingIndex] {
                 case "Diameter": indexOfInputArray = 3
                 case "Width": indexOfInputArray = 3
                 case "Height": indexOfInputArray = 4
@@ -1017,16 +1040,32 @@ print(unitSwitch.selectedSegmentIndex)
         
         }
         else if(indexPath.section == 4){
+            
+                
+             var startingIndex = -1
+            if(inputArrayValues[0] == "on" && inputArrayValues[2] == "on"){
+                startingIndex = 11
+            }
+            else if(inputArrayValues[0] == "on" && inputArrayValues[2] == "off"){
+                startingIndex = 10
+            }
+             else if(inputArrayValues[0] == "off" && inputArrayValues[2] == "on"){
+                startingIndex = 12
+            }
+             else if(inputArrayValues[0] == "off" && inputArrayValues[2] == "off"){
+                startingIndex = 11
+            }
+            
          var cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultTextFieldCell", for: indexPath) as! CustomCell
              
-            cell.inputTitle.text = InputTitles[indexPath.row+12]
+            cell.inputTitle.text = InputTitles[indexPath.row+startingIndex]
             print(indexPath.row)
             print("input units")
             print(InputUnits)
-            cell.inputUnitLabel.text = InputUnits[indexPath.row+12]
+            cell.inputUnitLabel.text = InputUnits[indexPath.row+startingIndex]
             
         var indexOfInputArray = -1
-                switch InputTitles[indexPath.row+12] {
+                switch InputTitles[indexPath.row+startingIndex] {
                 case "Diameter": indexOfInputArray = 3
                 case "Width": indexOfInputArray = 3
                 case "Height": indexOfInputArray = 4
@@ -1058,15 +1097,7 @@ print(unitSwitch.selectedSegmentIndex)
         
         }
         
-        /*
-        else if(indexPath.row == InputTitles.count-1)
-        {
-            let cell : UITableViewCell
-            cell = self.tableView.dequeueReusableCell(withIdentifier: "dynamicVelocityCell", for: indexPath)
-            cell.textLabel?.text = InputTitles[indexPath.row]
-                       return cell
-        }
-     */
+     
         else{
             var cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultTextFieldCell", for: indexPath) as! CustomCell
            
@@ -1173,10 +1204,10 @@ print(unitSwitch.selectedSegmentIndex)
                 InputTitles.insert("Diameter", at: 3)
                 DataSource = InputTitles
                 tableView.beginUpdates()
-                tableView.deleteRows(at: [IndexPath(row: 3, section: 0)], with: .top)
-                tableView.deleteRows(at: [IndexPath(row: 4, section: 0)], with: .top)
+                tableView.deleteRows(at: [IndexPath(row: 0, section: 1)], with: .top)
+                tableView.deleteRows(at: [IndexPath(row: 1, section: 1)], with: .top)
                 
-                tableView.insertRows(at: [IndexPath(row: 3, section: 0)], with: .top)
+                tableView.insertRows(at: [IndexPath(row: 0, section: 1)], with: .top)
                 tableView.endUpdates()
                     //sender.setOn(false, animated: true)
                     
@@ -1202,10 +1233,10 @@ print(unitSwitch.selectedSegmentIndex)
                  }
                  DataSource = InputTitles
                  tableView.beginUpdates()
-                   tableView.deleteRows(at: [IndexPath(row: 3, section: 0)], with: .top)
+                   tableView.deleteRows(at: [IndexPath(row: 0, section: 1)], with: .top)
                 
-                   tableView.insertRows(at: [IndexPath(row: 3, section: 0)], with: .top)
-                     tableView.insertRows(at: [IndexPath(row: 4, section: 0)], with: .top)
+                   tableView.insertRows(at: [IndexPath(row: 0, section: 1)], with: .top)
+                     tableView.insertRows(at: [IndexPath(row: 1, section: 1)], with: .top)
                     
                  tableView.endUpdates()
                  
@@ -1248,7 +1279,7 @@ print(unitSwitch.selectedSegmentIndex)
                     //inputArrayValues.insert("", at: startingIndexAirComposition)
                     DataSource = InputTitles
 
-                    tableView.insertRows(at: [IndexPath(row: startingIndexAirComposition, section: 0)], with: .top)
+                    tableView.insertRows(at: [IndexPath(row: 0, section: 4)], with: .top)
                     
                  tableView.endUpdates()
                     tableView.beginUpdates()
@@ -1257,7 +1288,7 @@ print(unitSwitch.selectedSegmentIndex)
                   //  inputArrayValues.insert("", at: startingIndexAirComposition)
                                           DataSource = InputTitles
 
-                 tableView.insertRows(at: [IndexPath(row: startingIndexAirComposition, section: 0)], with: .top)
+                 tableView.insertRows(at: [IndexPath(row: 0, section: 4)], with: .top)
                     
                  tableView.endUpdates()
                     
@@ -1267,7 +1298,7 @@ print(unitSwitch.selectedSegmentIndex)
                     InputUnits.insert("", at: startingIndexAirComposition)
                                                    DataSource = InputTitles
 
-                 tableView.insertRows(at: [IndexPath(row: startingIndexAirComposition, section: 0)], with: .top)
+                 tableView.insertRows(at: [IndexPath(row: 0, section: 4)], with: .top)
                     
                  tableView.endUpdates()
                    // inputArrayValues.insert("", at: startingIndexAirComposition)
@@ -1277,7 +1308,7 @@ print(unitSwitch.selectedSegmentIndex)
                     InputUnits.insert("", at: startingIndexAirComposition)
                                                    DataSource = InputTitles
 
-                 tableView.insertRows(at: [IndexPath(row: startingIndexAirComposition, section: 0)], with: .top)
+                 tableView.insertRows(at: [IndexPath(row: 0, section: 4)], with: .top)
                     
                  tableView.endUpdates()
                     //inputArrayValues.insert("", at: startingIndexAirComposition)
@@ -1287,7 +1318,7 @@ print(unitSwitch.selectedSegmentIndex)
                     InputUnits.insert("", at: startingIndexAirComposition)
                                                    DataSource = InputTitles
 
-                 tableView.insertRows(at: [IndexPath(row: startingIndexAirComposition, section: 0)], with: .top)
+                 tableView.insertRows(at: [IndexPath(row: 0, section: 4)], with: .top)
                     
                  tableView.endUpdates()
                   //  inputArrayValues.insert("", at: startingIndexAirComposition)
@@ -1309,7 +1340,7 @@ print(unitSwitch.selectedSegmentIndex)
                // inputArrayValues.remove(at: startingIndexAirComposition)
                                                                        DataSource = InputTitles
 
-                     tableView.deleteRows(at: [IndexPath(row: startingIndexAirComposition, section: 0)], with: .top)
+                     tableView.deleteRows(at: [IndexPath(row: 0, section: 4)], with: .top)
                     
                  tableView.endUpdates()
                         tableView.beginUpdates()
@@ -1318,7 +1349,7 @@ print(unitSwitch.selectedSegmentIndex)
                     InputUnits.remove(at: startingIndexAirComposition)
                                                                           DataSource = InputTitles
 
-                     tableView.deleteRows(at: [IndexPath(row: startingIndexAirComposition, section: 0)], with: .top)
+                     tableView.deleteRows(at: [IndexPath(row: 0, section: 4)], with: .top)
                     
                  tableView.endUpdates()
                         tableView.beginUpdates()
@@ -1329,7 +1360,7 @@ print(unitSwitch.selectedSegmentIndex)
                     InputUnits.remove(at: startingIndexAirComposition)
                                                                           DataSource = InputTitles
 
-                     tableView.deleteRows(at: [IndexPath(row: startingIndexAirComposition, section: 0)], with: .top)
+                     tableView.deleteRows(at: [IndexPath(row: 0, section: 4)], with: .top)
                     
                  tableView.endUpdates()
                  //   inputArrayValues.remove(at: startingIndexAirComposition)
@@ -1339,7 +1370,7 @@ print(unitSwitch.selectedSegmentIndex)
                     InputUnits.remove(at: startingIndexAirComposition)
                                                                           DataSource = InputTitles
 
-                     tableView.deleteRows(at: [IndexPath(row: startingIndexAirComposition, section: 0)], with: .top)
+                     tableView.deleteRows(at: [IndexPath(row: 0, section: 4)], with: .top)
                     
                  tableView.endUpdates()
                  //   inputArrayValues.remove(at: startingIndexAirComposition)
@@ -1349,7 +1380,7 @@ print(unitSwitch.selectedSegmentIndex)
                     InputUnits.remove(at: startingIndexAirComposition)
                                                                           DataSource = InputTitles
 
-                     tableView.deleteRows(at: [IndexPath(row: startingIndexAirComposition, section: 0)], with: .top)
+                     tableView.deleteRows(at: [IndexPath(row: 0, section: 4)], with: .top)
                     
                  tableView.endUpdates()
                   //  inputArrayValues.remove(at: startingIndexAirComposition)
@@ -1378,7 +1409,7 @@ print(unitSwitch.selectedSegmentIndex)
                     }
                     DataSource = InputTitles
                     tableView.beginUpdates()
-                    tableView.insertRows(at: [IndexPath(row: 7, section: 0)], with: .fade)
+                    tableView.insertRows(at: [IndexPath(row: 1, section: 3)], with: .fade)
                     tableView.endUpdates()
                     
 
@@ -1392,7 +1423,7 @@ print(unitSwitch.selectedSegmentIndex)
                     InputUnits.remove(at: 7)
                     DataSource = InputTitles
                     tableView.beginUpdates()
-                    tableView.deleteRows(at: [IndexPath(row: 7, section: 0)], with: .fade)
+                    tableView.deleteRows(at: [IndexPath(row: 1, section: 3)], with: .fade)
                     tableView.endUpdates()
                     }
                 }
@@ -1410,7 +1441,7 @@ print(unitSwitch.selectedSegmentIndex)
                         }
                         DataSource = InputTitles
                         tableView.beginUpdates()
-                        tableView.insertRows(at: [IndexPath(row: 8, section: 0)], with: .fade)
+                        tableView.insertRows(at: [IndexPath(row: 1, section: 3)], with: .fade)
                         tableView.endUpdates()
                              }
                 else{
@@ -1425,7 +1456,7 @@ print(unitSwitch.selectedSegmentIndex)
                         
                         DataSource = InputTitles
                         tableView.beginUpdates()
-                        tableView.deleteRows(at: [IndexPath(row: 8, section: 0)], with: .fade)
+                        tableView.deleteRows(at: [IndexPath(row: 1, section: 3)], with: .fade)
                         tableView.endUpdates()
 
                
