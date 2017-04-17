@@ -1293,35 +1293,35 @@ print(unitSwitch.selectedSegmentIndex)
                     // inputArrayValues.remove(at: startingIndexAirComposition)
                     DataSource = InputTitles
                     
-                    tableView.deleteRows(at: [IndexPath(row: 0, section: 4)], with: .top)
+                    //tableView.deleteRows(at: [IndexPath(row: 0, section: 4)], with: .top)
                     
                     
                     InputTitles.remove(at: startingIndexAirComposition)
                     InputUnits.remove(at: startingIndexAirComposition)
                     DataSource = InputTitles
                     
-                    tableView.deleteRows(at: [IndexPath(row: 0, section: 4)], with: .top)
+                    //tableView.deleteRows(at: [IndexPath(row: 0, section: 4)], with: .top)
                                         //     inputArrayValues.remove(at: startingIndexAirComposition)
                     
                     InputTitles.remove(at: startingIndexAirComposition)
                     InputUnits.remove(at: startingIndexAirComposition)
                     DataSource = InputTitles
                     
-                    tableView.deleteRows(at: [IndexPath(row: 0, section: 4)], with: .top)
+                   // tableView.deleteRows(at: [IndexPath(row: 0, section: 4)], with: .top)
                   
                     
                     InputTitles.remove(at: startingIndexAirComposition)
                     InputUnits.remove(at: startingIndexAirComposition)
                     DataSource = InputTitles
                     
-                    tableView.deleteRows(at: [IndexPath(row: 0, section: 4)], with: .top)
+                    //tableView.deleteRows(at: [IndexPath(row: 0, section: 4)], with: .top)
                     
                     
                     InputTitles.remove(at: startingIndexAirComposition)
                     InputUnits.remove(at: startingIndexAirComposition)
                     DataSource = InputTitles
                     
-                    tableView.deleteRows(at: [IndexPath(row: 0, section: 4)], with: .top)
+                    tableView.deleteSections(at: [IndexPath(section: 4)], with: .top)
                     
                     tableView.endUpdates()
      
@@ -1351,47 +1351,36 @@ print(unitSwitch.selectedSegmentIndex)
                     //inputArrayValues.insert("", at: startingIndexAirComposition)
                     DataSource = InputTitles
                     
-                    tableView.insertRows(at: [IndexPath(row: 0, section: 4)], with: .top)
+                    //tableView.insertRows(at: [IndexPath(row: 0, section: 4)], with: .top)
                     
-                    tableView.endUpdates()
-                    tableView.beginUpdates()
                     InputTitles.insert("02", at: startingIndexAirComposition)
                     InputUnits.insert("", at: startingIndexAirComposition)
                     //  inputArrayValues.insert("", at: startingIndexAirComposition)
                     DataSource = InputTitles
                     
-                    tableView.insertRows(at: [IndexPath(row: 0, section: 4)], with: .top)
+                   // tableView.insertRows(at: [IndexPath(row: 0, section: 4)], with: .top)
                     
-                    tableView.endUpdates()
-                    
-                    tableView.beginUpdates()
-                    
+                     
                     InputTitles.insert("N2", at: startingIndexAirComposition)
                     InputUnits.insert("", at: startingIndexAirComposition)
                     DataSource = InputTitles
                     
-                    tableView.insertRows(at: [IndexPath(row: 0, section: 4)], with: .top)
+                 //   tableView.insertRows(at: [IndexPath(row: 0, section: 4)], with: .top)
                     
-                    tableView.endUpdates()
-                    // inputArrayValues.insert("", at: startingIndexAirComposition)
-                    tableView.beginUpdates()
                     
                     InputTitles.insert("Ar", at: startingIndexAirComposition)
                     InputUnits.insert("", at: startingIndexAirComposition)
                     DataSource = InputTitles
                     
-                    tableView.insertRows(at: [IndexPath(row: 0, section: 4)], with: .top)
-                    
-                    tableView.endUpdates()
-                    //inputArrayValues.insert("", at: startingIndexAirComposition)
-                    tableView.beginUpdates()
-                    
+                   // tableView.insertRows(at: [IndexPath(row: 0, section: 4)], with: .top)
+                     
                     InputTitles.insert("H20", at: startingIndexAirComposition)
                     InputUnits.insert("", at: startingIndexAirComposition)
                     DataSource = InputTitles
                     
-                    tableView.insertRows(at: [IndexPath(row: 0, section: 4)], with: .top)
-                    
+                   // tableView.insertRows(at: [IndexPath(row: 0, section: 4)], with: .top)
+                    tableView.insertSections(at: [IndexPath(section: 4)], with: .top)
+
                     tableView.endUpdates()
                     //  inputArrayValues.insert("", at: startingIndexAirComposition)
                     
