@@ -766,25 +766,49 @@ print(unitSwitch.selectedSegmentIndex)
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print("NUMBER OF ROWS  " + String(DataSource.count))
+        
+          if(inputArrayValues[0] == "on" && inputArrayValues[2] == "on"){
+                startingIndex = 11
+            }
+            else if(inputArrayValues[0] == "on" && inputArrayValues[2] == "off"){
+                startingIndex = 10
+            }
+             else if(inputArrayValues[0] == "off" && inputArrayValues[2] == "on"){
+                startingIndex = 12
+            }
+             else if(inputArrayValues[0] == "off" && inputArrayValues[2] == "off"){
+                startingIndex = 11
+            }
+            
         if(section == 0){
             return 3
         }
-        else if(section == 1){
+        else if(section == 1 && inputArrayValues[0] == "on"){
+            return 2
+        }
+        else if(section == 1 && inputArrayValues[0] == "off"){
             return 3
         }
         else if(section == 2){
-            return 3
+            return 4
         }
-        else if(section == 3){
+        else if(section == 3 && inputArrayValues[2] == "off"){
+            return 1
+        }
+        else if(section == 3 && inputArrayValues[2] == "on"){
             return 2
         }
-        else if(section == 4){
+        else if(section == 4 && inputArrayValues[2] == "off"){
             return 5
         }
-        else{
-
-        return DataSource.count
+         else if(section == 4 && inputArrayValues[2] == "on"){
+            return 0
         }
+        else{
+            return 0
+        }
+     
+        
     }
     
     
@@ -949,7 +973,7 @@ print(unitSwitch.selectedSegmentIndex)
                    
             let cell : UITableViewCell
             cell = self.tableView.dequeueReusableCell(withIdentifier: "dynamicVelocityCell", for: indexPath)
-            cell.textLabel?.text = InputTitles[indexPath.row]
+            cell.textLabel?.text = InputTitles[indexPath.row + startingIndex]
                        return cell
         
             }
