@@ -43,7 +43,8 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
         ResultUnitsUS = ["ft/s","ft/s","lb/min","SCFM", "ACFM","g/mol", "in Hg", "in^2", "in. Hg", "ft^3",""]
         navigationItem.title = "Results"
 
-        
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: #imageLiteral(resourceName: "backgroun"))!)
+
         segmentedControlResults.selectedSegmentIndex = currentUnits
 
         if(currentUnits == 1){
@@ -56,6 +57,17 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
             resultArray = USReaultsArray
 
         }
+        tableView.layer.cornerRadius = 10
+        
+        // border
+        tableView.layer.borderWidth = 1.0
+        tableView.layer.borderColor = UIColor.black.cgColor
+        
+        // shadow
+        tableView.layer.shadowColor = UIColor.black.cgColor
+        //tableView.layer.shadowOffset = CGSize(width: 3, height: 3)
+        tableView.layer.shadowOpacity = 0.7
+        tableView.layer.shadowRadius = 4.0
         tableView.reloadData()
 
         // Do any additional setup after loading the view.
