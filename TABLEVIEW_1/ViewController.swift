@@ -933,6 +933,129 @@ print(unitSwitch.selectedSegmentIndex)
             return cell
         
         }
+        else if(indexPath.section == 2){
+         var cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultTextFieldCell", for: indexPath) as! CustomCell
+           
+            cell.inputTitle.text = InputTitles[indexPath.row+6]
+            print(indexPath.row)
+            print("input units")
+            print(InputUnits)
+            cell.inputUnitLabel.text = InputUnits[indexPath.row+6]
+            
+        var indexOfInputArray = -1
+                switch InputTitles[indexPath.row+3] {
+                case "Diameter": indexOfInputArray = 3
+                case "Width": indexOfInputArray = 3
+                case "Height": indexOfInputArray = 4
+                case "Pitot Tube (C)": indexOfInputArray = 5
+                case "Static (P)": indexOfInputArray = 6
+                case "Dry Bulb (T)": indexOfInputArray = 7
+                case "Wet Bulb (T)" : indexOfInputArray = 8
+                case "Elevation": indexOfInputArray = 9
+                case "Sea Level (P)": indexOfInputArray = 10
+                case "C02": indexOfInputArray = 15
+                case "02": indexOfInputArray = 14
+                case "N2": indexOfInputArray = 13
+                case "Ar": indexOfInputArray = 12
+                case "H20":indexOfInputArray = 11
+                    
+                default : indexOfInputArray = -1
+                }
+            
+
+            
+            cell.inputTextField.text = inputArrayValues[indexOfInputArray]
+           // cell.inputTextField.tag = indexPath.row
+            cell.inputTextField.delegate = self // theField is your IBOutlet UITextfield in your custom cell
+            
+            
+            
+            
+            return cell
+        
+        }
+        else if(indexPath.section == 3){
+         var cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultTextFieldCell", for: indexPath) as! CustomCell
+           
+            cell.inputTitle.text = InputTitles[indexPath.row+8]
+            print(indexPath.row)
+            print("input units")
+            print(InputUnits)
+            cell.inputUnitLabel.text = InputUnits[indexPath.row+8]
+            
+        var indexOfInputArray = -1
+                switch InputTitles[indexPath.row+3] {
+                case "Diameter": indexOfInputArray = 3
+                case "Width": indexOfInputArray = 3
+                case "Height": indexOfInputArray = 4
+                case "Pitot Tube (C)": indexOfInputArray = 5
+                case "Static (P)": indexOfInputArray = 6
+                case "Dry Bulb (T)": indexOfInputArray = 7
+                case "Wet Bulb (T)" : indexOfInputArray = 8
+                case "Elevation": indexOfInputArray = 9
+                case "Sea Level (P)": indexOfInputArray = 10
+                case "C02": indexOfInputArray = 15
+                case "02": indexOfInputArray = 14
+                case "N2": indexOfInputArray = 13
+                case "Ar": indexOfInputArray = 12
+                case "H20":indexOfInputArray = 11
+                    
+                default : indexOfInputArray = -1
+                }
+            
+
+            
+            cell.inputTextField.text = inputArrayValues[indexOfInputArray]
+           // cell.inputTextField.tag = indexPath.row
+            cell.inputTextField.delegate = self // theField is your IBOutlet UITextfield in your custom cell
+            
+            
+            
+            
+            return cell
+        
+        }
+        else if(indexPath.section == 4){
+         var cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultTextFieldCell", for: indexPath) as! CustomCell
+           
+            cell.inputTitle.text = InputTitles[indexPath.row+3]
+            print(indexPath.row)
+            print("input units")
+            print(InputUnits)
+            cell.inputUnitLabel.text = InputUnits[indexPath.row+3]
+            
+        var indexOfInputArray = -1
+                switch InputTitles[indexPath.row+3] {
+                case "Diameter": indexOfInputArray = 3
+                case "Width": indexOfInputArray = 3
+                case "Height": indexOfInputArray = 4
+                case "Pitot Tube (C)": indexOfInputArray = 5
+                case "Static (P)": indexOfInputArray = 6
+                case "Dry Bulb (T)": indexOfInputArray = 7
+                case "Wet Bulb (T)" : indexOfInputArray = 8
+                case "Elevation": indexOfInputArray = 9
+                case "Sea Level (P)": indexOfInputArray = 10
+                case "C02": indexOfInputArray = 15
+                case "02": indexOfInputArray = 14
+                case "N2": indexOfInputArray = 13
+                case "Ar": indexOfInputArray = 12
+                case "H20":indexOfInputArray = 11
+                    
+                default : indexOfInputArray = -1
+                }
+            
+
+            
+            cell.inputTextField.text = inputArrayValues[indexOfInputArray]
+           // cell.inputTextField.tag = indexPath.row
+            cell.inputTextField.delegate = self // theField is your IBOutlet UITextfield in your custom cell
+            
+            
+            
+            
+            return cell
+        
+        }
         
         
         else if(indexPath.row == InputTitles.count-1)
