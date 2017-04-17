@@ -858,11 +858,10 @@ print(unitSwitch.selectedSegmentIndex)
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         
-        
-        if indexPath.row < 3{
+        if(indexPath.section == 0){
    
-    let cell : UITableViewCell
-         cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultSwitchCell", for: indexPath)
+        let cell : UITableViewCell
+        cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultSwitchCell", for: indexPath)
     cell.textLabel?.text = InputTitles[indexPath.row]
             var switchView : UISwitch
             switchView = UISwitch(frame: CGRect.zero)
@@ -893,6 +892,7 @@ print(unitSwitch.selectedSegmentIndex)
         return cell
 
         }
+            else if (indexPath.section == )
         else if(indexPath.row == InputTitles.count-1)
         {
             let cell : UITableViewCell
