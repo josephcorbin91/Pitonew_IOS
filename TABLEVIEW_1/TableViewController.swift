@@ -40,34 +40,68 @@ class TableViewController: UITableViewController, UITextFieldDelegate {
         self.navigationController?.popViewController(animated: true)
         
     }
-        func insert() {
-      
-            /*
-            let indexPath = IndexPath(row: 0, section: 0)
-            let selectedCell = self.tableView!.cellForRow(at: indexPath) as! DynamicVelocityTextFieldCell!//your custom cell class.
-
-            selectedCell?.dynamicVelocityTextField.becomeFirstResponder()
+    
+    
+    
+    func verifyDataPressureRule(value: Double) -> Bool {
+        print("VERIFY DATA CALLED")
+        var currentMax = value
+        for i in 0..<items.count{
+            var currentVelocity = Double(items[i])
+            if(currentVelocity > currentMax){
+                currentMax=currentVelocity
+            }
+        }
+        var acceptablePressureValues = 0.0
+        for i in 0..<items.count{
+            var currentVelocity = Double(items[i])
             
-            */
-            let textField = self.view.viewWithTag(3) as! UITextField
-            if let text = textField.text, !text.isEmpty
-            {
-                items.append(Double(text)!)
-                textField.text = ""
-                print("ITEMS COUNT")
-                print(items.count)
-                print(items)
-                
-                let insertionIndexPath = NSIndexPath(row: items.count-1, section: 0)
-                tableView.beginUpdates()
-                tableView.insertRows(at: [insertionIndexPath as IndexPath], with: .top)
-                tableView.endUpdates()
+            if(currentVelocity > 0.1 * currentMax){
+                acceptablePressureValues += 1
+            }
+        }
+        var percentageOfAcceptableValues = acceptablePressureValues/Double(items.count)
+        
+        print(percentageOfAcceptableValues)
+        print(items)
+        print("CURRENT MAX")
+        print(currentMax)
+        return percentageOfAcceptableValues >= 0.75
+        
+    }
+     func insert() {
+
+        
+      
+                let textField = self.view.viewWithTag(3) as! UITextField
+                if let text = textField.text, !text.isEmpty
+                {
+                    
+                    if(verifyDataPressureRule(value: Double(text)!)){
+                    
+                    items.append(Double(text)!)
+                    textField.text = ""
+                    print("ITEMS COUNT")
+                    print(items.count)
+                    print(items)
+                    
+                    let insertionIndexPath = NSIndexPath(row: items.count-1, section: 0)
+                    tableView.beginUpdates()
+                    tableView.insertRows(at: [insertionIndexPath as IndexPath], with: .top)
+                    tableView.endUpdates()
+             }
+            else{
+                let alertInvalidResult = UIAlertController(title: "Invalid Pressure values", message: "75% of values must be greater than 10% of the maximum pressure", preferredStyle: UIAlertControllerStyle.alert)
+                alertInvalidResult.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                self.present(alertInvalidResult, animated: true, completion: nil)
                 
             }
-            else{}
             
-                  }
-        
+            
+
+        }
+    }
+    
         override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             return items.count
         }

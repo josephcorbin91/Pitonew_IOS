@@ -10,6 +10,7 @@ import UIKit
 
 class VelocityViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBAction func insertVelocity(_ sender: UIBarButtonItem) {
+        print("Insert called ")
     }
     
     var items = ["1","2","2"]
@@ -59,25 +60,35 @@ class VelocityViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var dynamicVelocityTextField: UITextField!
     
     
-      func verifyDataPressureRule() -> bool {
-        var currentMax= items[0]
+      func verifyDataPressureRule() -> Bool {
+        print("VERIFY DATA CALLED")
+        var currentMax = Double(items[0])!
           for i in 0..<items.count{
-               if(items[i]>currentMax){
-                currentMax=items[i]
+            var currentVelocity = Double(items[i])!
+               if(currentVelocity > currentMax){
+                currentMax=currentVelocity
                }
+        }
         var acceptablePressureValues = 0.0
         for i in 0..<items.count{
-            if(items[i] > 0.1 * currentMax){
+            var currentVelocity = Double(items[i])!
+
+            if(currentVelocity > 0.1 * currentMax){
                 acceptablePressureValues += 1
             }
         }
-       var percentageOfAcceptableValues = acceptablePressureValue/items.count
+       var percentageOfAcceptableValues = acceptablePressureValues/Double(items.count)
+        
+        print(percentageOfAcceptableValues)
+        print(items)
+        print("CURRENT MAX")
+        print(currentMax)
        return percentageOfAcceptableValues >= 0.75   
     
-          
     }
     @IBAction func insert(_ sender: UIButton) {
-        if(verifyDataPressure){
+        print("INSERT CALLED")
+        if(verifyDataPressureRule()){
         items.append(dynamicVelocityTextField.text!)
         tableView.beginUpdates()
         tableView.insertRows(at: [IndexPath(row: items.count-1, section: 0)], with: .fade)
@@ -88,26 +99,18 @@ class VelocityViewController: UIViewController, UITableViewDelegate, UITableView
           
         
         let alertInvalidResult = UIAlertController(title: "Invalid Pressure values", message: "75% of values must be greater than 10% of the maximum pressure", preferredStyle: UIAlertControllerStyle.alert)
-        alertInvalidTextField.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-        self.present(alertInvalidSum, animated: true, completion: nil)
+        alertInvalidResult.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alertInvalidResult, animated: true, completion: nil)
 
         }
             
-        }
+        
         
         
         
         
     }
     @IBOutlet weak var tableView: UITableView!
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
