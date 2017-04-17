@@ -1320,10 +1320,8 @@ print(unitSwitch.selectedSegmentIndex)
                     InputTitles.remove(at: startingIndexAirComposition)
                     InputUnits.remove(at: startingIndexAirComposition)
                     DataSource = InputTitles
-                    
-                    tableView.deleteSections(at: [IndexPath(section: 4)], with: .top)
-                    
-                    tableView.endUpdates()
+                    tableView.deleteSections(<#T##sections: IndexSet##IndexSet#>, with: <#T##UITableViewRowAnimation#>)
+                                        tableView.endUpdates()
      
                     print(InputUnits)
                     print(InputTitles)
@@ -1379,7 +1377,7 @@ print(unitSwitch.selectedSegmentIndex)
                     DataSource = InputTitles
                     
                    // tableView.insertRows(at: [IndexPath(row: 0, section: 4)], with: .top)
-                    tableView.insertSections(at: [IndexPath(section: 4)], with: .top)
+                    tableView.insertSections([IndexPath(section: 4)], with: .top)
 
                     tableView.endUpdates()
                     //  inputArrayValues.insert("", at: startingIndexAirComposition)
