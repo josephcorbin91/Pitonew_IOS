@@ -42,7 +42,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let resultViewController = storyboard?.instantiateViewController(withIdentifier: "ResultViewController") as! ResultViewController
         resultViewController.SIResultsArray = SIResultsArray
         resultViewController.USReaultsArray = USReaultsArray
-
+        print("BEFORE GOING to RESULTS")
+print(unitSwitch.selectedSegmentIndex)
         resultViewController.currentUnits = unitSwitch.selectedSegmentIndex
         navigationController?.pushViewController(resultViewController, animated: true)
     
@@ -85,9 +86,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         for index in 0...InputTitles.count-1 {
             if(InputTitles[index] == "Wet Bulb (T)"){
                 wetBulbIndex = index}
-            if(InputTitles[index] == "Width"){
+            if(InputTitles[index] == "Width" || InputTitles[index] == "Diameter"){
                 widthIndex = index}
-            if(InputTitles[index] == "Height"){
+            if InputTitles[index] == "Height" {
                 heightIndex = index}
             if(InputTitles[index] == "Dry Bulb (T)"){
                 dryBulbIndex = index}
@@ -171,6 +172,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
    
         }
+        print("INPUT ARRAY VALUES AFTER SWITCH")
+        print(inputArrayValues)
      //   tableView.reloadData()
 
     }
@@ -188,13 +191,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if(indexPath.row == InputTitles.count-1){
             let dynamicVelocityViewController = storyboard?.instantiateViewController(withIdentifier: "DynamicVelocityViewController") as! TableViewController
             dynamicVelocityViewController.myProtocol = self
-            if(dynamicPressureArray.isEmpty){
-                dynamicPressureArray.append(0.0)
-            }
-            else{
-            dynamicPressureArray.insert(0.0, at: 0)
+            
             dynamicVelocityViewController.items = dynamicPressureArray
-            }
+            
             print("SENDING DYNAMIC VELOCITY ARRAY")
             print(dynamicVelocityArray)
             self.navigationController?.pushViewController(dynamicVelocityViewController, animated: true)
@@ -860,6 +859,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
            
             cell.inputTitle.text = InputTitles[indexPath.row]
             print(indexPath.row)
+            print("input units")
+            print(InputUnits)
             cell.inputUnitLabel.text = InputUnits[indexPath.row]
             
         var indexOfInputArray = -1

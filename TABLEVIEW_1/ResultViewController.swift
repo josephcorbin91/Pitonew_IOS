@@ -48,12 +48,12 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
         if(currentUnits == 1){
             ResultUnits = ResultUnitsSI
-            resultArray = USReaultsArray
+            resultArray = SIResultsArray
 
         }
         else{
             ResultUnits = ResultUnitsUS
-            resultArray = SIResultsArray
+            resultArray = USReaultsArray
 
         }
         tableView.reloadData()

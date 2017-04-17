@@ -25,7 +25,6 @@ class TableViewController: UITableViewController, UITextFieldDelegate {
                tableView.register(Header.self, forHeaderFooterViewReuseIdentifier: "headerId")
         
         tableView.sectionHeaderHeight = 50
-        
            
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Insert", style: .plain, target: self, action: "insert")
             
@@ -94,6 +93,7 @@ class TableViewController: UITableViewController, UITextFieldDelegate {
     }()
     
     func setupViews() {
+        textField.becomeFirstResponder()
         addSubview(textField)
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-16-[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": textField]))
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": textField]))
