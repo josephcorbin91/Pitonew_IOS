@@ -39,28 +39,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBAction func calculate(_ sender: Any) {
         
         
-        let alert = UIAlertController(title: "Alert", message: "Message", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
-        
-        
-        self.present(alert, animated: true, completion: nil)
-        
-        /*
-        let alertController: UIAlertController = UIAlertController(title: "Invalid Air Composition", message: "Sum must equal 100", preferredStyle: .alert)
-    let cancelAction = UIAlertAction(title: "Cancel", style: . Cancel){
-        
-     
-        
-    }
-    let clearAction = UIAlertAction(title: "Clear air composition", style: .Default){
-      
-                                   }
-        alertController.addAction(cancelAction)
-        alertController.addAction(clearAction)
-        self.present(alertController, animated: true, completion: nil)
-     */
-        /*
-            calculateResults()
+       
+        if(verifyInput()){
+        calculateResults()
 
         let resultViewController = storyboard?.instantiateViewController(withIdentifier: "ResultViewController") as! ResultViewController
         resultViewController.SIResultsArray = SIResultsArray
@@ -69,7 +50,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 print(unitSwitch.selectedSegmentIndex)
         resultViewController.currentUnits = unitSwitch.selectedSegmentIndex
         navigationController?.pushViewController(resultViewController, animated: true)
-    */
+        }
     }
     var InputUnitsSI = [String]()
     var InputUnitsUS = [String]()
@@ -743,6 +724,26 @@ print(unitSwitch.selectedSegmentIndex)
     
 
     func verifyInput() -> Bool{
+        
+        let alertInvalidSum = UIAlertController(title: "Invalid Input", message: "Summation of air composition must equal 100.", preferredStyle: UIAlertControllerStyle.alert)
+        alertInvalidSum.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        
+        
+        
+        let alertInvalidTextField = UIAlertController(title: "Invalid Input", message: "Input field missing", preferredStyle: UIAlertControllerStyle.alert)
+        alertInvalidTextField.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        
+        
+         if(inputArrayValues[1] == "off"){
+         var sum = Double(inputArrayValues[15])! + Double(inputArrayValues[14])! + Double(inputArrayValues[13])! + Double(inputArrayValues[12])! + Double(inputArrayValues[11])!
+            if(sum != 100.00){
+                self.present(alertInvalidSum, animated: true, completion: nil)
+                return false
+            }
+            
+        }
+        
+        /*
         var count = 0
         if(wetBulbSwitchBoolean && pipeShapeSwitchBoolean){
             count = 7
@@ -756,6 +757,7 @@ print(unitSwitch.selectedSegmentIndex)
         else if(!wetBulbSwitchBoolean && !pipeShapeSwitchBoolean){
             count = 7
         }
+         
         for value in 3...(3+count){
             
                 if(inputArrayValues[value] == "")
@@ -767,6 +769,8 @@ print(unitSwitch.selectedSegmentIndex)
             }
         
         
+     
+     */
         
         return true
         
