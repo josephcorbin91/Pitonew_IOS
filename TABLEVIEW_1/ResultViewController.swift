@@ -44,7 +44,12 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
         navigationItem.title = "Results"
 
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: #imageLiteral(resourceName: "backgroun"))!)
+UIGraphicsBeginImageContext(self.view.frame.size);
+[[UIImage imageNamed:@"image.png"] drawInRect:self.view.bounds];
+UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+UIGraphicsEndImageContext();
 
+self.view.backgroundColor = [UIColor colorWithPatternImage:image];
         segmentedControlResults.selectedSegmentIndex = currentUnits
 
         if(currentUnits == 1){
