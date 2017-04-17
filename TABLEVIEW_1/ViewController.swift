@@ -270,40 +270,16 @@ print(unitSwitch.selectedSegmentIndex)
     var wetBulbSwitchBoolean = false
     
     
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
- 
-return self.sectionHeaders\[section\]
- 
-}
-    
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
- // #warning Incomplete implementation, return the number of sections
- 
-return self.sectionHeaders.count
- 
-}
-        sectionHeaders = ["Pipe Configuration","Pipe parameters", "Pressure","Temperature","Air Composition"]
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
- // #warning Incomplete implementation, return the number of rows
-     if(section == 0){
-        return 3
-     }
-     else if(section == 1){
-        return 3
-     }
-     else if(section == 2){
-        return 3
-     }
-     else if(section == 3){
-        return 2
-     }
-     else if(section == 4){
-        return 5
-     }
-return self.items\[section\].count
- 
-}
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return self.sectionHeaders[section]
+    }
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return sectionHeaders.count
+    }
+  
+    
     //unit switch on is si
     func calculateResults(){
         print("calculateReusltsCalled")
@@ -790,7 +766,25 @@ return self.items\[section\].count
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print("NUMBER OF ROWS  " + String(DataSource.count))
+        if(section == 0){
+            return 3
+        }
+        else if(section == 1){
+            return 3
+        }
+        else if(section == 2){
+            return 3
+        }
+        else if(section == 3){
+            return 2
+        }
+        else if(section == 4){
+            return 5
+        }
+        else{
+
         return DataSource.count
+        }
     }
     
     

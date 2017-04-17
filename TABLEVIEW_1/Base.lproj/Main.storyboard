@@ -290,7 +290,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ResultCell" textLabel="7JW-yK-SbZ" detailTextLabel="ENO-3o-fXq" style="IBUITableViewCellStyleValue1" id="YLe-3h-mH8" customClass="ResultCell" customModule="TABLEVIEW_1" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="350.33333333333331" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="350" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YLe-3h-mH8" id="bnn-wZ-fTk">
                                             <rect key="frame" x="0.0" y="0.0" width="350.33333333333331" height="43"/>
