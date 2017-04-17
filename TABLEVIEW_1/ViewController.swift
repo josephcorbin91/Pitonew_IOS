@@ -62,8 +62,7 @@ print(unitSwitch.selectedSegmentIndex)
     var wetBulbSwitch : UISwitch!
     var airCompositionSwitch : UISwitch!
     
-    
-    @IBOutlet weak var unitSwitch: UISegmentedControl!
+    var unitSwitch : UISegmentedControl!
     @IBOutlet weak var clearButton: UIButton!
     @IBOutlet weak var calculateButton: UIButton!
     
@@ -74,8 +73,7 @@ print(unitSwitch.selectedSegmentIndex)
         UIGraphicsEndImageContext()
         return outputImage!
     }
-    
-    @IBAction func unitSegementedControl(_ sender: Any) {
+     func unitSwitchPressed(sender: UISegmentedControl){
             var wetBulbIndex : Int? = nil
             var dryBulbIndex : Int? = nil
             var widthIndex : Int? = nil
@@ -178,11 +176,21 @@ print(unitSwitch.selectedSegmentIndex)
 
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle{
+        return UIStatusBarStyle.default
+    }
+    
         func setDynamicVelocity(dynamicVelocity: [Double]){
             print("VIEWCONTROLLER RECIEVED")
       print(dynamicVelocity)   
             dynamicPressureArray=dynamicVelocity
      }
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.navigationController!.navigationBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 60.0)
+
+    }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
 
@@ -219,8 +227,17 @@ print(unitSwitch.selectedSegmentIndex)
         inputArrayValues[0]="off"
         inputArrayValues[1]="off"
         inputArrayValues[2]="off"
-        navigationItem.title = "Input"
         
+        unitSwitch = UISegmentedControl(items: ["Metric", "US"])
+        unitSwitch.sizeToFit()
+        unitSwitch.tintColor = UIColor(red:0.99, green:0.00, blue:0.25, alpha:1.00)
+        unitSwitch.selectedSegmentIndex = 0;
+        
+
+        self.navigationItem.title = "INPUTS"
+        self.navigationItem.titleView = unitSwitch
+        unitSwitch.addTarget(self, action: #selector(unitSwitchPressed(sender:)), for: UIControlEvents.valueChanged)
+
         // Set the UIImage as background property
        // navigationBar.setBackgroundImage(image, for: UIBarMetrics.default)
        
