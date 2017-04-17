@@ -37,17 +37,28 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
    
     @IBAction func calculate(_ sender: Any) {
-    let alertController: UIAlertController = UIAlertController(title: "Invalid Air Composition", message: "Sum must equal 100", preferredStyke: .Alert)
+        
+        
+        let alert = UIAlertController(title: "Alert", message: "Message", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
+        
+        
+        self.present(alert, animated: true, completion: nil)
+        
+        /*
+        let alertController: UIAlertController = UIAlertController(title: "Invalid Air Composition", message: "Sum must equal 100", preferredStyle: .alert)
     let cancelAction = UIAlertAction(title: "Cancel", style: . Cancel){
-     action ->
+        
+     
         
     }
-    let clearAction = UIAlertAction(title: "Clear air composition, style: .Default){
-                                    action ->
+    let clearAction = UIAlertAction(title: "Clear air composition", style: .Default){
+      
                                    }
         alertController.addAction(cancelAction)
         alertController.addAction(clearAction)
-        self.presentViewController(alertController, animate: true, completion: nul)
+        self.present(alertController, animated: true, completion: nil)
+     */
         /*
             calculateResults()
 
