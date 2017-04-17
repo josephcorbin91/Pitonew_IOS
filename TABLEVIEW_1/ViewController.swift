@@ -217,10 +217,10 @@ print(unitSwitch.selectedSegmentIndex)
     override func viewDidLoad() {
         super.viewDidLoad()
       registerForKeyboardNotifications()
-         InputTitles = ["Circular Duct","Non-Standard Air Composition","Wet Bulb (T)","Width", "Height", "Pitot Tube (C)"
-                        ,"Dynamic Velocity (P)","Sea Level (P)",  "Static (P)","Elevation", "Dry Bulb (T)","WetBulb (T)"]
-         InputUnitsSI = ["","","","m","m","","H20","C","ft","kPa",""]
-        InputUnitsUS = ["","","","in","in","","H20","F","ft","in hg",""]
+        InputTitles = ["Circular Duct","Non-Standard Air Composition","Wet Bulb (T)","Width", "Height", "Pitot Tube (C)"
+            ,"Dynamic Velocity (P)","Sea Level (P)",  "Static (P)","Elevation", "Dry Bulb (T)","Wet Bulb (T)","H20","Ar","N2","02","C02"]
+         InputUnitsSI = ["","","","m","m","","H20","C","ft","kPa","","","","","","","","",""]
+        InputUnitsUS = ["","","","in","in","","H20","F","ft","in hg","","","","","","","","",""]
         sectionHeaders = ["Pipe Configuration","Pipe parameters", "Pressure","Temperature","Air Composition"]
         ResultTitles = ["Dynamic Velocity", "Average Velocity", "Mass Air Flow", "Actual Air Flow","Normal Air Flow", "Molar Weight", "Duct (P)","Area", "Atmospheric (P)", "GasDensity"]
         ResultUnitsSI = ["m/s","m/s","kg/","m^3/s", "Nm^3/h","g/mol", "kPa", "m^2", "kPa", "kg/m^3"]
@@ -924,7 +924,7 @@ print(unitSwitch.selectedSegmentIndex)
                 }
             
 
-            
+     
             cell.inputTextField.text = inputArrayValues[indexOfInputArray]
            // cell.inputTextField.tag = indexPath.row
             cell.inputTextField.delegate = self // theField is your IBOutlet UITextfield in your custom cell
@@ -939,12 +939,12 @@ print(unitSwitch.selectedSegmentIndex)
          var cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultTextFieldCell", for: indexPath) as! CustomCell
            
             cell.inputTitle.text = InputTitles[indexPath.row+6]
-            print(indexPath.row)
+            print(indexPath.row+6)
             print("input units")
             print(InputUnits)
             cell.inputUnitLabel.text = InputUnits[indexPath.row+6]
-            
-        var indexOfInputArray = -1
+            print(InputTitles[indexPath.row+6])
+        var indexOfInputArray = 0
                 switch InputTitles[indexPath.row+6] {
                 case "Diameter": indexOfInputArray = 3
                 case "Width": indexOfInputArray = 3
@@ -960,7 +960,8 @@ print(unitSwitch.selectedSegmentIndex)
                 case "N2": indexOfInputArray = 13
                 case "Ar": indexOfInputArray = 12
                 case "H20":indexOfInputArray = 11
-                    
+                //Change for dyanamic velocity
+                case "Dynamic Velocity (P)":indexOfInputArray = 0
                 default : indexOfInputArray = -1
                 }
             
@@ -984,7 +985,7 @@ print(unitSwitch.selectedSegmentIndex)
             print("input units")
             print(InputUnits)
             cell.inputUnitLabel.text = InputUnits[indexPath.row+10]
-             
+            print(indexPath.row+10)
         var indexOfInputArray = -1
                 switch InputTitles[indexPath.row+10] {
                 case "Diameter": indexOfInputArray = 3
@@ -1004,9 +1005,7 @@ print(unitSwitch.selectedSegmentIndex)
                     
                 default : indexOfInputArray = -1
                 }
-            
-
-            
+          
             cell.inputTextField.text = inputArrayValues[indexOfInputArray]
            // cell.inputTextField.tag = indexPath.row
             cell.inputTextField.delegate = self // theField is your IBOutlet UITextfield in your custom cell
