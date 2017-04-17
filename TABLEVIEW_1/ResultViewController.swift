@@ -42,14 +42,17 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
         ResultUnitsSI = ["m/s","m/s","kg/","m^3/s", "Nm^3/h","g/mol", "kPa", "m^2", "kPa", "kg/m^3"]
         ResultUnitsUS = ["ft/s","ft/s","lb/min","SCFM", "ACFM","g/mol", "in Hg", "in^2", "in. Hg", "ft^3",""]
         navigationItem.title = "Results"
-
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: #imageLiteral(resourceName: "backgroun"))!)
-UIGraphicsBeginImageContext(self.view.frame.size);
-[[UIImage imageNamed:@"image.png"] drawInRect:self.view.bounds];
-UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-UIGraphicsEndImageContext();
-
-self.view.backgroundColor = [UIColor colorWithPatternImage:image];
+/*
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        UIImage(named: "backgroun.png")?.draw(in: self.view.bounds)
+        
+        var image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        
+        UIGraphicsEndImageContext()
+        
+        
+*/
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backgroun.png")!)
         segmentedControlResults.selectedSegmentIndex = currentUnits
 
         if(currentUnits == 1){
