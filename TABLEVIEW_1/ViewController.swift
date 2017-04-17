@@ -276,7 +276,13 @@ print(unitSwitch.selectedSegmentIndex)
         return self.sectionHeaders[section]
     }
     func numberOfSections(in tableView: UITableView) -> Int {
-        return sectionHeaders.count
+        if(inputArrayValues[1]=="on"){
+            return 4
+        }
+        else{
+            return 5
+        }
+        
     }
   
     
@@ -1320,7 +1326,7 @@ print(unitSwitch.selectedSegmentIndex)
                     InputTitles.remove(at: startingIndexAirComposition)
                     InputUnits.remove(at: startingIndexAirComposition)
                     DataSource = InputTitles
-                    tableView.deleteSections(<#T##sections: IndexSet##IndexSet#>, with: <#T##UITableViewRowAnimation#>)
+                    tableView.deleteSections(IndexSet(integersIn: 4...4), with: .top)
                                         tableView.endUpdates()
      
                     print(InputUnits)
@@ -1377,7 +1383,7 @@ print(unitSwitch.selectedSegmentIndex)
                     DataSource = InputTitles
                     
                    // tableView.insertRows(at: [IndexPath(row: 0, section: 4)], with: .top)
-                    tableView.insertSections([IndexPath(section: 4)], with: .top)
+                    tableView.insertSections(IndexSet(integersIn: 4...4), with: .top)
 
                     tableView.endUpdates()
                     //  inputArrayValues.insert("", at: startingIndexAirComposition)
