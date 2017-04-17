@@ -37,7 +37,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
    
     @IBAction func calculate(_ sender: Any) {
-    
+    let alertController: UIAlertController = UIAlertController(title: "Invalid Air Composition", message: "Sum must equal 100", preferredStyke: .Alert)
+    let cancelAction = UIAlertAction(title: "Cancel", style: . Cancel){
+     action ->
+        
+    }
+    let clearAction = UIAlertAction(title: "Clear air composition, style: .Default){
+                                    action ->
+                                   }
+        alertController.addAction(cancelAction)
+        alertController.addAction(clearAction)
+        self.presentViewController(alertController, animate: true, completion: nul)
+        /*
             calculateResults()
 
         let resultViewController = storyboard?.instantiateViewController(withIdentifier: "ResultViewController") as! ResultViewController
@@ -47,7 +58,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 print(unitSwitch.selectedSegmentIndex)
         resultViewController.currentUnits = unitSwitch.selectedSegmentIndex
         navigationController?.pushViewController(resultViewController, animated: true)
-    
+    */
     }
     var InputUnitsSI = [String]()
     var InputUnitsUS = [String]()
