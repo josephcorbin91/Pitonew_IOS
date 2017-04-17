@@ -197,7 +197,7 @@ print(unitSwitch.selectedSegmentIndex)
 
       
         
-        if(indexPath.row == InputTitles.count-1){
+        if(indexPath.section == 2 && indexPath.row == 0){
             let dynamicVelocityViewController = storyboard?.instantiateViewController(withIdentifier: "DynamicVelocityViewController") as! TableViewController
             dynamicVelocityViewController.myProtocol = self
             
@@ -218,7 +218,7 @@ print(unitSwitch.selectedSegmentIndex)
         super.viewDidLoad()
       registerForKeyboardNotifications()
         InputTitles = ["Circular Duct","Standard Air Composition","Wet Bulb (T)","Width", "Height", "Pitot Tube (C)"
-            ,"Dynamic Pressure ","Sea Level (P)",  "Static (P)","Elevation", "Dry Bulb (T)","Wet Bulb (T)","H20","Ar","N2","02","C02"]
+            ,"Dynamic Pressure ","Sea Level (P)",  "Static (P)","Elevation", "Dry Bulb (T)","H20","Ar","N2","02","C02"]
          InputUnitsSI = ["","","","m","m","","H20","C","ft","kPa","","","","","","","","",""]
         InputUnitsUS = ["","","","in","in","","H20","F","ft","in hg","","","","","","","","",""]
         sectionHeaders = ["Pipe Configuration","Pipe parameters", "Pressure","Temperature","Air Composition"]
@@ -310,8 +310,7 @@ print(unitSwitch.selectedSegmentIndex)
         }
         //tests
          UnitSwitch = true
-        //inputArrayValues = ["off","on","off","1.2","1","1","1","1","1","1","19","0","0","1.0","1.0","98.0"]
-       
+        
         
             if(inputArrayValues[0] == "on"){
                 pipeShapeSwitchBoolean = true}
@@ -766,20 +765,7 @@ print(unitSwitch.selectedSegmentIndex)
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print("NUMBER OF ROWS  " + String(DataSource.count))
-        
-          if(inputArrayValues[0] == "on" && inputArrayValues[2] == "on"){
-                startingIndex = 11
-            }
-            else if(inputArrayValues[0] == "on" && inputArrayValues[2] == "off"){
-                startingIndex = 10
-            }
-             else if(inputArrayValues[0] == "off" && inputArrayValues[2] == "on"){
-                startingIndex = 12
-            }
-             else if(inputArrayValues[0] == "off" && inputArrayValues[2] == "off"){
-                startingIndex = 11
-            }
-            
+                    
         if(section == 0){
             return 3
         }
@@ -798,10 +784,10 @@ print(unitSwitch.selectedSegmentIndex)
         else if(section == 3 && inputArrayValues[2] == "on"){
             return 2
         }
-        else if(section == 4 && inputArrayValues[2] == "off"){
+        else if(section == 4 && inputArrayValues[1] == "off"){
             return 5
         }
-         else if(section == 4 && inputArrayValues[2] == "on"){
+         else if(section == 4 && inputArrayValues[1] == "on"){
             return 0
         }
         else{
@@ -1032,8 +1018,9 @@ print(unitSwitch.selectedSegmentIndex)
            
             cell.inputTitle.text = InputTitles[indexPath.row+startingIndex]
             print(indexPath.row)
-            print("input units")
+            print("input units for temperature")
             print(InputUnits)
+            print()
             cell.inputUnitLabel.text = InputUnits[indexPath.row+startingIndex]
             print(indexPath.row+startingIndex)
         var indexOfInputArray = -1
@@ -1090,7 +1077,11 @@ print(unitSwitch.selectedSegmentIndex)
             print("input units")
             print(InputUnits)
             cell.inputUnitLabel.text = InputUnits[indexPath.row+startingIndex]
-            
+            print("INDDEX PATH ROW")
+            print(indexPath.row)
+            print("starting index")
+            print(startingIndex)
+            print(InputTitles[indexPath.row+startingIndex])
         var indexOfInputArray = -1
                 switch InputTitles[indexPath.row+startingIndex] {
                 case "Diameter": indexOfInputArray = 3
@@ -1288,7 +1279,7 @@ print(unitSwitch.selectedSegmentIndex)
                 }
             
             
-                  if(sender.isOn){
+                  if(!sender.isOn){
                     inputArrayValues[1]="on"
 
                 print("AirComposition On " + String(startingIndexAirComposition))
