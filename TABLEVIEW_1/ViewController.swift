@@ -938,13 +938,14 @@ print(unitSwitch.selectedSegmentIndex)
         }
         else if(indexPath.section == 2){
            var startingIndex = -1
-            if(inputArrayValues[0] == "on")
+            if(inputArrayValues[0] == "on"){
                 startingIndex = 5
+            }
             else{
                 startingIndex = 6
             }
             
-            if(index.row == 0){
+            if(indexPath.row == 0){
                    
             let cell : UITableViewCell
             cell = self.tableView.dequeueReusableCell(withIdentifier: "dynamicVelocityCell", for: indexPath)
@@ -992,11 +993,13 @@ print(unitSwitch.selectedSegmentIndex)
             return cell
         
         }
+        }
         else if(indexPath.section == 3){
             
              var startingIndex = -1
-            if(inputArrayValues[0] == "on")
+            if(inputArrayValues[0] == "on"){
                 startingIndex = 9
+            }
             else{
                 startingIndex = 10
             }
