@@ -217,8 +217,8 @@ print(unitSwitch.selectedSegmentIndex)
     override func viewDidLoad() {
         super.viewDidLoad()
       registerForKeyboardNotifications()
-         InputTitles = ["Circular Duct","Non-Standard Air Composition","Wet Bulb (T)","Width", "Height", "Pitot Tube (C)", "Static (P)", "Dry Bulb (T)", "Elevation",
-                           "Sea Level (P)", "Dynamic Velocity (P)"]
+         InputTitles = ["Circular Duct","Non-Standard Air Composition","Wet Bulb (T)","Width", "Height", "Pitot Tube (C)"
+                        ,"Dynamic Velocity (P)","Sea Level (P)",  "Static (P)","Elevation", "Dry Bulb (T)","WetBulb (T)"]
          InputUnitsSI = ["","","","m","m","","H20","C","ft","kPa",""]
         InputUnitsUS = ["","","","in","in","","H20","F","ft","in hg",""]
         sectionHeaders = ["Pipe Configuration","Pipe parameters", "Pressure","Temperature","Air Composition"]
@@ -893,6 +893,8 @@ print(unitSwitch.selectedSegmentIndex)
 
         }
         else if(indexPath.section == 1){
+            
+            
          var cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultTextFieldCell", for: indexPath) as! CustomCell
            
             cell.inputTitle.text = InputTitles[indexPath.row+3]
@@ -943,7 +945,7 @@ print(unitSwitch.selectedSegmentIndex)
             cell.inputUnitLabel.text = InputUnits[indexPath.row+6]
             
         var indexOfInputArray = -1
-                switch InputTitles[indexPath.row+3] {
+                switch InputTitles[indexPath.row+6] {
                 case "Diameter": indexOfInputArray = 3
                 case "Width": indexOfInputArray = 3
                 case "Height": indexOfInputArray = 4
@@ -977,14 +979,14 @@ print(unitSwitch.selectedSegmentIndex)
         else if(indexPath.section == 3){
          var cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultTextFieldCell", for: indexPath) as! CustomCell
            
-            cell.inputTitle.text = InputTitles[indexPath.row+8]
+            cell.inputTitle.text = InputTitles[indexPath.row+10]
             print(indexPath.row)
             print("input units")
             print(InputUnits)
-            cell.inputUnitLabel.text = InputUnits[indexPath.row+8]
-            
+            cell.inputUnitLabel.text = InputUnits[indexPath.row+10]
+             
         var indexOfInputArray = -1
-                switch InputTitles[indexPath.row+3] {
+                switch InputTitles[indexPath.row+10] {
                 case "Diameter": indexOfInputArray = 3
                 case "Width": indexOfInputArray = 3
                 case "Height": indexOfInputArray = 4
@@ -1017,15 +1019,15 @@ print(unitSwitch.selectedSegmentIndex)
         }
         else if(indexPath.section == 4){
          var cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultTextFieldCell", for: indexPath) as! CustomCell
-           
-            cell.inputTitle.text = InputTitles[indexPath.row+3]
+             
+            cell.inputTitle.text = InputTitles[indexPath.row+12]
             print(indexPath.row)
             print("input units")
             print(InputUnits)
-            cell.inputUnitLabel.text = InputUnits[indexPath.row+3]
+            cell.inputUnitLabel.text = InputUnits[indexPath.row+12]
             
         var indexOfInputArray = -1
-                switch InputTitles[indexPath.row+3] {
+                switch InputTitles[indexPath.row+12] {
                 case "Diameter": indexOfInputArray = 3
                 case "Width": indexOfInputArray = 3
                 case "Height": indexOfInputArray = 4
@@ -1057,7 +1059,7 @@ print(unitSwitch.selectedSegmentIndex)
         
         }
         
-        
+        /*
         else if(indexPath.row == InputTitles.count-1)
         {
             let cell : UITableViewCell
@@ -1065,7 +1067,7 @@ print(unitSwitch.selectedSegmentIndex)
             cell.textLabel?.text = InputTitles[indexPath.row]
                        return cell
         }
-     
+     */
         else{
             var cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultTextFieldCell", for: indexPath) as! CustomCell
            
