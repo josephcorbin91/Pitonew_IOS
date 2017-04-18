@@ -740,44 +740,53 @@ print(unitSwitch.selectedSegmentIndex)
             
         }
         
-         if(inputArrayValues[1] == "off"){
-         var sum = Double(inputArrayValues[15])! + Double(inputArrayValues[14])! + Double(inputArrayValues[13])! + Double(inputArrayValues[12])! + Double(inputArrayValues[11])!
+       
+        if(inputArrayValues[1] == "off"){
+            if(!(inputArrayValues[15] != "" && inputArrayValues[14] != "" && inputArrayValues[13]
+                != "" && inputArrayValues[12] != "" && inputArrayValues[11] != "")){
+                self.present(alertInvalidTextField, animated: true, completion: nil)
+
+                return false
+            }
+        }
+        if(inputArrayValues[1] == "off"){
+            var sum = Double(inputArrayValues[15])! + Double(inputArrayValues[14])! + Double(inputArrayValues[13])! + Double(inputArrayValues[12])! + Double(inputArrayValues[11])!
             if(sum != 100.00){
                 self.present(alertInvalidSum, animated: true, completion: nil)
                 return false
             }
             
         }
-        
-        /*
-        var count = 0
-        if(wetBulbSwitchBoolean && pipeShapeSwitchBoolean){
-            count = 7
-        }
-        else if(wetBulbSwitchBoolean && !pipeShapeSwitchBoolean){
-            count = 8
-        }
-        else if(!wetBulbSwitchBoolean && pipeShapeSwitchBoolean){
-            count = 6
-        }
-        else if(!wetBulbSwitchBoolean && !pipeShapeSwitchBoolean){
-            count = 7
-        }
-         
-        for value in 3...(3+count){
-            
-                if(inputArrayValues[value] == "")
-                {
-                    
-                    print("EMPTY AT" + String(value))
-                    return false
-                }
+        if(inputArrayValues[0] == "on" && inputArrayValues[2] == "on"){
+            if(inputArrayValues[3] == "" || inputArrayValues[5] == "" || inputArrayValues[6] == "" || inputArrayValues[7] == "" || inputArrayValues[8] == "" || inputArrayValues[9] == "" || inputArrayValues[10] == ""){
+                self.present(alertInvalidTextField, animated: true, completion: nil)
+
+            return false
             }
+        }
+        if(inputArrayValues[0] == "on" && inputArrayValues[2] == "off"){
+            if(inputArrayValues[3] == "" || inputArrayValues[5] == "" || inputArrayValues[6] == "" || inputArrayValues[7] == "" || inputArrayValues[9] == "" || inputArrayValues[10] == ""){
+                self.present(alertInvalidTextField, animated: true, completion: nil)
+
+                return false
+            }
+        }
+        if(inputArrayValues[0] == "off" && inputArrayValues[2] == "on"){
+            if(inputArrayValues[3] == "" || inputArrayValues[4] == "" || inputArrayValues[5] == "" || inputArrayValues[6] == "" || inputArrayValues[7] == "" || inputArrayValues[9] == "" || inputArrayValues[10] == "" || inputArrayValues[8] == ""){
+                self.present(alertInvalidTextField, animated: true, completion: nil)
+
+                return false
+            }
+        }
+        if(inputArrayValues[0] == "off" && inputArrayValues[2] == "off"){
+            if(inputArrayValues[3] == "" || inputArrayValues[4] == "" || inputArrayValues[5] == "" || inputArrayValues[6] == "" || inputArrayValues[7] == "" || inputArrayValues[9] == "" || inputArrayValues[10] == ""){
+                self.present(alertInvalidTextField, animated: true, completion: nil)
+
+                return false
+            }
+        }
         
-        
-     
-     */
-        
+      
         return true
         
 
