@@ -209,8 +209,8 @@ print(unitSwitch.selectedSegmentIndex)
       registerForKeyboardNotifications()
         InputTitles = ["Circular Duct","Standard Air Composition","Wet Bulb (T)","Width", "Height", "Pitot Tube (C)"
             ,"Dynamic Pressure ","Sea Level (P)",  "Static (P)","Elevation", "Dry Bulb (T)","H20","Ar","N2","02","C02"]
-         InputUnitsSI = ["","","","m","m","","H20","C","ft","kPa","","","","","","","","",""]
-        InputUnitsUS = ["","","","in","in","","H20","F","ft","in hg","","","","","","","","",""]
+         InputUnitsSI = ["","","","m","m","","","kPa","H2O","ft","°C","%","%","%","%","%"]
+        InputUnitsUS = ["","","","in","in","","","in. Hg","H2O","ft","°F","%","%","%","%","%"]
         sectionHeaders = ["Pipe Configuration","Pipe parameters", "Pressure","Temperature","Air Composition"]
         ResultTitles = ["Dynamic Velocity", "Average Velocity", "Mass Air Flow", "Actual Air Flow","Normal Air Flow", "Molar Weight", "Duct (P)","Area", "Atmospheric (P)", "GasDensity"]
         ResultUnitsSI = ["m/s","m/s","kg/","m^3/s", "Nm^3/h","g/mol", "kPa", "m^2", "kPa", "kg/m^3"]
@@ -1254,8 +1254,7 @@ print(unitSwitch.selectedSegmentIndex)
         self.tableView.isScrollEnabled = true
     }
          func switchPressed(sender:UISwitch){
-     
-         print("pipeSwitch" + String(describing: pipeSwitch))
+       print("pipeSwitch" + String(describing: pipeSwitch))
         
             if(sender.tag == 0){
                 if(sender.isOn){
@@ -1263,11 +1262,31 @@ print(unitSwitch.selectedSegmentIndex)
                 print("PipeType ON")
                 InputTitles.remove(at: 4)
                 InputUnits.remove(at: 4)
-                inputArrayValues[4] = ""
                     
+                inputArrayValues[4] = ""
+            
                 InputTitles.remove(at: 3)
                 InputUnits.remove(at: 3)
                 inputArrayValues[3] = ""
+                   
+                    InputUnitsUS.remove(at: 4)
+                    InputUnitsUS.remove(at: 3)
+                    
+                    InputUnitsSI.remove(at: 4)
+                    InputUnitsSI.remove(at: 3)
+
+                if(unitSwitch.selectedSegmentIndex == 1){
+                        InputUnits.insert("m", at: 3)
+
+                    
+                    }
+                    else{
+                        InputUnits.insert("in", at: 3)
+
+                    
+                    }
+                    InputUnitsSI.insert("m", at: 3)
+                    InputUnitsUS.insert("in", at: 3)
 
                 InputTitles.insert("Diameter", at: 3)
                 DataSource = InputTitles
@@ -1292,13 +1311,20 @@ print(unitSwitch.selectedSegmentIndex)
                  if(unitSwitch.selectedSegmentIndex == 1){
                  InputUnits.insert("m", at: 4)
                     InputUnits.insert("m", at: 3)
+                 
+
 
                  }
                  else{
                      InputUnits.insert("in", at: 4)
                     InputUnits.insert("in", at: 3)
-
+                 
                  }
+                    InputUnitsSI.insert("m", at: 4)
+                    InputUnitsSI.insert("m", at: 3)
+                    InputUnitsUS.insert("in", at: 4)
+                    InputUnitsUS.insert("in", at: 3)
+
                  DataSource = InputTitles
                  tableView.beginUpdates()
                    tableView.deleteRows(at: [IndexPath(row: 0, section: 1)], with: .top)
@@ -1313,19 +1339,21 @@ print(unitSwitch.selectedSegmentIndex)
 
                  
             }
+           
+            
             else if(sender.tag == 1){
                 var startingIndexAirComposition = 11
                 if(!pipeSwitch.isOn && wetBulbSwitch.isOn){
-                 startingIndexAirComposition=11
+                 startingIndexAirComposition=12
                 }
                 else if(pipeSwitch.isOn && wetBulbSwitch.isOn){
-                 startingIndexAirComposition=10
+                 startingIndexAirComposition=11
                 }
                 else if(!(pipeSwitch.isOn) && !(wetBulbSwitch.isOn)){
-                 startingIndexAirComposition=10
+                 startingIndexAirComposition=11
                 }
                 else if(pipeSwitch.isOn && !wetBulbSwitch.isOn){
-                 startingIndexAirComposition=9
+                 startingIndexAirComposition=10
                 }
             
             
@@ -1339,6 +1367,10 @@ print(unitSwitch.selectedSegmentIndex)
                     
                     InputTitles.remove(at: startingIndexAirComposition)
                     InputUnits.remove(at: startingIndexAirComposition)
+                    InputUnitsUS.remove(at: startingIndexAirComposition)
+                    InputUnitsSI.remove(at: startingIndexAirComposition)
+
+                    
                     // inputArrayValues.remove(at: startingIndexAirComposition)
                     DataSource = InputTitles
                     
@@ -1347,6 +1379,10 @@ print(unitSwitch.selectedSegmentIndex)
                     
                     InputTitles.remove(at: startingIndexAirComposition)
                     InputUnits.remove(at: startingIndexAirComposition)
+                    InputUnitsUS.remove(at: startingIndexAirComposition)
+                    InputUnitsSI.remove(at: startingIndexAirComposition)
+                   
+
                     DataSource = InputTitles
                     
                     //tableView.deleteRows(at: [IndexPath(row: 0, section: 4)], with: .top)
@@ -1354,6 +1390,10 @@ print(unitSwitch.selectedSegmentIndex)
                     
                     InputTitles.remove(at: startingIndexAirComposition)
                     InputUnits.remove(at: startingIndexAirComposition)
+                    InputUnitsUS.remove(at: startingIndexAirComposition)
+                    InputUnitsSI.remove(at: startingIndexAirComposition)
+                    
+
                     DataSource = InputTitles
                     
                    // tableView.deleteRows(at: [IndexPath(row: 0, section: 4)], with: .top)
@@ -1361,13 +1401,19 @@ print(unitSwitch.selectedSegmentIndex)
                     
                     InputTitles.remove(at: startingIndexAirComposition)
                     InputUnits.remove(at: startingIndexAirComposition)
-                    DataSource = InputTitles
+                    InputUnitsUS.remove(at: startingIndexAirComposition)
+                    InputUnitsSI.remove(at: startingIndexAirComposition)
                     
+
                     //tableView.deleteRows(at: [IndexPath(row: 0, section: 4)], with: .top)
                     
                     
                     InputTitles.remove(at: startingIndexAirComposition)
                     InputUnits.remove(at: startingIndexAirComposition)
+                    InputUnitsUS.remove(at: startingIndexAirComposition)
+                    InputUnitsSI.remove(at: startingIndexAirComposition)
+                    
+
                     DataSource = InputTitles
                     tableView.deleteSections(IndexSet(integersIn: 4...4), with: .top)
                                         tableView.endUpdates()
@@ -1394,14 +1440,22 @@ print(unitSwitch.selectedSegmentIndex)
                     tableView.beginUpdates()
                     
                     InputTitles.insert("C02", at: startingIndexAirComposition)
-                    InputUnits.insert("", at: startingIndexAirComposition)
+                    InputUnits.insert("%", at: startingIndexAirComposition)
+                    
+                    InputUnitsSI.insert("%", at: startingIndexAirComposition)
+                    InputUnitsUS.insert("%", at: startingIndexAirComposition)
+
                     //inputArrayValues.insert("", at: startingIndexAirComposition)
                     DataSource = InputTitles
                     
                     //tableView.insertRows(at: [IndexPath(row: 0, section: 4)], with: .top)
                     
                     InputTitles.insert("02", at: startingIndexAirComposition)
-                    InputUnits.insert("", at: startingIndexAirComposition)
+                    InputUnits.insert("%", at: startingIndexAirComposition)
+                    InputUnitsSI.insert("%", at: startingIndexAirComposition)
+                    InputUnitsUS.insert("%", at: startingIndexAirComposition)
+                    
+
                     //  inputArrayValues.insert("", at: startingIndexAirComposition)
                     DataSource = InputTitles
                     
@@ -1409,20 +1463,31 @@ print(unitSwitch.selectedSegmentIndex)
                     
                      
                     InputTitles.insert("N2", at: startingIndexAirComposition)
-                    InputUnits.insert("", at: startingIndexAirComposition)
+                    InputUnits.insert("%", at: startingIndexAirComposition)
+                    InputUnitsSI.insert("%", at: startingIndexAirComposition)
+                    InputUnitsUS.insert("%", at: startingIndexAirComposition)
+                    
+
                     DataSource = InputTitles
                     
                  //   tableView.insertRows(at: [IndexPath(row: 0, section: 4)], with: .top)
                     
                     
                     InputTitles.insert("Ar", at: startingIndexAirComposition)
-                    InputUnits.insert("", at: startingIndexAirComposition)
+                    InputUnitsSI.insert("%", at: startingIndexAirComposition)
+                    InputUnitsUS.insert("%", at: startingIndexAirComposition)
+                    
+
+                    InputUnits.insert("%", at: startingIndexAirComposition)
                     DataSource = InputTitles
                     
                    // tableView.insertRows(at: [IndexPath(row: 0, section: 4)], with: .top)
                      
                     InputTitles.insert("H20", at: startingIndexAirComposition)
-                    InputUnits.insert("", at: startingIndexAirComposition)
+                    InputUnits.insert("%", at: startingIndexAirComposition)
+                    InputUnitsSI.insert("%", at: startingIndexAirComposition)
+                    InputUnitsUS.insert("%", at: startingIndexAirComposition)
+                    
                     DataSource = InputTitles
                     
                    // tableView.insertRows(at: [IndexPath(row: 0, section: 4)], with: .top)
@@ -1438,7 +1503,7 @@ print(unitSwitch.selectedSegmentIndex)
                 
            
                      
-                     
+                
             else if(sender.tag == 2){
                 if(pipeSwitch.isOn){
                  if(sender.isOn){
@@ -1447,11 +1512,17 @@ print(unitSwitch.selectedSegmentIndex)
                     inputArrayValues[7]=""
                     InputTitles.insert("Wet Bulb (T)", at: 10)
                     if(unitSwitch.selectedSegmentIndex == 1){
-                        InputUnits.insert("C", at: 10)
+                        InputUnits.insert("°C", at: 10)
+
+                        
                     }
                     else{
-                        InputUnits.insert("F", at: 10)
+                        InputUnits.insert("°F", at: 10)
+
                     }
+                    InputUnitsSI.insert("°C", at: 10)
+                    InputUnitsUS.insert("°F", at: 10)
+
                     DataSource = InputTitles
                     tableView.beginUpdates()
                     tableView.insertRows(at: [IndexPath(row: 1, section: 3)], with: .fade)
@@ -1466,6 +1537,10 @@ print(unitSwitch.selectedSegmentIndex)
                     inputArrayValues[7]=""
                     InputTitles.remove(at: 10)
                     InputUnits.remove(at: 10)
+                    InputUnitsUS.remove(at: 10)
+                    InputUnitsSI.remove(at: 10)
+
+                    
                     DataSource = InputTitles
                     tableView.beginUpdates()
                     tableView.deleteRows(at: [IndexPath(row: 1, section: 3)], with: .fade)
@@ -1480,10 +1555,15 @@ print(unitSwitch.selectedSegmentIndex)
                         InputTitles.insert("Wet Bulb (T)", at: 11)
                         if(unitSwitch.selectedSegmentIndex == 1){
                             InputUnits.insert("C", at: 11)
+                            
                         }
                         else{
-                            InputUnits.insert("F", at: 11)
+                            InputUnits.insert("°F", at: 11)
+
                         }
+                        InputUnitsSI.insert("°C", at: 11)
+                        InputUnitsUS.insert("°F", at: 11)
+
                         DataSource = InputTitles
                         tableView.beginUpdates()
                         tableView.insertRows(at: [IndexPath(row: 1, section: 3)], with: .fade)
@@ -1498,6 +1578,9 @@ print(unitSwitch.selectedSegmentIndex)
                         
                         InputTitles.remove(at: 11)
                         InputUnits.remove(at: 11)
+                        InputUnitsUS.remove(at: 11)
+                        InputUnitsSI.remove(at: 11)
+
                         
                         DataSource = InputTitles
                         tableView.beginUpdates()
@@ -1514,6 +1597,11 @@ print(unitSwitch.selectedSegmentIndex)
         
         print("INPUT ARRAY VALUES SWITCH PRESSED " + String(inputArrayValues.count))
         print(inputArrayValues)
+            print("INPUT UNITS")
+            print("INPUT US")
+            print(InputUnitsUS)
+            print("INPUT SI")
+            print(InputUnitsSI)
 
         
         }
