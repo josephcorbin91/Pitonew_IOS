@@ -35,17 +35,27 @@ class TableViewController: UITableViewController, UITextFieldDelegate {
    
    
     func done(){
+        if(verifyDataPressureRule()){
         var returnArray = Array(items[0..<items.count])
         myProtocol?.setDynamicVelocity(dynamicVelocity: returnArray)
         self.navigationController?.popViewController(animated: true)
         
     }
+        else{
+            let alertInvalidResult = UIAlertController(title: "Invalid Pressure values", message: "75% of values must be greater than 10% of the maximum pressure", preferredStyle: UIAlertControllerStyle.alert)
+            alertInvalidResult.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alertInvalidResult, animated: true, completion: nil)
+            
+        }
+        
+    }
     
     
     
-    func verifyDataPressureRule(value: Double) -> Bool {
+    func verifyDataPressureRule() -> Bool {
         print("VERIFY DATA CALLED")
-        var currentMax = value
+        print(items)
+        var currentMax = Double(items[0])
         for i in 0..<items.count{
             var currentVelocity = Double(items[i])
             if(currentVelocity > currentMax){
@@ -77,7 +87,6 @@ class TableViewController: UITableViewController, UITextFieldDelegate {
                 if let text = textField.text, !text.isEmpty
                 {
                     
-                    if(verifyDataPressureRule(value: Double(text)!)){
                     
                     items.append(Double(text)!)
                     textField.text = ""
@@ -90,16 +99,10 @@ class TableViewController: UITableViewController, UITextFieldDelegate {
                     tableView.insertRows(at: [insertionIndexPath as IndexPath], with: .top)
                     tableView.endUpdates()
              }
-            else{
-                let alertInvalidResult = UIAlertController(title: "Invalid Pressure values", message: "75% of values must be greater than 10% of the maximum pressure", preferredStyle: UIAlertControllerStyle.alert)
-                alertInvalidResult.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                self.present(alertInvalidResult, animated: true, completion: nil)
-                
-            }
-            
+        
             
 
-        }
+        
     }
     
         override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

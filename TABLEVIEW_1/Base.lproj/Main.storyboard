@@ -354,7 +354,6 @@
         <!--View Controller For Table View Controller-->
         <scene sceneID="Lfl-9G-smr">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="W9x-Nr-CC8" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="dynamicPressureController" id="j0E-Zd-xlt" customClass="ViewControllerForTableViewController" customModule="TABLEVIEW_1" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="iY5-Qq-4Hd"/>
@@ -398,6 +397,7 @@
                         <outlet property="velocityTextField" destination="B29-cf-Wz9" id="rV6-Xz-mIZ"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W9x-Nr-CC8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2138" y="-529"/>
         </scene>

@@ -104,37 +104,29 @@ print(unitSwitch.selectedSegmentIndex)
             InputUnits = InputUnitsUS
             ResultUnits = ResultUnitsUS
             resultArray = USReaultsArray
+            print("SWITCHING VALUES TO US")
+
             if(inputArrayValues[3] != ""){
                 inputArrayValues[3] = String(Double(inputArrayValues[3])!/0.0254)
             }
-                tableView.beginUpdates()
-                tableView.reloadRows(at: [IndexPath(row: heightIndex!, section: 0)], with: .left)
-                tableView.endUpdates()
+           
             
             if(inputArrayValues[4] != ""){
                 inputArrayValues[4] = String(Double(inputArrayValues[4])!/0.0254)
             }
-                tableView.beginUpdates()
-                tableView.reloadRows(at: [IndexPath(row: widthIndex!, section: 0)], with: .left)
-                tableView.endUpdates()
+            
             if(inputArrayValues[7] != ""){
                 inputArrayValues[7] = String((Double(inputArrayValues[7])!-32.0) / 1.8)
             }
-                tableView.beginUpdates()
-                tableView.reloadRows(at: [IndexPath(row: dryBulbIndex!, section: 0)], with: .left)
-                tableView.endUpdates()
+            
             if(inputArrayValues[8] != ""){
                 inputArrayValues[8] = String((Double(inputArrayValues[8])!-32.0) / 1.8)
             }
-                tableView.beginUpdates()
-                tableView.reloadRows(at: [IndexPath(row: wetBulbIndex!, section: 0)], with: .left)
-                tableView.endUpdates()
+           
             if(inputArrayValues[10] != ""){
                 inputArrayValues[10] = String(Double(inputArrayValues[10])! * 0.295299875)
             }
-                tableView.beginUpdates()
-                tableView.reloadRows(at: [IndexPath(row: seaLevelPressureIndex!, section: 0)], with: .left)
-                tableView.endUpdates()
+            
             
             
         }
@@ -142,41 +134,31 @@ print(unitSwitch.selectedSegmentIndex)
             InputUnits = InputUnitsSI
             ResultUnits = ResultUnitsSI
             resultArray = SIResultsArray
-            
+            print("SWITCHING VALUES TO SI")
             if(inputArrayValues[3] != ""){
                 inputArrayValues[3] = String(Double(inputArrayValues[3])!*0.0254)
             }
-                tableView.beginUpdates()
-                tableView.reloadRows(at: [IndexPath(row: 3, section: 0)], with: .right)
-                tableView.endUpdates()
+            
             
             if(inputArrayValues[4] != ""){
                 inputArrayValues[4] = String(Double(inputArrayValues[4])!*0.0254)}
-            tableView.beginUpdates()
-                tableView.reloadRows(at: [IndexPath(row: 4, section: 0)], with: .right)
-                tableView.endUpdates()
             if(inputArrayValues[7] != ""){
                 inputArrayValues[7] = String((Double(inputArrayValues[7])!*1.8) + 32)}
-            tableView.beginUpdates()
-                tableView.reloadRows(at: [IndexPath(row: 7, section: 0)], with: .right)
-                tableView.endUpdates()
             if(inputArrayValues[8] != ""){
                 inputArrayValues[8] = String((Double(inputArrayValues[8])!*1.8) + 32)}
-            tableView.beginUpdates()
-                tableView.reloadRows(at: [IndexPath(row: 8, section: 0)], with: .right)
-                tableView.endUpdates()
             if(inputArrayValues[10] != ""){
                 inputArrayValues[10] = String(Double(inputArrayValues[10])! / 0.295299875)}
-            tableView.beginUpdates()
-                tableView.reloadRows(at: [IndexPath(row: 10, section: 0)], with: .right)
-                tableView.endUpdates()
             
-
+          
+            
    
         }
+        let range = NSMakeRange(1, 3)
+        let sections = NSIndexSet(indexesIn: range)
+        self.tableView.reloadSections(sections as IndexSet, with: .fade)
         print("INPUT ARRAY VALUES AFTER SWITCH")
         print(inputArrayValues)
-     //   tableView.reloadData()
+         //tableView.reloadData()
 
     }
     
@@ -201,15 +183,20 @@ print(unitSwitch.selectedSegmentIndex)
       
         
         if(indexPath.section == 2 && indexPath.row == 0){
-            let dynamicVelocityViewController = storyboard?.instantiateViewController(withIdentifier: "DynamicVelocityViewController") as! TableViewController
-            dynamicVelocityViewController.myProtocol = self
-            
-            dynamicVelocityViewController.items = dynamicPressureArray
-            
-            print("SENDING DYNAMIC VELOCITY ARRAY")
-            print(dynamicVelocityArray)
-            self.navigationController?.pushViewController(dynamicVelocityViewController, animated: true)
+            showDynamicVelocity()
     }
+    }
+    
+    func showDynamicVelocity(){
+        
+        let dynamicVelocityViewController = storyboard?.instantiateViewController(withIdentifier: "DynamicVelocityViewController") as! TableViewController
+        dynamicVelocityViewController.myProtocol = self
+        
+        dynamicVelocityViewController.items = dynamicPressureArray
+        
+        print("SENDING DYNAMIC VELOCITY ARRAY")
+        print(dynamicVelocityArray)
+        self.navigationController?.pushViewController(dynamicVelocityViewController, animated: true)
     }
     
     
@@ -232,7 +219,7 @@ print(unitSwitch.selectedSegmentIndex)
         inputArrayValues[1]="off"
         inputArrayValues[2]="off"
         
-        unitSwitch = UISegmentedControl(items: ["Metric", "US"])
+        unitSwitch = UISegmentedControl(items: ["US", "Metric"])
         unitSwitch.sizeToFit()
         unitSwitch.tintColor = UIColor(red:0.99, green:0.00, blue:0.25, alpha:1.00)
         unitSwitch.selectedSegmentIndex = 0;
@@ -349,7 +336,7 @@ print(unitSwitch.selectedSegmentIndex)
                 
                 elevationAboveSealevel = Double(inputArrayValues[9])!
                 seaLevelPressure = Double(inputArrayValues[10])!
-                if(AirCompositionSwitchBoolean){
+                if(!AirCompositionSwitchBoolean){
                 C02Composition =  Double(inputArrayValues[15])!
                 O2Composition =  Double(inputArrayValues[14])!
                 N2Composition =  Double(inputArrayValues[13])!
@@ -734,6 +721,25 @@ print(unitSwitch.selectedSegmentIndex)
         alertInvalidTextField.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
         
         
+     
+
+        let alertMissingDynamicVelocity = UIAlertController(title: "Invalid Input", message: "Dynamic Velocity required", preferredStyle: UIAlertControllerStyle.alert)
+        alertInvalidTextField.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        let showDynamicVelocity = UIAlertAction(title: "Add dynamic pressure", style: .default) { (action) -> Void in
+            self.showDynamicVelocity()
+
+            
+        }
+        alertMissingDynamicVelocity.addAction(showDynamicVelocity)
+        
+        if(dynamicPressureArray.count == 0){
+               self.present(alertMissingDynamicVelocity, animated: true, completion: nil)
+            return false
+            
+            // Initialize Actions
+            
+        }
+        
          if(inputArrayValues[1] == "off"){
          var sum = Double(inputArrayValues[15])! + Double(inputArrayValues[14])! + Double(inputArrayValues[13])! + Double(inputArrayValues[12])! + Double(inputArrayValues[11])!
             if(sum != 100.00){
@@ -871,6 +877,8 @@ print(unitSwitch.selectedSegmentIndex)
         
         inputArrayValues[indexOfInputArray] = textField.text!
         rowBeingEdited = nil
+        print("End Editing")
+        print(InputTitles)
         print(inputArrayValues)
         
       

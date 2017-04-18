@@ -17,11 +17,11 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var resultArray = Array(repeating: "", count: 10)
     var SIResultsArray = Array(repeating: "", count: 10)
     var USReaultsArray = Array(repeating: "", count: 10)
-    
+    var unitSwitch : UISegmentedControl!
     var currentUnits : Int = 0
     
-    @IBAction func segmentedControlUnits(_ sender: UISegmentedControl) {
-           if(segmentedControlResults.selectedSegmentIndex == 0){
+    func unitSwitchPressedResult(sender: UISegmentedControl) {
+           if(unitSwitch.selectedSegmentIndex == 0){
             ResultUnits = ResultUnitsUS
             resultArray = USReaultsArray
 
@@ -32,9 +32,17 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
             resultArray = SIResultsArray
             
         }
-        tableView.reloadData()
-
+        let range = NSMakeRange(0, 0)
+        let sections = NSIndexSet(indexesIn: range)
+        self.tableView.reloadSections(sections as IndexSet, with: .fade)
     }
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.navigationController!.navigationBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 60.0)
+        
+    }
+
     @IBOutlet weak var segmentedControlResults: UISegmentedControl!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,16 +50,21 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
         ResultUnitsSI = ["m/s","m/s","kg/","m^3/s", "Nm^3/h","g/mol", "kPa", "m^2", "kPa", "kg/m^3"]
         ResultUnitsUS = ["ft/s","ft/s","lb/min","SCFM", "ACFM","g/mol", "in Hg", "in^2", "in. Hg", "ft^3",""]
         navigationItem.title = "Results"
-/*
-        UIGraphicsBeginImageContext(self.view.frame.size)
-        UIImage(named: "backgroun.png")?.draw(in: self.view.bounds)
-        
-        var image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-        
-        UIGraphicsEndImageContext()
         
         
-*/
+        unitSwitch = UISegmentedControl(items: ["US", "METRIC"])
+        unitSwitch.sizeToFit()
+        unitSwitch.tintColor = UIColor(red:0.99, green:0.00, blue:0.25, alpha:1.00)
+        unitSwitch.selectedSegmentIndex = 0;
+        
+        
+        self.navigationItem.title = "INPUTS"
+        self.navigationItem.titleView = unitSwitch
+        unitSwitch.addTarget(self, action: #selector(unitSwitchPressedResult(sender:)), for: UIControlEvents.valueChanged)
+
+       
+
+
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backgroun.png")!)
         segmentedControlResults.selectedSegmentIndex = currentUnits
 
@@ -76,9 +89,9 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
         //tableView.layer.shadowOffset = CGSize(width: 3, height: 3)
         tableView.layer.shadowOpacity = 0.7
         tableView.layer.shadowRadius = 4.0
-        tableView.reloadData()
-
-        // Do any additional setup after loading the view.
+        let range = NSMakeRange(0, 0)
+        let sections = NSIndexSet(indexesIn: range)
+        self.tableView.reloadSections(sections as IndexSet, with: .fade)
     }
     
     
