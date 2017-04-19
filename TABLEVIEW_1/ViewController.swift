@@ -20,6 +20,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var sectionHeaders = [String]()
     var ResultUnitsUS = [String]()
     var dynamicVelocityArray = [Double]()
+    var dynamicVelocityArrayUS = [Double]()
+    var dynamicVelocityArraySI = [Double]()
 
     var ResultUnits = [String]()
     var retrievedDynamicVelocities = [Int]()
@@ -532,13 +534,13 @@ print(unitSwitch.selectedSegmentIndex)
          
          if(UnitSwitch){
          for item in dynamicPressureArray {
-         dynamicVelocityArray.append(pilotTubeCoeffecient*pow(2.0*item*1000/4.01864/gasDensity,0.5))
+         dynamicVelocityArraySI.append(pilotTubeCoeffecient*pow(2.0*item*1000/4.01864/gasDensity,0.5))
          }
          }
          else{
          for item in dynamicPressureArray {
          
-         dynamicVelocityArray.append(pilotTubeCoeffecient*pow(2.0*item*1000/4.01864/(gasDensity / 0.062428),0.5) * 3.2804)
+         dynamicVelocityArrayUS.append(pilotTubeCoeffecient*pow(2.0*item*1000/4.01864/(gasDensity / 0.062428),0.5) * 3.2804)
          }
          }
          averageVelocity = average(nums: dynamicVelocityArray)
@@ -667,6 +669,8 @@ print(unitSwitch.selectedSegmentIndex)
          
                 print("RESULTS NUMBERS")
                 print("UNITS" + String(UnitSwitch))
+                print("VELOCITIES")
+                print(dynamicVelocityArray)
                 print("averageVelocity" + String(averageVelocity))                
                 print("massAirFlow" + String(massAirFlow))                
                 print("actualAirFlow" + String(actualAirFlow))                
@@ -678,6 +682,9 @@ print(unitSwitch.selectedSegmentIndex)
                 print("gasDensity" + String(gasDensity))
                 
                 print("RESULTS STRINGS SI")
+                print("VELOCITIES")
+                print(dynamicVelocityArraySI)
+
                 print("averageVelocity" + SIResultsArray[1])
                 print("massAirFlow" + SIResultsArray[2])
                 print("actualAirFlow" + SIResultsArray[3])
@@ -690,6 +697,8 @@ print(unitSwitch.selectedSegmentIndex)
                 
                 
                 print("RESULTS STRINGS US")
+                print("VELOCITIES")
+                print(dynamicVelocityArrayUS)
                 print("averageVelocity" + USReaultsArray[1])
                 print("massAirFlow" + USReaultsArray[2])
                 print("actualAirFlow" + USReaultsArray[3])
