@@ -219,15 +219,17 @@ print(unitSwitch.selectedSegmentIndex)
         inputArrayValues[1]="off"
         inputArrayValues[2]="off"
         
-        unitSwitch = UISegmentedControl(items: ["US", "Metric"])
+        unitSwitch = UISegmentedControl(items: ["US", "METRIC"])
         unitSwitch.sizeToFit()
-        unitSwitch.tintColor = UIColor(red:0.99, green:0.00, blue:0.25, alpha:1.00)
+        unitSwitch.tintColor = UIColor(red:0.99, green:0.00, blue:0.25, alpha:10.5)
         unitSwitch.selectedSegmentIndex = 0;
         
 
         self.navigationItem.title = "INPUTS"
         self.navigationItem.titleView = unitSwitch
         unitSwitch.addTarget(self, action: #selector(unitSwitchPressed(sender:)), for: UIControlEvents.valueChanged)
+        
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backgroun.png")!)
 
         // Set the UIImage as background property
        // navigationBar.setBackgroundImage(image, for: UIBarMetrics.default)
@@ -248,8 +250,9 @@ print(unitSwitch.selectedSegmentIndex)
         //tableView.layer.shadowOffset = CGSize(width: 3, height: 3)
         tableView.layer.shadowOpacity = 0.7
         tableView.layer.shadowRadius = 4.0
-
-  
+        let range = NSMakeRange(0, 0)
+        let sections = NSIndexSet(indexesIn: range)
+        self.tableView.reloadSections(sections as IndexSet, with: .fade)
        
         }
     

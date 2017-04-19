@@ -33,9 +33,10 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
             resultArray = SIResultsArray
             
         }
-        let range = NSMakeRange(0, 0)
-        let sections = NSIndexSet(indexesIn: range)
-        self.tableView.reloadSections(sections as IndexSet, with: .fade)
+        print(ResultUnits)
+        print(resultArray)
+        print("UNIT SWITCH PRESSED")
+        tableView.reloadData()
     }
     
     
@@ -51,8 +52,8 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     func showDynamicVelocity(){
         
-        let dynamicVelocityViewController = storyboard?.instantiateViewController(withIdentifier: "DynamicVelocityViewController") as! TableViewController
-        dynamicVelocityViewController.dynamicResultsProtocol = self
+        let dynamicVelocityViewController = storyboard?.instantiateViewController(withIdentifier: "DynamicVelocityViewControllerResult") as! tableViewControllerResult
+       // dynamicVelocityViewController.dynamicResultsProtocol = self
         
         dynamicVelocityViewController.items = dynamicPressureArray
         
@@ -68,19 +69,26 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let font:UIFont? = UIFont(name: "Helvetica", size:13)
+        let fontSuper:UIFont? = UIFont(name: "Helvetica", size:10)
+        let squareMeter:NSMutableAttributedString = NSMutableAttributedString(string: "m2", attributes: [NSFontAttributeName:font!])
+        squareMeter.setAttributes([NSFontAttributeName:fontSuper!,NSBaselineOffsetAttributeName:10], range: NSRange(location:1,length:1))
+        
+        
+        
         ResultTitles = ["Dynamic Velocity", "Average Velocity", "Mass Air Flow", "Actual Air Flow","Normal Air Flow", "Molar Weight", "Duct (P)","Area", "Atmospheric (P)", "GasDensity"]
-        ResultUnitsSI = ["m/s","m/s","kg/","m^3/s", "Nm^3/h","g/mol", "kPa", "m^2", "kPa", "kg/m^3"]
+        ResultUnitsSI = ["m/s","m/s","kg/","m^3/s", "Nm^3/h","g/mol", "kPa", squareMeter.string, "kPa", "kg/m^3"]
         ResultUnitsUS = ["ft/s","ft/s","lb/min","SCFM", "ACFM","g/mol", "in Hg", "in^2", "in. Hg", "ft^3",""]
         navigationItem.title = "Results"
         
         
         unitSwitch = UISegmentedControl(items: ["US", "METRIC"])
         unitSwitch.sizeToFit()
-        unitSwitch.tintColor = UIColor(red:0.99, green:0.00, blue:0.25, alpha:1.00)
+        unitSwitch.tintColor = UIColor(red:0.99, green:0.00, blue:0.25, alpha:0.5)
         unitSwitch.selectedSegmentIndex = 0;
         
         
-        self.navigationItem.title = "INPUTS"
+        self.navigationItem.title = "Results"
         self.navigationItem.titleView = unitSwitch
         unitSwitch.addTarget(self, action: #selector(unitSwitchPressedResult(sender:)), for: UIControlEvents.valueChanged)
 
@@ -111,10 +119,7 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
         //tableView.layer.shadowOffset = CGSize(width: 3, height: 3)
         tableView.layer.shadowOpacity = 0.7
         tableView.layer.shadowRadius = 4.0
-        let range = NSMakeRange(0, 0)
-        let sections = NSIndexSet(indexesIn: range)
-        self.tableView.reloadSections(sections as IndexSet, with: .fade)
-    }
+       tableView.reloadData()    }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

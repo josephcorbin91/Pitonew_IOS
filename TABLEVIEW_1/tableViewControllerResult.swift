@@ -18,7 +18,7 @@ class tableViewControllerResult : UITableViewController, UITextFieldDelegate {
         super.viewDidLoad()
         navigationItem.title = "Dynamic Velocity"
         
-              
+        
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Done", style: .plain, target: self, action: "done")
     }
