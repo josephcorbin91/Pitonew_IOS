@@ -8,8 +8,9 @@
 
 import UIKit
 
-class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
+class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, dynamicResultsProtocol {
+    var dynamicPressureArray = [Double]()
+
     var ResultTitles = [String]()
     var ResultUnitsSI = [String]()
     var ResultUnitsUS = [String]()
@@ -38,12 +39,33 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     
-    override func viewDidAppear(_ animated: Bool) {
-        self.navigationController!.navigationBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 60.0)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if(indexPath.row == 0){
+            showDynamicVelocity()
+        }
+    }
+    
+    func setDynamicVelocityResults(dynamicVelocity: [Double]){
         
     }
 
-    @IBOutlet weak var segmentedControlResults: UISegmentedControl!
+    func showDynamicVelocity(){
+        
+        let dynamicVelocityViewController = storyboard?.instantiateViewController(withIdentifier: "DynamicVelocityViewController") as! TableViewController
+        dynamicVelocityViewController.dynamicResultsProtocol = self
+        
+        dynamicVelocityViewController.items = dynamicPressureArray
+        
+        print("SENDING DYNAMIC VELOCITY ARRAY")
+        self.navigationController?.pushViewController(dynamicVelocityViewController, animated: true)
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        //self.navigationController!.navigationBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 60.0)
+        
+    }
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         ResultTitles = ["Dynamic Velocity", "Average Velocity", "Mass Air Flow", "Actual Air Flow","Normal Air Flow", "Molar Weight", "Duct (P)","Area", "Atmospheric (P)", "GasDensity"]
@@ -66,7 +88,7 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
 
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backgroun.png")!)
-        segmentedControlResults.selectedSegmentIndex = currentUnits
+        unitSwitch.selectedSegmentIndex = currentUnits
 
         if(currentUnits == 1){
             ResultUnits = ResultUnitsSI
@@ -110,9 +132,15 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         
-        
-            
-            
+        if(indexPath.row==0){
+        let cell : UITableViewCell
+        cell = self.tableView.dequeueReusableCell(withIdentifier: "dynamicVelocityCell", for: indexPath)
+        cell.textLabel?.text = ResultTitles[indexPath.row]
+        return cell
+
+        }
+        else
+        {
             var cell = self.tableView.dequeueReusableCell(withIdentifier: "ResultCell", for: indexPath) as! ResultCell
             print("RESULTS")
             print(resultArray)
@@ -122,8 +150,8 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell.result.text = resultArray[indexPath.row]
             cell.resultUnit.text = ResultUnits[indexPath.row]
             return cell
-            
-            
+        }
+        
         
         
         

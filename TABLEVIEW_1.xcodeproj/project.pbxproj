@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		90416B891EA6FAFC006A3EE7 /* tableViewControllerResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90416B881EA6FAFC006A3EE7 /* tableViewControllerResult.swift */; };
 		904904B71EA19AA700FC6F03 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904904B61EA19AA700FC6F03 /* ResultViewController.swift */; };
 		904904B91EA2577600FC6F03 /* DynamicVelocityTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904904B81EA2577600FC6F03 /* DynamicVelocityTextFieldCell.swift */; };
 		905A27CD1EA3DE5500BE6636 /* ViewControllerForTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905A27CC1EA3DE5500BE6636 /* ViewControllerForTableViewController.swift */; };
@@ -43,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		90416B881EA6FAFC006A3EE7 /* tableViewControllerResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = tableViewControllerResult.swift; path = TABLEVIEW_1/tableViewControllerResult.swift; sourceTree = "<group>"; };
 		904904B61EA19AA700FC6F03 /* ResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		904904B81EA2577600FC6F03 /* DynamicVelocityTextFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicVelocityTextFieldCell.swift; sourceTree = "<group>"; };
 		905A27CC1EA3DE5500BE6636 /* ViewControllerForTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerForTableViewController.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 		90D8A5D51E9AC35300227C72 = {
 			isa = PBXGroup;
 			children = (
+				90416B881EA6FAFC006A3EE7 /* tableViewControllerResult.swift */,
 				90D8A5E01E9AC35300227C72 /* TABLEVIEW_1 */,
 				90D8A5F51E9AC35300227C72 /* TABLEVIEW_1Tests */,
 				90D8A6001E9AC35300227C72 /* TABLEVIEW_1UITests */,
@@ -286,6 +289,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90416B891EA6FAFC006A3EE7 /* tableViewControllerResult.swift in Sources */,
 				907C100C1EA144510021154B /* VelocityViewController.swift in Sources */,
 				90D8A5E41E9AC35300227C72 /* ViewController.swift in Sources */,
 				90D8A6121E9AD65900227C72 /* SwitchCell.swift in Sources */,

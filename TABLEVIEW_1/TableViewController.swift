@@ -11,12 +11,19 @@ protocol MyProtocol
 {
     func setDynamicVelocity(dynamicVelocity: [Double])
 }
+
+protocol dynamicResultsProtocol
+{
+    func setDynamicVelocityResults(dynamicVelocity: [Double])
+}
+
 class TableViewController: UITableViewController, UITextFieldDelegate {
 
     
     var items = [Double]()
         var myProtocol: MyProtocol?
-        
+    var dynamicResultsProtocol:  dynamicResultsProtocol?
+    
         override func viewDidLoad() {
             super.viewDidLoad()
             navigationItem.title = "Dynamic Velocities"

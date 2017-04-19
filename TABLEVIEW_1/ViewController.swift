@@ -174,7 +174,7 @@ print(unitSwitch.selectedSegmentIndex)
     
     
     override func viewDidAppear(_ animated: Bool) {
-        self.navigationController!.navigationBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 60.0)
+      //  self.navigationController!.navigationBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 60.0)
 
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -232,7 +232,6 @@ print(unitSwitch.selectedSegmentIndex)
         // Set the UIImage as background property
        // navigationBar.setBackgroundImage(image, for: UIBarMetrics.default)
        
-        navigationBar.topItem?.title = "PITONEW"
         InputUnits = InputUnitsUS
         DataSource = InputTitles
         ResultUnits = ResultUnitsUS
@@ -1298,6 +1297,12 @@ print(unitSwitch.selectedSegmentIndex)
                 tableView.endUpdates()
                     //sender.setOn(false, animated: true)
                     
+                    print("INPUT UNITS ON")
+                    print(InputUnits)
+                    print("INPUT UNITS US")
+                    print(InputUnitsUS)
+                    print("INPUT UNITS SI")
+                    print(InputUnitsSI)
 
                 }
                 else{
@@ -1309,20 +1314,16 @@ print(unitSwitch.selectedSegmentIndex)
                  InputTitles.insert("Height", at: 3)
                  InputTitles.insert("Width", at: 4)
                  if(unitSwitch.selectedSegmentIndex == 1){
-                 InputUnits.insert("m", at: 4)
                     InputUnits.insert("m", at: 3)
                  
 
 
                  }
                  else{
-                     InputUnits.insert("in", at: 4)
                     InputUnits.insert("in", at: 3)
                  
                  }
-                    InputUnitsSI.insert("m", at: 4)
                     InputUnitsSI.insert("m", at: 3)
-                    InputUnitsUS.insert("in", at: 4)
                     InputUnitsUS.insert("in", at: 3)
 
                  DataSource = InputTitles
@@ -1333,6 +1334,14 @@ print(unitSwitch.selectedSegmentIndex)
                      tableView.insertRows(at: [IndexPath(row: 1, section: 1)], with: .top)
                     
                  tableView.endUpdates()
+                    print("INPUT UNITS")
+                    print(InputUnits)
+                    print("INPUT UNITS OFF")
+                    print(InputUnits)
+                    print("INPUT UNITS US")
+                    print(InputUnitsUS)
+                    print("INPUT UNITS SI")
+                    print(InputUnitsSI)
                  
                 }
  
