@@ -411,8 +411,8 @@ print(unitSwitch.selectedSegmentIndex)
          let ductPressure: Double
          let gasDensity: Double
          var molecularWeight: Double
-                let gasDensityUS: Double
                 let gasDensitySI: Double
+                let gasDensityUS: Double
 
          
          
@@ -538,32 +538,34 @@ print(unitSwitch.selectedSegmentIndex)
          
          }
          
-                gasDensitySI = 1000 * ductPressure / (273.15 + dryBulbTemperature) / (8314.3 / molecularWeight)
+         if(UnitSwitch){
+         gasDensity = 1000 * ductPressure / (273.15 + dryBulbTemperature) / (8314.3 / molecularWeight)
          
             
             
-        
+         }
+         else{
          
          var part1 = ((dryBulbTemperature-32)*(5.0/9.0))
          var part2 = (ductPressure*3.386375)
-         gasDensityUS = 0.062428*(1000 * part2 / (273.15 +  part1) / (8314.3 / molecularWeight))
-                if(UnitSwitch){
-                    gasDensity = gasDensitySI
-                }
-                else {
-                    gasDensity = gasDensityUS
-                }
-         
+         gasDensity = 0.062428*(1000 * part2 / (273.15 +  part1) / (8314.3 / molecularWeight))
+            
+            
+         }
          dynamicVelocityArrayUS.removeAll()
                 dynamicVelocityArraySI.removeAll()
                 dynamicVelocityArray.removeAll()
             for item in dynamicPressureArray {
-                    dynamicVelocityArraySI.append(pilotTubeCoeffecient*pow(2.0*item*1000/4.01864/gasDensitySI,0.5))
+                    dynamicVelocityArraySI.append(pilotTubeCoeffecient*pow(2.0*item*1000/4.01864/gasDensity,0.5))
                 }
+                print("SI")
+                print(dynamicVelocityArraySI)
                 
+            
+        
                 for item in dynamicPressureArray {
                     
-                    dynamicVelocityArrayUS.append(pilotTubeCoeffecient*pow(2.0*item*1000/4.01864/(gasDensityUS / 0.062428),0.5) * 3.2804)
+                    dynamicVelocityArrayUS.append(pilotTubeCoeffecient*pow(2.0*item*1000/4.01864/(gasDensity / 0.062428),0.5) * 3.2804)
                 }
                 print("US")
                 print(dynamicVelocityArrayUS)
