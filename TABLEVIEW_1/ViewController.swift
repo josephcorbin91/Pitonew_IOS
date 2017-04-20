@@ -46,6 +46,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         calculateResults()
 
         let resultViewController = storyboard?.instantiateViewController(withIdentifier: "ResultViewController") as! ResultViewController
+            print("VIEW CONTROLLER INPUT")
+            print(dynamicVelocityArraySI)
+            print(dynamicVelocityArrayUS)
         resultViewController.SIResultsArray = SIResultsArray
         resultViewController.USReaultsArray = USReaultsArray
         resultViewController.dynamicVelocityArrayUS = dynamicVelocityArrayUS
@@ -317,9 +320,6 @@ print(unitSwitch.selectedSegmentIndex)
         else{
         UnitSwitch=false
         }
-        //tests
-        // UnitSwitch = true
-        
         
             if(inputArrayValues[0] == "on"){
                 pipeShapeSwitchBoolean = true}
@@ -411,6 +411,9 @@ print(unitSwitch.selectedSegmentIndex)
          let ductPressure: Double
          let gasDensity: Double
          var molecularWeight: Double
+                let gasDensityUS: Double
+                let gasDensitySI: Double
+
          
          
          let averageVelocity: Double
@@ -437,12 +440,17 @@ print(unitSwitch.selectedSegmentIndex)
          wetBulbWaterSaturationPressurePW = criticalPressureH20 * pow(10, Kw * (1 - (criticalTemperatureH20 / wetBulbRankine)))
          partialWaterPressureDueToDepressionPM = 0.000367 * (1 + ((wetBulbRankine-459.67) - 32) / 1571) * (pressMmHg - wetBulbWaterSaturationPressurePW) * ((dryBulbRankine - 459.67) - (wetBulbRankine - 459.67))
          
-         // if((wetBulbWaterSaturationPressurePW - partialWaterPressureDueToDepressionPM) / dryBulbWaterSaturationPressurePD> = 100 || (wetBulbWaterSaturationPressurePW -  partialWaterPressureDueToDepressionPM) / dryBulbWaterSaturationPressurePD < 0){
-         //}
-         // else{
+         if((wetBulbWaterSaturationPressurePW - partialWaterPressureDueToDepressionPM) / dryBulbWaterSaturationPressurePD >= 100 || (wetBulbWaterSaturationPressurePW -  partialWaterPressureDueToDepressionPM) / dryBulbWaterSaturationPressurePD < 0){
+            let alertMissingInput = UIAlertController(title: "Erronues Humidities", message: "Verify accuracy of temperature inputs", preferredStyle: UIAlertControllerStyle.alert)
+            alertMissingInput.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alertMissingInput, animated: true, completion: nil)
+            
+            
+         }
+          else{
          
          relativeHumidity = 100 * (wetBulbWaterSaturationPressurePW-partialWaterPressureDueToDepressionPM)/dryBulbWaterSaturationPressurePD
-         // }
+          }
          
          partialPressureOfWaterPA = 0.01 * relativeHumidity * dryBulbWaterSaturationPressurePD
          
@@ -530,26 +538,35 @@ print(unitSwitch.selectedSegmentIndex)
          
          }
          
-         if(UnitSwitch){
-         gasDensity = 1000 * ductPressure / (273.15 + dryBulbTemperature) / (8314.3 / molecularWeight)
+                gasDensitySI = 1000 * ductPressure / (273.15 + dryBulbTemperature) / (8314.3 / molecularWeight)
          
-         }
-         else{
+            
+            
+        
          
          var part1 = ((dryBulbTemperature-32)*(5.0/9.0))
          var part2 = (ductPressure*3.386375)
-         gasDensity = 0.062428*(1000 * part2 / (273.15 +  part1) / (8314.3 / molecularWeight))
-         }
-         
-         
-                for item in dynamicPressureArray {
-                    dynamicVelocityArraySI.append(pilotTubeCoeffecient*pow(2.0*item*1000/4.01864/gasDensity,0.5))
+         gasDensityUS = 0.062428*(1000 * part2 / (273.15 +  part1) / (8314.3 / molecularWeight))
+                if(UnitSwitch){
+                    gasDensity = gasDensitySI
                 }
-                for item in dynamicPressureArray {
-                    
-                    dynamicVelocityArrayUS.append(pilotTubeCoeffecient*pow(2.0*item*1000/4.01864/(gasDensity / 0.062428),0.5) * 3.2804)
+                else {
+                    gasDensity = gasDensityUS
+                }
+         
+         dynamicVelocityArrayUS.removeAll()
+                dynamicVelocityArraySI.removeAll()
+                dynamicVelocityArray.removeAll()
+            for item in dynamicPressureArray {
+                    dynamicVelocityArraySI.append(pilotTubeCoeffecient*pow(2.0*item*1000/4.01864/gasDensitySI,0.5))
                 }
                 
+                for item in dynamicPressureArray {
+                    
+                    dynamicVelocityArrayUS.append(pilotTubeCoeffecient*pow(2.0*item*1000/4.01864/(gasDensityUS / 0.062428),0.5) * 3.2804)
+                }
+                print("US")
+                print(dynamicVelocityArrayUS)
                 if(UnitSwitch){
          
             averageVelocity = average(nums: dynamicVelocityArraySI)

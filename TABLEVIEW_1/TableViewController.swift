@@ -42,12 +42,15 @@ class TableViewController: UITableViewController, UITextFieldDelegate {
    
    
     func done(){
-        if(verifyDataPressureRule()){
+        if(items.count == 0){
+            let alertMissingInput = UIAlertController(title: "Dynamic Pressure Required", message: "Input at least one dynamic pressure", preferredStyle: UIAlertControllerStyle.alert)
+            alertMissingInput.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alertMissingInput, animated: true, completion: nil)         }
+        else if(verifyDataPressureRule()){
         var returnArray = Array(items[0..<items.count])
         myProtocol?.setDynamicVelocity(dynamicVelocity: returnArray)
         self.navigationController?.popViewController(animated: true)
-        
-    }
+              }
         else{
             let alertInvalidResult = UIAlertController(title: "Invalid Pressure values", message: "75% of values must be greater than 10% of the maximum pressure", preferredStyle: UIAlertControllerStyle.alert)
             alertInvalidResult.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))

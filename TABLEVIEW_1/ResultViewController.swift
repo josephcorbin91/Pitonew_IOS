@@ -57,7 +57,6 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         let dynamicVelocityViewController = storyboard?.instantiateViewController(withIdentifier: "DynamicVelocityViewControllerResult") as! tableViewControllerResult
        // dynamicVelocityViewController.dynamicResultsProtocol = self
-        print("DYNAMIC")
         print(dynamicVelocityArrayUS)
         print(dynamicVelocityArraySI)
         if(unitSwitch.selectedSegmentIndex == 0){
@@ -67,7 +66,6 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
             dynamicVelocityViewController.items = dynamicVelocityArraySI
 
         }
-        print("SENDING DYNAMIC VELOCITY ARRAY")
         self.navigationController?.pushViewController(dynamicVelocityViewController, animated: true)
     }
 
