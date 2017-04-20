@@ -15,6 +15,9 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var ResultUnitsSI = [String]()
     var ResultUnitsUS = [String]()
     var ResultUnits = [String]()
+    var dynamicVelocityArrayUS = [Double]()
+    var dynamicVelocityArraySI = [Double]()
+
     var resultArray = Array(repeating: "", count: 10)
     var SIResultsArray = Array(repeating: "", count: 10)
     var USReaultsArray = Array(repeating: "", count: 10)
@@ -54,9 +57,16 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         let dynamicVelocityViewController = storyboard?.instantiateViewController(withIdentifier: "DynamicVelocityViewControllerResult") as! tableViewControllerResult
        // dynamicVelocityViewController.dynamicResultsProtocol = self
-        
-        dynamicVelocityViewController.items = dynamicPressureArray
-        
+        print("DYNAMIC")
+        print(dynamicVelocityArrayUS)
+        print(dynamicVelocityArraySI)
+        if(unitSwitch.selectedSegmentIndex == 0){
+        dynamicVelocityViewController.items = dynamicVelocityArrayUS
+        }
+        else{
+            dynamicVelocityViewController.items = dynamicVelocityArraySI
+
+        }
         print("SENDING DYNAMIC VELOCITY ARRAY")
         self.navigationController?.pushViewController(dynamicVelocityViewController, animated: true)
     }

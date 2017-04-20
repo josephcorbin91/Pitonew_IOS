@@ -48,6 +48,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let resultViewController = storyboard?.instantiateViewController(withIdentifier: "ResultViewController") as! ResultViewController
         resultViewController.SIResultsArray = SIResultsArray
         resultViewController.USReaultsArray = USReaultsArray
+        resultViewController.dynamicVelocityArrayUS = dynamicVelocityArrayUS
+        resultViewController.dynamicVelocityArraySI = dynamicVelocityArraySI
+            print("SI RESULTS")
+            print(SIResultsArray)
+            print(dynamicVelocityArraySI)
+            print("US RESULTS")
+            print(USReaultsArray)
+            print(dynamicVelocityArrayUS)
+            
         print("BEFORE GOING to RESULTS")
 print(unitSwitch.selectedSegmentIndex)
         resultViewController.currentUnits = unitSwitch.selectedSegmentIndex
@@ -309,7 +318,7 @@ print(unitSwitch.selectedSegmentIndex)
         UnitSwitch=false
         }
         //tests
-         UnitSwitch = true
+        // UnitSwitch = true
         
         
             if(inputArrayValues[0] == "on"){
@@ -532,18 +541,26 @@ print(unitSwitch.selectedSegmentIndex)
          gasDensity = 0.062428*(1000 * part2 / (273.15 +  part1) / (8314.3 / molecularWeight))
          }
          
-         if(UnitSwitch){
-         for item in dynamicPressureArray {
-         dynamicVelocityArraySI.append(pilotTubeCoeffecient*pow(2.0*item*1000/4.01864/gasDensity,0.5))
-         }
+         
+                for item in dynamicPressureArray {
+                    dynamicVelocityArraySI.append(pilotTubeCoeffecient*pow(2.0*item*1000/4.01864/gasDensity,0.5))
+                }
+                for item in dynamicPressureArray {
+                    
+                    dynamicVelocityArrayUS.append(pilotTubeCoeffecient*pow(2.0*item*1000/4.01864/(gasDensity / 0.062428),0.5) * 3.2804)
+                }
+                
+                if(UnitSwitch){
+         
+            averageVelocity = average(nums: dynamicVelocityArraySI)
+
          }
          else{
-         for item in dynamicPressureArray {
          
-         dynamicVelocityArrayUS.append(pilotTubeCoeffecient*pow(2.0*item*1000/4.01864/(gasDensity / 0.062428),0.5) * 3.2804)
+            averageVelocity = average(nums: dynamicVelocityArrayUS)
+
          }
-         }
-         averageVelocity = average(nums: dynamicVelocityArray)
+                
          if(UnitSwitch){
          actualAirFlow = averageVelocity*area*3600
          
@@ -806,7 +823,9 @@ print(unitSwitch.selectedSegmentIndex)
 
     @IBAction func clear(_ sender: UIButton) {
  
-            inputArrayValues = emptyInputArrayValues
+        for i in 3...inputArrayValues.count-1 {
+            inputArrayValues[i] = ""
+        }
         
             tableView.reloadData()
         
