@@ -119,26 +119,28 @@ print(unitSwitch.selectedSegmentIndex)
             ResultUnits = ResultUnitsUS
             resultArray = USReaultsArray
             print("SWITCHING VALUES TO US")
-
             if(inputArrayValues[3] != ""){
-                inputArrayValues[3] = String(Double(inputArrayValues[3])!/0.0254)
+                inputArrayValues[3] = String(Double(round(100000*(Double(inputArrayValues[3])!/0.0254)))/100000)
             }
            
             
             if(inputArrayValues[4] != ""){
-                inputArrayValues[4] = String(Double(inputArrayValues[4])!/0.0254)
+                inputArrayValues[4] = String(Double(round(100000*(Double(inputArrayValues[4])!/0.0254)))/100000)
             }
             
             if(inputArrayValues[7] != ""){
-                inputArrayValues[7] = String((Double(inputArrayValues[7])!-32.0) / 1.8)
+
+                inputArrayValues[7] = String(Double(round(100000*((Double(inputArrayValues[7])!-32)/1.8)))/100000)
             }
             
             if(inputArrayValues[8] != ""){
-                inputArrayValues[8] = String((Double(inputArrayValues[8])!-32.0) / 1.8)
+                inputArrayValues[8] = String(Double(round(100000*((Double(inputArrayValues[8])!-32)/1.8)))/100000)
             }
            
             if(inputArrayValues[10] != ""){
-                inputArrayValues[10] = String(Double(inputArrayValues[10])! * 0.295299875)
+                
+                    inputArrayValues[10] = String(Double(round(100000*(Double(inputArrayValues[10])!*0.295299875)))/100000)
+
             }
             
             
@@ -150,22 +152,22 @@ print(unitSwitch.selectedSegmentIndex)
             resultArray = SIResultsArray
             print("SWITCHING VALUES TO SI")
             if(inputArrayValues[3] != ""){
-                inputArrayValues[3] = String(Double(inputArrayValues[3])!*0.0254)
+                inputArrayValues[3] = String(Double(round(100000*(Double(inputArrayValues[3])!*0.0254)))/100000)
             }
             
             
             if(inputArrayValues[4] != ""){
-                inputArrayValues[4] = String(Double(inputArrayValues[4])!*0.0254)}
+                inputArrayValues[4] = String(Double(round(100000*(Double(inputArrayValues[4])!*0.0254)))/100000)}
             if(inputArrayValues[7] != ""){
-                inputArrayValues[7] = String((Double(inputArrayValues[7])!*1.8) + 32)}
+                inputArrayValues[7] = String(Double(round(100000*((Double(inputArrayValues[7])!*1.8)+32)))/100000)}
             if(inputArrayValues[8] != ""){
-                inputArrayValues[8] = String((Double(inputArrayValues[8])!*1.8) + 32)}
+                inputArrayValues[8] = String(Double(round(100000*((Double(inputArrayValues[8])!*1.8)+32)))/100000)}
             if(inputArrayValues[10] != ""){
-                inputArrayValues[10] = String(Double(inputArrayValues[10])! / 0.295299875)}
+                inputArrayValues[10] = String(Double(round(100000*(Double(inputArrayValues[10])!/0.295299875)))/100000)
             
           
             
-   
+            }
         }
         let range = NSMakeRange(1, 3)
         let sections = NSIndexSet(indexesIn: range)
@@ -555,20 +557,29 @@ print(unitSwitch.selectedSegmentIndex)
          dynamicVelocityArrayUS.removeAll()
                 dynamicVelocityArraySI.removeAll()
                 dynamicVelocityArray.removeAll()
+                
+                if(UnitSwitch){
             for item in dynamicPressureArray {
                     dynamicVelocityArraySI.append(pilotTubeCoeffecient*pow(2.0*item*1000/4.01864/gasDensity,0.5))
-                }
+                dynamicVelocityArrayUS.append(pilotTubeCoeffecient*pow(2.0*item*1000/4.01864/gasDensity,0.5)*3.2884)
+
+
+                    }
                 print("SI")
                 print(dynamicVelocityArraySI)
                 
             
-        
+                }
+                else{
                 for item in dynamicPressureArray {
                     
                     dynamicVelocityArrayUS.append(pilotTubeCoeffecient*pow(2.0*item*1000/4.01864/(gasDensity / 0.062428),0.5) * 3.2804)
+                    dynamicVelocityArraySI.append(pilotTubeCoeffecient*pow(2.0*item*1000/4.01864/(gasDensity / 0.062428),0.5))
+
                 }
                 print("US")
                 print(dynamicVelocityArrayUS)
+                }
                 if(UnitSwitch){
          
             averageVelocity = average(nums: dynamicVelocityArraySI)
