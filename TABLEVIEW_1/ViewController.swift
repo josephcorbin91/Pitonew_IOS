@@ -981,7 +981,7 @@ print(unitSwitch.selectedSegmentIndex)
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         
-        if(indexPath.section == 0){
+        if(indexPath.section == 0 && indexPath.row == 0){
    
         let cell : UITableViewCell
         cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultSwitchCell", for: indexPath)
@@ -1015,6 +1015,75 @@ print(unitSwitch.selectedSegmentIndex)
         return cell
 
         }
+        else if(indexPath.section == 0 && indexPath.row == 1){
+            
+            let cell : UITableViewCell
+            cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultSwitchCellAir", for: indexPath)
+            cell.textLabel?.text = InputTitles[indexPath.row]
+            var switchView : UISwitch
+            switchView = UISwitch(frame: CGRect.zero)
+            switchView.tag = indexPath.row
+            
+            
+            cell.accessoryView = switchView
+            switchView.addTarget(self, action: #selector(switchPressed(sender:)), for: UIControlEvents.valueChanged)
+            switch(indexPath.row){
+            case 0: pipeSwitch = switchView
+            case 1: airCompositionSwitch = switchView
+            case 2: wetBulbSwitch  = switchView
+            default: break
+                
+            }
+            if(inputArrayValues[0]=="on"){
+                pipeSwitch.setOn(true, animated: false)
+            }
+            if(inputArrayValues[1]=="on")
+            {
+                airCompositionSwitch.setOn(true, animated: false)
+            }
+            if(inputArrayValues[2]=="on")
+            {
+                print("SETTING WET BULB ON ")
+                wetBulbSwitch.setOn(true, animated: false)
+            }
+            return cell
+            
+        }
+        if(indexPath.section == 0 && indexPath.row == 2){
+            
+            let cell : UITableViewCell
+            cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultSwitchCellWetBulb", for: indexPath)
+            cell.textLabel?.text = InputTitles[indexPath.row]
+            var switchView : UISwitch
+            switchView = UISwitch(frame: CGRect.zero)
+            switchView.tag = indexPath.row
+            
+            
+            cell.accessoryView = switchView
+            switchView.addTarget(self, action: #selector(switchPressed(sender:)), for: UIControlEvents.valueChanged)
+            switch(indexPath.row){
+            case 0: pipeSwitch = switchView
+            case 1: airCompositionSwitch = switchView
+            case 2: wetBulbSwitch  = switchView
+            default: break
+                
+            }
+            if(inputArrayValues[0]=="on"){
+                pipeSwitch.setOn(true, animated: false)
+            }
+            if(inputArrayValues[1]=="on")
+            {
+                airCompositionSwitch.setOn(true, animated: false)
+            }
+            if(inputArrayValues[2]=="on")
+            {
+                print("SETTING WET BULB ON ")
+                wetBulbSwitch.setOn(true, animated: false)
+            }
+            return cell
+            
+        }
+            
         else if(indexPath.section == 1){
             
             
