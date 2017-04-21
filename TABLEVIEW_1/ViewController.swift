@@ -489,7 +489,7 @@ print(unitSwitch.selectedSegmentIndex)
                 
                 
                 
-         if(!AirCompositionSwitchBoolean){
+         if(AirCompositionSwitchBoolean){
          if(wetBulbSwitchBoolean){
          var part1 = 0.03 * (1 - humidityH20WetAir)
          var part2 = 20.95 * (1 - humidityH20WetAir)
