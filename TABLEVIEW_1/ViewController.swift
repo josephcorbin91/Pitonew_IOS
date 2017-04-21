@@ -296,7 +296,7 @@ print(unitSwitch.selectedSegmentIndex)
     
     //unit switch on is si
     func calculateResults(){
-        print("calculateReusltsCalled")
+        print("calculateReusltsCalled in calculate")
         var UnitSwitch: Bool
         var diameter = 0.0
         var width = 0.0
@@ -324,9 +324,13 @@ print(unitSwitch.selectedSegmentIndex)
         }
         
             if(inputArrayValues[0] == "on"){
-                pipeShapeSwitchBoolean = true}
+                pipeShapeSwitchBoolean = true
+                height  = Double(inputArrayValues[3])!
+            }
             else{
-         pipeShapeSwitchBoolean = false
+                pipeShapeSwitchBoolean = false
+                height  = Double(inputArrayValues[3])!
+                width =  Double(inputArrayValues[4])!        }
             if(inputArrayValues[1] == "off"){
                 AirCompositionSwitchBoolean = false}
             else{
@@ -337,8 +341,7 @@ print(unitSwitch.selectedSegmentIndex)
                 wetBulbSwitchBoolean = false}
          
          
-                height  = Double(inputArrayValues[3])!
-                width =  Double(inputArrayValues[4])!
+        
                 pilotTubeCoeffecient =  Double(inputArrayValues[5])!
                 staticPressure = Double(inputArrayValues[6])!
                 dryBulbTemperature = Double(inputArrayValues[7])!
@@ -374,6 +377,7 @@ print(unitSwitch.selectedSegmentIndex)
                 print("pipeShapeSwitchBoolean" + String(pipeShapeSwitchBoolean))                
                 print("AirCompositionSwitchBoolean" + String(AirCompositionSwitchBoolean))                
                 print("wetBulbSwitchBoolean" + String(wetBulbSwitchBoolean))                
+                print("diameter" + String(diameter))
 
                 print("height" + String(height))                
                 print("width" + String(width))
@@ -761,7 +765,7 @@ print(unitSwitch.selectedSegmentIndex)
                 
                 
          
-        }
+        
         
  
 
@@ -926,8 +930,8 @@ print(unitSwitch.selectedSegmentIndex)
         if let inputTitle = cell.inputTitle.text{
         switch inputTitle {
         case "Diameter": indexOfInputArray = 3
-        case "Width": indexOfInputArray = 3
-        case "Height": indexOfInputArray = 4
+        case "Width": indexOfInputArray = 4
+        case "Height": indexOfInputArray = 3
         case "Pitot Tube (C)": indexOfInputArray = 5
         case "Static (P)": indexOfInputArray = 6
         case "Dry Bulb (T)": indexOfInputArray = 7

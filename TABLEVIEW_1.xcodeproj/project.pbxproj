@@ -223,6 +223,7 @@
 				TargetAttributes = {
 					90D8A5DD1E9AC35300227C72 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = P2NNRDLB42;
 						ProvisioningStyle = Automatic;
 					};
 					90D8A5F11E9AC35300227C72 = {
@@ -452,6 +453,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = P2NNRDLB42;
 				INFOPLIST_FILE = TABLEVIEW_1/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "JCO.TABLEVIEW-1";
@@ -464,6 +467,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = P2NNRDLB42;
 				INFOPLIST_FILE = TABLEVIEW_1/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "JCO.TABLEVIEW-1";
