@@ -23,6 +23,7 @@
 		90D8A6021E9AC35300227C72 /* TABLEVIEW_1UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D8A6011E9AC35300227C72 /* TABLEVIEW_1UITests.swift */; };
 		90D8A6101E9AC73500227C72 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D8A60F1E9AC73500227C72 /* CustomCell.swift */; };
 		90D8A6121E9AD65900227C72 /* SwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D8A6111E9AD65900227C72 /* SwitchCell.swift */; };
+		90E3859E1EAD2125008F82DE /* LoadingScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E3859D1EAD2125008F82DE /* LoadingScreenViewController.swift */; };
 		90E7042D1EA18726003AADEC /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E7042C1EA18726003AADEC /* TableViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +67,7 @@
 		90D8A6031E9AC35300227C72 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		90D8A60F1E9AC73500227C72 /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		90D8A6111E9AD65900227C72 /* SwitchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchCell.swift; sourceTree = "<group>"; };
+		90E3859D1EAD2125008F82DE /* LoadingScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoadingScreenViewController.swift; path = TABLEVIEW_1/LoadingScreenViewController.swift; sourceTree = "<group>"; };
 		90E7042C1EA18726003AADEC /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -97,6 +99,7 @@
 		90D8A5D51E9AC35300227C72 = {
 			isa = PBXGroup;
 			children = (
+				90E3859D1EAD2125008F82DE /* LoadingScreenViewController.swift */,
 				90416B881EA6FAFC006A3EE7 /* tableViewControllerResult.swift */,
 				90D8A5E01E9AC35300227C72 /* TABLEVIEW_1 */,
 				90D8A5F51E9AC35300227C72 /* TABLEVIEW_1Tests */,
@@ -300,6 +303,7 @@
 				906AD3551EA0F72D00E7B487 /* dynamicVelocityCell.swift in Sources */,
 				90D8A5E21E9AC35300227C72 /* AppDelegate.swift in Sources */,
 				905A27CD1EA3DE5500BE6636 /* ViewControllerForTableViewController.swift in Sources */,
+				90E3859E1EAD2125008F82DE /* LoadingScreenViewController.swift in Sources */,
 				904904B91EA2577600FC6F03 /* DynamicVelocityTextFieldCell.swift in Sources */,
 				904904B71EA19AA700FC6F03 /* ResultViewController.swift in Sources */,
 			);

@@ -23,6 +23,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         navigationBarAppearace.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
         // Override point for customization after application launch.
  */
+        
+      /*  var navigationBarAppearace = UINavigationBar.appearance()
+        
+        navigationBarAppearace.tintColor = UIColor.blue
+        navigationBarAppearace.barTintColor = UIColor.blue
+        
+        // change navigation item title color
+        navigationBarAppearace.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
+        
+         let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView
+        UIApplication.shared.statusBarStyle = .lightContent
+        statusBar?.backgroundColor = UIColor.blue
+ */
         return true
     }
 

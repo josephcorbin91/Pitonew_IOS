@@ -30,14 +30,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var USReaultsArray = Array(repeating: "", count: 10)
     
     
-    @IBOutlet weak var unitSegmentedControl: UISegmentedControl!
-    @IBAction func unitSegmentControlChanged(_ sender: Any) {
-        
-        
-        
-    }
-
-   
+    @IBOutlet weak var unitSwitch: UISegmentedControl!
+    
     @IBAction func calculate(_ sender: Any) {
         
         
@@ -80,7 +74,6 @@ print(unitSwitch.selectedSegmentIndex)
     var wetBulbSwitch : UISwitch!
     var airCompositionSwitch : UISwitch!
     
-    var unitSwitch : UISegmentedControl!
     @IBOutlet weak var clearButton: UIButton!
     @IBOutlet weak var calculateButton: UIButton!
     
@@ -91,7 +84,8 @@ print(unitSwitch.selectedSegmentIndex)
         UIGraphicsEndImageContext()
         return outputImage!
     }
-     func unitSwitchPressed(sender: UISegmentedControl){
+    @IBAction func unitSwitchPressed(_ sender: UISegmentedControl) {
+   
             var wetBulbIndex : Int? = nil
             var dryBulbIndex : Int? = nil
             var widthIndex : Int? = nil
@@ -235,7 +229,7 @@ print(unitSwitch.selectedSegmentIndex)
         inputArrayValues[1]="off"
         inputArrayValues[2]="off"
         
-        unitSwitch = UISegmentedControl(items: ["US", "METRIC"])
+     /*   unitSwitch = UISegmentedControl(items: ["US", "METRIC"])
         unitSwitch.sizeToFit()
         unitSwitch.tintColor = UIColor(red:0.99, green:0.00, blue:0.25, alpha:10.5)
         unitSwitch.selectedSegmentIndex = 0;
@@ -244,12 +238,12 @@ print(unitSwitch.selectedSegmentIndex)
         self.navigationItem.title = "INPUTS"
         self.navigationItem.titleView = unitSwitch
         unitSwitch.addTarget(self, action: #selector(unitSwitchPressed(sender:)), for: UIControlEvents.valueChanged)
-        
+     */
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backgroun.png")!)
 
         // Set the UIImage as background property
        // navigationBar.setBackgroundImage(image, for: UIBarMetrics.default)
-       
+     
         InputUnits = InputUnitsUS
         DataSource = InputTitles
         ResultUnits = ResultUnitsUS
@@ -269,6 +263,8 @@ print(unitSwitch.selectedSegmentIndex)
         let range = NSMakeRange(0, 0)
         let sections = NSIndexSet(indexesIn: range)
         self.tableView.reloadSections(sections as IndexSet, with: .fade)
+        tableView.dataSource = self
+        tableView.delegate = self
        
         }
     
