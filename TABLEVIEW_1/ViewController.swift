@@ -223,11 +223,11 @@ print(unitSwitch.selectedSegmentIndex)
     override func viewDidLoad() {
         super.viewDidLoad()
       registerForKeyboardNotifications()
-        InputTitles = ["Circular Duct","Standard Air Composition","Wet Bulb (T)","Width", "Height", "Pitot Tube (C)"
+        InputTitles = ["Circular Duct","Standard Air Composition","Enable Wet Bulb (T)","Width", "Height", "Pitot Tube (C)"
             ,"Dynamic Pressure ","Sea Level (P)",  "Static (P)","Elevation", "Dry Bulb (T)","H20","Ar","N2","02","C02"]
          InputUnitsSI = ["","","","m","m","","","kPa","H2O","ft","°C","%","%","%","%","%"]
         InputUnitsUS = ["","","","in","in","","","in. Hg","H2O","ft","°F","%","%","%","%","%"]
-        sectionHeaders = ["Pipe Configuration","Pipe parameters", "Pressure","Temperature","Air Composition"]
+        sectionHeaders = ["Configuration","Pipe Parameters", "Pressure","Temperature","Air Composition"]
         ResultTitles = ["Dynamic Velocity", "Average Velocity", "Mass Air Flow", "Actual Air Flow","Normal Air Flow", "Molar Weight", "Duct (P)","Area", "Atmospheric (P)", "GasDensity"]
         ResultUnitsSI = ["m/s","m/s","kg/","m^3/s", "Nm^3/h","g/mol", "kPa", "m^2", "kPa", "kg/m^3"]
         ResultUnitsUS = ["ft/s","ft/s","lb/min","SCFM", "ACFM","g/mol", "in Hg", "in^2", "in. Hg", "ft^3",""]

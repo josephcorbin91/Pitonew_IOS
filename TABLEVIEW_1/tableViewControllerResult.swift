@@ -45,7 +45,7 @@ class tableViewControllerResult : UITableViewController, UITextFieldDelegate {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
  
         let myCell = tableView.dequeueReusableCell(withIdentifier: "dynamicVelocityResultCell", for: indexPath)
-        myCell.textLabel?.text = String(items[indexPath.row])
+        myCell.textLabel?.text2 = String(items[indexPath.row])
         return myCell
         // }
     }
