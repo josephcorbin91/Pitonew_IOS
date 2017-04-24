@@ -13,7 +13,7 @@
         <!--Pitonew-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="TABLEVIEW_1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mainViewCotroller" id="BYZ-38-t0r" customClass="ViewController" customModule="TABLEVIEW_1" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -247,6 +247,7 @@
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="settingsClicked:" destination="BYZ-38-t0r" id="hPw-7t-EhH"/>
+                                <segue destination="dVn-S9-ZUe" kind="show" id="pni-7l-nQY"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -342,14 +343,12 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Settings" id="Pqd-D6-MPs">
-                        <barButtonItem key="leftBarButtonItem" title="Item" id="9A4-8J-EUI"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Settings" id="CxE-PC-MnL"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5V9-Bd-nwc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2304" y="804"/>
+            <point key="canvasLocation" x="3242.4000000000001" y="803.74812593703155"/>
         </scene>
         <!--Table View Controller Result-->
         <scene sceneID="bM7-JD-LPh">
@@ -646,6 +645,25 @@
             </objects>
             <point key="canvasLocation" x="511.19999999999999" y="-1133.8830584707648"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="irf-AJ-kWa">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7Ll-3m-uGl" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="A7E-IQ-9eL"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ase-Bs-BA7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="dVn-S9-ZUe" kind="relationship" relationship="rootViewController" id="tub-Ig-r03"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="q2w-KZ-vWt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2303.1999999999998" y="803.74812593703155"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Air Element-22" width="22" height="22"/>
@@ -657,4 +675,7 @@
         <image name="Shake Phone Filled-22" width="22" height="22"/>
         <image name="Water Filled-22" width="22" height="22"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="pni-7l-nQY"/>
+    </inferredMetricsTieBreakers>
 </document>

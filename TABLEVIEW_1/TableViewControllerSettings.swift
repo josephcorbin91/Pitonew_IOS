@@ -32,7 +32,12 @@ class TableViewControllerSettings: UITableViewController {
         
     }
     func rightButtonAction(sender: UIBarButtonItem){
-        self.navigationController?.popViewController(animated: true)
+     
+        let inputViewController = storyboard?.instantiateViewController(withIdentifier: "mainViewCotroller") as! ViewController
+        
+        
+        self.navigationController?.pushViewController(inputViewController, animated: true)
+ 
     }
 
     
