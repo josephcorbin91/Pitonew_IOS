@@ -57,7 +57,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         print("BEFORE GOING to RESULTS")
 print(unitSwitch.selectedSegmentIndex)
         resultViewController.currentUnits = unitSwitch.selectedSegmentIndex
-        navigationController?.pushViewController(resultViewController, animated: true)
+            navigationController?.show(resultViewController, sender: self)
+        //navigationController?.pushViewController(resultViewController, animated: true)
         }
     }
     var InputUnitsSI = [String]()

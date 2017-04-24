@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -237,12 +238,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Pitonew" id="AYX-wM-b5Z">
-                        <barButtonItem key="leftBarButtonItem" title="Item" image="Menu-22" id="wzw-Ce-G2A">
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <action selector="menuItemBar:" destination="BYZ-38-t0r" id="Tba-sT-pjj"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="Settings-22" id="4vu-fC-srA">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
@@ -253,7 +248,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="clearButton" destination="kYT-DC-NGh" id="OvQ-Bq-6Iu"/>
-                        <outlet property="menuButtonBar" destination="wzw-Ce-G2A" id="6OP-NG-Mn1"/>
                         <outlet property="navigationBar" destination="TkJ-oQ-cWP" id="0UN-r5-hWK"/>
                         <outlet property="settingsIcon" destination="4vu-fC-srA" id="lwF-a9-rdW"/>
                         <outlet property="tableView" destination="TgK-Y3-Ehd" id="T84-1F-Z4j"/>
@@ -336,6 +330,69 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="defaultSwitchAboutDeveloper" textLabel="jpe-SA-4Sp" imageView="hcr-wT-pA6" style="IBUITableViewCellStyleDefault" id="abD-Mz-VqI">
+                                <rect key="frame" x="0.0" y="160" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="abD-Mz-VqI" id="TXc-Nq-esw">
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jpe-SA-4Sp">
+                                            <rect key="frame" x="52" y="0.0" width="288" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="Commercial Development Management-22" id="hcr-wT-pA6">
+                                            <rect key="frame" x="15" y="10" width="22" height="22"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </imageView>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="defaultSwitchTheory" textLabel="amF-zY-9m2" imageView="WOr-9t-GIA" style="IBUITableViewCellStyleDefault" id="ZjK-8c-0FI">
+                                <rect key="frame" x="0.0" y="204" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZjK-8c-0FI" id="PwI-1q-Prf">
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="amF-zY-9m2">
+                                            <rect key="frame" x="52" y="0.0" width="288" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="Literature-22" id="WOr-9t-GIA">
+                                            <rect key="frame" x="15" y="10" width="22" height="22"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </imageView>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="defaultSwitchUpdates" editingAccessoryType="detailButton" textLabel="0Vq-8x-waM" imageView="5xY-sP-LDb" style="IBUITableViewCellStyleDefault" id="4aG-9n-7mE">
+                                <rect key="frame" x="0.0" y="248" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4aG-9n-7mE" id="0BA-4H-adv">
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0Vq-8x-waM">
+                                            <rect key="frame" x="52" y="0.0" width="288" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="Available Updates-22(1)" id="5xY-sP-LDb">
+                                            <rect key="frame" x="15" y="10" width="22" height="22"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </imageView>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="dVn-S9-ZUe" id="uHo-M2-8oT"/>
@@ -382,7 +439,13 @@
                             <outlet property="delegate" destination="coQ-se-1Yu" id="pIO-HO-71L"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="vkP-nV-fOa"/>
+                    <navigationItem key="navigationItem" id="vkP-nV-fOa">
+                        <barButtonItem key="rightBarButtonItem" image="Settings-22" id="6Qf-8O-fKb">
+                            <connections>
+                                <segue destination="dVn-S9-ZUe" kind="show" id="Hjs-b6-s0l"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y3v-TA-vyN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -417,11 +480,18 @@
                                 <action selector="doneClicked:" destination="eZW-BJ-fua" id="PLE-4B-mbZ"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="q3o-yF-cFN">
-                            <connections>
-                                <action selector="addClicked:" destination="eZW-BJ-fua" id="3dg-s1-McX"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem image="Settings-22" id="6wD-33-Vww">
+                                <connections>
+                                    <segue destination="dVn-S9-ZUe" kind="show" id="jqh-PX-Baw"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="add" id="q3o-yF-cFN">
+                                <connections>
+                                    <action selector="addClicked:" destination="eZW-BJ-fua" id="3dg-s1-McX"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="addButton" destination="q3o-yF-cFN" id="mn7-Yt-J6t"/>
@@ -558,11 +628,18 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Results" id="Ue1-4q-HLJ">
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="KOQ-mE-MQd">
-                            <connections>
-                                <action selector="actionClicked:" destination="ZCZ-fm-f7B" id="t3z-gu-meT"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem image="Settings-22" id="wif-C1-LMB">
+                                <connections>
+                                    <segue destination="dVn-S9-ZUe" kind="show" id="Cj8-HS-ER7"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="action" id="KOQ-mE-MQd">
+                                <connections>
+                                    <action selector="actionClicked:" destination="ZCZ-fm-f7B" id="t3z-gu-meT"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="actionButton" destination="KOQ-mE-MQd" id="KJ4-Mm-Yxx"/>
@@ -667,15 +744,17 @@
     </scenes>
     <resources>
         <image name="Air Element-22" width="22" height="22"/>
+        <image name="Available Updates-22(1)" width="22" height="22"/>
+        <image name="Commercial Development Management-22" width="22" height="22"/>
         <image name="Full Moon-22" width="22" height="22"/>
+        <image name="Literature-22" width="22" height="22"/>
         <image name="Marker Filled-22" width="22" height="22"/>
-        <image name="Menu-22" width="22" height="22"/>
         <image name="Room Sound Filled-22" width="22" height="22"/>
         <image name="Settings-22" width="22" height="22"/>
         <image name="Shake Phone Filled-22" width="22" height="22"/>
         <image name="Water Filled-22" width="22" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="pni-7l-nQY"/>
+        <segue reference="Hjs-b6-s0l"/>
     </inferredMetricsTieBreakers>
 </document>

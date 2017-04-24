@@ -113,46 +113,16 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
         //self.navigationController!.navigationBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 60.0)
         
     }
-    /*
-    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
-        CLGeocoder().reverseGeocodeLocation(manager.location, completionHandler: {(placemarks, error)-&gt;Void in
-            if error {
-                println("Reverse geocoder failed with error" + error.localizedDescription)
-                return
-            }
-            
-            if placemarks.count &gt; 0 {
-                let pm = placemarks[0] as CLPlacemark
-                self.displayLocationInfo(pm)
-            } else {
-                println("Problem with the data received from geocoder")
-            }
-        })
-    }
-    */
-    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-     /*   locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
-        */
-                let font:UIFont? = UIFont(name: "Helvetica", size:13)
-        let fontSuper:UIFont? = UIFont(name: "Helvetica", size:10)
-        let squareMeter:NSMutableAttributedString = NSMutableAttributedString(string: "m2", attributes: [NSFontAttributeName:font!])
-        squareMeter.setAttributes([NSFontAttributeName:fontSuper!,NSBaselineOffsetAttributeName:10], range: NSRange(location:1,length:1))
-        
-        
+      
         
         
         
         
         ResultTitles = ["Dynamic Velocity", "Average Velocity", "Mass Air Flow", "Actual Air Flow","Normal Air Flow", "Molar Weight", "Duct (P)","Area", "Atmospheric (P)", "GasDensity"]
-        ResultUnitsSI = ["m/s","m/s","kg/","m^3/s", "Nm^3/h","g/mol", "kPa", squareMeter.string, "kPa", "kg/m^3"]
+        ResultUnitsSI = ["m/s","m/s","kg/","m^3/s", "Nm^3/h","g/mol", "kPa", "m^2", "kPa", "kg/m^3"]
         ResultUnitsUS = ["ft/s","ft/s","lb/min","SCFM", "ACFM","g/mol", "in Hg", "in^2", "in. Hg", "ft^3",""]
         navigationItem.title = "Results"
         
@@ -170,7 +140,7 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
        
 
 
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backgroun.png")!)
+       // self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backgroun.png")!)
         unitSwitch.selectedSegmentIndex = currentUnits
 
         if(currentUnits == 1){
@@ -194,11 +164,39 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
         //tableView.layer.shadowOffset = CGSize(width: 3, height: 3)
         tableView.layer.shadowOpacity = 0.7
         tableView.layer.shadowRadius = 4.0
-       tableView.reloadData()    }
+       tableView.reloadData()
+        
+        // Core Location Manager asks for GPS location
+        locManager.delegate = self
+        locManager.desiredAccuracy = kCLLocationAccuracyBest
+        locManager.requestWhenInUseAuthorization()
+        locManager.startMonitoringSignificantLocationChanges()
+        
+        
     
+    }
+    var locManager = CLLocationManager()
+
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return ResultTitles.count+2
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        if(indexPath.row == 1){
+            
+            // Check if the user allowed authorization
+            if (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse ||
+                CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways)
+            {
+                print("location")
+                print(locManager.location)
+                
+            } else {
+                print("Location not authorized")
+            }
+
+        }
     }
     
 

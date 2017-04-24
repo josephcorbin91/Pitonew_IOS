@@ -13,47 +13,24 @@ class TableViewControllerSettings: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        InputTitles = ["Enable Sound","Enable Vibration", "Enable GPS Localization of Duct"]
+        InputTitles = ["Enable Sound","Enable Vibration", "Enable GPS Localization of Duct","About Developer","Theory","Software Updates"]
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        let rightButtonItem = UIBarButtonItem.init(
-            title: "Done",
-            style: .done,
-            target: self,
-            action: "rightButtonAction:"
-        )
-        
-        self.navigationItem.rightBarButtonItem = rightButtonItem
         
         
     }
-    func rightButtonAction(sender: UIBarButtonItem){
-     
-        let inputViewController = storyboard?.instantiateViewController(withIdentifier: "mainViewCotroller") as! ViewController
-        
-        
-        self.navigationController?.pushViewController(inputViewController, animated: true)
- 
-    }
-
-    
+   
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
-    // MARK: - Table view data source
-/*
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-*/
+ 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return InputTitles.count
@@ -68,7 +45,7 @@ class TableViewControllerSettings: UITableViewController {
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if(indexPath.section == 0 && indexPath.row == 0){
+        if(indexPath.row == 0){
             
             let cell : UITableViewCell
             cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultSwitchSound", for: indexPath)
@@ -83,7 +60,7 @@ class TableViewControllerSettings: UITableViewController {
         return cell
             
         }
-        else if(indexPath.section == 0 && indexPath.row == 1){
+        else if(indexPath.row == 1){
             
             let cell : UITableViewCell
             cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultSwitchGPS", for: indexPath)
@@ -98,7 +75,7 @@ class TableViewControllerSettings: UITableViewController {
                       return cell
             
         }
-        else{//if(indexPath.section == 0 && indexPath.row == 2){
+        else if(indexPath.row == 2){
             
             let cell : UITableViewCell
             cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultSwitchVibration", for: indexPath)
@@ -113,9 +90,35 @@ class TableViewControllerSettings: UITableViewController {
             return cell
             
         }
-    }
-}
+            else if(indexPath.row == 3){
+                
+                let cell : UITableViewCell
+                cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultSwitchAboutDeveloper", for: indexPath)
+                cell.textLabel?.text = InputTitles[indexPath.row]
+                return cell
+                
+                }
+                else if(indexPath.row == 4){
+                    
+                    let cell : UITableViewCell
+                    cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultSwitchTheory", for: indexPath)
+                    cell.textLabel?.text = InputTitles[indexPath.row]
+                    return cell
+                    
+                    }
+                    else {
+                        
+                        let cell : UITableViewCell
+                        cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultSwitchUpdates", for: indexPath)
+                        cell.textLabel?.text = InputTitles[indexPath.row]
+                           return cell
+                        
+                        }
 
+
+    
+}
+}
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
