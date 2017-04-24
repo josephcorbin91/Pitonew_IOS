@@ -136,11 +136,11 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        locationManager.delegate = self
+     /*   locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
-        
+        */
                 let font:UIFont? = UIFont(name: "Helvetica", size:13)
         let fontSuper:UIFont? = UIFont(name: "Helvetica", size:10)
         let squareMeter:NSMutableAttributedString = NSMutableAttributedString(string: "m2", attributes: [NSFontAttributeName:font!])
@@ -198,7 +198,7 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ResultTitles.count
+        return ResultTitles.count+2
     }
     
 
@@ -213,11 +213,17 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         
         if(indexPath.row==0){
-        let cell : UITableViewCell
-        cell = self.tableView.dequeueReusableCell(withIdentifier: "dynamicVelocityCell", for: indexPath)
-        cell.textLabel?.text = ResultTitles[indexPath.row]
-        return cell
-
+            let date = Date()
+            let formatter = DateFormatter()
+            
+            
+            formatter.dateFormat = "dd.MM.yyyy HH.mm.ss"
+            let result = formatter.string(from: date)
+            let cell : UITableViewCell
+            cell = self.tableView.dequeueReusableCell(withIdentifier: "dateCell", for: indexPath)
+            cell.textLabel?.text = "Time of measurement : " + result
+            return cell
+     
         }
         else if(indexPath.row==1){
        
@@ -225,23 +231,18 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
                   let cell : UITableViewCell
             cell = self.tableView.dequeueReusableCell(withIdentifier: "locationCell", for: indexPath)
-            cell.textLabel?.text = ResultTitles[indexPath.row]
+            cell.textLabel?.text = "Current Location"
             return cell
         
         
         }
         else if(indexPath.row==2){
-            let date = Date()
-            let formatter = DateFormatter()
-            
-            
-            formatter.dateFormat = "dd.MM.yyyy"
-            let result = formatter.string(from: date)
+         
             let cell : UITableViewCell
-            cell = self.tableView.dequeueReusableCell(withIdentifier: "dateCell", for: indexPath)
-            cell.textLabel?.text = "Current Date : " + result
+            cell = self.tableView.dequeueReusableCell(withIdentifier: "dynamicVelocityCell", for: indexPath)
+            cell.textLabel?.text = ResultTitles[indexPath.row]
             return cell
-            
+
             
         }
         else

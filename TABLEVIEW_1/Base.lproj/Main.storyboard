@@ -247,9 +247,6 @@
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="settingsClicked:" destination="BYZ-38-t0r" id="hPw-7t-EhH"/>
-                                <segue destination="HFn-1a-l9S" kind="popoverPresentation" popoverAnchorBarButtonItem="4vu-fC-srA" id="UpZ-JL-2s8">
-                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                </segue>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -345,28 +342,14 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Settings" id="Pqd-D6-MPs"/>
+                    <navigationItem key="navigationItem" title="Settings" id="Pqd-D6-MPs">
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="9A4-8J-EUI"/>
+                    </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5V9-Bd-nwc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2304" y="804"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="xEm-6p-vnC">
-            <objects>
-                <navigationController id="HFn-1a-l9S" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gcx-8N-jHK">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="dVn-S9-ZUe" kind="relationship" relationship="rootViewController" id="uHT-ML-W0I"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="N0f-8R-HOO" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1358" y="804"/>
         </scene>
         <!--Table View Controller Result-->
         <scene sceneID="bM7-JD-LPh">

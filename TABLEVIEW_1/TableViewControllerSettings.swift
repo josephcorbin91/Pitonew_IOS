@@ -14,12 +14,28 @@ class TableViewControllerSettings: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         InputTitles = ["Enable Sound","Enable Vibration", "Enable GPS Localization of Duct"]
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        let rightButtonItem = UIBarButtonItem.init(
+            title: "Done",
+            style: .done,
+            target: self,
+            action: "rightButtonAction:"
+        )
+        
+        self.navigationItem.rightBarButtonItem = rightButtonItem
+        
+        
     }
+    func rightButtonAction(sender: UIBarButtonItem){
+        self.navigationController?.popViewController(animated: true)
+    }
+
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
