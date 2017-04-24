@@ -482,6 +482,9 @@ print(unitSwitch.selectedSegmentIndex)
          print("wetBulbWaterSaturationPressurePW" + String(wetBulbWaterSaturationPressurePW))
          print("partialPressureOfWaterPA" + String(partialPressureOfWaterPA))
          print("relativeHumidity" + String(relativeHumidity))
+        print("humidity h20 WetAir" + String(humidityH20WetAir))
+
+        
         
                 
                 
@@ -496,9 +499,13 @@ print(unitSwitch.selectedSegmentIndex)
          
          
          molecularWeight = part1 + part2 + part3 + part4 + part5
+            print("A")
+            print(molecularWeight)
          }
          else {
          molecularWeight = 28.96
+            print("B")
+
          }
          }
          else {
@@ -509,6 +516,8 @@ print(unitSwitch.selectedSegmentIndex)
          var part4 = 39.948 * ARComposition * (1 - humidityH20WetAir)
          var part5 = 18.016 * 100 * humidityH20WetAir
          molecularWeight = (part1 + part2 + part3 + part4 + part5)/100
+            print("C")
+
          }
          else {
          var part1 = 44.01 * C02Composition
@@ -516,6 +525,8 @@ print(unitSwitch.selectedSegmentIndex)
          var part3 = 28.013 * N2Composition
          var part4 = 39.948 * ARComposition
          molecularWeight = (part1 + part2 + part3 + part4) / 100
+            print("D")
+
          }
          
          }

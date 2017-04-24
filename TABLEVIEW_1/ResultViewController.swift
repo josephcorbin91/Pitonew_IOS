@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import CoreLocation
 import MessageUI
-class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate, dynamicResultsProtocol {
+class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate, MFMailComposeViewControllerDelegate, dynamicResultsProtocol {
     var dynamicPressureArray = [Double]()
 
+    var locationManager : CLLocationManager!
     var ResultTitles = [String]()
     var ResultUnitsSI = [String]()
     var ResultUnitsUS = [String]()
@@ -111,14 +113,41 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
         //self.navigationController!.navigationBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 60.0)
         
     }
-
+    /*
+    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+        CLGeocoder().reverseGeocodeLocation(manager.location, completionHandler: {(placemarks, error)-&gt;Void in
+            if error {
+                println("Reverse geocoder failed with error" + error.localizedDescription)
+                return
+            }
+            
+            if placemarks.count &gt; 0 {
+                let pm = placemarks[0] as CLPlacemark
+                self.displayLocationInfo(pm)
+            } else {
+                println("Problem with the data received from geocoder")
+            }
+        })
+    }
+    */
+    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let font:UIFont? = UIFont(name: "Helvetica", size:13)
+        
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+        
+                let font:UIFont? = UIFont(name: "Helvetica", size:13)
         let fontSuper:UIFont? = UIFont(name: "Helvetica", size:10)
         let squareMeter:NSMutableAttributedString = NSMutableAttributedString(string: "m2", attributes: [NSFontAttributeName:font!])
         squareMeter.setAttributes([NSFontAttributeName:fontSuper!,NSBaselineOffsetAttributeName:10], range: NSRange(location:1,length:1))
+        
+        
+        
         
         
         
@@ -190,6 +219,31 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return cell
 
         }
+        else if(indexPath.row==1){
+       
+        
+        
+                  let cell : UITableViewCell
+            cell = self.tableView.dequeueReusableCell(withIdentifier: "locationCell", for: indexPath)
+            cell.textLabel?.text = ResultTitles[indexPath.row]
+            return cell
+        
+        
+        }
+        else if(indexPath.row==2){
+            let date = Date()
+            let formatter = DateFormatter()
+            
+            
+            formatter.dateFormat = "dd.MM.yyyy"
+            let result = formatter.string(from: date)
+            let cell : UITableViewCell
+            cell = self.tableView.dequeueReusableCell(withIdentifier: "dateCell", for: indexPath)
+            cell.textLabel?.text = "Current Date : " + result
+            return cell
+            
+            
+        }
         else
         {
             var cell = self.tableView.dequeueReusableCell(withIdentifier: "ResultCell", for: indexPath) as! ResultCell
@@ -197,9 +251,9 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
             print(resultArray)
             print(indexPath.row)
             
-            cell.resultTitle.text = ResultTitles[indexPath.row]
-            cell.result.text = resultArray[indexPath.row]
-            cell.resultUnit.text = ResultUnits[indexPath.row]
+            cell.resultTitle.text = ResultTitles[indexPath.row-2]
+            cell.result.text = resultArray[indexPath.row-2]
+            cell.resultUnit.text = ResultUnits[indexPath.row-2]
             return cell
         }
         
