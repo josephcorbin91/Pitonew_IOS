@@ -197,6 +197,9 @@ print(unitSwitch.selectedSegmentIndex)
     }
     }
     
+    @IBOutlet weak var menuButtonBar: UIBarButtonItem!
+    @IBAction func menuItemBar(_ sender: UIBarButtonItem) {
+    }
     func showDynamicVelocity(){
         
         let dynamicVelocityViewController = storyboard?.instantiateViewController(withIdentifier: "DynamicVelocityViewController") as! TableViewController
@@ -214,6 +217,9 @@ print(unitSwitch.selectedSegmentIndex)
         //deregisterFromKeyboardNotifications()
     }
     
+    @IBAction func settingsClicked(_ sender: Any) {
+    }
+    @IBOutlet weak var settingsIcon: UIBarButtonItem!
     override func viewDidLoad() {
         super.viewDidLoad()
       registerForKeyboardNotifications()
@@ -228,22 +234,13 @@ print(unitSwitch.selectedSegmentIndex)
         inputArrayValues[0]="off"
         inputArrayValues[1]="off"
         inputArrayValues[2]="off"
-        
-     /*   unitSwitch = UISegmentedControl(items: ["US", "METRIC"])
-        unitSwitch.sizeToFit()
-        unitSwitch.tintColor = UIColor(red:0.99, green:0.00, blue:0.25, alpha:10.5)
-        unitSwitch.selectedSegmentIndex = 0;
-        
+ 
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.view.backgroundColor = .clear
+       // self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backgroun.png")!)
 
-        self.navigationItem.title = "INPUTS"
-        self.navigationItem.titleView = unitSwitch
-        unitSwitch.addTarget(self, action: #selector(unitSwitchPressed(sender:)), for: UIControlEvents.valueChanged)
-     */
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backgroun.png")!)
-
-        // Set the UIImage as background property
-       // navigationBar.setBackgroundImage(image, for: UIBarMetrics.default)
-     
         InputUnits = InputUnitsUS
         DataSource = InputTitles
         ResultUnits = ResultUnitsUS

@@ -7,8 +7,8 @@
 //
 
 import UIKit
-
-class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, dynamicResultsProtocol {
+import MessageUI
+class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate, dynamicResultsProtocol {
     var dynamicPressureArray = [Double]()
 
     var ResultTitles = [String]()
@@ -23,7 +23,45 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var USReaultsArray = Array(repeating: "", count: 10)
     var unitSwitch : UISegmentedControl!
     var currentUnits : Int = 0
+    @IBOutlet weak var actionButton: UIBarButtonItem!
     
+    func sendEmail() {
+        if MFMailComposeViewController.canSendMail() {
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients(["paul@hackingwithswift.com"])
+            mail.setMessageBody("<p>You're so awesome!</p>", isHTML: true)
+            
+            present(mail, animated: true)
+        } else {
+            // show failure alert
+        }
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
+    }
+    @IBAction func actionClicked(_ sender: UIBarButtonItem) {
+        let actionSheetControllerIOS8: UIAlertController = UIAlertController(title: "Export Results", message: "", preferredStyle: .actionSheet)
+        
+        let cancelActionButton = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            print("Cancel")
+        }
+        actionSheetControllerIOS8.addAction(cancelActionButton)
+        
+        let pdfActionButton = UIAlertAction(title: "PDF", style: .default)
+        { _ in
+            print("Save")
+        }
+        actionSheetControllerIOS8.addAction(pdfActionButton)
+        
+        let emailActionButton = UIAlertAction(title: "E-mail", style: .default)
+        { _ in
+            self.sendEmail()
+       }
+        actionSheetControllerIOS8.addAction(emailActionButton)
+        self.present(actionSheetControllerIOS8, animated: true, completion: nil)
+    }
     func unitSwitchPressedResult(sender: UISegmentedControl) {
            if(unitSwitch.selectedSegmentIndex == 0){
             ResultUnits = ResultUnitsUS

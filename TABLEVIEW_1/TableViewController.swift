@@ -19,6 +19,14 @@ protocol dynamicResultsProtocol
 
 class TableViewController: UITableViewController, UITextFieldDelegate {
 
+    @IBOutlet weak var addButton: UIBarButtonItem!
+    @IBAction func addClicked(_ sender: Any) {
+        insert()
+    }
+    @IBOutlet weak var doneButton: UIBarButtonItem!
+    @IBAction func doneClicked(_ sender: UIBarButtonItem) {
+        done()
+    }
     
     var items = [Double]()
         var myProtocol: MyProtocol?
@@ -32,10 +40,7 @@ class TableViewController: UITableViewController, UITextFieldDelegate {
                tableView.register(Header.self, forHeaderFooterViewReuseIdentifier: "headerId")
         
         tableView.sectionHeaderHeight = 50
-           
-            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Insert", style: .plain, target: self, action: "insert")
-            
-         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Done", style: .plain, target: self, action: "done")
+        
         }
         
     
@@ -149,19 +154,7 @@ class TableViewController: UITableViewController, UITextFieldDelegate {
     
 }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       /* if(indexPath.row == 0){
-           var cell = self.tableView.dequeueReusableCell(withIdentifier: "DynamicVelocityTextFieldCell", for: indexPath) as! DynamicVelocityTextFieldCell
-           
-      
-            cell.dynamicVelocityTextField.delegate = self // theField is your IBOutlet UITextfield in your custom cell
-            
-            
-            
-            
-return cell
-        }
-        else{
-            */
+     
         let myCell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! MyCell
         myCell.nameLabel.text = String(items[indexPath.row])
         myCell.myTableViewController = self

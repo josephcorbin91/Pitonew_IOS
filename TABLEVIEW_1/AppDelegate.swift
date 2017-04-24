@@ -14,29 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-       /* var navigationBarAppearace = UINavigationBar.appearance()
-        
-        navigationBarAppearace.tintColor = UIColor.blue
-        navigationBarAppearace.barTintColor = UIColor.black
-        
-        // change navigation item title color
-        navigationBarAppearace.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
-        // Override point for customization after application launch.
- */
-        
-      /*  var navigationBarAppearace = UINavigationBar.appearance()
-        
-        navigationBarAppearace.tintColor = UIColor.blue
-        navigationBarAppearace.barTintColor = UIColor.blue
-        
-        // change navigation item title color
-        navigationBarAppearace.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
-        
-         let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView
-        UIApplication.shared.statusBarStyle = .lightContent
-        statusBar?.backgroundColor = UIColor.blue
- */
-        return true
+         return true
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
