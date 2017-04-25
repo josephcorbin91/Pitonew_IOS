@@ -28,10 +28,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var resultArray = Array(repeating: "", count: 10)
     var SIResultsArray = Array(repeating: "", count: 10)
     var USReaultsArray = Array(repeating: "", count: 10)
-    
-    
+    var set : Set<IndexPath>?
     @IBOutlet weak var unitSwitch: UISegmentedControl!
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        if(!(set?.contains(indexPath))!){
+            set?.insert(indexPath)
+        cell.alpha = 0
+        let transform = CATransform3DTranslate(CATransform3DIdentity, -10, 10, 100)
+        cell.layer.transform = transform
+        UIView.animate(withDuration: 1.0) {
+            cell.layer.transform = CATransform3DIdentity
+            cell.alpha = 1.0
+        }
+        }
+    }
     @IBAction func calculate(_ sender: Any) {
         
         
@@ -224,6 +236,8 @@ print(unitSwitch.selectedSegmentIndex)
     override func viewDidLoad() {
         super.viewDidLoad()
         print("VIEW DID LOAD VIEW CONTROLLER")
+         set = Set()
+        
       registerForKeyboardNotifications()
         InputTitles = ["Circular Duct","Standard Air Composition","Enable Wet Bulb (T)","Width", "Height", "Pitot Tube (C)"
             ,"Dynamic Pressure ","Sea Level (P)",  "Static (P)","Elevation", "Dry Bulb (T)","H20","Ar","N2","02","C02"]
