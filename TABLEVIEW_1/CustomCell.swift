@@ -37,10 +37,9 @@ class CustomCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        backgrondView.backgroundColor = UIColor.gray
-        backgrondView.alpha = 0.1
-        contentView.backgroundColor = UIColor.clear
-        
+        backgrondView.backgroundColor = UIColor.white
+        backgrondView.alpha = 0.5
+        contentView.backgroundColor = UIColor.white
        
         
         backgrondView.layer.cornerRadius = 3.0
@@ -48,7 +47,6 @@ class CustomCell: UITableViewCell {
         backgrondView.layer.shadowColor = UIColor.black.withAlphaComponent(0.2).cgColor
         backgroundView?.layer.shadowOffset = CGSize(width: 0, height: 0)
         backgrondView.layer.shadowOpacity = 0.8
-        
         
     }
     

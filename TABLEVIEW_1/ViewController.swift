@@ -36,7 +36,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if(!(set?.contains(indexPath))!){
             set?.insert(indexPath)
         cell.alpha = 0
-        let transform = CATransform3DTranslate(CATransform3DIdentity, -10, 10, 100)
+        let transform = CATransform3DTranslate(CATransform3DIdentity, -20, -10, 200)
         cell.layer.transform = transform
         UIView.animate(withDuration: 1.0) {
             cell.layer.transform = CATransform3DIdentity
@@ -184,22 +184,14 @@ print(unitSwitch.selectedSegmentIndex)
          //tableView.reloadData()
 
     }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle{
-        return UIStatusBarStyle.default
-    }
-    
-        func setDynamicVelocity(dynamicVelocity: [Double]){
+         func setDynamicVelocity(dynamicVelocity: [Double]){
             print("VIEWCONTROLLER RECIEVED")
       print(dynamicVelocity)   
             dynamicPressureArray=dynamicVelocity
      }
     
     
-    override func viewDidAppear(_ animated: Bool) {
-      //  self.navigationController!.navigationBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 60.0)
-
-    }
+ 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
 
@@ -243,7 +235,7 @@ print(unitSwitch.selectedSegmentIndex)
         blurView.frame.size = CGSize(width: 250, height: 250)
         blurView.center = view.center
      //   view.addSubview(blurView)
-         tableView.backgroundColor = UIColor.clear
+        // tableView.backgroundColor = UIColor.clear
       registerForKeyboardNotifications()
         InputTitles = ["Circular Duct","Standard Air Composition","Enable Wet Bulb (T)","Width", "Height", "Pitot Tube (C)"
             ,"Dynamic Pressure ","Sea Level (P)",  "Static (P)","Elevation", "Dry Bulb (T)","H20","Ar","N2","02","C02"]
@@ -261,18 +253,12 @@ print(unitSwitch.selectedSegmentIndex)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         //self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view.backgroundColor = .clear
-       self.view.backgroundColor = UIColor(patternImage: UIImage(named: "stars.png")!)
 
         InputUnits = InputUnitsUS
         DataSource = InputTitles
         ResultUnits = ResultUnitsUS
         //self.view.backgroundColor = UIColor.black//(//patternImage: UIImage(named: "background.png")!)
-      
-      //  tableView.layer.cornerRadius = 10
-        
-        // border
-      //  tableView.layer.borderWidth = 1.0
-        tableView.layer.borderColor = UIColor.black.cgColor
+           tableView.layer.borderColor = UIColor.black.cgColor
         
         // shadow
         tableView.layer.shadowColor = UIColor.black.cgColor
