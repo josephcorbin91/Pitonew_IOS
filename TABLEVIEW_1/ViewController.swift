@@ -223,6 +223,7 @@ print(unitSwitch.selectedSegmentIndex)
     @IBOutlet weak var settingsIcon: UIBarButtonItem!
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("VIEW DID LOAD VIEW CONTROLLER")
       registerForKeyboardNotifications()
         InputTitles = ["Circular Duct","Standard Air Composition","Enable Wet Bulb (T)","Width", "Height", "Pitot Tube (C)"
             ,"Dynamic Pressure ","Sea Level (P)",  "Static (P)","Elevation", "Dry Bulb (T)","H20","Ar","N2","02","C02"]

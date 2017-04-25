@@ -84,7 +84,7 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if(indexPath.row == 0){
+        if(indexPath.row == 2){
             showDynamicVelocity()
         }
     }
@@ -106,7 +106,7 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
             dynamicVelocityViewController.items = dynamicVelocityArraySI
 
         }
-        self.navigationController?.pushViewController(dynamicVelocityViewController, animated: true)
+        self.navigationController?.show(dynamicVelocityViewController, sender: self)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -225,11 +225,25 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         else if(indexPath.row==1){
        
-        
+            if (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse ||
+                CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways)
+            {
+                print("location")
+                print(locManager.location)
+                
+            } else {
+                print("Location not authorized")
+            }
+            
+
         
                   let cell : UITableViewCell
             cell = self.tableView.dequeueReusableCell(withIdentifier: "locationCell", for: indexPath)
-            cell.textLabel?.text = "Current Location"
+            var  long = String(Double(round(100*(locManager.location?.coordinate.longitude)!)/100))
+            var  lat = String(Double(round(100*(locManager.location?.coordinate.latitude)!)/100))
+
+            cell.textLabel?.text = "Current Location: Longitude " + String(long) + " Latitude : " + String(lat)
+            
             return cell
         
         
@@ -238,7 +252,7 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
          
             let cell : UITableViewCell
             cell = self.tableView.dequeueReusableCell(withIdentifier: "dynamicVelocityCell", for: indexPath)
-            cell.textLabel?.text = ResultTitles[indexPath.row]
+            cell.textLabel?.text = ResultTitles[indexPath.row-2]
             return cell
 
             
