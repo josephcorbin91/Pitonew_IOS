@@ -270,7 +270,7 @@ print(unitSwitch.selectedSegmentIndex)
         self.tableView.reloadSections(sections as IndexSet, with: .fade)
         tableView.dataSource = self
         tableView.delegate = self
-       
+        tableView.contentInset = UIEdgeInsetsMake(44,0,0,0);
         }
     
     @IBOutlet weak var backgroundView: UIView!

@@ -87,8 +87,9 @@
                                     <constraint firstItem="J5U-qG-6sX" firstAttribute="centerY" secondItem="uGE-IL-79i" secondAttribute="centerY" id="uSR-jQ-T1F"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="grouped" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="TgK-Y3-Ehd">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" bounces="NO" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="grouped" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="TgK-Y3-Ehd">
                                 <rect key="frame" x="16" y="105" width="343" height="508"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="defaultSwitchCell" textLabel="Vcp-nW-xY4" imageView="0q6-K4-7mP" style="IBUITableViewCellStyleDefault" id="GPH-2e-7Xv">
@@ -271,17 +272,13 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="qix-JC-BsM" firstAttribute="top" secondItem="TgK-Y3-Ehd" secondAttribute="bottom" constant="10" id="0vC-hz-EPY"/>
                             <constraint firstItem="uGE-IL-79i" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="631-m5-GKO"/>
                             <constraint firstItem="uGE-IL-79i" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="BrE-sD-RKP"/>
-                            <constraint firstItem="TgK-Y3-Ehd" firstAttribute="top" secondItem="uGE-IL-79i" secondAttribute="bottom" constant="10" id="Bv9-Ru-KNU"/>
                             <constraint firstAttribute="trailing" secondItem="qix-JC-BsM" secondAttribute="trailing" id="HcZ-tS-4Iw"/>
                             <constraint firstItem="qix-JC-BsM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="R8p-eL-5zD"/>
-                            <constraint firstItem="TgK-Y3-Ehd" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="XOg-Ue-hlo"/>
                             <constraint firstAttribute="trailing" secondItem="uGE-IL-79i" secondAttribute="trailing" id="bWa-6d-7li"/>
                             <constraint firstItem="TkJ-oQ-cWP" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="fTm-MQ-4lv"/>
                             <constraint firstAttribute="trailing" secondItem="TkJ-oQ-cWP" secondAttribute="trailing" id="mBV-nF-1S1"/>
-                            <constraint firstItem="TgK-Y3-Ehd" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="noG-9P-28r"/>
                             <constraint firstItem="TkJ-oQ-cWP" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="20" id="o1y-5T-Lqr"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="qix-JC-BsM" secondAttribute="bottom" id="t3k-fQ-mDE"/>
                         </constraints>
