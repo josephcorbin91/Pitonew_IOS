@@ -238,6 +238,12 @@ print(unitSwitch.selectedSegmentIndex)
         print("VIEW DID LOAD VIEW CONTROLLER")
          set = Set()
         
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.light)
+        let blurView = UIVisualEffectView(effect: blurEffect)
+        blurView.frame.size = CGSize(width: 250, height: 250)
+        blurView.center = view.center
+     //   view.addSubview(blurView)
+         tableView.backgroundColor = UIColor.clear
       registerForKeyboardNotifications()
         InputTitles = ["Circular Duct","Standard Air Composition","Enable Wet Bulb (T)","Width", "Height", "Pitot Tube (C)"
             ,"Dynamic Pressure ","Sea Level (P)",  "Static (P)","Elevation", "Dry Bulb (T)","H20","Ar","N2","02","C02"]
@@ -253,19 +259,19 @@ print(unitSwitch.selectedSegmentIndex)
  
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.isTranslucent = true
+        //self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view.backgroundColor = .clear
-       // self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backgroun.png")!)
+       self.view.backgroundColor = UIColor(patternImage: UIImage(named: "stars.png")!)
 
         InputUnits = InputUnitsUS
         DataSource = InputTitles
         ResultUnits = ResultUnitsUS
         //self.view.backgroundColor = UIColor.black//(//patternImage: UIImage(named: "background.png")!)
       
-        tableView.layer.cornerRadius = 10
+      //  tableView.layer.cornerRadius = 10
         
         // border
-        tableView.layer.borderWidth = 1.0
+      //  tableView.layer.borderWidth = 1.0
         tableView.layer.borderColor = UIColor.black.cgColor
         
         // shadow
@@ -794,6 +800,10 @@ print(unitSwitch.selectedSegmentIndex)
 
     func verifyInput() -> Bool{
         
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.light)
+        let blurView = UIVisualEffectView(effect: blurEffect)
+        blurView.frame.size = CGSize(width: view.frame.width, height: view.frame.height)
+        blurView.center = view.center
         let alertInvalidSum = UIAlertController(title: "Invalid Input", message: "Summation of air composition must equal 100.", preferredStyle: UIAlertControllerStyle.alert)
         alertInvalidSum.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
         
@@ -808,6 +818,7 @@ print(unitSwitch.selectedSegmentIndex)
         let alertMissingDynamicVelocity = UIAlertController(title: "Invalid Input", message: "Dynamic Velocity required", preferredStyle: UIAlertControllerStyle.alert)
         alertInvalidTextField.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
         let showDynamicVelocity = UIAlertAction(title: "Add dynamic pressure", style: .default) { (action) -> Void in
+            blurView.removeFromSuperview()
             self.showDynamicVelocity()
 
             
@@ -815,6 +826,9 @@ print(unitSwitch.selectedSegmentIndex)
         alertMissingDynamicVelocity.addAction(showDynamicVelocity)
         
         if(dynamicPressureArray.count == 0){
+            
+            
+            view.addSubview(blurView)
                self.present(alertMissingDynamicVelocity, animated: true, completion: nil)
             return false
             
@@ -933,10 +947,7 @@ print(unitSwitch.selectedSegmentIndex)
         self.view.endEditing(true)
         
     }
-    
-    
-    
-    
+        
 
     
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextFieldDidEndEditingReason) {
@@ -1107,7 +1118,7 @@ print(unitSwitch.selectedSegmentIndex)
         else if(indexPath.section == 1){
             
             
-         var cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultTextFieldCell", for: indexPath) as! CustomCell
+         var cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultTextFieldCell1", for: indexPath) as! CustomCell
            
             cell.inputTitle.text = InputTitles[indexPath.row+3]
             print(indexPath.row)
@@ -1138,6 +1149,7 @@ print(unitSwitch.selectedSegmentIndex)
             
 
      
+            cell.backgroundColor = UIColor.clear
             cell.inputTextField.text = inputArrayValues[indexOfInputArray]
            // cell.inputTextField.tag = indexPath.row
             cell.inputTextField.delegate = self // theField is your IBOutlet UITextfield in your custom cell
@@ -1166,7 +1178,7 @@ print(unitSwitch.selectedSegmentIndex)
         
             }
             else{
-            var cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultTextFieldCell", for: indexPath) as! CustomCell
+            var cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultTextFieldCell1", for: indexPath) as! CustomCell
             cell.inputTitle.text = InputTitles[indexPath.row+startingIndex]
             print(indexPath.row+startingIndex)
             print("input units")
@@ -1194,7 +1206,8 @@ print(unitSwitch.selectedSegmentIndex)
                 }
             
 
-            
+                cell.backgroundColor = UIColor.clear
+
             cell.inputTextField.text = inputArrayValues[indexOfInputArray]
            // cell.inputTextField.tag = indexPath.row
             cell.inputTextField.delegate = self // theField is your IBOutlet UITextfield in your custom cell
@@ -1216,7 +1229,7 @@ print(unitSwitch.selectedSegmentIndex)
                 startingIndex = 10
             }
             
-         var cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultTextFieldCell", for: indexPath) as! CustomCell
+         var cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultTextFieldCell1", for: indexPath) as! CustomCell
            
             cell.inputTitle.text = InputTitles[indexPath.row+startingIndex]
             print(indexPath.row)
@@ -1245,7 +1258,8 @@ print(unitSwitch.selectedSegmentIndex)
                     
                 default : indexOfInputArray = -1
                 }
-          
+            cell.backgroundColor = UIColor.clear
+
             cell.inputTextField.text = inputArrayValues[indexOfInputArray]
            // cell.inputTextField.tag = indexPath.row
             cell.inputTextField.delegate = self // theField is your IBOutlet UITextfield in your custom cell
@@ -1273,7 +1287,7 @@ print(unitSwitch.selectedSegmentIndex)
                 startingIndex = 11
             }
             
-         var cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultTextFieldCell", for: indexPath) as! CustomCell
+         var cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultTextFieldCell1", for: indexPath) as! CustomCell
              
             cell.inputTitle.text = InputTitles[indexPath.row+startingIndex]
             print(indexPath.row)
@@ -1306,7 +1320,8 @@ print(unitSwitch.selectedSegmentIndex)
                 }
             
 
-            
+            cell.backgroundColor = UIColor.clear
+
             cell.inputTextField.text = inputArrayValues[indexOfInputArray]
            // cell.inputTextField.tag = indexPath.row
             cell.inputTextField.delegate = self // theField is your IBOutlet UITextfield in your custom cell
@@ -1320,7 +1335,7 @@ print(unitSwitch.selectedSegmentIndex)
         
      
         else{
-            var cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultTextFieldCell", for: indexPath) as! CustomCell
+            var cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultTextFieldCell1", for: indexPath) as! CustomCell
            
             cell.inputTitle.text = InputTitles[indexPath.row]
             print(indexPath.row)
@@ -1349,7 +1364,8 @@ print(unitSwitch.selectedSegmentIndex)
                 }
             
 
-            
+            cell.backgroundColor = UIColor.clear
+
             cell.inputTextField.text = inputArrayValues[indexOfInputArray]
            // cell.inputTextField.tag = indexPath.row
             cell.inputTextField.delegate = self // theField is your IBOutlet UITextfield in your custom cell

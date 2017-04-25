@@ -48,8 +48,7 @@ class VelocityViewController: UIViewController, UITableViewDelegate, UITableView
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+            // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -96,8 +95,6 @@ class VelocityViewController: UIViewController, UITableViewDelegate, UITableView
         }
         else{
             
-          
-        
         let alertInvalidResult = UIAlertController(title: "Invalid Pressure values", message: "75% of values must be greater than 10% of the maximum pressure", preferredStyle: UIAlertControllerStyle.alert)
         alertInvalidResult.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
         self.present(alertInvalidResult, animated: true, completion: nil)
