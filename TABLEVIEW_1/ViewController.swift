@@ -270,7 +270,7 @@ print(unitSwitch.selectedSegmentIndex)
         self.tableView.reloadSections(sections as IndexSet, with: .fade)
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.contentInset = UIEdgeInsetsMake(44,0,0,0);
+       // tableView.contentInset = UIEdgeInsetsMake(44,0,0,0);
         }
     
     @IBOutlet weak var backgroundView: UIView!
@@ -1104,7 +1104,7 @@ print(unitSwitch.selectedSegmentIndex)
         else if(indexPath.section == 1){
             
             
-         var cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultTextFieldCell1", for: indexPath) as! CustomCell
+         var cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultTextFieldCell", for: indexPath) as! CustomCell
            
             cell.inputTitle.text = InputTitles[indexPath.row+3]
             print(indexPath.row)
@@ -1164,7 +1164,7 @@ print(unitSwitch.selectedSegmentIndex)
         
             }
             else{
-            var cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultTextFieldCell1", for: indexPath) as! CustomCell
+            var cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultTextFieldCell", for: indexPath) as! CustomCell
             cell.inputTitle.text = InputTitles[indexPath.row+startingIndex]
             print(indexPath.row+startingIndex)
             print("input units")
@@ -1215,7 +1215,7 @@ print(unitSwitch.selectedSegmentIndex)
                 startingIndex = 10
             }
             
-         var cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultTextFieldCell1", for: indexPath) as! CustomCell
+         var cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultTextFieldCell", for: indexPath) as! CustomCell
            
             cell.inputTitle.text = InputTitles[indexPath.row+startingIndex]
             print(indexPath.row)
@@ -1273,7 +1273,7 @@ print(unitSwitch.selectedSegmentIndex)
                 startingIndex = 11
             }
             
-         var cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultTextFieldCell1", for: indexPath) as! CustomCell
+         var cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultTextFieldCell", for: indexPath) as! CustomCell
              
             cell.inputTitle.text = InputTitles[indexPath.row+startingIndex]
             print(indexPath.row)
@@ -1321,7 +1321,7 @@ print(unitSwitch.selectedSegmentIndex)
         
      
         else{
-            var cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultTextFieldCell1", for: indexPath) as! CustomCell
+            var cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultTextFieldCell", for: indexPath) as! CustomCell
            
             cell.inputTitle.text = InputTitles[indexPath.row]
             print(indexPath.row)
