@@ -21,18 +21,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pitonew_logo" translatesAutoresizingMaskIntoConstraints="NO" id="Hp4-3f-BXD">
-                                <rect key="frame" x="87" y="184" width="200" height="300"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blue_gradient" translatesAutoresizingMaskIntoConstraints="NO" id="dxM-SS-1Vw">
+                                <rect key="frame" x="0.0" y="-2" width="375" height="669"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logomakr_6XKfI1" translatesAutoresizingMaskIntoConstraints="NO" id="nxj-hw-vyJ">
+                                <rect key="frame" x="87.5" y="313.5" width="200" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="9po-By-WPE"/>
-                                    <constraint firstAttribute="width" constant="200" id="huq-QG-h6v"/>
+                                    <constraint firstAttribute="width" constant="200" id="Nh8-0C-oXm"/>
+                                    <constraint firstAttribute="height" constant="40" id="VEv-05-OSP"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Hp4-3f-BXD" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="nhz-fh-xQD"/>
-                            <constraint firstItem="Hp4-3f-BXD" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="xbB-vk-ruf"/>
+                            <constraint firstItem="nxj-hw-vyJ" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="0Kn-6o-3xF"/>
+                            <constraint firstAttribute="trailing" secondItem="dxM-SS-1Vw" secondAttribute="trailing" id="4jp-Ni-zVP"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="dxM-SS-1Vw" secondAttribute="bottom" id="Lq6-IJ-he1"/>
+                            <constraint firstItem="nxj-hw-vyJ" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="f5g-s4-Md0"/>
+                            <constraint firstItem="dxM-SS-1Vw" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="-22" id="jBM-gs-iBs"/>
+                            <constraint firstItem="dxM-SS-1Vw" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="vSe-mz-Ra9"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -42,6 +49,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="pitonew_logo" width="641" height="872"/>
+        <image name="Logomakr_6XKfI1" width="163" height="27"/>
+        <image name="blue_gradient" width="93" height="93"/>
     </resources>
 </document>
