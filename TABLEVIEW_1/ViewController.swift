@@ -9,7 +9,9 @@
 import UIKit
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, MyProtocol {
+    @IBOutlet weak var leadingConstraing: NSLayoutConstraint!
 
+    @IBOutlet weak var menuTableView: UITableView!
     @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var tableView: UITableView!
     var DataSource = [String]()
@@ -224,11 +226,32 @@ print(unitSwitch.selectedSegmentIndex)
     
     @IBAction func settingsClicked(_ sender: Any) {
     }
+    
+    
+    @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
+    var menuShowing = false
+    
+    @IBOutlet weak var menuView: UIView!
+    @IBAction func openMenu(_ sender: Any) {
+        if(menuShowing){
+            leadingConstraint.constant = -140
+        }
+        else{
+        leadingConstraint.constant = 0
+            UIView.animate(withDuration: 0.3, animations: { 
+                self.view.layoutIfNeeded()
+            })
+        }
+        menuShowing = !menuShowing
+    }
     @IBOutlet weak var settingsIcon: UIBarButtonItem!
     override func viewDidLoad() {
         super.viewDidLoad()
         print("VIEW DID LOAD VIEW CONTROLLER")
          set = Set()
+        menuView.layer.shadowOpacity = 1
+        menuView.layer.shadowRadius = 6
+        
         
         let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.light)
         let blurView = UIVisualEffectView(effect: blurEffect)
@@ -268,6 +291,8 @@ print(unitSwitch.selectedSegmentIndex)
         let range = NSMakeRange(0, 0)
         let sections = NSIndexSet(indexesIn: range)
         self.tableView.reloadSections(sections as IndexSet, with: .fade)
+        menuTableView.delegate = self
+        menuTableView.dataSource = self
         tableView.dataSource = self
         tableView.delegate = self
        // tableView.contentInset = UIEdgeInsetsMake(44,0,0,0);
@@ -285,13 +310,22 @@ print(unitSwitch.selectedSegmentIndex)
         return self.sectionHeaders[section]
     }
     func numberOfSections(in tableView: UITableView) -> Int {
+        if(tableView == self.tableView){
         if(inputArrayValues[1]=="on"){
             return 4
         }
         else{
             return 5
         }
+        }
         
+        if(tableView == self.menuTableView){
+            return 1
+        }
+        else{
+            return 1
+        }
+
     }
   
     
@@ -895,6 +929,9 @@ print(unitSwitch.selectedSegmentIndex)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        if(tableView == self.tableView){
+
         print("NUMBER OF ROWS  " + String(DataSource.count))
                     
         if(section == 0){
@@ -924,7 +961,14 @@ print(unitSwitch.selectedSegmentIndex)
         else{
             return 0
         }
-     
+        }
+        if(tableView == self.menuTableView){
+            return 3
+        }
+        else{
+            return 3
+        }
+
         
     }
     
@@ -997,7 +1041,8 @@ print(unitSwitch.selectedSegmentIndex)
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        
+        if(tableView == self.tableView){
+
         if(indexPath.section == 0 && indexPath.row == 0){
    
         let cell : UITableViewCell
@@ -1361,7 +1406,42 @@ print(unitSwitch.selectedSegmentIndex)
             
             return cell
         }
+        }
+        if(tableView == self.menuTableView){
             
+             if(indexPath.row == 0){
+                
+                let cell : UITableViewCell
+                cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultSwitchAboutDeveloper", for: indexPath)
+                cell.textLabel?.text = "About Developer"
+                return cell
+                
+            }
+            else if(indexPath.row == 1){
+                
+                let cell : UITableViewCell
+                cell = self.tableView.dequeueReusableCell(withIdentifier: "Theory", for: indexPath)
+                cell.textLabel?.text = InputTitles[indexPath.row]
+                return cell
+                
+            }
+            else {
+                
+                let cell : UITableViewCell
+                cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultSwitchUpdates", for: indexPath)
+                cell.textLabel?.text = "Software Updates"
+                return cell
+                
+            }
+            
+        }
+        else{
+            var cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultTextFieldCell", for: indexPath) as! CustomCell
+            
+            cell.inputTitle.text = "ONE"
+            return cell
+        }
+
     
     }
     
