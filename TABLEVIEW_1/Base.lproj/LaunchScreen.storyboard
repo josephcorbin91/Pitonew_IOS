@@ -21,16 +21,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="pitonew_logo" translatesAutoresizingMaskIntoConstraints="NO" id="Hp4-3f-BXD">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pitonew_logo" translatesAutoresizingMaskIntoConstraints="NO" id="Hp4-3f-BXD">
                                 <rect key="frame" x="87" y="184" width="200" height="300"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="9po-By-WPE"/>
+                                    <constraint firstAttribute="width" constant="200" id="huq-QG-h6v"/>
+                                </constraints>
                             </imageView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="xhc-r8-Xut">
-                                <rect key="frame" x="177" y="498" width="20" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Hp4-3f-BXD" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="nhz-fh-xQD"/>
+                            <constraint firstItem="Hp4-3f-BXD" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="xbB-vk-ruf"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>

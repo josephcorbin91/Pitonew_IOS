@@ -228,13 +228,13 @@ print(unitSwitch.selectedSegmentIndex)
     }
     
     
-    @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
     var menuShowing = false
     
+    @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var menuView: UIView!
     @IBAction func openMenu(_ sender: Any) {
         if(menuShowing){
-            leadingConstraint.constant = -140
+            leadingConstraint.constant = -170
         }
         else{
         leadingConstraint.constant = 0
@@ -1412,7 +1412,7 @@ print(unitSwitch.selectedSegmentIndex)
              if(indexPath.row == 0){
                 
                 let cell : UITableViewCell
-                cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultSwitchAboutDeveloper", for: indexPath)
+                cell = self.menuTableView.dequeueReusableCell(withIdentifier: "defaultSwitchAboutDeveloper", for: indexPath)
                 cell.textLabel?.text = "About Developer"
                 return cell
                 
@@ -1420,15 +1420,15 @@ print(unitSwitch.selectedSegmentIndex)
             else if(indexPath.row == 1){
                 
                 let cell : UITableViewCell
-                cell = self.tableView.dequeueReusableCell(withIdentifier: "Theory", for: indexPath)
-                cell.textLabel?.text = InputTitles[indexPath.row]
+                cell = self.menuTableView.dequeueReusableCell(withIdentifier: "defaultSwitchTheory", for: indexPath)
+                cell.textLabel?.text = "Theory"
                 return cell
                 
             }
             else {
                 
                 let cell : UITableViewCell
-                cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultSwitchUpdates", for: indexPath)
+                cell = self.menuTableView.dequeueReusableCell(withIdentifier: "defaultSwitchUpdates", for: indexPath)
                 cell.textLabel?.text = "Software Updates"
                 return cell
                 
@@ -1436,7 +1436,7 @@ print(unitSwitch.selectedSegmentIndex)
             
         }
         else{
-            var cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultTextFieldCell", for: indexPath) as! CustomCell
+            var cell = self.menuTableView.dequeueReusableCell(withIdentifier: "defaultTextFieldCell", for: indexPath) as! CustomCell
             
             cell.inputTitle.text = "ONE"
             return cell
