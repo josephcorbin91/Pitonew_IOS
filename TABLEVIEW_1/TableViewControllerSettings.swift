@@ -18,7 +18,7 @@ class TableViewControllerSettings: UITableViewController,CLLocationManagerDelega
         print("VIEW DID LOAD VIEW SETTINGS")
         print(inputArrayValues)
 
-        InputTitles = ["Enable Sound","Enable Vibration", "Enable GPS Localization of Duct","About Developer","Theory","Software Updates"]
+        InputTitles = ["Enable Sound","Enable Vibration", "Enable GPS Localization of Duct","Language","Theory","Software Updates"]
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -164,7 +164,7 @@ class TableViewControllerSettings: UITableViewController,CLLocationManagerDelega
             else if(indexPath.row == 3){
                 
                 let cell : UITableViewCell
-                cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultSwitchAboutDeveloper", for: indexPath)
+                cell = self.tableView.dequeueReusableCell(withIdentifier: "defaultSwitchWorld", for: indexPath)
                 cell.textLabel?.text = InputTitles[indexPath.row]
                 return cell
                 

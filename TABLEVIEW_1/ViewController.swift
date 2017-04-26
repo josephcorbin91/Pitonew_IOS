@@ -234,7 +234,8 @@ print(unitSwitch.selectedSegmentIndex)
     @IBOutlet weak var menuView: UIView!
     @IBAction func openMenu(_ sender: Any) {
         if(menuShowing){
-            leadingConstraint.constant = -170
+            leadingConstraint.constant = -250
+
         }
         else{
         leadingConstraint.constant = 0
@@ -251,7 +252,7 @@ print(unitSwitch.selectedSegmentIndex)
          set = Set()
         menuView.layer.shadowOpacity = 1
         menuView.layer.shadowRadius = 6
-        
+        leadingConstraint.constant = -250
         
         let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.light)
         let blurView = UIVisualEffectView(effect: blurEffect)
@@ -307,7 +308,12 @@ print(unitSwitch.selectedSegmentIndex)
 
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if(tableView == self.tableView){
         return self.sectionHeaders[section]
+        }
+        else{
+            return "Menu"
+        }
     }
     func numberOfSections(in tableView: UITableView) -> Int {
         if(tableView == self.tableView){
@@ -1488,6 +1494,8 @@ print(unitSwitch.selectedSegmentIndex)
         self.view.endEditing(true)
         self.tableView.isScrollEnabled = true
     }
+    
+    
          func switchPressed(sender:UISwitch){
        print("pipeSwitch" + String(describing: pipeSwitch))
         
