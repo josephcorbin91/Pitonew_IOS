@@ -109,8 +109,14 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if(indexPath.row == 2){
+        if(tableView == self.tableView && indexPath.row == 2){
             showDynamicVelocity()
+        }
+        if(tableView == self.menuTableView && indexPath.row == 2){
+            let settingsViewController = storyboard?.instantiateViewController(withIdentifier: "SettingsViewController") as! TableViewControllerSettings
+            
+            
+            self.navigationController?.show(settingsViewController, sender: self)
         }
     }
     
@@ -230,12 +236,12 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         }
         else{
-            return 3
+            return 4
         }
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        
+        if(tableView == self.tableView){
         if(indexPath.row == 1){
             
             // Check if the user allowed authorization
@@ -248,6 +254,14 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
             } else {
                 print("Location not authorized")
             }
+
+        }
+        }
+        if(tableView == self.menuTableView && indexPath.row == 3){
+            let settingsViewController = storyboard?.instantiateViewController(withIdentifier: "SettingsViewController") as! TableViewControllerSettings
+            
+            
+            self.navigationController?.show(settingsViewController, sender: self)
 
         }
     }
@@ -423,6 +437,15 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 return cell
                 
             }
+            else if(indexPath.row == 2){
+                
+                let cell : UITableViewCell
+                cell = self.menuTableView.dequeueReusableCell(withIdentifier: "defaultSwitchSettings", for: indexPath)
+                cell.textLabel?.text = "Settings"
+                return cell
+                
+            }
+
             else {
                 
                 let cell : UITableViewCell

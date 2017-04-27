@@ -10,6 +10,8 @@ import UIKit
 
 class dynamicVelocityCell: UITableViewCell {
 
+    @IBOutlet weak var dynamicPressureTItle: UILabel!
+    @IBOutlet weak var dynamicPressureValues: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -1207,9 +1207,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             if(indexPath.row == 0){
                    
-            let cell : UITableViewCell
-            cell = self.tableView.dequeueReusableCell(withIdentifier: "dynamicVelocityCell", for: indexPath)
-            cell.textLabel?.text = InputTitles[indexPath.row + startingIndex]
+            let cell = self.tableView.dequeueReusableCell(withIdentifier: "dynamicVelocityCell", for: indexPath) as! dynamicVelocityCell
+            cell.dynamicPressureTItle.text = "Dynamic Velocity"
+                print("DYNAMIC CELLS" + String(describing: dynamicVelocityArray))
+            var string = ""
+                for value in dynamicVelocityArray{
+                string += String(value)
+                }
+            
+            cell.dynamicPressureValues.text = string
                        return cell
         
             }
