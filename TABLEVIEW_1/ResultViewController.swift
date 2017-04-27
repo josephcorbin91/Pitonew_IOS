@@ -34,6 +34,7 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var menuView: UIView!
     
+    @IBOutlet weak var menuTableView: UITableView!
     @IBAction func openMeu(_ sender: UIBarButtonItem) {
         if(menuShowing){
             leadingConstraint.constant = -260
@@ -141,9 +142,9 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
       
-        //menuView.layer.shadowOpacity = 1
-     //   menuView.layer.shadowRadius = 6
-     //   leadingConstraint.constant = -260
+        menuView.layer.shadowOpacity = 1
+        menuView.layer.shadowRadius = 6
+        leadingConstraint.constant = -260
         
 
         
@@ -206,6 +207,7 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return self.Sections[section]
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if(tableView == self.tableView){
         if(section == 0 ){
             return 4
         }
@@ -218,9 +220,14 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
         else {
             return 0
         }
+        }
+        else{
+            return 3
+        }
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        
         if(indexPath.row == 1){
             
             // Check if the user allowed authorization
