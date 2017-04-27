@@ -38,7 +38,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if(!(set?.contains(indexPath))!){
             set?.insert(indexPath)
         cell.alpha = 0
-        let transform = CATransform3DTranslate(CATransform3DIdentity, -20, -10, 200)
+        let transform = CATransform3DTranslate(CATransform3DIdentity, -20, -20, 20)
         cell.layer.transform = transform
         UIView.animate(withDuration: 1.0) {
             cell.layer.transform = CATransform3DIdentity
@@ -234,7 +234,7 @@ print(unitSwitch.selectedSegmentIndex)
     @IBOutlet weak var menuView: UIView!
     @IBAction func openMenu(_ sender: Any) {
         if(menuShowing){
-            leadingConstraint.constant = -250
+            leadingConstraint.constant = -260
 
         }
         else{
@@ -252,7 +252,7 @@ print(unitSwitch.selectedSegmentIndex)
          set = Set()
         menuView.layer.shadowOpacity = 1
         menuView.layer.shadowRadius = 6
-        leadingConstraint.constant = -250
+        leadingConstraint.constant = -260
         
         let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.light)
         let blurView = UIVisualEffectView(effect: blurEffect)
@@ -296,7 +296,7 @@ print(unitSwitch.selectedSegmentIndex)
         menuTableView.dataSource = self
         tableView.dataSource = self
         tableView.delegate = self
-       // tableView.contentInset = UIEdgeInsetsMake(44,0,0,0);
+        //tableView.contentInset = UIEdgeInsetsMake(44,0,0,0);
         }
     
     @IBOutlet weak var backgroundView: UIView!

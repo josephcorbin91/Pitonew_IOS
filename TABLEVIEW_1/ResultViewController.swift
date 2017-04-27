@@ -17,13 +17,16 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var ResultUnitsSI = [String]()
     var ResultUnitsUS = [String]()
     var ResultUnits = [String]()
+    var Sections = [String]()
     var dynamicVelocityArrayUS = [Double]()
     var dynamicVelocityArraySI = [Double]()
 
     var resultArray = Array(repeating: "", count: 10)
     var SIResultsArray = Array(repeating: "", count: 10)
     var USReaultsArray = Array(repeating: "", count: 10)
-    var unitSwitch : UISegmentedControl!
+    //var unitSwitch : UISegmentedControl!
+    
+    @IBOutlet weak var unitSwitch: UISegmentedControl!
     var currentUnits : Int = 0
     @IBOutlet weak var actionButton: UIBarButtonItem!
     
@@ -64,8 +67,8 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
         actionSheetControllerIOS8.addAction(emailActionButton)
         self.present(actionSheetControllerIOS8, animated: true, completion: nil)
     }
-    func unitSwitchPressedResult(sender: UISegmentedControl) {
-           if(unitSwitch.selectedSegmentIndex == 0){
+    @IBAction func unitSwitchValueChanged(_ sender: UISegmentedControl) {
+              if(unitSwitch.selectedSegmentIndex == 0){
             ResultUnits = ResultUnitsUS
             resultArray = USReaultsArray
 
@@ -120,27 +123,18 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         
         
-        
+        Sections = ["Duct Properties","Air Flow Properties","Gas Properties"]
         ResultTitles = ["Dynamic Velocity", "Average Velocity", "Mass Air Flow", "Actual Air Flow","Normal Air Flow", "Molar Weight", "Duct (P)","Area", "Atmospheric (P)", "GasDensity"]
         ResultUnitsSI = ["m/s","m/s","kg/","m^3/s", "Nm^3/h","g/mol", "kPa", "m^2", "kPa", "kg/m^3"]
         ResultUnitsUS = ["ft/s","ft/s","lb/min","SCFM", "ACFM","g/mol", "in Hg", "in^2", "in. Hg", "ft^3",""]
         navigationItem.title = "Results"
         
         
-        unitSwitch = UISegmentedControl(items: ["US", "METRIC"])
-        unitSwitch.sizeToFit()
-        unitSwitch.tintColor = UIColor(red:0.99, green:0.00, blue:0.25, alpha:0.5)
-        unitSwitch.selectedSegmentIndex = 0;
         
         
         self.navigationItem.title = "Results"
-        self.navigationItem.titleView = unitSwitch
-        unitSwitch.addTarget(self, action: #selector(unitSwitchPressedResult(sender:)), for: UIControlEvents.valueChanged)
+      
 
-       
-
-
-       // self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backgroun.png")!)
         unitSwitch.selectedSegmentIndex = currentUnits
 
         if(currentUnits == 1){
@@ -153,17 +147,18 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
             resultArray = USReaultsArray
 
         }
-        tableView.layer.cornerRadius = 10
+        //tableView.layer.cornerRadius = 10
         
         // border
-        tableView.layer.borderWidth = 1.0
-        tableView.layer.borderColor = UIColor.black.cgColor
-        
+       // tableView.layer.borderWidth = 1.0
+      //  tableView.layer.borderColor = UIColor.black.cgColor
+        /*
         // shadow
         tableView.layer.shadowColor = UIColor.black.cgColor
         //tableView.layer.shadowOffset = CGSize(width: 3, height: 3)
         tableView.layer.shadowOpacity = 0.7
         tableView.layer.shadowRadius = 4.0
+ */
        tableView.reloadData()
         
         // Core Location Manager asks for GPS location
@@ -177,9 +172,27 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     var locManager = CLLocationManager()
 
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 3
+    }
     
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return self.Sections[section]
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ResultTitles.count+2
+        if(section == 0 ){
+            return 4
+        }
+        else if(section == 1){
+            return 5
+        }
+        else if(section == 2){
+            return 2
+        }
+        else {
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
@@ -209,7 +222,7 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var tableView: UITableView!
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        
+        if(indexPath.section == 0){
         if(indexPath.row==0){
             let date = Date()
             let formatter = DateFormatter()
@@ -248,32 +261,113 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         
         }
-        else if(indexPath.row==2){
-         
-            let cell : UITableViewCell
-            cell = self.tableView.dequeueReusableCell(withIdentifier: "dynamicVelocityCell", for: indexPath)
-            cell.textLabel?.text = ResultTitles[indexPath.row-2]
-            return cell
-
             
-        }
-        else
-        {
+        else if(indexPath.row==2){
+            
             var cell = self.tableView.dequeueReusableCell(withIdentifier: "ResultCell", for: indexPath) as! ResultCell
             print("RESULTS")
             print(resultArray)
             print(indexPath.row)
             
-            cell.resultTitle.text = ResultTitles[indexPath.row-2]
-            cell.result.text = resultArray[indexPath.row-2]
-            cell.resultUnit.text = ResultUnits[indexPath.row-2]
+            cell.resultTitle.text = ResultTitles[6]
+            cell.result.text = resultArray[6]
+            cell.resultUnit.text = ResultUnits[6]
+            return cell
+            
+            
+        }
+        else if(indexPath.row==3){
+            
+            var cell = self.tableView.dequeueReusableCell(withIdentifier: "ResultCell", for: indexPath) as! ResultCell
+            print("RESULTS")
+            print(resultArray)
+            print(indexPath.row)
+            
+            cell.resultTitle.text = ResultTitles[7]
+            cell.result.text = resultArray[7]
+            cell.resultUnit.text = ResultUnits[7]
+            return cell
+            
+            
+        }
+        }
+        else if(indexPath.section == 1){
+            if(indexPath.row == 0){
+                var cell = self.tableView.dequeueReusableCell(withIdentifier: "ResultCell", for: indexPath) as! dynamicVelocityCell
+                cell.textLabel?.text = "Dynamic Velocity"
+
+                return cell
+            }
+            else{
+                
+                var cell = self.tableView.dequeueReusableCell(withIdentifier: "ResultCell", for: indexPath) as! ResultCell
+                print("RESULTS")
+                print(resultArray)
+                print(indexPath.row)
+                
+                cell.resultTitle.text = ResultTitles[indexPath.row]
+                cell.result.text = resultArray[indexPath.row]
+                cell.resultUnit.text = ResultUnits[indexPath.row]
+                return cell
+            }
+            
+            }
+        else if(indexPath.section == 2){
+            if(indexPath.row == 0){
+                var cell = self.tableView.dequeueReusableCell(withIdentifier: "ResultCell", for: indexPath) as! ResultCell
+                print("RESULTS")
+                print(resultArray)
+                print(indexPath.row)
+                
+                cell.resultTitle.text = ResultTitles[5]
+                cell.result.text = resultArray[5]
+                cell.resultUnit.text = ResultUnits[5]
+                return cell
+            }
+            else if(indexPath.row == 1){
+                var cell = self.tableView.dequeueReusableCell(withIdentifier: "ResultCell", for: indexPath) as! ResultCell
+                print("RESULTS")
+                print(resultArray)
+                print(indexPath.row)
+                
+                cell.resultTitle.text = ResultTitles[8]
+                cell.result.text = resultArray[8]
+                cell.resultUnit.text = ResultUnits[8]
+                return cell
+            }
+            else if(indexPath.row == 1){
+                var cell = self.tableView.dequeueReusableCell(withIdentifier: "ResultCell", for: indexPath) as! ResultCell
+                print("RESULTS")
+                print(resultArray)
+                print(indexPath.row)
+                
+                cell.resultTitle.text = ResultTitles[9]
+                cell.result.text = resultArray[9]
+                cell.resultUnit.text = ResultUnits[9]
+                return cell
+            }
+           
+
+            
+        }
+        else{
+            var cell = self.tableView.dequeueReusableCell(withIdentifier: "ResultCell", for: indexPath) as! ResultCell
+            print("RESULTS")
+            print(resultArray)
+            print(indexPath.row)
+            
+            cell.resultTitle.text = ResultTitles[9]
+            cell.result.text = resultArray[9]
+            cell.resultUnit.text = ResultUnits[9]
             return cell
         }
         
-        
-        
-        
     }
-    
-   
 }
+
+
+
+
+      
+   
+
