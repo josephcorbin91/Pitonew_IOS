@@ -48,6 +48,9 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
         menuShowing = !menuShowing
 
     }
+    
+  
+    
         func sendEmail() {
         if MFMailComposeViewController.canSendMail() {
             let mail = MFMailComposeViewController()
