@@ -293,7 +293,8 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         else if(indexPath.section == 1){
             if(indexPath.row == 0){
-                var cell = self.tableView.dequeueReusableCell(withIdentifier: "ResultCell", for: indexPath) as! dynamicVelocityCell
+                var cell = self.tableView.dequeueReusableCell(withIdentifier: "dynamicVelocityCell", for: indexPath)
+                
                 cell.textLabel?.text = "Dynamic Velocity"
 
                 return cell
@@ -361,13 +362,22 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell.resultUnit.text = ResultUnits[9]
             return cell
         }
+        var cell = self.tableView.dequeueReusableCell(withIdentifier: "ResultCell", for: indexPath) as! ResultCell
+        print("RESULTS")
+        print(resultArray)
+        print(indexPath.row)
         
+        cell.resultTitle.text = ResultTitles[9]
+        cell.result.text = resultArray[9]
+        cell.resultUnit.text = ResultUnits[9]
+        return cell
+
     }
 }
 
 
 
 
-      
-   
+
+
 
