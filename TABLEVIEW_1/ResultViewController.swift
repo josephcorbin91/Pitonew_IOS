@@ -199,12 +199,17 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var locManager = CLLocationManager()
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        if(tableView == self.tableView){ return 3}
+        else {
+            return "Menu"
+        }
     }
     
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if(tableView == self.tableView){
         return self.Sections[section]
+        }
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if(tableView == self.tableView){
@@ -253,7 +258,7 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBOutlet weak var tableView: UITableView!
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+        if(tableView == self.tableView){
         if(indexPath.section == 0){
         if(indexPath.row==0){
             let date = Date()
@@ -396,6 +401,36 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell.result.text = resultArray[9]
             cell.resultUnit.text = ResultUnits[9]
             return cell
+        }
+    }
+        else if(tableView == self.menuTableView){
+            if(indexPath.row == 0){
+                
+                let cell : UITableViewCell
+                cell = self.menuTableView.dequeueReusableCell(withIdentifier: "defaultSwitchAboutDeveloper", for: indexPath)
+                cell.textLabel?.text = "About Developer"
+                return cell
+                
+            }
+            else if(indexPath.row == 1){
+                
+                let cell : UITableViewCell
+                cell = self.menuTableView.dequeueReusableCell(withIdentifier: "defaultSwitchTheory", for: indexPath)
+                cell.textLabel?.text = "Theory"
+                return cell
+                
+            }
+            else {
+                
+                let cell : UITableViewCell
+                cell = self.menuTableView.dequeueReusableCell(withIdentifier: "defaultSwitchUpdates", for: indexPath)
+                cell.textLabel?.text = "Software Updates"
+                return cell
+                
+            }
+
+            
+            
         }
         var cell = self.tableView.dequeueReusableCell(withIdentifier: "ResultCell", for: indexPath) as! ResultCell
         print("RESULTS")
