@@ -201,7 +201,7 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func numberOfSections(in tableView: UITableView) -> Int {
         if(tableView == self.tableView){ return 3}
         else {
-            return "Menu"
+            return 1
         }
     }
     
@@ -209,6 +209,9 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if(tableView == self.tableView){
         return self.Sections[section]
+        }
+        else{
+            return "Menu"
         }
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -61,15 +61,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         resultViewController.USReaultsArray = USReaultsArray
         resultViewController.dynamicVelocityArrayUS = dynamicVelocityArrayUS
         resultViewController.dynamicVelocityArraySI = dynamicVelocityArraySI
-            print("SI RESULTS")
-            print(SIResultsArray)
-            print(dynamicVelocityArraySI)
-            print("US RESULTS")
-            print(USReaultsArray)
-            print(dynamicVelocityArrayUS)
-            
-        print("BEFORE GOING to RESULTS")
-print(unitSwitch.selectedSegmentIndex)
+        
         resultViewController.currentUnits = unitSwitch.selectedSegmentIndex
             navigationController?.show(resultViewController, sender: self)
         //navigationController?.pushViewController(resultViewController, animated: true)
@@ -197,13 +189,20 @@ print(unitSwitch.selectedSegmentIndex)
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
 
-      
+        if(tableView == self.menuTableView && indexPath.row == 3){
+            let settingsViewController = storyboard?.instantiateViewController(withIdentifier: "SettingsViewController") as! TableViewControllerSettings
+            
+            
+            self.navigationController?.show(settingsViewController, sender: self)
+
+            
+        }
         
         if(indexPath.section == 2 && indexPath.row == 0){
             showDynamicVelocity()
     }
     }
-    
+
     @IBOutlet weak var menuButtonBar: UIBarButtonItem!
     @IBAction func menuItemBar(_ sender: UIBarButtonItem) {
     }
@@ -969,7 +968,7 @@ print(unitSwitch.selectedSegmentIndex)
         }
         }
         if(tableView == self.menuTableView){
-            return 3
+            return 4
         }
         else{
             return 3
@@ -1431,11 +1430,19 @@ print(unitSwitch.selectedSegmentIndex)
                 return cell
                 
             }
-            else {
+            else if(indexPath.row == 2){
                 
                 let cell : UITableViewCell
                 cell = self.menuTableView.dequeueReusableCell(withIdentifier: "defaultSwitchUpdates", for: indexPath)
                 cell.textLabel?.text = "Software Updates"
+                return cell
+                
+            }
+            else {
+                
+                let cell : UITableViewCell
+                cell = self.menuTableView.dequeueReusableCell(withIdentifier: "defaultSwitchSettings", for: indexPath)
+                cell.textLabel?.text = "Settings"
                 return cell
                 
             }

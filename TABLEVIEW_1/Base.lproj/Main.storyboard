@@ -30,6 +30,12 @@
                                     <constraint firstAttribute="height" constant="44" id="rOE-eX-HHX"/>
                                 </constraints>
                                 <items>
+                                    <barButtonItem title="Calculate" id="pWL-LS-ZHl">
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <action selector="calculate:" destination="BYZ-38-t0r" id="dZK-aO-vwM"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="byJ-nZ-UT2"/>
                                     <barButtonItem style="plain" id="U1s-lF-0Gz">
                                         <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="oPI-Ad-BMB">
@@ -47,11 +53,23 @@
                                         </segmentedControl>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="LLa-D2-veS"/>
+                                    <barButtonItem style="plain" id="YMi-0X-xsX">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="FTK-Yh-Omn">
+                                            <rect key="frame" x="323" y="7" width="36" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Clear">
+                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="clear:" destination="BYZ-38-t0r" eventType="touchDown" id="379-u0-gL5"/>
+                                            </connections>
+                                        </button>
+                                    </barButtonItem>
                                 </items>
                                 <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </toolbar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="grouped" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="TgK-Y3-Ehd">
-                                <rect key="frame" x="0.0" y="44" width="375" height="515"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="559"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="defaultSwitchCell" textLabel="Vcp-nW-xY4" imageView="0q6-K4-7mP" style="IBUITableViewCellStyleDefault" id="GPH-2e-7Xv">
@@ -121,7 +139,7 @@
                                         <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="defaultTextFieldCell" id="veg-Ta-a5g" customClass="CustomCell" customModule="TABLEVIEW_1" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="188" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="187.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="veg-Ta-a5g" id="IVu-wJ-xye">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -174,7 +192,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="defaultTextFieldCell1" rowHeight="44" id="84m-fH-nir" customClass="CustomCell" customModule="TABLEVIEW_1" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="232" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="231.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="84m-fH-nir" id="djI-iY-cHc">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -234,7 +252,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="dynamicVelocityCell" textLabel="mT2-0u-BDK" style="IBUITableViewCellStyleDefault" id="L7A-U2-asS" customClass="dynamicVelocityCell">
-                                        <rect key="frame" x="0.0" y="276" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="275.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="L7A-U2-asS" id="wk9-F8-SVo">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
@@ -256,30 +274,6 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="vkq-Zz-faq"/>
                                 </connections>
                             </tableView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qix-JC-BsM">
-                                <rect key="frame" x="0.0" y="559" width="375" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="wEP-Rf-dOh"/>
-                                </constraints>
-                                <items>
-                                    <barButtonItem title="Calculate" id="pWL-LS-ZHl">
-                                        <connections>
-                                            <action selector="calculate:" destination="BYZ-38-t0r" id="dZK-aO-vwM"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="jpa-BY-9ug"/>
-                                    <barButtonItem style="plain" id="MmW-xD-weY">
-                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="kYT-DC-NGh">
-                                            <rect key="frame" x="323" y="7" width="36" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="Clear"/>
-                                            <connections>
-                                                <action selector="clear:" destination="BYZ-38-t0r" eventType="touchDown" id="lyz-Vx-H0I"/>
-                                            </connections>
-                                        </button>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AYc-e9-Qhd">
                                 <rect key="frame" x="0.0" y="0.0" width="250" height="603"/>
                                 <subviews>
@@ -367,6 +361,27 @@
                                                     </subviews>
                                                 </tableViewCellContentView>
                                             </tableViewCell>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="defaultSwitchSettings" textLabel="15Y-1F-OnZ" imageView="M94-g3-eZA" style="IBUITableViewCellStyleDefault" id="X65-QY-Rgr">
+                                                <rect key="frame" x="0.0" y="204" width="250" height="44"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="X65-QY-Rgr" id="CzN-Gs-beU">
+                                                    <rect key="frame" x="0.0" y="0.0" width="217" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="15Y-1F-OnZ">
+                                                            <rect key="frame" x="52" y="0.0" width="163" height="43.5"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="Settings-22(1)" id="M94-g3-eZA">
+                                                            <rect key="frame" x="15" y="10" width="22" height="22"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                        </imageView>
+                                                    </subviews>
+                                                </tableViewCellContentView>
+                                            </tableViewCell>
                                         </prototypes>
                                         <connections>
                                             <outlet property="dataSource" destination="AYX-wM-b5Z" id="fdt-yF-daM"/>
@@ -387,18 +402,15 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="AYc-e9-Qhd" secondAttribute="bottom" id="32J-Uk-Fc7"/>
-                            <constraint firstItem="qix-JC-BsM" firstAttribute="top" secondItem="TgK-Y3-Ehd" secondAttribute="bottom" id="5Mi-Tx-NjX"/>
                             <constraint firstItem="AYc-e9-Qhd" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="AVK-Jy-c59"/>
-                            <constraint firstAttribute="trailing" secondItem="TgK-Y3-Ehd" secondAttribute="trailing" id="Pij-ZT-2YK"/>
+                            <constraint firstItem="TgK-Y3-Ehd" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="B0g-mf-O5w"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="TgK-Y3-Ehd" secondAttribute="bottom" id="I6t-fm-QLI"/>
+                            <constraint firstAttribute="trailing" secondItem="TgK-Y3-Ehd" secondAttribute="trailing" id="S5B-xr-wri"/>
+                            <constraint firstItem="TgK-Y3-Ehd" firstAttribute="top" secondItem="Ebf-5c-SF7" secondAttribute="bottom" id="SVa-UH-Y69"/>
                             <constraint firstItem="AYc-e9-Qhd" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="WIQ-LL-y4X"/>
                             <constraint firstAttribute="trailing" secondItem="Ebf-5c-SF7" secondAttribute="trailing" id="ciu-34-mDW"/>
-                            <constraint firstAttribute="trailing" secondItem="qix-JC-BsM" secondAttribute="trailing" id="ens-4j-ht7"/>
-                            <constraint firstItem="qix-JC-BsM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="gTi-q1-Ji0"/>
-                            <constraint firstItem="TgK-Y3-Ehd" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="ucb-GN-cjB"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="qix-JC-BsM" secondAttribute="bottom" id="v59-Am-OXZ"/>
                             <constraint firstItem="Ebf-5c-SF7" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="xQS-Ou-JYW"/>
                             <constraint firstItem="Ebf-5c-SF7" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="xXj-sB-Lgb"/>
-                            <constraint firstItem="TgK-Y3-Ehd" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="44" id="yoJ-1Y-Yt8"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Input" id="AYX-wM-b5Z">
@@ -408,20 +420,11 @@
                                 <action selector="openMenu:" destination="BYZ-38-t0r" id="WtH-7J-cbh"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="Settings-22(1)" id="4vu-fC-srA">
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <action selector="settingsClicked:" destination="BYZ-38-t0r" id="hPw-7t-EhH"/>
-                                <segue destination="dVn-S9-ZUe" kind="show" id="pni-7l-nQY"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="clearButton" destination="kYT-DC-NGh" id="OvQ-Bq-6Iu"/>
                         <outlet property="leadingConstraint" destination="WIQ-LL-y4X" id="oMc-uG-fCo"/>
                         <outlet property="menuTableView" destination="EpS-hI-kVA" id="oeM-8l-XhW"/>
                         <outlet property="menuView" destination="AYc-e9-Qhd" id="lBr-Dl-2i9"/>
-                        <outlet property="settingsIcon" destination="4vu-fC-srA" id="lwF-a9-rdW"/>
                         <outlet property="tableView" destination="TgK-Y3-Ehd" id="T84-1F-Z4j"/>
                         <outlet property="unitSwitch" destination="oPI-Ad-BMB" id="U5S-8r-Dwe"/>
                     </connections>
@@ -433,9 +436,9 @@
         <!--Settings-->
         <scene sceneID="vDE-r7-Lnj">
             <objects>
-                <tableViewController id="dVn-S9-ZUe" customClass="TableViewControllerSettings" customModule="TABLEVIEW_1" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SettingsViewController" id="dVn-S9-ZUe" customClass="TableViewControllerSettings" customModule="TABLEVIEW_1" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="sxf-5Z-Z8m">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -611,14 +614,7 @@
                             <outlet property="delegate" destination="coQ-se-1Yu" id="pIO-HO-71L"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="vkP-nV-fOa">
-                        <barButtonItem key="rightBarButtonItem" image="Settings-22(1)" id="6Qf-8O-fKb">
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <segue destination="dVn-S9-ZUe" kind="show" id="Hjs-b6-s0l"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="vkP-nV-fOa"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y3v-TA-vyN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -654,20 +650,12 @@
                                 <action selector="doneClicked:" destination="eZW-BJ-fua" id="PLE-4B-mbZ"/>
                             </connections>
                         </barButtonItem>
-                        <rightBarButtonItems>
-                            <barButtonItem image="Settings-22(1)" id="6wD-33-Vww">
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <segue destination="dVn-S9-ZUe" kind="show" id="jqh-PX-Baw"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem title="Insert" id="q3o-yF-cFN">
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <action selector="addClicked:" destination="eZW-BJ-fua" id="3dg-s1-McX"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" title="Insert" id="q3o-yF-cFN">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="addClicked:" destination="eZW-BJ-fua" id="3dg-s1-McX"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="addButton" destination="q3o-yF-cFN" id="mn7-Yt-J6t"/>
@@ -1138,7 +1126,4 @@
         <image name="Shake Phone Filled-22" width="22" height="22"/>
         <image name="Water Filled-22" width="22" height="22"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="pni-7l-nQY"/>
-    </inferredMetricsTieBreakers>
 </document>
