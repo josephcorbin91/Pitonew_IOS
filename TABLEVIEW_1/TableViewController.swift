@@ -34,7 +34,7 @@ class TableViewController: UITableViewController, UITextFieldDelegate {
     
         override func viewDidLoad() {
             super.viewDidLoad()
-            navigationItem.title = "Dynamic Velocities"
+            navigationItem.title = "Velocity Input"
             
             tableView.register(MyCell.self, forCellReuseIdentifier: "cellId")
                tableView.register(Header.self, forHeaderFooterViewReuseIdentifier: "headerId")
@@ -144,9 +144,16 @@ class TableViewController: UITableViewController, UITextFieldDelegate {
         return textField
     }()
     
+        let insertButton: UIButton = {
+            let insertButton = UIButton()
+            insertButton.tag = 4
+            insertButton.setTitle("Insert", for: UIControlState.normal)
+            return insertButton
+        }()
     func setupViews() {
         textField.becomeFirstResponder()
         addSubview(textField)
+        addSubview(insertButton)
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-16-[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": textField]))
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": textField]))
         
@@ -201,6 +208,7 @@ class TableViewController: UITableViewController, UITextFieldDelegate {
         let actionButton: UIButton = {
             let button = UIButton(type: .system)
             button.setTitle("Delete", for: .normal)
+            button.setTitleColor(UIColor.black, for: .normal)
             button.translatesAutoresizingMaskIntoConstraints = false
             return button
         }()

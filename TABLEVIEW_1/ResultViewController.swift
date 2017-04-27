@@ -29,8 +29,26 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var unitSwitch: UISegmentedControl!
     var currentUnits : Int = 0
     @IBOutlet weak var actionButton: UIBarButtonItem!
+    var menuShowing = false
     
-    func sendEmail() {
+    @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var menuView: UIView!
+    
+    @IBAction func openMeu(_ sender: UIBarButtonItem) {
+        if(menuShowing){
+            leadingConstraint.constant = -260
+            
+        }
+        else{
+            leadingConstraint.constant = 0
+            UIView.animate(withDuration: 0.3, animations: {
+                self.view.layoutIfNeeded()
+            })
+        }
+        menuShowing = !menuShowing
+
+    }
+        func sendEmail() {
         if MFMailComposeViewController.canSendMail() {
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
@@ -120,7 +138,11 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
       
+        //menuView.layer.shadowOpacity = 1
+     //   menuView.layer.shadowRadius = 6
+     //   leadingConstraint.constant = -260
         
+
         
         
         Sections = ["Duct Properties","Air Flow Properties","Gas Properties"]
@@ -230,9 +252,11 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
             formatter.dateFormat = "dd.MM.yyyy HH.mm.ss"
             let result = formatter.string(from: date)
-            let cell : UITableViewCell
-            cell = self.tableView.dequeueReusableCell(withIdentifier: "dateCell", for: indexPath)
-            cell.textLabel?.text = "Time of measurement : " + result
+            let cell = self.tableView.dequeueReusableCell(withIdentifier: "ResultCell", for: indexPath) as! ResultCell
+            cell.resultTitle.text = "Time of measurement : "
+            cell.result.text = result
+            cell.resultUnit.text = ""
+            
             return cell
      
         }
@@ -250,14 +274,15 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
 
         
-                  let cell : UITableViewCell
-            cell = self.tableView.dequeueReusableCell(withIdentifier: "locationCell", for: indexPath)
+            let cell = self.tableView.dequeueReusableCell(withIdentifier: "ResultCell", for: indexPath) as! ResultCell
             var  long = String(Double(round(100*(locManager.location?.coordinate.longitude)!)/100))
             var  lat = String(Double(round(100*(locManager.location?.coordinate.latitude)!)/100))
+            cell.resultTitle.text = "Current Location:"
+            cell.result.text = "Longitude " + String(long) + " Latitude : " + String(lat)
 
-            cell.textLabel?.text = "Current Location: Longitude " + String(long) + " Latitude : " + String(lat)
-            
-            return cell
+            cell.resultUnit.text = ""
+
+                      return cell
         
         
         }
