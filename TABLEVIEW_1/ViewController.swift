@@ -286,6 +286,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         inputArrayValues[0]="off"
         inputArrayValues[1]="off"
         inputArrayValues[2]="off"
+        
+        
  
        // UINavigationBar.appearance().setBackgroundImage(UIImage(named: "image")!.resizableImage(withCapInsets: UIEdgeInsets.zero, resizingMode: .stretch), for: .default)
         self.navigationController?.navigationBar.setBackgroundImage(#imageLiteral(resourceName: "blue_top").resizableImage(withCapInsets: UIEdgeInsets.zero, resizingMode: .stretch), for: .default)

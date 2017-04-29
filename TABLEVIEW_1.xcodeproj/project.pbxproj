@@ -15,6 +15,7 @@
 		907C100C1EA144510021154B /* VelocityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907C100B1EA144510021154B /* VelocityViewController.swift */; };
 		9086C8B01EB10EFF0065338A /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086C8AF1EB10EFF0065338A /* MenuTableViewController.swift */; };
 		90941C821EB4E0EB004E5A72 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90941C811EB4E0EB004E5A72 /* Utilities.swift */; };
+		90941C881EB523A4004E5A72 /* input1TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90941C871EB523A4004E5A72 /* input1TableViewController.swift */; };
 		90985D6A1E9BBBB40053D66F /* ResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90985D691E9BBBB40053D66F /* ResultCell.swift */; };
 		90AD3B5E1EB29D6400C2A6AA /* velocityClassTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AD3B5D1EB29D6400C2A6AA /* velocityClassTableViewCell.swift */; };
 		90C4EB341EAE572600DA1965 /* TableViewControllerSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C4EB331EAE572600DA1965 /* TableViewControllerSettings.swift */; };
@@ -57,6 +58,7 @@
 		907C100B1EA144510021154B /* VelocityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VelocityViewController.swift; sourceTree = "<group>"; };
 		9086C8AF1EB10EFF0065338A /* MenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuTableViewController.swift; path = TABLEVIEW_1/MenuTableViewController.swift; sourceTree = "<group>"; };
 		90941C811EB4E0EB004E5A72 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utilities.swift; path = TABLEVIEW_1/Utilities.swift; sourceTree = "<group>"; };
+		90941C871EB523A4004E5A72 /* input1TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = input1TableViewController.swift; path = TABLEVIEW_1/input1TableViewController.swift; sourceTree = "<group>"; };
 		90985D691E9BBBB40053D66F /* ResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultCell.swift; sourceTree = "<group>"; };
 		90AD3B5D1EB29D6400C2A6AA /* velocityClassTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = velocityClassTableViewCell.swift; path = TABLEVIEW_1/velocityClassTableViewCell.swift; sourceTree = "<group>"; };
 		90C4EB331EAE572600DA1965 /* TableViewControllerSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableViewControllerSettings.swift; path = TABLEVIEW_1/TableViewControllerSettings.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 		90D8A5D51E9AC35300227C72 = {
 			isa = PBXGroup;
 			children = (
+				90941C871EB523A4004E5A72 /* input1TableViewController.swift */,
 				90941C811EB4E0EB004E5A72 /* Utilities.swift */,
 				90AD3B5D1EB29D6400C2A6AA /* velocityClassTableViewCell.swift */,
 				9086C8AF1EB10EFF0065338A /* MenuTableViewController.swift */,
@@ -307,6 +310,7 @@
 			files = (
 				90416B891EA6FAFC006A3EE7 /* tableViewControllerResult.swift in Sources */,
 				907C100C1EA144510021154B /* VelocityViewController.swift in Sources */,
+				90941C881EB523A4004E5A72 /* input1TableViewController.swift in Sources */,
 				9086C8B01EB10EFF0065338A /* MenuTableViewController.swift in Sources */,
 				90D8A5E41E9AC35300227C72 /* ViewController.swift in Sources */,
 				90D8A6121E9AD65900227C72 /* SwitchCell.swift in Sources */,
