@@ -46,6 +46,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         }
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if(tableView == self.tableView && indexPath.section == 2 && indexPath.row == 0)
+        {
+            return 80
+        }
+        else {
+            return 44
+        }
+    }
     @IBAction func calculate(_ sender: Any) {
         
         
@@ -182,7 +192,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             print("VIEWCONTROLLER RECIEVED")
       print(dynamicVelocity)   
             dynamicPressureArray=dynamicVelocity
-     }
+            let range = NSMakeRange(2, 2)
+            let sections = NSIndexSet(indexesIn: range)
+            self.tableView.reloadSections(sections as IndexSet, with: .fade)     }
     
     
  
@@ -227,6 +239,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     
+    @IBOutlet weak var actionToolbar: UIToolbar!
     var menuShowing = false
     
     @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
@@ -253,6 +266,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         menuView.layer.shadowRadius = 6
         leadingConstraint.constant = -260
         
+        
+        var image = UIImage(named: "blue_gradient.png")! as UIImage
+        self.actionToolbar.setBackgroundImage(#imageLiteral(resourceName: "blue_bottom").resizableImage(withCapInsets: UIEdgeInsets.zero, resizingMode: .stretch), forToolbarPosition: .any, barMetrics: .default)
+        
         let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.light)
         let blurView = UIVisualEffectView(effect: blurEffect)
         blurView.frame.size = CGSize(width: 250, height: 250)
@@ -272,10 +289,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         inputArrayValues[1]="off"
         inputArrayValues[2]="off"
  
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+       // UINavigationBar.appearance().setBackgroundImage(UIImage(named: "image")!.resizableImage(withCapInsets: UIEdgeInsets.zero, resizingMode: .stretch), for: .default)
+        self.navigationController?.navigationBar.setBackgroundImage(#imageLiteral(resourceName: "blue_top").resizableImage(withCapInsets: UIEdgeInsets.zero, resizingMode: .stretch), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         //self.navigationController?.navigationBar.isTranslucent = true
-        self.navigationController?.view.backgroundColor = .clear
+       // self.navigationController?.view.backgroundColor = .clear
 
         InputUnits = InputUnitsUS
         DataSource = InputTitles
@@ -1013,9 +1031,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
            default : indexOfInputArray = -1
         }
         }
-        
-        inputArrayValues[indexOfInputArray] = textField.text!
-        rowBeingEdited = nil
+        let str = textField.text!
+        if let value = str.doubleValue  {
+            inputArrayValues[indexOfInputArray] = str
+
+            print(value)
+        } else {
+            textField.text = ""
+            tableView.reloadData()
+            print("invalid input")
+            
+        }
+               rowBeingEdited = nil
         print("End Editing")
         print(InputTitles)
         print(inputArrayValues)
@@ -1207,15 +1234,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             if(indexPath.row == 0){
                    
-            let cell = self.tableView.dequeueReusableCell(withIdentifier: "dynamicVelocityCell", for: indexPath) as! dynamicVelocityCell
-            cell.dynamicPressureTItle.text = "Dynamic Velocity"
-                print("DYNAMIC CELLS" + String(describing: dynamicVelocityArray))
+            let cell = self.tableView.dequeueReusableCell(withIdentifier: "dynamicVelocityCell1", for: indexPath) as! velocityClassTableViewCell
+            cell.dynamicPressureTitle.text = "Dynamic Pressure (Pv-H2O)"
+                print("DYNAMIC CELLS" + String(describing: dynamicPressureArray))
             var string = ""
-                for value in dynamicVelocityArray{
-                string += String(value)
+                for value in dynamicPressureArray{
+                string += String(value) + " "
                 }
             
-            cell.dynamicPressureValues.text = string
+            cell.dynamicPressureList.text = string
                        return cell
         
             }
@@ -1482,7 +1509,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.tableView.isScrollEnabled = true
         var info = notification.userInfo!
         let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
-        let contentInsets : UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize!.height, 0.0)
+        let contentInsets : UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize!.height-44, 0.0)
         
         self.tableView.contentInset = contentInsets
         self.tableView.scrollIndicatorInsets = contentInsets
@@ -1501,7 +1528,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         //Once keyboard disappears, restore original positions
         var info = notification.userInfo!
         let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
-        let contentInsets : UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, -keyboardSize!.height, 0.0)
+        let contentInsets : UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, -keyboardSize!.height-44, 0.0)
         self.tableView.contentInset =  UIEdgeInsets.zero
         self.tableView.scrollIndicatorInsets = contentInsets
         self.view.endEditing(true)
@@ -1871,5 +1898,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
         
         }
+    
 }
+    
+    extension String {
+        var doubleValue: Double? {
+            return Double(self)
+        }
+        var floatValue: Float? {
+            return Float(self)
+        }
+        var integerValue: Int? {
+            return Int(self)
+        }
+    }
 
+   
+    
+   
+    

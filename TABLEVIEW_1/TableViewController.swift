@@ -18,12 +18,14 @@ protocol dynamicResultsProtocol
 }
 
 class TableViewController: UITableViewController, UITextFieldDelegate {
-
-    @IBOutlet weak var addButton: UIBarButtonItem!
-    @IBAction func addClicked(_ sender: Any) {
-        insert()
+    @IBAction func cancelButton(_ sender: UIBarButtonItem) {
+        
+        self.navigationController?.popViewController(animated: true)
+        
     }
-    @IBOutlet weak var doneButton: UIBarButtonItem!
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
+
+       @IBOutlet weak var doneButton: UIBarButtonItem!
     @IBAction func doneClicked(_ sender: UIBarButtonItem) {
         done()
     }
@@ -96,7 +98,7 @@ class TableViewController: UITableViewController, UITextFieldDelegate {
     }
      func insert() {
 
-        
+
       
                 let textField = self.view.viewWithTag(3) as! UITextField
                 if let text = textField.text, !text.isEmpty
@@ -108,7 +110,8 @@ class TableViewController: UITableViewController, UITextFieldDelegate {
                     print("ITEMS COUNT")
                     print(items.count)
                     print(items)
-                    
+                    print("insert called" + text)
+
                     let insertionIndexPath = NSIndexPath(row: items.count-1, section: 0)
                     tableView.beginUpdates()
                     tableView.insertRows(at: [insertionIndexPath as IndexPath], with: .top)
@@ -125,7 +128,8 @@ class TableViewController: UITableViewController, UITextFieldDelegate {
         }
         
     class Header: UITableViewHeaderFooterView {
-    
+        var myTableViewController: TableViewController?
+
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         setupViews()
@@ -147,7 +151,10 @@ class TableViewController: UITableViewController, UITextFieldDelegate {
         let insertButton: UIButton = {
             let insertButton = UIButton()
             insertButton.tag = 4
+            insertButton.translatesAutoresizingMaskIntoConstraints = false
+            
             insertButton.setTitle("Insert", for: UIControlState.normal)
+            insertButton.setTitleColor(UIColor.black, for: UIControlState.normal)
             return insertButton
         }()
     func setupViews() {
@@ -157,7 +164,19 @@ class TableViewController: UITableViewController, UITextFieldDelegate {
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-16-[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": textField]))
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": textField]))
         
+        
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-16-[v0]-8-[v1(80)]-8-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": textField, "v1": insertButton]))
+        
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": textField]))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": insertButton]))
+         insertButton.addTarget(self, action: #selector(Header.insertAction), for: .touchDown)
+
+        
     }
+        func insertAction() {
+            print("insert called")
+            myTableViewController?.insert()
+        }
     
 }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -170,8 +189,10 @@ class TableViewController: UITableViewController, UITextFieldDelegate {
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return tableView.dequeueReusableHeaderFooterView(withIdentifier: "headerId")
+        let myHeader = tableView.dequeueReusableHeaderFooterView(withIdentifier: "headerId") as! Header
 
+        myHeader.myTableViewController = self
+        return myHeader
     }
     
         
@@ -229,6 +250,8 @@ class TableViewController: UITableViewController, UITextFieldDelegate {
         func handleAction() {
             myTableViewController?.deleteCell(cell: self)
         }
+      
+
         
     }
   

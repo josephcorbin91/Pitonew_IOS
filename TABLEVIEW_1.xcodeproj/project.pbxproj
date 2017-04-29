@@ -14,7 +14,9 @@
 		906AD3551EA0F72D00E7B487 /* dynamicVelocityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906AD3541EA0F72D00E7B487 /* dynamicVelocityCell.swift */; };
 		907C100C1EA144510021154B /* VelocityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907C100B1EA144510021154B /* VelocityViewController.swift */; };
 		9086C8B01EB10EFF0065338A /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086C8AF1EB10EFF0065338A /* MenuTableViewController.swift */; };
+		90941C821EB4E0EB004E5A72 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90941C811EB4E0EB004E5A72 /* Utilities.swift */; };
 		90985D6A1E9BBBB40053D66F /* ResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90985D691E9BBBB40053D66F /* ResultCell.swift */; };
+		90AD3B5E1EB29D6400C2A6AA /* velocityClassTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AD3B5D1EB29D6400C2A6AA /* velocityClassTableViewCell.swift */; };
 		90C4EB341EAE572600DA1965 /* TableViewControllerSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C4EB331EAE572600DA1965 /* TableViewControllerSettings.swift */; };
 		90D8A5E21E9AC35300227C72 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D8A5E11E9AC35300227C72 /* AppDelegate.swift */; };
 		90D8A5E41E9AC35300227C72 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D8A5E31E9AC35300227C72 /* ViewController.swift */; };
@@ -54,7 +56,9 @@
 		906AD3541EA0F72D00E7B487 /* dynamicVelocityCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = dynamicVelocityCell.swift; sourceTree = "<group>"; };
 		907C100B1EA144510021154B /* VelocityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VelocityViewController.swift; sourceTree = "<group>"; };
 		9086C8AF1EB10EFF0065338A /* MenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuTableViewController.swift; path = TABLEVIEW_1/MenuTableViewController.swift; sourceTree = "<group>"; };
+		90941C811EB4E0EB004E5A72 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utilities.swift; path = TABLEVIEW_1/Utilities.swift; sourceTree = "<group>"; };
 		90985D691E9BBBB40053D66F /* ResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultCell.swift; sourceTree = "<group>"; };
+		90AD3B5D1EB29D6400C2A6AA /* velocityClassTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = velocityClassTableViewCell.swift; path = TABLEVIEW_1/velocityClassTableViewCell.swift; sourceTree = "<group>"; };
 		90C4EB331EAE572600DA1965 /* TableViewControllerSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableViewControllerSettings.swift; path = TABLEVIEW_1/TableViewControllerSettings.swift; sourceTree = "<group>"; };
 		90D8A5DE1E9AC35300227C72 /* TABLEVIEW_1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TABLEVIEW_1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90D8A5E11E9AC35300227C72 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -103,6 +107,8 @@
 		90D8A5D51E9AC35300227C72 = {
 			isa = PBXGroup;
 			children = (
+				90941C811EB4E0EB004E5A72 /* Utilities.swift */,
+				90AD3B5D1EB29D6400C2A6AA /* velocityClassTableViewCell.swift */,
 				9086C8AF1EB10EFF0065338A /* MenuTableViewController.swift */,
 				90C4EB331EAE572600DA1965 /* TableViewControllerSettings.swift */,
 				90E3859D1EAD2125008F82DE /* LoadingScreenViewController.swift */,
@@ -305,9 +311,11 @@
 				90D8A5E41E9AC35300227C72 /* ViewController.swift in Sources */,
 				90D8A6121E9AD65900227C72 /* SwitchCell.swift in Sources */,
 				90E7042D1EA18726003AADEC /* TableViewController.swift in Sources */,
+				90AD3B5E1EB29D6400C2A6AA /* velocityClassTableViewCell.swift in Sources */,
 				90D8A6101E9AC73500227C72 /* CustomCell.swift in Sources */,
 				90C4EB341EAE572600DA1965 /* TableViewControllerSettings.swift in Sources */,
 				90985D6A1E9BBBB40053D66F /* ResultCell.swift in Sources */,
+				90941C821EB4E0EB004E5A72 /* Utilities.swift in Sources */,
 				906AD3551EA0F72D00E7B487 /* dynamicVelocityCell.swift in Sources */,
 				90D8A5E21E9AC35300227C72 /* AppDelegate.swift in Sources */,
 				905A27CD1EA3DE5500BE6636 /* ViewControllerForTableViewController.swift in Sources */,
