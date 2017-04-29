@@ -232,7 +232,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     
     deinit {
-        deregisterFromKeyboardNotifications()
+      //  deregisterFromKeyboardNotifications()
     }
     
     @IBAction func settingsClicked(_ sender: Any) {
@@ -274,9 +274,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let blurView = UIVisualEffectView(effect: blurEffect)
         blurView.frame.size = CGSize(width: 250, height: 250)
         blurView.center = view.center
-     //   view.addSubview(blurView)
-        // tableView.backgroundColor = UIColor.clear
-      registerForKeyboardNotifications()
+      //registerForKeyboardNotifications()
         InputTitles = ["Circular Duct","Standard Air Composition","Enable Wet Bulb (T)","Width", "Height", "Pitot Tube (C)"
             ,"Dynamic Pressure ","Sea Level (P)",  "Static (P)","Elevation", "Dry Bulb (T)","H20","Ar","N2","02","C02"]
          InputUnitsSI = ["","","","m","m","","","kPa","H2O","ft","°C","%","%","%","%","%"]
@@ -1005,7 +1003,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextFieldDidEndEditingReason) {
         //let row = textField.tag
+        /*
+        textField.resignFirstResponder()
+        if(textField.superview?.superview?.isKind(of: UITableViewCell.self))!{
+            let position = textField.convert(CGPoint(x:0,y:0), to: tableView)
+            let indexPath = tableView.indexPathForRow(at: position)
+            tableView.scrollToRow(at: indexPath!, at: UITableViewScrollPosition.middle, animated: true)
+        }
         activeField = nil
+         */
         let cell = textField.superview!.superview as! CustomCell
         
         var indexOfInputArray = -1
@@ -1043,9 +1049,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
         }
                rowBeingEdited = nil
-        print("End Editing")
-        print(InputTitles)
-        print(inputArrayValues)
         
       
     }
@@ -1053,11 +1056,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         rowBeingEdited = textField.tag
+        
         activeField = textField
-        print("Current row being edited " + String(describing: rowBeingEdited))
-
-      //  tableView.setContentOffset(CGPoint(0,250), animated: true)
-        print("ROW being edited " + String(describing: rowBeingEdited))
+        /*
+        var pointInTable = textField.superview?.convert(textField.frame.origin, to: tableView)
+        
+        var offset = tableView.contentOffset
+        offset.y = (pointInTable?.y)!
+        if let accessoryView = textField.inputAccessoryView{
+            offset.y  -= accessoryView.frame.size.height
+        }
+        tableView.contentOffset = offset
+*/
         
     }
         
@@ -1217,7 +1227,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
      
             cell.backgroundColor = UIColor.clear
             cell.inputTextField.text = inputArrayValues[indexOfInputArray]
-            cell.inputTextField.tag = indexOfInputArray             cell.inputTextField.delegate = self // theField is your IBOutlet UITextfield in your custom cell
+            cell.inputTextField.tag = indexOfInputArray
+            cell.inputTextField.delegate = self // theField is your IBOutlet UITextfield in your custom cell
             
             
             
@@ -1511,14 +1522,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.tableView.isScrollEnabled = true
         var info = notification.userInfo!
         let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
-        let contentInsets : UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize!.height-44, 0.0)
+        let contentInsets : UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize!.height, 0.0)
         
         self.tableView.contentInset = contentInsets
         self.tableView.scrollIndicatorInsets = contentInsets
         
         var aRect : CGRect = self.view.frame
         aRect.size.height -= keyboardSize!.height
-        print()
+       // print("ACTIVE FIELD IS "+ String(activeField.tag))
+
         if let activeField = self.activeField {
             if (!aRect.contains(activeField.frame.origin)){
                 self.tableView.scrollRectToVisible(activeField.frame, animated: true)
@@ -1531,7 +1543,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         //Once keyboard disappears, restore original positions
         var info = notification.userInfo!
         let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
-        let contentInsets : UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, -keyboardSize!.height-44, 0.0)
+        let contentInsets : UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, -keyboardSize!.height, 0.0)
         self.tableView.contentInset =  UIEdgeInsets.zero
         self.tableView.scrollIndicatorInsets = contentInsets
         self.view.endEditing(true)
