@@ -232,7 +232,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     
     deinit {
-        //deregisterFromKeyboardNotifications()
+        deregisterFromKeyboardNotifications()
     }
     
     @IBAction func settingsClicked(_ sender: Any) {
@@ -948,7 +948,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        deregisterFromKeyboardNotifications()
+        //deregisterFromKeyboardNotifications()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -1054,7 +1054,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func textFieldDidBeginEditing(_ textField: UITextField) {
         rowBeingEdited = textField.tag
         activeField = textField
+        print("Current row being edited " + String(describing: rowBeingEdited))
 
+      //  tableView.setContentOffset(CGPoint(0,250), animated: true)
         print("ROW being edited " + String(describing: rowBeingEdited))
         
     }
@@ -1201,6 +1203,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 case "Wet Bulb (T)" : indexOfInputArray = 8
                 case "Elevation": indexOfInputArray = 9
                 case "Sea Level (P)": indexOfInputArray = 10
+                    
                 case "C02": indexOfInputArray = 15
                 case "02": indexOfInputArray = 14
                 case "N2": indexOfInputArray = 13
@@ -1214,8 +1217,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
      
             cell.backgroundColor = UIColor.clear
             cell.inputTextField.text = inputArrayValues[indexOfInputArray]
-           // cell.inputTextField.tag = indexPath.row
-            cell.inputTextField.delegate = self // theField is your IBOutlet UITextfield in your custom cell
+            cell.inputTextField.tag = indexOfInputArray             cell.inputTextField.delegate = self // theField is your IBOutlet UITextfield in your custom cell
             
             
             
@@ -1278,7 +1280,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 cell.backgroundColor = UIColor.clear
 
             cell.inputTextField.text = inputArrayValues[indexOfInputArray]
-           // cell.inputTextField.tag = indexPath.row
+             cell.inputTextField.tag = indexOfInputArray
             cell.inputTextField.delegate = self // theField is your IBOutlet UITextfield in your custom cell
             
             
@@ -1330,7 +1332,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             cell.backgroundColor = UIColor.clear
 
             cell.inputTextField.text = inputArrayValues[indexOfInputArray]
-           // cell.inputTextField.tag = indexPath.row
+             cell.inputTextField.tag = indexOfInputArray
             cell.inputTextField.delegate = self // theField is your IBOutlet UITextfield in your custom cell
             
             
@@ -1392,7 +1394,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             cell.backgroundColor = UIColor.clear
 
             cell.inputTextField.text = inputArrayValues[indexOfInputArray]
-           // cell.inputTextField.tag = indexPath.row
+             cell.inputTextField.tag = indexOfInputArray
             cell.inputTextField.delegate = self // theField is your IBOutlet UITextfield in your custom cell
             
             
@@ -1436,7 +1438,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             cell.backgroundColor = UIColor.clear
 
             cell.inputTextField.text = inputArrayValues[indexOfInputArray]
-           // cell.inputTextField.tag = indexPath.row
+             cell.inputTextField.tag = indexOfInputArray
             cell.inputTextField.delegate = self // theField is your IBOutlet UITextfield in your custom cell
             
             
@@ -1516,6 +1518,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         var aRect : CGRect = self.view.frame
         aRect.size.height -= keyboardSize!.height
+        print()
         if let activeField = self.activeField {
             if (!aRect.contains(activeField.frame.origin)){
                 self.tableView.scrollRectToVisible(activeField.frame, animated: true)
