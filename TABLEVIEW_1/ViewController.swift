@@ -192,21 +192,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         
  
-       // UINavigationBar.appearance().setBackgroundImage(UIImage(named: "image")!.resizableImage(withCapInsets: UIEdgeInsets.zero, resizingMode: .stretch), for: .default)
         self.navigationController?.navigationBar.setBackgroundImage(#imageLiteral(resourceName: "blue_top").resizableImage(withCapInsets: UIEdgeInsets.zero, resizingMode: .stretch), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
-        //self.navigationController?.navigationBar.isTranslucent = true
-       // self.navigationController?.view.backgroundColor = .clear
+     
 
         InputUnits = InputUnitsUS
         DataSource = InputTitles
         ResultUnits = ResultUnitsUS
-        //self.view.backgroundColor = UIColor.black//(//patternImage: UIImage(named: "background.png")!)
            tableView.layer.borderColor = UIColor.black.cgColor
         
         // shadow
         tableView.layer.shadowColor = UIColor.black.cgColor
-        //tableView.layer.shadowOffset = CGSize(width: 3, height: 3)
         tableView.layer.shadowOpacity = 0.7
         tableView.layer.shadowRadius = 4.0
         let range = NSMakeRange(0, 0)
@@ -216,7 +212,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         menuTableView.dataSource = self
         tableView.dataSource = self
         tableView.delegate = self
-        //tableView.contentInset = UIEdgeInsetsMake(44,0,0,0);
         }
     
     @IBOutlet weak var backgroundView: UIView!
@@ -1410,51 +1405,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     var activeField: UITextField?
-    func registerForKeyboardNotifications(){
-        //Adding notifies on keyboard appearing
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-    }
-    
-    func deregisterFromKeyboardNotifications(){
-        //Removing notifies on keyboard appearing
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-    }
-    
-    func keyboardWasShown(notification: NSNotification){
-        //Need to calculate keyboard exact size due to Apple suggestions
-        self.tableView.isScrollEnabled = true
-        var info = notification.userInfo!
-        let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
-        let contentInsets : UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize!.height, 0.0)
-        
-        self.tableView.contentInset = contentInsets
-        self.tableView.scrollIndicatorInsets = contentInsets
-        
-        var aRect : CGRect = self.view.frame
-        aRect.size.height -= keyboardSize!.height
-       // print("ACTIVE FIELD IS "+ String(activeField.tag))
-
-        if let activeField = self.activeField {
-            if (!aRect.contains(activeField.frame.origin)){
-                self.tableView.scrollRectToVisible(activeField.frame, animated: true)
-            }
-        }
-    }
-    
-    func keyboardWillBeHidden(notification: NSNotification){
-        
-        //Once keyboard disappears, restore original positions
-        var info = notification.userInfo!
-        let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
-        let contentInsets : UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, -keyboardSize!.height, 0.0)
-        self.tableView.contentInset =  UIEdgeInsets.zero
-        self.tableView.scrollIndicatorInsets = contentInsets
-        self.view.endEditing(true)
-        self.tableView.isScrollEnabled = true
-    }
-    
+  
     
          func switchPressed(sender:UISwitch){
        print("pipeSwitch" + String(describing: pipeSwitch))
