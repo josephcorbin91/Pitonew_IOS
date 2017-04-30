@@ -58,25 +58,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     @IBAction func calculate(_ sender: Any) {
         
-        
-       
-        if(verifyInput()){
-        calculateResults()
-
-        let resultViewController = storyboard?.instantiateViewController(withIdentifier: "ResultViewController") as! ResultViewController
-            print("VIEW CONTROLLER INPUT")
-            print(dynamicVelocityArraySI)
-            print(dynamicVelocityArrayUS)
-        resultViewController.SIResultsArray = SIResultsArray
-        resultViewController.USReaultsArray = USReaultsArray
-        resultViewController.dynamicVelocityArrayUS = dynamicVelocityArrayUS
-        resultViewController.dynamicVelocityArraySI = dynamicVelocityArraySI
-        
-        resultViewController.currentUnits = unitSwitch.selectedSegmentIndex
-            navigationController?.show(resultViewController, sender: self)
-        //navigationController?.pushViewController(resultViewController, animated: true)
-        }
-    }
+        let inputTableViewController = storyboard?.instantiateViewController(withIdentifier: "inputTableViewController") as! input1TableViewController
+        inputTableViewController.calculate()
+           }
     var InputUnitsSI = [String]()
     var InputUnitsUS = [String]()
     var inputValues = [String]()
@@ -102,90 +86,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return outputImage!
     }
     @IBAction func unitSwitchPressed(_ sender: UISegmentedControl) {
-   
-            var wetBulbIndex : Int? = nil
-            var dryBulbIndex : Int? = nil
-            var widthIndex : Int? = nil
-            var heightIndex : Int? = nil
-            var seaLevelPressureIndex : Int? = nil
-
-     
-        for index in 0...InputTitles.count-1 {
-            if(InputTitles[index] == "Wet Bulb (T)"){
-                wetBulbIndex = index}
-            if(InputTitles[index] == "Width" || InputTitles[index] == "Diameter"){
-                widthIndex = index}
-            if InputTitles[index] == "Height" {
-                heightIndex = index}
-            if(InputTitles[index] == "Dry Bulb (T)"){
-                dryBulbIndex = index}
-            if(InputTitles[index] == "Sea Level (P)"){
-                seaLevelPressureIndex = index}
-            
-          }
         
-        
-        if(unitSwitch.selectedSegmentIndex == 0){
-            InputUnits = InputUnitsUS
-            ResultUnits = ResultUnitsUS
-            resultArray = USReaultsArray
-            print("SWITCHING VALUES TO US")
-            if(inputArrayValues[3] != ""){
-                inputArrayValues[3] = String(Double(round(100000*(Double(inputArrayValues[3])!/0.0254)))/100000)
-            }
-           
-            
-            if(inputArrayValues[4] != ""){
-                inputArrayValues[4] = String(Double(round(100000*(Double(inputArrayValues[4])!/0.0254)))/100000)
-            }
-            
-            if(inputArrayValues[7] != ""){
-
-                inputArrayValues[7] = String(Double(round(100000*((Double(inputArrayValues[7])!-32)/1.8)))/100000)
-            }
-            
-            if(inputArrayValues[8] != ""){
-                inputArrayValues[8] = String(Double(round(100000*((Double(inputArrayValues[8])!-32)/1.8)))/100000)
-            }
-           
-            if(inputArrayValues[10] != ""){
-                
-                    inputArrayValues[10] = String(Double(round(100000*(Double(inputArrayValues[10])!*0.295299875)))/100000)
-
-            }
-            
-            
-            
-        }
-        else{
-            InputUnits = InputUnitsSI
-            ResultUnits = ResultUnitsSI
-            resultArray = SIResultsArray
-            print("SWITCHING VALUES TO SI")
-            if(inputArrayValues[3] != ""){
-                inputArrayValues[3] = String(Double(round(100000*(Double(inputArrayValues[3])!*0.0254)))/100000)
-            }
-            
-            
-            if(inputArrayValues[4] != ""){
-                inputArrayValues[4] = String(Double(round(100000*(Double(inputArrayValues[4])!*0.0254)))/100000)}
-            if(inputArrayValues[7] != ""){
-                inputArrayValues[7] = String(Double(round(100000*((Double(inputArrayValues[7])!*1.8)+32)))/100000)}
-            if(inputArrayValues[8] != ""){
-                inputArrayValues[8] = String(Double(round(100000*((Double(inputArrayValues[8])!*1.8)+32)))/100000)}
-            if(inputArrayValues[10] != ""){
-                inputArrayValues[10] = String(Double(round(100000*(Double(inputArrayValues[10])!/0.295299875)))/100000)
-            
-          
-            
-            }
-        }
-        let range = NSMakeRange(1, 3)
-        let sections = NSIndexSet(indexesIn: range)
-        self.tableView.reloadSections(sections as IndexSet, with: .fade)
-        print("INPUT ARRAY VALUES AFTER SWITCH")
-        print(inputArrayValues)
-         //tableView.reloadData()
+        let inputTableViewController = storyboard?.instantiateViewController(withIdentifier: "inputTableViewController") as! input1TableViewController
+        inputTableViewController.unitSwitchPressed(sender)
 
     }
          func setDynamicVelocity(dynamicVelocity: [Double]){
@@ -933,15 +836,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
 
     @IBAction func clear(_ sender: UIButton) {
- 
-        for i in 3...inputArrayValues.count-1 {
-            inputArrayValues[i] = ""
-        }
         
-            tableView.reloadData()
+        let inputTableViewController = storyboard?.instantiateViewController(withIdentifier: "inputTableViewController") as! input1TableViewController
+        inputTableViewController.clear()
         
-        print("INPUT ARRAY AFTER CLEAR" + String(describing: inputArrayValues))
-
+        let tbc = self.childViewControllers[0] as! input1TableViewController
+        tbc.tableView.reloadData()
+    
+        //inputTableViewController.tableView.reloadData()
+        //inputTableViewController.viewWillAppear(true)
     }
     
     

@@ -27,7 +27,6 @@ class tableViewControllerResult : UITableViewController, UITextFieldDelegate {
     
     
     func done(){
-            //var returnArray = Array(items[0..<items.count])
             self.navigationController?.popViewController(animated: true)
             
         

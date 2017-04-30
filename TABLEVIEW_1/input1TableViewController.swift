@@ -8,6 +8,8 @@
 
 import UIKit
 
+
+
 class input1TableViewController: UITableViewController, UITextFieldDelegate,MyProtocol {
     var DataSource = [String]()
     var InputTitles = [String]()
@@ -35,10 +37,17 @@ class input1TableViewController: UITableViewController, UITextFieldDelegate,MyPr
     var resultArray = Array(repeating: "", count: 10)
     var SIResultsArray = Array(repeating: "", count: 10)
     var USReaultsArray = Array(repeating: "", count: 10)
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if(indexPath.section == 2 && indexPath.row == 0)
+        {
+            return 80
+        }
+        else {
+            return 44
+        }
+    }
+
     func calculate() {
-        
-        
-        
         if(verifyInput()){
             calculateResults()
             
@@ -61,7 +70,7 @@ class input1TableViewController: UITableViewController, UITextFieldDelegate,MyPr
     var pipeSwitch : UISwitch!
     var wetBulbSwitch : UISwitch!
     var airCompositionSwitch : UISwitch!
-    @IBAction func unitSwitchPressed(_ sender: UISegmentedControl) {
+    func unitSwitchPressed(_ sender: UISegmentedControl) {
         
         var wetBulbIndex : Int? = nil
         var dryBulbIndex : Int? = nil
@@ -730,31 +739,28 @@ class input1TableViewController: UITableViewController, UITextFieldDelegate,MyPr
     }
     
     
-    @IBAction func clear(_ sender: UIButton) {
+    func clear() {
         
         for i in 3...inputArrayValues.count-1 {
             inputArrayValues[i] = ""
         }
-        
-        tableView.reloadData()
-        
-        print("INPUT ARRAY AFTER CLEAR" + String(describing: inputArrayValues))
+    
+             print("INPUT ARRAY AFTER CLEAR" + String(describing: inputArrayValues))
         
     }
-    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        
+        
+        if(indexPath.section == 2 && indexPath.row == 0){
+            showDynamicVelocity()
+        }
+    }
+
     
     
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextFieldDidEndEditingReason) {
-        //let row = textField.tag
-        /*
-         textField.resignFirstResponder()
-         if(textField.superview?.superview?.isKind(of: UITableViewCell.self))!{
-         let position = textField.convert(CGPoint(x:0,y:0), to: tableView)
-         let indexPath = tableView.indexPathForRow(at: position)
-         tableView.scrollToRow(at: indexPath!, at: UITableViewScrollPosition.middle, animated: true)
-         }
-         activeField = nil
-         */
+        
         let cell = textField.superview!.superview as! CustomCell
         
         var indexOfInputArray = -1
@@ -791,6 +797,8 @@ class input1TableViewController: UITableViewController, UITextFieldDelegate,MyPr
             print("invalid input")
             
         }
+        
+        print("INPUT ARRAY VALUES" + String(describing: inputArrayValues))
         rowBeingEdited = nil
         
         
@@ -799,9 +807,9 @@ class input1TableViewController: UITableViewController, UITextFieldDelegate,MyPr
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         rowBeingEdited = textField.tag
-        
           }
     
+    @IBOutlet var currentTableView: UITableView!
     func average(nums: [Double]) -> Double {
         
         var total = 0.0
@@ -849,12 +857,12 @@ class input1TableViewController: UITableViewController, UITextFieldDelegate,MyPr
                 
                 InputTitles.insert("Diameter", at: 3)
                 DataSource = InputTitles
-                tableView.beginUpdates()
+                currentTableView.beginUpdates()
                 tableView.deleteRows(at: [IndexPath(row: 0, section: 1)], with: .top)
-                tableView.deleteRows(at: [IndexPath(row: 1, section: 1)], with: .top)
+                currentTableView.deleteRows(at: [IndexPath(row: 1, section: 1)], with: .top)
                 
-                tableView.insertRows(at: [IndexPath(row: 0, section: 1)], with: .top)
-                tableView.endUpdates()
+                currentTableView.insertRows(at: [IndexPath(row: 0, section: 1)], with: .top)
+                currentTableView.endUpdates()
                 //sender.setOn(false, animated: true)
                 
                 print("INPUT UNITS ON")
@@ -887,13 +895,13 @@ class input1TableViewController: UITableViewController, UITextFieldDelegate,MyPr
                 InputUnitsUS.insert("in", at: 3)
                 
                 DataSource = InputTitles
-                tableView.beginUpdates()
-                tableView.deleteRows(at: [IndexPath(row: 0, section: 1)], with: .top)
+                currentTableView.beginUpdates()
+                currentTableView.deleteRows(at: [IndexPath(row: 0, section: 1)], with: .top)
                 
-                tableView.insertRows(at: [IndexPath(row: 0, section: 1)], with: .top)
-                tableView.insertRows(at: [IndexPath(row: 1, section: 1)], with: .top)
+                currentTableView.insertRows(at: [IndexPath(row: 0, section: 1)], with: .top)
+                currentTableView.insertRows(at: [IndexPath(row: 1, section: 1)], with: .top)
                 
-                tableView.endUpdates()
+                currentTableView.endUpdates()
                 print("INPUT UNITS")
                 print(InputUnits)
                 print("INPUT UNITS OFF")
@@ -930,7 +938,7 @@ class input1TableViewController: UITableViewController, UITextFieldDelegate,MyPr
                 inputArrayValues[1]="on"
                 
                 print("Standard air composition On " + String(startingIndexAirComposition))
-                tableView.beginUpdates()
+                currentTableView.beginUpdates()
                 
                 
                 
@@ -943,7 +951,7 @@ class input1TableViewController: UITableViewController, UITextFieldDelegate,MyPr
                 // inputArrayValues.remove(at: startingIndexAirComposition)
                 DataSource = InputTitles
                 
-                //tableView.deleteRows(at: [IndexPath(row: 0, section: 4)], with: .top)
+                //currentTableView.deleteRows(at: [IndexPath(row: 0, section: 4)], with: .top)
                 
                 
                 InputTitles.remove(at: startingIndexAirComposition)
@@ -954,7 +962,7 @@ class input1TableViewController: UITableViewController, UITextFieldDelegate,MyPr
                 
                 DataSource = InputTitles
                 
-                //tableView.deleteRows(at: [IndexPath(row: 0, section: 4)], with: .top)
+                //currentTableView.deleteRows(at: [IndexPath(row: 0, section: 4)], with: .top)
                 //     inputArrayValues.remove(at: startingIndexAirComposition)
                 
                 InputTitles.remove(at: startingIndexAirComposition)
@@ -965,7 +973,7 @@ class input1TableViewController: UITableViewController, UITextFieldDelegate,MyPr
                 
                 DataSource = InputTitles
                 
-                // tableView.deleteRows(at: [IndexPath(row: 0, section: 4)], with: .top)
+                // currentTableView.deleteRows(at: [IndexPath(row: 0, section: 4)], with: .top)
                 
                 
                 InputTitles.remove(at: startingIndexAirComposition)
@@ -974,7 +982,7 @@ class input1TableViewController: UITableViewController, UITextFieldDelegate,MyPr
                 InputUnitsSI.remove(at: startingIndexAirComposition)
                 
                 
-                //tableView.deleteRows(at: [IndexPath(row: 0, section: 4)], with: .top)
+                //currentTableView.deleteRows(at: [IndexPath(row: 0, section: 4)], with: .top)
                 
                 
                 InputTitles.remove(at: startingIndexAirComposition)
@@ -984,8 +992,8 @@ class input1TableViewController: UITableViewController, UITextFieldDelegate,MyPr
                 
                 
                 DataSource = InputTitles
-                tableView.deleteSections(IndexSet(integersIn: 4...4), with: .top)
-                tableView.endUpdates()
+                currentTableView.deleteSections(IndexSet(integersIn: 4...4), with: .top)
+                currentTableView.endUpdates()
                 
                 print(InputUnits)
                 print(InputTitles)
@@ -1006,7 +1014,7 @@ class input1TableViewController: UITableViewController, UITextFieldDelegate,MyPr
                 //  inputArrayValues.remove(at: startingIndexAirComposition)
                 
                 
-                tableView.beginUpdates()
+                currentTableView.beginUpdates()
                 
                 InputTitles.insert("C02", at: startingIndexAirComposition)
                 InputUnits.insert("%", at: startingIndexAirComposition)
@@ -1017,7 +1025,7 @@ class input1TableViewController: UITableViewController, UITextFieldDelegate,MyPr
                 //inputArrayValues.insert("", at: startingIndexAirComposition)
                 DataSource = InputTitles
                 
-                //tableView.insertRows(at: [IndexPath(row: 0, section: 4)], with: .top)
+                //currentTableView.insertRows(at: [IndexPath(row: 0, section: 4)], with: .top)
                 
                 InputTitles.insert("02", at: startingIndexAirComposition)
                 InputUnits.insert("%", at: startingIndexAirComposition)
@@ -1028,7 +1036,7 @@ class input1TableViewController: UITableViewController, UITextFieldDelegate,MyPr
                 //  inputArrayValues.insert("", at: startingIndexAirComposition)
                 DataSource = InputTitles
                 
-                // tableView.insertRows(at: [IndexPath(row: 0, section: 4)], with: .top)
+                // currentTableView.insertRows(at: [IndexPath(row: 0, section: 4)], with: .top)
                 
                 
                 InputTitles.insert("N2", at: startingIndexAirComposition)
@@ -1039,7 +1047,7 @@ class input1TableViewController: UITableViewController, UITextFieldDelegate,MyPr
                 
                 DataSource = InputTitles
                 
-                //   tableView.insertRows(at: [IndexPath(row: 0, section: 4)], with: .top)
+                //   currentTableView.insertRows(at: [IndexPath(row: 0, section: 4)], with: .top)
                 
                 
                 InputTitles.insert("Ar", at: startingIndexAirComposition)
@@ -1050,7 +1058,7 @@ class input1TableViewController: UITableViewController, UITextFieldDelegate,MyPr
                 InputUnits.insert("%", at: startingIndexAirComposition)
                 DataSource = InputTitles
                 
-                // tableView.insertRows(at: [IndexPath(row: 0, section: 4)], with: .top)
+                // currentTableView.insertRows(at: [IndexPath(row: 0, section: 4)], with: .top)
                 
                 InputTitles.insert("H20", at: startingIndexAirComposition)
                 InputUnits.insert("%", at: startingIndexAirComposition)
@@ -1059,10 +1067,10 @@ class input1TableViewController: UITableViewController, UITextFieldDelegate,MyPr
                 
                 DataSource = InputTitles
                 
-                // tableView.insertRows(at: [IndexPath(row: 0, section: 4)], with: .top)
-                tableView.insertSections(IndexSet(integersIn: 4...4), with: .top)
+                // currentTableView.insertRows(at: [IndexPath(row: 0, section: 4)], with: .top)
+                currentTableView.insertSections(IndexSet(integersIn: 4...4), with: .top)
                 
-                tableView.endUpdates()
+                currentTableView.endUpdates()
                 //  inputArrayValues.insert("", at: startingIndexAirComposition)
                 
                 
@@ -1093,9 +1101,9 @@ class input1TableViewController: UITableViewController, UITextFieldDelegate,MyPr
                     InputUnitsUS.insert("°F", at: 10)
                     
                     DataSource = InputTitles
-                    tableView.beginUpdates()
-                    tableView.insertRows(at: [IndexPath(row: 1, section: 3)], with: .fade)
-                    tableView.endUpdates()
+                    currentTableView.beginUpdates()
+                    currentTableView.insertRows(at: [IndexPath(row: 1, section: 3)], with: .fade)
+                    currentTableView.endUpdates()
                     
                     
                     
@@ -1111,9 +1119,9 @@ class input1TableViewController: UITableViewController, UITextFieldDelegate,MyPr
                     
                     
                     DataSource = InputTitles
-                    tableView.beginUpdates()
-                    tableView.deleteRows(at: [IndexPath(row: 1, section: 3)], with: .fade)
-                    tableView.endUpdates()
+                    currentTableView.beginUpdates()
+                    currentTableView.deleteRows(at: [IndexPath(row: 1, section: 3)], with: .fade)
+                    currentTableView.endUpdates()
                 }
             }
             else{
@@ -1134,9 +1142,9 @@ class input1TableViewController: UITableViewController, UITextFieldDelegate,MyPr
                     InputUnitsUS.insert("°F", at: 11)
                     
                     DataSource = InputTitles
-                    tableView.beginUpdates()
-                    tableView.insertRows(at: [IndexPath(row: 1, section: 3)], with: .fade)
-                    tableView.endUpdates()
+                    currentTableView.beginUpdates()
+                    currentTableView.insertRows(at: [IndexPath(row: 1, section: 3)], with: .fade)
+                    currentTableView.endUpdates()
                 }
                 else{
                     print("WetBulb OFF")
@@ -1152,9 +1160,9 @@ class input1TableViewController: UITableViewController, UITextFieldDelegate,MyPr
                     
                     
                     DataSource = InputTitles
-                    tableView.beginUpdates()
-                    tableView.deleteRows(at: [IndexPath(row: 1, section: 3)], with: .fade)
-                    tableView.endUpdates()
+                    currentTableView.beginUpdates()
+                    currentTableView.deleteRows(at: [IndexPath(row: 1, section: 3)], with: .fade)
+                    currentTableView.endUpdates()
                     
                     
                     
@@ -1193,15 +1201,13 @@ class input1TableViewController: UITableViewController, UITextFieldDelegate,MyPr
         dynamicPressureArray=dynamicVelocity
         let range = NSMakeRange(2, 2)
         let sections = NSIndexSet(indexesIn: range)
-        self.tableView.reloadSections(sections as IndexSet, with: .fade)     }
+        self.currentTableView.reloadSections(sections as IndexSet, with: .fade)     }
     
 
-    @IBOutlet weak var clearButton: UIButton!
-    @IBOutlet weak var calculateButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboard()
-        tableView.keyboardDismissMode = UIScrollViewKeyboardDismissMode.onDrag
+        currentTableView.keyboardDismissMode = UIScrollViewKeyboardDismissMode.onDrag
 
         InputTitles = ["Circular Duct","Standard Air Composition","Enable Wet Bulb (T)","Width", "Height", "Pitot Tube (C)"
             ,"Dynamic Pressure ","Sea Level (P)",  "Static (P)","Elevation", "Dry Bulb (T)","H20","Ar","N2","02","C02"]
@@ -1234,7 +1240,7 @@ class input1TableViewController: UITableViewController, UITextFieldDelegate,MyPr
                 
                 
                 cell.accessoryView = switchView
-                /*switchView.addTarget(self, action: #selector(switchPressed(sender:)), for: UIControlEvents.valueChanged)
+                switchView.addTarget(self, action: #selector(switchPressed(sender:)), for: UIControlEvents.valueChanged)
                 switch(indexPath.row){
                 case 0: pipeSwitch = switchView
                 case 1: airCompositionSwitch = switchView
@@ -1254,7 +1260,7 @@ class input1TableViewController: UITableViewController, UITextFieldDelegate,MyPr
                     print("SETTING WET BULB ON ")
                     wetBulbSwitch.setOn(true, animated: false)
                 }
- */
+ 
                 return cell
                 
             }
@@ -1269,7 +1275,7 @@ class input1TableViewController: UITableViewController, UITextFieldDelegate,MyPr
                 
                 
                 cell.accessoryView = switchView
-                /*
+                
                 switchView.addTarget(self, action: #selector(switchPressed(sender:)), for: UIControlEvents.valueChanged)
                 switch(indexPath.row){
                 case 0: pipeSwitch = switchView
@@ -1290,7 +1296,7 @@ class input1TableViewController: UITableViewController, UITextFieldDelegate,MyPr
                     print("SETTING WET BULB ON ")
                     wetBulbSwitch.setOn(true, animated: false)
                 }
- */
+ 
                 return cell
                 
             }
@@ -1305,7 +1311,7 @@ class input1TableViewController: UITableViewController, UITextFieldDelegate,MyPr
                 
                 
                 cell.accessoryView = switchView
-                /*
+                
                 switchView.addTarget(self, action: #selector(switchPressed(sender:)), for: UIControlEvents.valueChanged)
                 switch(indexPath.row){
                 case 0: pipeSwitch = switchView
@@ -1326,7 +1332,7 @@ class input1TableViewController: UITableViewController, UITextFieldDelegate,MyPr
                     print("SETTING WET BULB ON ")
                     wetBulbSwitch.setOn(true, animated: false)
                 }
- */
+ 
                 return cell
                 
             }
