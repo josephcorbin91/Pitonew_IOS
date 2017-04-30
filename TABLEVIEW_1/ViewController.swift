@@ -833,7 +833,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBAction func clear(_ sender: UIButton) {
         
         let inputTableViewController = storyboard?.instantiateViewController(withIdentifier: "inputTableViewController") as! input1TableViewController
-        inputTableViewController.clear()
+        //inputTableViewController.clear()
         
         let tbc = self.childViewControllers[0] as! input1TableViewController
         tbc.tableView.reloadData()

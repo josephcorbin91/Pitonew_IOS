@@ -739,13 +739,19 @@ class input1TableViewController: UITableViewController, UITextFieldDelegate,MyPr
     }
     
     
-    func clear() {
+    @IBAction func clear(_ sender: Any) {
         
         for i in 3...inputArrayValues.count-1 {
             inputArrayValues[i] = ""
         }
     
              print("INPUT ARRAY AFTER CLEAR" + String(describing: inputArrayValues))
+        DispatchQueue.main.async{
+            self.tableView.reloadSections(IndexSet(integersIn: 0...3), with: UITableViewRowAnimation.top)
+        }
+        DispatchQueue.main.async{
+            self.tableView.reloadData()
+        }
         
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -798,15 +804,13 @@ class input1TableViewController: UITableViewController, UITextFieldDelegate,MyPr
             
         }
         
-        print("INPUT ARRAY VALUES" + String(describing: inputArrayValues))
-        rowBeingEdited = nil
+        print("INPUT ARRAY VALUES DID END" + String(describing: inputArrayValues))
         
         
     }
     
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        rowBeingEdited = textField.tag
           }
     
     @IBOutlet var currentTableView: UITableView!
@@ -829,7 +833,6 @@ class input1TableViewController: UITableViewController, UITextFieldDelegate,MyPr
                 print("PipeType ON")
                 InputTitles.remove(at: 4)
                 InputUnits.remove(at: 4)
-                
                 inputArrayValues[4] = ""
                 
                 InputTitles.remove(at: 3)
