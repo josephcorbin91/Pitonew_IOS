@@ -257,7 +257,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         menuView.layer.shadowOpacity = 1
         menuView.layer.shadowRadius = 6
         leadingConstraint.constant = -260
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "blue_gradient.png")!.resizableImage(withCapInsets: UIEdgeInsets.zero, resizingMode: .stretch))
         
+        /*
+        let width = UIScreen.main.bounds.size.width
+        let height = UIScreen.main.bounds.size.height
+        
+        let imageViewBackground = UIImageView(frame: CGRect(0.0, 0.0, width, height))
+        imageViewBackground.image = UIImage(named: "blue_gradient.png")
+        
+        // you can change the content mode:
+        imageViewBackground.contentMode = UIViewContentMode.scaleAspectFill
+        self.view.insertSubview(imageViewBackground, at: 0)
+        */
+             self.tableView.backgroundColor = UIColor.clear
         
         var image = UIImage(named: "blue_gradient.png")! as UIImage
         self.actionToolBar.setBackgroundImage(#imageLiteral(resourceName: "blue_bottom").resizableImage(withCapInsets: UIEdgeInsets.zero, resizingMode: .stretch), forToolbarPosition: .any, barMetrics: .default)
@@ -474,7 +487,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let normalAirFlow: Double
         
         
-        var humidityH20DryAir:Double
+        var humidityH20DryAir = 0.0
         
         if(wetBulbSwitchBoolean){
             if(UnitSwitch){
@@ -492,17 +505,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             wetBulbWaterSaturationPressurePW = criticalPressureH20 * pow(10, Kw * (1 - (criticalTemperatureH20 / wetBulbRankine)))
             partialWaterPressureDueToDepressionPM = 0.000367 * (1 + ((wetBulbRankine-459.67) - 32) / 1571) * (pressMmHg - wetBulbWaterSaturationPressurePW) * ((dryBulbRankine - 459.67) - (wetBulbRankine - 459.67))
             
-            if((wetBulbWaterSaturationPressurePW - partialWaterPressureDueToDepressionPM) / dryBulbWaterSaturationPressurePD >= 100 || (wetBulbWaterSaturationPressurePW -  partialWaterPressureDueToDepressionPM) / dryBulbWaterSaturationPressurePD < 0){
+           /* if((wetBulbWaterSaturationPressurePW - partialWaterPressureDueToDepressionPM) / dryBulbWaterSaturationPressurePD >= 100 || (wetBulbWaterSaturationPressurePW -  partialWaterPressureDueToDepressionPM) / dryBulbWaterSaturationPressurePD < 0){
                 let alertMissingInput = UIAlertController(title: "Erronues Humidities", message: "Verify accuracy of temperature inputs", preferredStyle: UIAlertControllerStyle.alert)
                 alertMissingInput.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
                 self.present(alertMissingInput, animated: true, completion: nil)
                 
                 
             }
-            else{
+            else{*/
                 
                 relativeHumidity = 100 * (wetBulbWaterSaturationPressurePW-partialWaterPressureDueToDepressionPM)/dryBulbWaterSaturationPressurePD
-            }
+           // }
             
             partialPressureOfWaterPA = 0.01 * relativeHumidity * dryBulbWaterSaturationPressurePD
             
@@ -536,21 +549,26 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         print("partialPressureOfWaterPA" + String(partialPressureOfWaterPA))
         print("relativeHumidity" + String(relativeHumidity))
         print("humidity h20 WetAir" + String(humidityH20WetAir))
+        print("humidity h20 dryAir" + String(humidityH20DryAir))
         
         
         
         
         
-        
-        if(AirCompositionSwitchBoolean){
+        if(!AirCompositionSwitchBoolean){
             if(wetBulbSwitchBoolean){
-                var part1 = 0.03 * (1 - humidityH20WetAir)
-                var part2 = 20.95 * (1 - humidityH20WetAir)
-                var part3 = 78.09 * (1 - humidityH20WetAir)
-                var part4 = 0.93 * (1 - humidityH20WetAir)
+                var part1 = 0.03 * (1.0 - humidityH20WetAir)
+                var part2 = 20.95 * (1.0 - humidityH20WetAir)
+                var part3 = 78.09 * (1.0 - humidityH20WetAir)
+                var part4 = 0.93 * (1.0 - humidityH20WetAir)
                 var part5 = 100 * humidityH20WetAir
                 
-                
+                print(part1)
+                print(part2)
+
+                print(part3)
+                print(part4)
+                print(part5)
                 molecularWeight = part1 + part2 + part3 + part4 + part5
                 print("A")
                 print(molecularWeight)
@@ -563,12 +581,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         else {
             if(wetBulbSwitchBoolean){
-                var part1 = 44.01 * C02Composition * (1 - humidityH20WetAir)
-                var part2 = 31.999 * O2Composition * (1 - humidityH20WetAir)
-                var part3 = 28.013 * N2Composition * (1 - humidityH20WetAir)
-                var part4 = 39.948 * ARComposition * (1 - humidityH20WetAir)
+                var part1 = 44.01 * C02Composition * (1.0 - humidityH20WetAir)
+                var part2 = 31.999 * O2Composition * (1.0 - humidityH20WetAir)
+                var part3 = 28.013 * N2Composition * (1.0 - humidityH20WetAir)
+                var part4 = 39.948 * ARComposition * (1.0 - humidityH20WetAir)
                 var part5 = 18.016 * 100 * humidityH20WetAir
-                molecularWeight = (part1 + part2 + part3 + part4 + part5)/100
+                molecularWeight = (part1 + part2 + part3 + part4 + part5)/100.0
                 print("C")
                 
             }
