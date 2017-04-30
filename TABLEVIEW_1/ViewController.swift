@@ -265,7 +265,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
       
         //   view.addSubview(blurView)
         // tableView.backgroundColor = UIColor.clear
-        registerForKeyboardNotifications()
+        //registerForKeyboardNotifications()
         InputTitles = ["Circular Duct","Standard Air Composition","Enable Wet Bulb (T)","Width", "Height", "Pitot Tube (C)"
             ,"Dynamic Pressure ","Sea Level (P)",  "Static (P)","Elevation", "Dry Bulb (T)","H20","Ar","N2","02","C02"]
         InputUnitsSI = ["","","","m","m","","","kPa","H2O","ft","°C","%","%","%","%","%"]
@@ -838,13 +838,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         
         let alertInvalidTextField = UIAlertController(title: "Invalid Input", message: "Input field missing", preferredStyle: UIAlertControllerStyle.alert)
-        alertInvalidTextField.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+     
         
         
         
         
         let alertMissingDynamicVelocity = UIAlertController(title: "Invalid Input", message: "Dynamic Velocity required", preferredStyle: UIAlertControllerStyle.alert)
-        alertInvalidTextField.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        
+        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil)
+        alertInvalidTextField.addAction(okAction)
+
         let showDynamicVelocity = UIAlertAction(title: "Add dynamic pressure", style: .default) { (action) -> Void in
             blurView.removeFromSuperview()
             self.showDynamicVelocity()
@@ -852,6 +855,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
         }
         alertMissingDynamicVelocity.addAction(showDynamicVelocity)
+        alertMissingDynamicVelocity.addAction(okAction)
         
         if(dynamicPressureArray.count == 0){
             
@@ -933,7 +937,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        deregisterFromKeyboardNotifications()
+        //deregisterFromKeyboardNotifications()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

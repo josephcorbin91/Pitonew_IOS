@@ -9,28 +9,22 @@
 import UIKit
 
 
-class tableViewControllerResult : UITableViewController, UITextFieldDelegate {
+class velocityResultViewController : UITableViewController, UITextFieldDelegate {
     
     
     var items = [1.0,20.0,3.0]
+    var units = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Dynamic Velocity"
         
         
-        
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Done", style: .plain, target: self, action: "done")
+      
     }
     
     
     
-    
-    func done(){
-            self.navigationController?.popViewController(animated: true)
-            
-        
-    }
     
     
     
@@ -44,7 +38,8 @@ class tableViewControllerResult : UITableViewController, UITextFieldDelegate {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
  
         let myCell = tableView.dequeueReusableCell(withIdentifier: "dynamicVelocityResultCell", for: indexPath)
-        myCell.textLabel?.text = String(items[indexPath.row])
+        myCell.textLabel?.text = String(items[indexPath.row]) + "  " + units
+        
         return myCell
         // }
     }

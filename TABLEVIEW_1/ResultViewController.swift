@@ -35,20 +35,6 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var menuView: UIView!
     
     @IBOutlet weak var menuTableView: UITableView!
-    @IBAction func openMeu(_ sender: UIBarButtonItem) {
-        if(menuShowing){
-            leadingConstraint.constant = -260
-            
-        }
-        else{
-            leadingConstraint.constant = 0
-            UIView.animate(withDuration: 0.3, animations: {
-                self.view.layoutIfNeeded()
-            })
-        }
-        menuShowing = !menuShowing
-
-    }
     
   
     
@@ -109,16 +95,10 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if(tableView == self.tableView && indexPath.row == 2){
+        if(tableView == self.tableView && indexPath.row == 0 && indexPath.section == 1){
             showDynamicVelocity()
         }
-        if(tableView == self.menuTableView && indexPath.row == 2){
-            let settingsViewController = storyboard?.instantiateViewController(withIdentifier: "SettingsViewController") as! TableViewControllerSettings
-            
-            
-            self.navigationController?.show(settingsViewController, sender: self)
-        }
-    }
+            }
     
     func setDynamicVelocityResults(dynamicVelocity: [Double]){
         
@@ -126,20 +106,22 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     func showDynamicVelocity(){
         
-        let dynamicVelocityViewController = storyboard?.instantiateViewController(withIdentifier: "DynamicVelocityViewControllerResult") as! tableViewControllerResult
-       // dynamicVelocityViewController.dynamicResultsProtocol = self
+        let dynamicVelocityViewController = storyboard?.instantiateViewController(withIdentifier: "velocityResultViewController") as! velocityResultViewController
         print(dynamicVelocityArrayUS)
         print(dynamicVelocityArraySI)
         if(unitSwitch.selectedSegmentIndex == 0){
         dynamicVelocityViewController.items = dynamicVelocityArrayUS
+            dynamicVelocityViewController.units = "ft/s"
         }
         else{
             dynamicVelocityViewController.items = dynamicVelocityArraySI
+            dynamicVelocityViewController.units = "m/s"
 
         }
         self.navigationController?.show(dynamicVelocityViewController, sender: self)
     }
 
+    @IBOutlet weak var actionToolbar: UIToolbar!
     override func viewDidAppear(_ animated: Bool) {
         //self.navigationController!.navigationBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 60.0)
         
@@ -148,9 +130,9 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
       
-        menuView.layer.shadowOpacity = 1
-        menuView.layer.shadowRadius = 6
-        leadingConstraint.constant = -260
+      //  menuView.layer.shadowOpacity = 1
+      //  menuView.layer.shadowRadius = 6
+      //  leadingConstraint.constant = -260
         
 
         
@@ -166,7 +148,8 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         self.navigationItem.title = "Results"
       
-
+        self.actionToolbar.setBackgroundImage(#imageLiteral(resourceName: "blue_bottom").resizableImage(withCapInsets: UIEdgeInsets.zero, resizingMode: .stretch), forToolbarPosition: .any, barMetrics: .default)
+        
         unitSwitch.selectedSegmentIndex = currentUnits
 
         if(currentUnits == 1){
@@ -229,7 +212,7 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
             return 5
         }
         else if(section == 2){
-            return 2
+            return 3
         }
         else {
             return 0
@@ -393,7 +376,7 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 cell.resultUnit.text = ResultUnits[8]
                 return cell
             }
-            else if(indexPath.row == 1){
+            else if(indexPath.row == 2){
                 var cell = self.tableView.dequeueReusableCell(withIdentifier: "ResultCell", for: indexPath) as! ResultCell
                 print("RESULTS")
                 print(resultArray)
