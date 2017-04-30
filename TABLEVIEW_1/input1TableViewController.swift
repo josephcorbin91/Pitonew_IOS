@@ -792,6 +792,8 @@ class input1TableViewController: UITableViewController, UITextFieldDelegate,MyPr
             default : indexOfInputArray = -1
             }
         }
+        inputArrayValues[indexOfInputArray] = textField.text!
+/*
         let str = textField.text!
         if let value = str.doubleValue  {
             inputArrayValues[indexOfInputArray] = str
@@ -803,7 +805,7 @@ class input1TableViewController: UITableViewController, UITextFieldDelegate,MyPr
             print("invalid input")
             
         }
-        
+        */
         print("INPUT ARRAY VALUES DID END" + String(describing: inputArrayValues))
         
         
