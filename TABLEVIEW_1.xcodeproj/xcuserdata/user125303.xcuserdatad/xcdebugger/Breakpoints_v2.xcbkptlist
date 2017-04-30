@@ -79,7 +79,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1437"
             endingLineNumber = "1437"
-            landmarkName = "keyboardWasShown(notification:)"
+            landmarkName = "switchPressed(sender:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
