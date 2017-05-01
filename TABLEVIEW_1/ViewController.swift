@@ -249,6 +249,26 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         menuShowing = !menuShowing
     }
+    func respondToSwipeGesture(gesture: UIGestureRecognizer) {
+        
+        if let swipeGesture = gesture as? UISwipeGestureRecognizer {
+            
+            if(swipeGesture.direction == UISwipeGestureRecognizerDirection.right && !menuShowing){
+                leadingConstraint.constant = 0
+                UIView.animate(withDuration: 0.3, animations: {
+                    self.view.layoutIfNeeded()
+                })
+                menuShowing = !menuShowing
+
+            }
+            if(swipeGesture.direction == UISwipeGestureRecognizerDirection.left && menuShowing){
+                 leadingConstraint.constant = -260
+                menuShowing = !menuShowing
+
+            }
+    }
+    }
+    
     @IBOutlet weak var settingsIcon: UIBarButtonItem!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -279,6 +299,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         //   view.addSubview(blurView)
         // tableView.backgroundColor = UIColor.clear
         //registerForKeyboardNotifications()
+        
+        
+        var swipeLeft = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
+        swipeLeft.direction = UISwipeGestureRecognizerDirection.right
+        self.view.addGestureRecognizer(swipeLeft)
+        
+
+        
         InputTitles = ["Circular Duct","Standard Air Composition","Enable Wet Bulb (T)","Width", "Height", "Pitot Tube (C)"
             ,"Dynamic Pressure ","Sea Level (P)",  "Static (P)","Elevation", "Dry Bulb (T)","H20","Ar","N2","02","C02"]
         InputUnitsSI = ["","","","m","m","","","kPa","H2O","ft","°C","%","%","%","%","%"]
@@ -322,6 +350,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var AirCompositionSwitchBoolean = false
     var wetBulbSwitchBoolean = false
     
+    override func viewDidAppear(_ animated: Bool) {
+        if(menuShowing){
+            leadingConstraint.constant = -260
+
+        }
+        menuShowing = !menuShowing
+        
+        
+    }
     
     
     
@@ -554,53 +591,44 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         
         
-        
-        if(!AirCompositionSwitchBoolean){
+        var CO2Wet=0.0;
+        var O2Wet=0.0;
+        var N2Wet=0.0;
+        var ArWet=0.0;
+        var H2OWet=0.0;
+        if(AirCompositionSwitchBoolean){
+            CO2Wet=0.03*(1-humidityH20WetAir);
+            O2Wet=20.95*(1-humidityH20WetAir);
+            N2Wet=78.09*(1-humidityH20WetAir);
+            ArWet=0.93*(1-humidityH20WetAir);
+            H2OWet=0;
             if(wetBulbSwitchBoolean){
-                var part1 = 0.03 * (1.0 - humidityH20WetAir)
-                var part2 = 20.95 * (1.0 - humidityH20WetAir)
-                var part3 = 78.09 * (1.0 - humidityH20WetAir)
-                var part4 = 0.93 * (1.0 - humidityH20WetAir)
-                var part5 = 100 * humidityH20WetAir
-                
-                print(part1)
-                print(part2)
-
-                print(part3)
-                print(part4)
-                print(part5)
-                molecularWeight = part1 + part2 + part3 + part4 + part5
-                print("A")
-                print(molecularWeight)
-            }
-            else {
-                molecularWeight = 28.96
-                print("B")
-                
-            }
-        }
-        else {
-            if(wetBulbSwitchBoolean){
-                var part1 = 44.01 * C02Composition * (1.0 - humidityH20WetAir)
-                var part2 = 31.999 * O2Composition * (1.0 - humidityH20WetAir)
-                var part3 = 28.013 * N2Composition * (1.0 - humidityH20WetAir)
-                var part4 = 39.948 * ARComposition * (1.0 - humidityH20WetAir)
-                var part5 = 18.016 * 100 * humidityH20WetAir
-                molecularWeight = (part1 + part2 + part3 + part4 + part5)/100.0
-                print("C")
-                
-            }
-            else {
-                var part1 = 44.01 * C02Composition
-                var part2 = 31.999 * O2Composition
-                var part3 = 28.013 * N2Composition
-                var part4 = 39.948 * ARComposition
-                molecularWeight = (part1 + part2 + part3 + part4) / 100
-                print("D")
-                
+            H2OWet=100*humidityH20WetAir;
             }
             
         }
+        else if(!AirCompositionSwitchBoolean){
+            if(wetBulbSwitchBoolean){
+                CO2Wet=C02Composition*(1-humidityH20WetAir);
+                O2Wet=O2Composition*(1-humidityH20WetAir);
+                N2Wet=N2Composition*(1-humidityH20WetAir);
+                ArWet=ARComposition*(1-humidityH20WetAir);
+                H2OWet=100*humidityH20WetAir;
+                
+            }
+            else{
+                CO2Wet=C02Composition;
+                O2Wet=O2Composition;
+                N2Wet=N2Composition;
+                ArWet=ARComposition;
+                H2OWet=H2OComposition;
+            }
+            
+        }
+        
+        
+        
+        molecularWeight = (44.01*CO2Wet+31.999*O2Wet+28.013*N2Wet+39.948*ArWet+18.016*H2OWet)/100;
         
         if(pipeShapeSwitchBoolean){
             area = Double.pi * pow(height / 2.0, 2.0)
@@ -1021,8 +1049,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if let inputTitle = cell.inputTitle.text{
             switch inputTitle {
             case "Diameter": indexOfInputArray = 3
-            case "Width": indexOfInputArray = 4
-            case "Height": indexOfInputArray = 3
+            case "Width": indexOfInputArray = 3
+            case "Height": indexOfInputArray = 4
             case "Pitot Tube (C)": indexOfInputArray = 5
             case "Static (P)": indexOfInputArray = 6
             case "Dry Bulb (T)": indexOfInputArray = 7
