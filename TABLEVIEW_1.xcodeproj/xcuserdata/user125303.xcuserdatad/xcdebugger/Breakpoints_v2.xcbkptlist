@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TABLEVIEW_1/TableViewController.swift"
-            timestampString = "515174859.213452"
+            timestampString = "515372982.001468"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "176"
-            endingLineNumber = "176"
+            startingLineNumber = "197"
+            endingLineNumber = "197"
             landmarkName = "insertAction()"
             landmarkType = "7">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TABLEVIEW_1/ViewController.swift"
-            timestampString = "515290796.146045"
+            timestampString = "515371824.815403"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "287"
-            endingLineNumber = "287"
+            startingLineNumber = "300"
+            endingLineNumber = "300"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TABLEVIEW_1/ViewController.swift"
-            timestampString = "515290796.146045"
+            timestampString = "515371824.815403"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "293"
-            endingLineNumber = "293"
+            startingLineNumber = "306"
+            endingLineNumber = "306"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TABLEVIEW_1/ViewController.swift"
-            timestampString = "515298262.199624"
+            timestampString = "515371824.815403"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "631"
-            endingLineNumber = "631"
+            startingLineNumber = "644"
+            endingLineNumber = "644"
             landmarkName = "calculateResults()"
             landmarkType = "7">
          </BreakpointContent>

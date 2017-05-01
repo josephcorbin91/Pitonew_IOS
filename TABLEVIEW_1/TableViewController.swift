@@ -101,21 +101,42 @@ class TableViewController: UITableViewController, UITextFieldDelegate {
 
       
                 let textField = self.view.viewWithTag(3) as! UITextField
+        let str = textField.text!
+        if let value = str.doubleValue  {
+            items.append(Double(str)!)
+            textField.text = ""
+           
+            
+            let insertionIndexPath = NSIndexPath(row: items.count-1, section: 0)
+            tableView.beginUpdates()
+            tableView.insertRows(at: [insertionIndexPath as IndexPath], with: .top)
+            tableView.endUpdates()
+        } else {
+            let notNumberAlert = UIAlertController(title: "Invalid input.", message: "Value entered is not a number.", preferredStyle: UIAlertControllerStyle.alert)
+            let refreshTableAction = UIAlertAction(title: "OK", style: .default) { (action) -> Void in
+                
+                textField.text = ""
+                self.tableView.reloadData()
+                
+            }
+            notNumberAlert.addAction(refreshTableAction)
+            
+            self.present(notNumberAlert, animated: true, completion: nil)
+            
+            
+            print("invalid input")
+            
+        }
+        
+        
+        
+        
+        
                 if let text = textField.text, !text.isEmpty
                 {
                     
                     
-                    items.append(Double(text)!)
-                    textField.text = ""
-                    print("ITEMS COUNT")
-                    print(items.count)
-                    print(items)
-                    print("insert called" + text)
-
-                    let insertionIndexPath = NSIndexPath(row: items.count-1, section: 0)
-                    tableView.beginUpdates()
-                    tableView.insertRows(at: [insertionIndexPath as IndexPath], with: .top)
-                    tableView.endUpdates()
+                    
              }
         
             

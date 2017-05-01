@@ -38,6 +38,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 cell.alpha = 1.0
             }
         }
+ 
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -202,6 +203,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
         }
         
+        if(tableView == self.menuTableView && indexPath.row == 0){
+            let settingsViewController = storyboard?.instantiateViewController(withIdentifier: "aboutDeveloperViewController") as! LinkedinView
+            
+            
+            self.navigationController?.show(settingsViewController, sender: self)
+            
+            
+        }
+        
+        
         if(indexPath.section == 2 && indexPath.row == 0){
             showDynamicVelocity()
         }
@@ -272,12 +283,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var settingsIcon: UIBarButtonItem!
     override func viewDidLoad() {
         super.viewDidLoad()
+        menuShowing = false
         print("VIEW DID LOAD VIEW CONTROLLER")
         set = Set()
         menuView.layer.shadowOpacity = 1
         menuView.layer.shadowRadius = 6
         leadingConstraint.constant = -260
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "blue_gradient.png")!.resizableImage(withCapInsets: UIEdgeInsets.zero, resizingMode: .stretch))
+       // self.view.backgroundColor = UIColor(patternImage: UIImage(named: "blue_gradient.png")!.resizableImage(withCapInsets: UIEdgeInsets.zero, resizingMode: .stretch))
+        
         
         /*
         let width = UIScreen.main.bounds.size.width
@@ -290,7 +303,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         imageViewBackground.contentMode = UIViewContentMode.scaleAspectFill
         self.view.insertSubview(imageViewBackground, at: 0)
         */
-             self.tableView.backgroundColor = UIColor.clear
+         //    self.tableView.backgroundColor = UIColor.clear
         
         var image = UIImage(named: "blue_gradient.png")! as UIImage
         self.actionToolBar.setBackgroundImage(#imageLiteral(resourceName: "blue_bottom").resizableImage(withCapInsets: UIEdgeInsets.zero, resizingMode: .stretch), forToolbarPosition: .any, barMetrics: .default)
@@ -546,7 +559,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 let alertMissingInput = UIAlertController(title: "Erronues Humidities", message: "Verify accuracy of temperature inputs", preferredStyle: UIAlertControllerStyle.alert)
                 alertMissingInput.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
                 self.present(alertMissingInput, animated: true, completion: nil)
-                
+             
                 
             }
             else{*/
@@ -1072,8 +1085,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             print(value)
         } else {
-            textField.text = ""
-            tableView.reloadData()
+            let notNumberAlert = UIAlertController(title: "Invalid input.", message: "Value entered is not a number.", preferredStyle: UIAlertControllerStyle.alert)
+            let refreshTableAction = UIAlertAction(title: "OK", style: .default) { (action) -> Void in
+               
+                textField.text = ""
+                self.tableView.reloadData()
+                
+            }
+            notNumberAlert.addAction(refreshTableAction)
+
+            self.present(notNumberAlert, animated: true, completion: nil)
+
+            
             print("invalid input")
             
         }
@@ -1609,10 +1632,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 InputTitles.insert("Diameter", at: 3)
                 DataSource = InputTitles
                 tableView.beginUpdates()
-                tableView.deleteRows(at: [IndexPath(row: 0, section: 1)], with: .top)
-                tableView.deleteRows(at: [IndexPath(row: 1, section: 1)], with: .top)
-                
-                tableView.insertRows(at: [IndexPath(row: 0, section: 1)], with: .top)
+                tableView.reloadRows(at: [IndexPath(row: 0, section: 1)], with: .fade)
+                tableView.deleteRows(at: [IndexPath(row: 1, section: 1)], with: .fade)
+               
                 tableView.endUpdates()
                 //sender.setOn(false, animated: true)
                 
@@ -1647,10 +1669,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 
                 DataSource = InputTitles
                 tableView.beginUpdates()
-                tableView.deleteRows(at: [IndexPath(row: 0, section: 1)], with: .top)
+                tableView.deleteRows(at: [IndexPath(row: 0, section: 1)], with: .fade)
                 
-                tableView.insertRows(at: [IndexPath(row: 0, section: 1)], with: .top)
-                tableView.insertRows(at: [IndexPath(row: 1, section: 1)], with: .top)
+                tableView.insertRows(at: [IndexPath(row: 0, section: 1)], with: .fade)
+                tableView.insertRows(at: [IndexPath(row: 1, section: 1)], with: .fade)
                 
                 tableView.endUpdates()
                 print("INPUT UNITS")
