@@ -87,12 +87,20 @@ class VelocityViewController: UIViewController, UITableViewDelegate, UITableView
     }
     @IBAction func insert(_ sender: UIButton) {
         print("INSERT CALLED")
-        if(verifyDataPressureRule()){
-        items.append(dynamicVelocityTextField.text!)
-        tableView.beginUpdates()
-        tableView.insertRows(at: [IndexPath(row: items.count-1, section: 0)], with: .fade)
-        tableView.endUpdates()
+        
+        let str = dynamicVelocityTextField.text!
+        if let value = str.doubleValue  {
+            if(verifyDataPressureRule()){
+                
+                
+                
+                items.append(dynamicVelocityTextField.text!)
+                tableView.beginUpdates()
+                tableView.insertRows(at: [IndexPath(row: items.count-1, section: 0)], with: .fade)
+                tableView.endUpdates()
+            print(value)
         }
+         }
         else{
             
         let alertInvalidResult = UIAlertController(title: "Invalid Pressure values", message: "75% of values must be greater than 10% of the maximum pressure", preferredStyle: UIAlertControllerStyle.alert)

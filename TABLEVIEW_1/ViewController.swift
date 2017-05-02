@@ -555,17 +555,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             wetBulbWaterSaturationPressurePW = criticalPressureH20 * pow(10, Kw * (1 - (criticalTemperatureH20 / wetBulbRankine)))
             partialWaterPressureDueToDepressionPM = 0.000367 * (1 + ((wetBulbRankine-459.67) - 32) / 1571) * (pressMmHg - wetBulbWaterSaturationPressurePW) * ((dryBulbRankine - 459.67) - (wetBulbRankine - 459.67))
             
-           /* if((wetBulbWaterSaturationPressurePW - partialWaterPressureDueToDepressionPM) / dryBulbWaterSaturationPressurePD >= 100 || (wetBulbWaterSaturationPressurePW -  partialWaterPressureDueToDepressionPM) / dryBulbWaterSaturationPressurePD < 0){
+           if((wetBulbWaterSaturationPressurePW - partialWaterPressureDueToDepressionPM) / dryBulbWaterSaturationPressurePD >= 100 || (wetBulbWaterSaturationPressurePW -  partialWaterPressureDueToDepressionPM) / dryBulbWaterSaturationPressurePD < 0){
                 let alertMissingInput = UIAlertController(title: "Erronues Humidities", message: "Verify accuracy of temperature inputs", preferredStyle: UIAlertControllerStyle.alert)
                 alertMissingInput.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
                 self.present(alertMissingInput, animated: true, completion: nil)
              
                 
             }
-            else{*/
+            else{
                 
                 relativeHumidity = 100 * (wetBulbWaterSaturationPressurePW-partialWaterPressureDueToDepressionPM)/dryBulbWaterSaturationPressurePD
-           // }
+        }
             
             partialPressureOfWaterPA = 0.01 * relativeHumidity * dryBulbWaterSaturationPressurePD
             
@@ -582,6 +582,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             var part4 = 39.948*(ARComposition * (1 - humidityH20WetAir))
             
             dryMolecularWeight = (part1 + part2 + part3 + part4)/100;
+            if(dryMolecularWeight<0){
+                let alertMissingInput = UIAlertController(title: "Erronues dry molecular weight.", message: "Verify accuracy of temperature inputs", preferredStyle: UIAlertControllerStyle.alert)
+                alertMissingInput.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                self.present(alertMissingInput, animated: true, completion: nil)
+            }
             
             humidityH20DryAir = (18.02 / dryMolecularWeight) * (partialPressureOfWaterPA / (pressMmHg - partialPressureOfWaterPA))
             
@@ -726,6 +731,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             massAirFlow=(actualAirFlow*60/pow((39.3701/12.0),3)*(gasDensity/0.062428)/3600.0)*2.2046*60.0
         }
         if(UnitSwitch){
+            print("NORMAL AIR FLOW")
+            print(actualAirFlow)
+            print(dryBulbTemperature)
             normalAirFlow = (actualAirFlow*ductPressure/101.325)*273.15/(273.15+dryBulbTemperature)
             
         }
@@ -1084,7 +1092,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             inputArrayValues[indexOfInputArray] = str
             
             print(value)
-        } else {
+        }
+        else if(str == ""){
+            inputArrayValues[indexOfInputArray] = str
+
+        }
+        else {
             let notNumberAlert = UIAlertController(title: "Invalid input.", message: "Value entered is not a number.", preferredStyle: UIAlertControllerStyle.alert)
             let refreshTableAction = UIAlertAction(title: "OK", style: .default) { (action) -> Void in
                
