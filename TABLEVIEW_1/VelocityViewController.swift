@@ -90,8 +90,7 @@ class VelocityViewController: UIViewController, UITableViewDelegate, UITableView
         
         let str = dynamicVelocityTextField.text!
         if let value = str.doubleValue  {
-            if(verifyDataPressureRule()){
-                
+            
                 
                 
                 items.append(dynamicVelocityTextField.text!)
@@ -100,15 +99,15 @@ class VelocityViewController: UIViewController, UITableViewDelegate, UITableView
                 tableView.endUpdates()
             print(value)
         }
-         }
+         
         else{
             
         let alertInvalidResult = UIAlertController(title: "Invalid Pressure values", message: "75% of values must be greater than 10% of the maximum pressure", preferredStyle: UIAlertControllerStyle.alert)
         alertInvalidResult.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
         self.present(alertInvalidResult, animated: true, completion: nil)
 
-        }
-            
+    }
+    
         
         
         

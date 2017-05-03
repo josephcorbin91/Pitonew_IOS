@@ -69,10 +69,10 @@ class TableViewController: UITableViewController, UITextFieldDelegate {
     
     
     
-    func verifyDataPressureRule(Double value) -> Bool {
+    func verifyDataPressureRule() -> Bool {
         print("VERIFY DATA CALLED")
         print(items)
-        var currentMax = value
+        var currentMax = items[0]
         for i in 0..<items.count{
             var currentVelocity = Double(items[i])
             if(currentVelocity > currentMax){
@@ -101,8 +101,7 @@ class TableViewController: UITableViewController, UITextFieldDelegate {
         let textField = self.view.viewWithTag(3) as! UITextField
         let str = textField.text!
         if let value = str.doubleValue  {
-            if(verifyDataPressureRule(value)){
-                
+            
                 
             
             
@@ -115,15 +114,9 @@ class TableViewController: UITableViewController, UITextFieldDelegate {
             tableView.insertRows(at: [insertionIndexPath as IndexPath], with: .top)
             tableView.endUpdates()
             }
-            else{
-                let alertInvalidResult = UIAlertController(title: "Invalid Pressure values", message: "75% of values must be greater than 10% of the maximum pressure", preferredStyle: UIAlertControllerStyle.alert)
-                alertInvalidResult.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                self.present(alertInvalidResult, animated: true, completion: nil)
-                
-
-            }
-        } else {
+            else {
             let notNumberAlert = UIAlertController(title: "Invalid input.", message: String(str) + " is not a valid number.", preferredStyle: UIAlertControllerStyle.alert)
+            let emptyInputAlert = UIAlertController(title: "Empty input.", message:" Must enter number", preferredStyle: UIAlertControllerStyle.alert)
             let refreshTableAction = UIAlertAction(title: "OK", style: .default) { (action) -> Void in
                 
                 textField.text = ""
@@ -131,9 +124,16 @@ class TableViewController: UITableViewController, UITextFieldDelegate {
                 
             }
             notNumberAlert.addAction(refreshTableAction)
+            emptyInputAlert.addAction(refreshTableAction)
+            
+            if(str == ""){
+                self.present(emptyInputAlert, animated: true, completion: nil)
+
+            }
+            else{
             
             self.present(notNumberAlert, animated: true, completion: nil)
-            
+            }
             
             
         }

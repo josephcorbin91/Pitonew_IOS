@@ -188,33 +188,30 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let range = NSMakeRange(2, 2)
         let sections = NSIndexSet(indexesIn: range)
         self.tableView.reloadSections(sections as IndexSet, with: .fade)     }
+ 
+    var selectedIndexPath : IndexPath = []
     
-    
-    
+   
+    override func viewWillAppear(_ animated: Bool) {
+        menuTableView.deselectRow(at: selectedIndexPath, animated: true)
+        
+    }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         
-        if(tableView == self.menuTableView && indexPath.row == 3){
+        if(tableView == self.menuTableView && indexPath.row == 0){
             let settingsViewController = storyboard?.instantiateViewController(withIdentifier: "SettingsViewController") as! TableViewControllerSettings
             
-            
+            selectedIndexPath = indexPath
             self.navigationController?.show(settingsViewController, sender: self)
-            
+
             
         }
-        
-        if(tableView == self.menuTableView && indexPath.row == 0){
-            let settingsViewController = storyboard?.instantiateViewController(withIdentifier: "aboutDeveloperViewController") as! LinkedinView
-            
-            
-            self.navigationController?.show(settingsViewController, sender: self)
-            
-            
-        }
-        
-        
+  
         if(indexPath.section == 2 && indexPath.row == 0){
             showDynamicVelocity()
+            selectedIndexPath = indexPath
+
         }
     }
     
@@ -243,11 +240,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     
     @IBOutlet weak var actionToolbar: UIToolbar!
-    var menuShowing = false
+    var menuShowing = true
     
     @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var menuView: UIView!
     @IBAction func openMenu(_ sender: Any) {
+        print("OPEN MENU" + String(menuShowing))
         if(menuShowing){
             leadingConstraint.constant = -260
             
@@ -283,7 +281,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var settingsIcon: UIBarButtonItem!
     override func viewDidLoad() {
         super.viewDidLoad()
-        menuShowing = false
+        menuShowing = true
         print("VIEW DID LOAD VIEW CONTROLLER")
         set = Set()
         menuView.layer.shadowOpacity = 1
@@ -1042,7 +1040,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
         }
         if(tableView == self.menuTableView){
-            return 4
+            return 1
         }
         else{
             return 3
@@ -1050,8 +1048,29 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         
     }
+    func animateTextField(textField: UITextField, up: Bool)
+    {
+        let movementDistance:CGFloat = -200
+        let movementDuration: Double = 0.3
+        
+        var movement:CGFloat = 0
+        if up
+        {
+            movement = movementDistance
+        }
+        else
+        {
+            movement = -movementDistance
+        }
+        UIView.beginAnimations("animateTextField", context: nil)
+        UIView.setAnimationBeginsFromCurrentState(true)
+        UIView.setAnimationDuration(movementDuration)
+        self.view.frame = self.view.frame.offsetBy(dx: 0, dy: movement)
+        UIView.commitAnimations()
+    }
     
     
+   
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
         
@@ -1061,7 +1080,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextFieldDidEndEditingReason) {
         //let row = textField.tag
-        activeField = nil
+        self.animateTextField(textField: textField, up:false)
+
+        //activeField = nil
         let cell = textField.superview!.superview as! CustomCell
         
         var indexOfInputArray = -1
@@ -1125,7 +1146,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func textFieldDidBeginEditing(_ textField: UITextField) {
         rowBeingEdited = textField.tag
         activeField = textField
-        
+        self.animateTextField(textField: textField, up:true)
+
         print("ROW being edited " + String(describing: rowBeingEdited))
         
     }
@@ -1521,11 +1543,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             if(indexPath.row == 0){
                 
                 let cell : UITableViewCell
-                cell = self.menuTableView.dequeueReusableCell(withIdentifier: "defaultSwitchAboutDeveloper", for: indexPath)
-                cell.textLabel?.text = "About Developer"
+                cell = self.menuTableView.dequeueReusableCell(withIdentifier: "defaultSwitchSettings", for: indexPath)
+                cell.textLabel?.text = "Settings"
                 return cell
                 
-            }
+            }/*
             else if(indexPath.row == 1){
                 
                 let cell : UITableViewCell
@@ -1541,7 +1563,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 cell.textLabel?.text = "Software Updates"
                 return cell
                 
-            }
+            }*/
             else {
                 
                 let cell : UITableViewCell

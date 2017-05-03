@@ -18,7 +18,7 @@ class TableViewControllerSettings: UITableViewController,CLLocationManagerDelega
         print("VIEW DID LOAD VIEW SETTINGS")
         print(inputArrayValues)
 
-        InputTitles = ["Enable Sound","Enable Vibration", "Enable GPS Localization of Duct","Language"]
+        InputTitles = ["Enable Sound","Enable Vibration", "Enable GPS Localization of Duct"]//,//"Language"]
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -60,20 +60,23 @@ class TableViewControllerSettings: UITableViewController,CLLocationManagerDelega
         if(sender.tag == 1){
             if(sender.isOn){
                 UserDefaults.standard.set("on", forKey: "switch1") //Bool
-
+/*
                 print("GPS SELECTED")
                 var locManager = CLLocationManager()
                 locManager.delegate = self
                 locManager.requestWhenInUseAuthorization()
-
+*/
                 
             }
             else{
                 print("GPS SELECTED")
+                /*
                 var locManager = CLLocationManager()
                 locManager.delegate = self
                 locManager.requestWhenInUseAuthorization()
+                 */
                 UserDefaults.standard.set("off", forKey: "switch1") //Bool
+ 
 
             }
         }
