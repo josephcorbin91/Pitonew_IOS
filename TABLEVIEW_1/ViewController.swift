@@ -190,11 +190,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.tableView.reloadSections(sections as IndexSet, with: .fade)     }
  
     var selectedIndexPath : IndexPath = []
-    
-   
+    var keyboardHeight = 0.0
+    func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            self.keyboardHeight = Double(keyboardSize.height)
+            print("Keyboard height" + String(describing: keyboardHeigƒht))
+        }
+    }
     override func viewWillAppear(_ animated: Bool) {
         menuTableView.deselectRow(at: selectedIndexPath, animated: true)
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: .UIKeyboardWillShow, object: nil)
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
@@ -1048,39 +1053,29 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         
     }
-    func animateTextField(textField: UITextField, up: Bool)
-    {
-        let movementDistance:CGFloat = -200
-        let movementDuration: Double = 0.3
-        
-        var movement:CGFloat = 0
-        if up
-        {
-            movement = movementDistance
-        }
-        else
-        {
-            movement = -movementDistance
-        }
-        UIView.beginAnimations("animateTextField", context: nil)
+    
+    // Lifting the view up
+    func animateViewMoving (up:Bool, moveValue :CGFloat){
+        let movementDuration:TimeInterval = 0.3
+        let movement:CGFloat = ( up ? -moveValue : moveValue)
+        UIView.beginAnimations( "animateView", context: nil)
         UIView.setAnimationBeginsFromCurrentState(true)
-        UIView.setAnimationDuration(movementDuration)
-        self.view.frame = self.view.frame.offsetBy(dx: 0, dy: movement)
+        UIView.setAnimationDuration(movementDuration )
+        self.view.frame = self.view.frame.offsetBy(dx: 0,  dy: movement)
         UIView.commitAnimations()
     }
-    
     
    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
-        
+
     }
     
     
     
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextFieldDidEndEditingReason) {
         //let row = textField.tag
-        self.animateTextField(textField: textField, up:false)
+        animateViewMoving(up: false, moveValue: keyboardHeight)
 
         //activeField = nil
         let cell = textField.superview!.superview as! CustomCell
@@ -1146,10 +1141,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func textFieldDidBeginEditing(_ textField: UITextField) {
         rowBeingEdited = textField.tag
         activeField = textField
-        self.animateTextField(textField: textField, up:true)
+        animateViewMoving(up: true, moveValue: keyboardHeight)
 
-        print("ROW being edited " + String(describing: rowBeingEdited))
-        
     }
     
     func average(nums: [Double]) -> Double {
