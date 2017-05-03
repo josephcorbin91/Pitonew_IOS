@@ -1098,7 +1098,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
         }
         else {
-            let notNumberAlert = UIAlertController(title: "Invalid input.", message: "Value entered is not a number.", preferredStyle: UIAlertControllerStyle.alert)
+            let notNumberAlert = UIAlertController(title: "Invalid input.", message: String(str) + " is not a vavlid number.", preferredStyle: UIAlertControllerStyle.alert)
             let refreshTableAction = UIAlertAction(title: "OK", style: .default) { (action) -> Void in
                
                 textField.text = ""

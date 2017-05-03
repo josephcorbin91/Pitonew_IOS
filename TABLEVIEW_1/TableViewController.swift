@@ -69,10 +69,10 @@ class TableViewController: UITableViewController, UITextFieldDelegate {
     
     
     
-    func verifyDataPressureRule() -> Bool {
+    func verifyDataPressureRule(Double value) -> Bool {
         print("VERIFY DATA CALLED")
         print(items)
-        var currentMax = Double(items[0])
+        var currentMax = value
         for i in 0..<items.count{
             var currentVelocity = Double(items[i])
             if(currentVelocity > currentMax){
@@ -98,11 +98,14 @@ class TableViewController: UITableViewController, UITextFieldDelegate {
     }
      func insert() {
 
-
-      
-                let textField = self.view.viewWithTag(3) as! UITextField
+        let textField = self.view.viewWithTag(3) as! UITextField
         let str = textField.text!
         if let value = str.doubleValue  {
+            if(verifyDataPressureRule(value)){
+                
+                
+            
+            
             items.append(Double(str)!)
             textField.text = ""
            
@@ -111,8 +114,16 @@ class TableViewController: UITableViewController, UITextFieldDelegate {
             tableView.beginUpdates()
             tableView.insertRows(at: [insertionIndexPath as IndexPath], with: .top)
             tableView.endUpdates()
+            }
+            else{
+                let alertInvalidResult = UIAlertController(title: "Invalid Pressure values", message: "75% of values must be greater than 10% of the maximum pressure", preferredStyle: UIAlertControllerStyle.alert)
+                alertInvalidResult.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                self.present(alertInvalidResult, animated: true, completion: nil)
+                
+
+            }
         } else {
-            let notNumberAlert = UIAlertController(title: "Invalid input.", message: "Value entered is not a number.", preferredStyle: UIAlertControllerStyle.alert)
+            let notNumberAlert = UIAlertController(title: "Invalid input.", message: String(str) + " is not a valid number.", preferredStyle: UIAlertControllerStyle.alert)
             let refreshTableAction = UIAlertAction(title: "OK", style: .default) { (action) -> Void in
                 
                 textField.text = ""
@@ -124,21 +135,13 @@ class TableViewController: UITableViewController, UITextFieldDelegate {
             self.present(notNumberAlert, animated: true, completion: nil)
             
             
-            print("invalid input")
             
         }
         
         
         
         
-        
-                if let text = textField.text, !text.isEmpty
-                {
-                    
-                    
-                    
-             }
-        
+                
             
 
         
