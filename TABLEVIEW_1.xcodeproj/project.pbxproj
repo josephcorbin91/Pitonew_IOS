@@ -485,7 +485,7 @@
 				DEVELOPMENT_TEAM = E5ZM3YFU78;
 				INFOPLIST_FILE = TABLEVIEW_1/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.josephcorbin.pitonew;
+				PRODUCT_BUNDLE_IDENTIFIER = com.josephcorbin.pitonewapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -499,7 +499,7 @@
 				DEVELOPMENT_TEAM = E5ZM3YFU78;
 				INFOPLIST_FILE = TABLEVIEW_1/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.josephcorbin.pitonew;
+				PRODUCT_BUNDLE_IDENTIFIER = com.josephcorbin.pitonewapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
