@@ -292,30 +292,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         menuView.layer.shadowOpacity = 1
         menuView.layer.shadowRadius = 6
         leadingConstraint.constant = -260
-       // self.view.backgroundColor = UIColor(patternImage: UIImage(named: "blue_gradient.png")!.resizableImage(withCapInsets: UIEdgeInsets.zero, resizingMode: .stretch))
-        
-        
-        /*
-        let width = UIScreen.main.bounds.size.width
-        let height = UIScreen.main.bounds.size.height
-        
-        let imageViewBackground = UIImageView(frame: CGRect(0.0, 0.0, width, height))
-        imageViewBackground.image = UIImage(named: "blue_gradient.png")
-        
-        // you can change the content mode:
-        imageViewBackground.contentMode = UIViewContentMode.scaleAspectFill
-        self.view.insertSubview(imageViewBackground, at: 0)
-        */
-         //    self.tableView.backgroundColor = UIColor.clear
+       
         
         var image = UIImage(named: "blue_gradient.png")! as UIImage
         self.actionToolBar.setBackgroundImage(#imageLiteral(resourceName: "blue_bottom").resizableImage(withCapInsets: UIEdgeInsets.zero, resizingMode: .stretch), forToolbarPosition: .any, barMetrics: .default)
         
       
-        //   view.addSubview(blurView)
-        // tableView.backgroundColor = UIColor.clear
-        //registerForKeyboardNotifications()
-        
         
         var swipeLeft = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
         swipeLeft.direction = UISwipeGestureRecognizerDirection.right
@@ -343,12 +325,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         InputUnits = InputUnitsUS
         DataSource = InputTitles
         ResultUnits = ResultUnitsUS
-        //self.view.backgroundColor = UIColor.black//(//patternImage: UIImage(named: "background.png")!)
         tableView.layer.borderColor = UIColor.black.cgColor
         
         // shadow
         tableView.layer.shadowColor = UIColor.black.cgColor
-        //tableView.layer.shadowOffset = CGSize(width: 3, height: 3)
         tableView.layer.shadowOpacity = 0.7
         tableView.layer.shadowRadius = 4.0
         let range = NSMakeRange(0, 0)
@@ -358,7 +338,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         menuTableView.dataSource = self
         tableView.dataSource = self
         tableView.delegate = self
-        //tableView.contentInset = UIEdgeInsetsMake(44,0,0,0);
     }
     
     @IBOutlet weak var backgroundView: UIView!
@@ -531,6 +510,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         var molecularWeight: Double
         let gasDensitySI: Double
         let gasDensityUS: Double
+        var normalAirFlowSI= 0.0
         
         
         
@@ -737,11 +717,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             print("NORMAL AIR FLOW")
             print(actualAirFlow)
             print(dryBulbTemperature)
-            normalAirFlow = (actualAirFlow*ductPressure/101.325)*273.15/(273.15+dryBulbTemperature)
+            normalAirFlow = actualAirFlow*ductPressure/101.325*273.15/(273.15+dryBulbTemperature)
             
         }
         else{
-            normalAirFlow=(actualAirFlow*60.0/(pow(39.3701/12.0,3.0))*(ductPressure/0.2953)/101.325)*273.15/(273.15+dryBulbTemperature)/60.0*pow((39.3701/12.0),3.0)*(294.26/273.15)
+            normalAirFlowSI = (actualAirFlow*60/pow(39.3701/12,3))*(ductPressure/0.2953)/101.325*273.15/(273.15+((dryBulbTemperature-32)/1.8))
+            
+            normalAirFlowSI/60.0*pow((39.3701/12.0),3.0)*(294.26/273.15)
             
         }
         
