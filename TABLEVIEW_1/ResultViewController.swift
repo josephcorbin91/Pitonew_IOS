@@ -240,13 +240,7 @@ class ResultViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
         }
         }
-        if(tableView == self.menuTableView && indexPath.row == 3){
-            let settingsViewController = storyboard?.instantiateViewController(withIdentifier: "SettingsViewController") as! TableViewControllerSettings
-            
-            
-            self.navigationController?.show(settingsViewController, sender: self)
-
-        }
+      
     }
     
 
