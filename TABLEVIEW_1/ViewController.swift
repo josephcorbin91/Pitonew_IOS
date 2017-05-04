@@ -510,14 +510,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         var molecularWeight: Double
         let gasDensitySI: Double
         let gasDensityUS: Double
-        var normalAirFlowSI= 0.0
+        var normalAirFlowSI = 0.0
         
         
         
         let averageVelocity: Double
         let actualAirFlow: Double
         let massAirFlow: Double
-        let normalAirFlow: Double
+        var normalAirFlow = 0.0
         
         
         var humidityH20DryAir = 0.0
@@ -1057,7 +1057,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextFieldDidEndEditingReason) {
         //let row = textField.tag
-        animateViewMoving(up: false, moveValue: keyboardHeight)
+       // animateViewMoving(up: false, moveValue: keyboardHeight)
 
         //activeField = nil
         let cell = textField.superview!.superview as! CustomCell
@@ -1123,7 +1123,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func textFieldDidBeginEditing(_ textField: UITextField) {
         rowBeingEdited = textField.tag
         activeField = textField
-        animateViewMoving(up: true, moveValue: keyboardHeight)
+      //  animateViewMoving(up: true, moveValue: keyboardHeight)
 
     }
     
